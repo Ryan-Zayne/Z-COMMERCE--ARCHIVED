@@ -60,10 +60,8 @@ const Categories = () => {
 
 	return (
 		<section className="mt-[6rem] px-[4rem] lg:px-[7rem]">
-			<h2 className="mb-[3rem] text-center text-[2.5rem] font-[600] lg:text-[4rem]">
-				All Categories
-			</h2>
-			<ul className="grid auto-rows-[17rem] grid-cols-[repeat(auto-fit,minmax(20rem,1fr))] justify-center gap-[3rem] lg:auto-rows-[20rem] lg:grid-cols-[repeat(3,_minmax(30rem,1fr))]">
+			<h2 className="text-center text-[2.5rem] font-[600] lg:text-[4rem]">All Categories</h2>
+			<ul className="mt-[3rem] grid auto-rows-[17rem] grid-cols-[repeat(auto-fit,minmax(20rem,1fr))] justify-center gap-[3rem] lg:auto-rows-[20rem] lg:grid-cols-[repeat(3,_minmax(30rem,1fr))]">
 				{renderedCategories}
 			</ul>
 		</section>
