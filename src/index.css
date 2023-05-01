@@ -1,0 +1,87 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	:root {
+		--text-header: hsl(43, 100%, 55%);
+		--text-light: hsl(0, 17%, 93%);
+		--text-body: black;
+		--text-dark: hsl(212, 11%, 23%);
+		--text-placeholder: hsl(34, 5%, 30%);
+		--color-primary: hsl(206, 13%, 14%);
+		--color-secondary: hsl(43, 100%, 55%);
+		--color-body: hsl(0, 0%, 100%);
+		--color-navbar: hsl(215, 19%, 35%, 0.8);
+		--carousel-btn: hsl(0, 0%, 80%, 0.4);
+		--carousel-dot: hsl(214, 32%, 91%);
+		--dark-mode-ball: var(--carousel-dot);
+		--brand-inverse: var(--color-primary)
+	}
+
+	:root[data-theme='dark'] {
+		--text-header: hsl(43, 67%, 50%);
+		--text-light: hsl(34, 5%, 71%);
+		--text-body: whitesmoke;
+		--text-dark: hsl(30, 3%, 75%);
+		--color-secondary: hsl(43, 91%, 25%);
+		--color-navbar: hsl(215, 17%, 25%, 0.8);
+		--color-body: hsl(240, 6%, 7%);
+		--carousel-btn: hsl(204, 5%, 20%, 0.4);
+		--carousel-dot: hsl(212, 8%, 64%);
+		--dark-mode-ball: hsl(0, 0%, 26%);
+		--brand-inverse: var(--color-secondary)
+	}
+
+
+	/* ------------------*/
+	/* General CSS Reset */
+	/*-------------------*/
+	* {
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+		-webkit-tap-highlight-color: transparent;
+	}
+
+
+	/* -------------------------- */
+	/* Making basic style resets */
+	/* ------------------------- */
+	html {
+		font-size: 62.5%;
+	}
+
+
+	input:focus-visible {
+		outline: 2px solid transparent;
+		outline-offset: 2px;
+	}
+
+	img {
+		width: 100%;
+		max-inline-size: 100%;
+		max-width: unset;
+	}
+
+	button {
+		outline: transparent;
+	}
+
+	body {
+		scroll-behavior: smooth;
+		font-size: 1.6rem;
+		font-family: 'Rubik', 'Trebuchet MS', sans-serif;
+		background-color: var(--color-body);
+		color: var(--text-body);
+	}
+}
+
+@layer components {
+
+	/* Transition for smooth theme change */
+	.theme-transition,
+	.theme-transition * {
+		transition: background-color 200ms linear, color 10ms linear;
+	}
+}

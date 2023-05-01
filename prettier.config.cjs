@@ -1,0 +1,20 @@
+module.exports = {
+	// eslint-disable-next-line global-require,, import/no-extraneous-dependencies
+	plugins: [require('prettier-plugin-tailwindcss')],
+	arrowParens: 'always',
+	bracketSameLine: false,
+	bracketSpacing: true,
+	embeddedLanguageFormatting: 'auto',
+	endOfLine: 'lf',
+	htmlWhitespaceSensitivity: 'css',
+	insertPragma: false,
+	jsxSingleQuote: false,
+	printWidth: 104,
+	proseWrap: 'preserve',
+	quoteProps: 'as-needed',
+	semi: true,
+	singleQuote: true,
+	tabWidth: 3,
+	trailingComma: 'es5',
+	useTabs: true,
+};
