@@ -1,5 +1,4 @@
-/* eslint-disable prefer-const */
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useCallback } from 'react';
 import { useGlobalStore } from '../zustand-store/globalStore';
 
 const elements = [
@@ -9,9 +8,10 @@ const elements = [
 ];
 
 class ELementError extends Error {
+	name = 'ELementError';
+
 	constructor(value) {
 		super(`"${value}" does not Exist`);
-		this.name = 'ElementError';
 	}
 }
 
@@ -19,26 +19,26 @@ const useAnimateRef = () => {
 	const elementRef = useRef({});
 	const currentSlide = useGlobalStore((state) => state.currentSlide);
 
-	useEffect(() => {
+	const addAnimationClasses = useCallback(() => {
 		elements.forEach((elem) => {
-			if (!elementRef.current[elem.target]) {
-				throw new ELementError(elem.target);
-			}
-
+			if (!elementRef.current[elem.target]) throw new ELementError(elem.target);
 			elementRef.current[elem.target].classList.add(elem.animationClass);
 		});
+	}, []);
 
-		// Animation Timeout
-		let fadeAnimationId;
+	const removeAnimationClasses = useCallback(() => {
+		elements.forEach((elem) => {
+			elementRef.current[elem.target].classList.remove(elem.animationClass);
+		});
+	}, []);
 
-		fadeAnimationId = setTimeout(() => {
-			elements.forEach((elem) => {
-				elementRef.current[elem.target].classList.remove(elem.animationClass);
-			});
-		}, 2000);
+	useEffect(() => {
+		addAnimationClasses();
+
+		const fadeAnimationId = setTimeout(removeAnimationClasses, 2000);
 
 		return () => clearTimeout(fadeAnimationId);
-	}, [currentSlide]);
+	}, [currentSlide, addAnimationClasses, removeAnimationClasses]);
 
 	return { animatedElements: elementRef.current };
 };

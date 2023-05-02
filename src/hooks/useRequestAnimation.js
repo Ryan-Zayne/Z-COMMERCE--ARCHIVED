@@ -1,10 +1,12 @@
 import { useEffect, useRef, useCallback } from 'react';
 
 const useRequestAnimation = (callback, delay) => {
-	const savedCallback = useRef();
+	const savedCallback = useRef(callback);
 	const startTimestamp = useRef(0);
 	const animationFrameId = useRef(null);
 
+	/*	useEffect hook to save the latest callback function to be executed
+	   on component rerender */
 	useEffect(() => {
 		savedCallback.current = callback;
 	}, [callback]);

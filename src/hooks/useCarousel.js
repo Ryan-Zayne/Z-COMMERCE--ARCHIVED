@@ -1,6 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useState } from 'react';
-import { useHref } from 'react-router-dom';
+import { useCallback, useEffect, useState } from 'react';
 import { useGlobalActions, useGlobalStore } from '../zustand-store/globalStore';
 import useRequestAnimation from './useRequestAnimation';
 
@@ -9,13 +8,16 @@ const useCarousel = ({ numberOfSlides, isAutoSlide = false, autoSlideInterval = 
 	const currentSlide = useGlobalStore((state) => state.currentSlide);
 	const isNavShow = useGlobalStore((state) => state.isNavShow);
 	const { nextSlide, previousSlide, goToSlide } = useGlobalActions();
-	const href = useHref();
 
 	const maxSlide = numberOfSlides - 1;
 
-	const nextSlideButton = () => (currentSlide === maxSlide ? goToSlide(0) : nextSlide());
+	const nextSlideButton = useCallback(() => {
+		currentSlide === maxSlide ? goToSlide(0) : nextSlide();
+	}, [currentSlide, maxSlide]);
 
-	const previousSlideButton = () => (currentSlide === 0 ? goToSlide(maxSlide) : previousSlide());
+	const previousSlideButton = useCallback(() => {
+		currentSlide === 0 ? goToSlide(maxSlide) : previousSlide();
+	}, [currentSlide, maxSlide]);
 
 	// AutoSlide functionality
 	useRequestAnimation(
@@ -24,7 +26,7 @@ const useCarousel = ({ numberOfSlides, isAutoSlide = false, autoSlideInterval = 
 	);
 
 	// Resetting the currentSlide state on route change
-	useEffect(() => goToSlide(0), [href]);
+	useEffect(() => goToSlide(0), []);
 
 	return { previousSlideButton, nextSlideButton, setIsPaused };
 };

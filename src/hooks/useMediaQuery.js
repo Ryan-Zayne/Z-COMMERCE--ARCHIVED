@@ -15,7 +15,7 @@ const useMediaQuery = () => {
 			tabletQuery.removeEventListener('change', setIsTablet);
 			desktopQuery.removeEventListener('change', setIsDesktop);
 		};
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+
+	}, [setIsDesktop, setIsMobile, setIsTablet]);
 };
 export default useMediaQuery;
