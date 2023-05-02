@@ -5,14 +5,14 @@ import { ProductCard } from '../components/common';
 import { useGetAllProducts } from '../hooks';
 
 const AllProductsPage = () => {
-	const { allProducts, allProductsArray } = useGetAllProducts();
+	const { isLoading, isError, allProductsArray } = useGetAllProducts();
 	const navigate = useNavigate();
 
-	if (allProducts.some((item) => item.isLoading)) {
+	if (isLoading) {
 		return <h4 className="mt-[3rem] text-center text-[3rem] font-bold">Loading...</h4>;
 	}
 
-	if (allProducts.some((item) => item.isError)) {
+	if (isError) {
 		return (
 			<h4 className="mt-[3rem] text-center font-roboto text-[3rem] font-medium text-rose-500">
 				Error: Something went wrong
