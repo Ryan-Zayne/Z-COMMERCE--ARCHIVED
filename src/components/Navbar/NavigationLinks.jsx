@@ -1,27 +1,26 @@
-import { useEffect, useState } from 'react';
+import { useLayoutEffect, useState } from 'react';
 import { BsChevronDoubleRight, BsMenuButtonFill } from 'react-icons/bs';
-import { Link, useLocation, NavLink } from 'react-router-dom';
-import { twMerge } from 'tailwind-merge';
+import { Link, NavLink, useHref } from 'react-router-dom';
+import { twJoin, twMerge } from 'tailwind-merge';
 import { useGlobalActions, useGlobalStore } from '../../zustand-store/globalStore';
 import { useThemeStore } from '../../zustand-store/themeStore';
 
 const NavigationLinks = ({ logo }) => {
-	const location = useLocation();
-	const [isCategoryShow, setIsCategoryShow] = useState(() => location.pathname === '/');
+	const href = useHref();
+	const [isCategoryShow, setIsCategoryShow] = useState(() => href === '/');
 	const isDarkMode = useThemeStore((state) => state.isDarkMode);
 	const isDesktop = useGlobalStore((state) => state.isDesktop);
 	const isNavShow = useGlobalStore((state) => state.isNavShow);
 	const { closeNavShow } = useGlobalActions();
-	const handleCategoryShow = () => setIsCategoryShow(!isCategoryShow);
 
-	// Close Category on Route Change that's not the HomePage
-	useEffect(() => {
-		if (location.pathname === '/') {
+	// Close Category Menu on Route that's not the HomePage
+	useLayoutEffect(() => {
+		if (href === '/') {
 			setIsCategoryShow(true);
 		} else {
 			setIsCategoryShow(false);
 		}
-	}, [location.pathname]);
+	}, [href]);
 
 	const renderedCategories = [
 		{ title: 'All Products', path: '/all-products' },
@@ -42,6 +41,11 @@ const NavigationLinks = ({ logo }) => {
 		</li>
 	));
 
+	const toggleCategoryShow = () => setIsCategoryShow((state) => !state);
+	const handleNavlinkClassName = ({ isActive }) => {
+		return twJoin(`relative navlink-transition`, [isActive && 'text-[var(--brand-inverse)]']);
+	};
+
 	return (
 		<article id="Navigation Links" className="w-full">
 			<nav className="flex w-[100%] items-center justify-between font-[500] lg:pr-[2rem] ">
@@ -49,7 +53,7 @@ const NavigationLinks = ({ logo }) => {
 					<div id="Shop By Categories" className="relative z-50 ml-[0.5rem]">
 						<button
 							className="flex w-[28rem] items-center gap-[1rem] rounded-[0.5rem_0.5rem_0_0] bg-heading p-[1rem_1.5rem] font-[500] text-[var(--color-primary)]"
-							onClick={handleCategoryShow}
+							onClick={toggleCategoryShow}
 						>
 							<BsMenuButtonFill className="text-[2rem]" />
 							Shop By Category
@@ -84,7 +88,7 @@ const NavigationLinks = ({ logo }) => {
 					className={twMerge(`flex gap-[12rem]`, [
 						[
 							!isDesktop &&
-								'fixed z-[100] w-0 flex-col gap-[3.2rem] bg-navbar pt-[7rem] text-[1.4rem] text-[whitesmoke] [inset:0_0_0_auto] [backdrop-filter:blur(2rem)_saturate(5)] [transition:width_200ms_ease] md:text-[1.6rem]',
+								'fixed z-[100] w-0 flex-col gap-[3.2rem] bg-navbar pt-[7rem] text-[1.4rem] text-[whitesmoke] [backdrop-filter:blur(2rem)_saturate(5)] [inset:0_0_0_auto] [transition:width_200ms_ease] md:text-[1.6rem]',
 						],
 						[isNavShow && 'w-[min(21rem,_80%)] [transition:width_500ms_ease] md:w-[24rem]'],
 					])}
@@ -93,14 +97,20 @@ const NavigationLinks = ({ logo }) => {
 						<img className="mb-[2rem] ml-[4rem] w-[13rem] md:w-[16rem]" src={logo} alt="" />
 					)}
 					<li className="max-lg:pl-[4rem]" onClick={closeNavShow}>
-						<NavLink to="/">Home</NavLink>
+						<NavLink className={handleNavlinkClassName} to="/">
+							Home
+						</NavLink>
 					</li>
 					{!isDesktop && <li className="max-lg:pl-[4rem]">Categories</li>}
 					<li className="max-lg:pl-[4rem]" onClick={closeNavShow}>
-						<NavLink to="/all-products">Products</NavLink>
+						<NavLink className={handleNavlinkClassName} to="/all-products">
+							Products
+						</NavLink>
 					</li>
 					<li className="max-lg:pl-[4rem]" onClick={closeNavShow}>
-						<NavLink to="#">Contact</NavLink>
+						<NavLink className={handleNavlinkClassName} to="/contact-us">
+							Contact
+						</NavLink>
 					</li>
 				</ul>
 

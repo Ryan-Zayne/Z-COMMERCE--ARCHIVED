@@ -16,7 +16,7 @@
 		--carousel-btn: hsl(0, 0%, 80%, 0.4);
 		--carousel-dot: hsl(214, 32%, 91%);
 		--dark-mode-ball: var(--carousel-dot);
-		--brand-inverse: var(--color-primary)
+		--brand-inverse: var(--color-secondary)
 	}
 
 	:root[data-theme='dark'] {
@@ -30,7 +30,7 @@
 		--carousel-btn: hsl(204, 5%, 20%, 0.4);
 		--carousel-dot: hsl(212, 8%, 64%);
 		--dark-mode-ball: hsl(0, 0%, 26%);
-		--brand-inverse: var(--color-secondary)
+		--brand-inverse: var(--text-header)
 	}
 
 
@@ -84,4 +84,30 @@
 	.theme-transition * {
 		transition: background-color 200ms linear, color 10ms linear;
 	} */
+
+	.navlink-transition::before {
+		content: '';
+		position: absolute;
+		bottom: 2.3rem;
+		left: 50%;
+		background-color: var(--brand-inverse);
+		opacity: 0;
+		transform: translateX(-50%);
+		height: 0.5rem;
+		width: 0.5rem;
+		border-radius: 50%;
+		transition: opacity 0.5s ease 0s,
+			bottom 0.3s ease 0.1s,
+			height 0.5s ease 0.3s,
+			width 0.5s ease 0.5s,
+			border-radius 0.2s ease 0.5s;
+	}
+
+	.navlink-transition:hover::before {
+		bottom: -0.7rem;
+		height: 0.3rem;
+		width: calc(100% + 0.2rem);
+		border-radius: 2rem;
+		opacity: 1;
+	}
 }
