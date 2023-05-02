@@ -17,9 +17,9 @@ const useRequestAnimation = (callback, delay) => {
 				startTimestamp.current = timestamp;
 			}
 
-			const elapsed = timestamp - startTimestamp.current;
+			const elapsedTime = timestamp - startTimestamp.current;
 
-			if (elapsed > delay) {
+			if (elapsedTime >= delay) {
 				savedCallback.current();
 				startTimestamp.current = timestamp;
 			}
@@ -36,8 +36,6 @@ const useRequestAnimation = (callback, delay) => {
 			return () => cancelAnimationFrame(animationFrameId.current);
 		}
 	}, [delay, playAnimation]);
-
-	return animationFrameId.current;
 };
 
 export default useRequestAnimation;
