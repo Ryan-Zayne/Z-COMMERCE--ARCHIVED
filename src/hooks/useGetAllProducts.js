@@ -20,11 +20,15 @@ const useGetAllProducts = () => {
 		}))
 	);
 
+	const isLoading = allProducts.some((item) => item.isLoading === true);
+
+	const isError = allProducts.some((item) => item.isError === true);
+
 	const allProductsArray = allProducts
 		.flatMap((item) => item.data?.products)
 		// Removed 3rd product cuz it's faulty
 		.filter((product) => product?.id !== 3);
 
-	return { allProducts, allProductsArray };
+	return { isLoading, isError, allProductsArray };
 };
 export default useGetAllProducts;
