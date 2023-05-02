@@ -50,6 +50,7 @@
 	/* ------------------------- */
 	html {
 		font-size: 62.5%;
+		scroll-behavior: smooth;
 	}
 
 
@@ -69,7 +70,6 @@
 	}
 
 	body {
-		scroll-behavior: smooth;
 		font-size: 1.6rem;
 		font-family: 'Rubik', 'Trebuchet MS', sans-serif;
 		background-color: var(--color-body);
@@ -80,8 +80,8 @@
 @layer components {
 
 	/* Transition for smooth theme change */
-	.theme-transition,
+	/* .theme-transition,
 	.theme-transition * {
 		transition: background-color 200ms linear, color 10ms linear;
-	}
+	} */
 }
