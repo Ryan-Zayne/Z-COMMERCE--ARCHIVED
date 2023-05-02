@@ -1,12 +1,22 @@
-import { useState } from 'react';
-import { AiOutlineMinus, AiOutlinePlus, AiOutlineShoppingCart } from 'react-icons/ai';
+import { useRef, useState } from 'react';
+import { AiFillPlusCircle, AiFillMinusCircle, AiOutlineShoppingCart } from 'react-icons/ai';
 import { Button, StarRating } from '../common';
 
 const ItemDescription = ({ productItem }) => {
-	const [productCount, setProductCount] = useState(1);
+	const [productCount, setProductCount] = useState(0);
+	const stockCountRef = useRef(productItem.stock);
 
-	const handlePlus = () => productCount < productItem.stock && setProductCount((prev) => prev + 1);
-	const handleMinus = () => productCount > 1 && setProductCount((prev) => prev - 1);
+	const handlePlus = () => {
+		if (productCount === productItem.stock) return;
+		setProductCount((prev) => prev + 1);
+		stockCountRef.current -= 1;
+	};
+
+	const handleMinus = () => {
+		if (productCount === 0) return;
+		setProductCount((prev) => prev - 1);
+		stockCountRef.current += 1;
+	};
 
 	return (
 		<article className="mt-[2.5rem] max-w-[50rem] md:mt-0">
@@ -32,24 +42,24 @@ const ItemDescription = ({ productItem }) => {
 			</div>
 
 			<div className="mt-[3.5rem] flex items-center gap-[4rem] lg:gap-[6rem]">
-				<div className="flex w-[14rem] items-center justify-between rounded-[4rem] bg-carousel-btn p-[0.7rem_1.3rem] text-[1.9rem] font-[600] md:w-[17rem] md:text-[2.3rem] ">
+				<div className="flex w-[14rem] items-center justify-between rounded-[4rem] bg-carousel-btn p-[0.6rem_1.1rem] text-[2.3rem] font-[600] md:w-[17rem] md:text-[2.6rem] ">
 					<button className="active:scale-[1.2]" onClick={handleMinus}>
-						<AiOutlineMinus />
+						<AiFillMinusCircle />
 					</button>
 
 					<p className="font-roboto">{productCount}</p>
 
 					<button className="active:scale-[1.2]" onClick={handlePlus}>
-						<AiOutlinePlus />
+						<AiFillPlusCircle />
 					</button>
 				</div>
 				<div className="whitespace-nowrap text-[1.4rem] tracking-wide md:text-[1.6rem]">
 					<p>
 						Only{' '}
-						<span className="text-[1.6rem] font-[500] text-[hsl(43,67%,50%)]">
-							{productItem.stock} Items
+						<span className="inline-block w-[2.5rem] text-center text-[1.6rem] font-[500] text-[hsl(43,67%,50%)]">
+							{stockCountRef.current}
 						</span>{' '}
-						Left
+						Items Left
 					</p>
 					<span>{`Don't miss it`}!</span>
 				</div>
