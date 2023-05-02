@@ -9,12 +9,6 @@ const Navbar = () => {
 	const isSearchShow = useGlobalStore((state) => state.isSearchShow);
 	const isMobile = useGlobalStore((state) => state.isMobile);
 
-	const FORM_CLASSES = twMerge(`
-		absolute top-[7.2rem] z-[10] px-[2rem] w-[100%] flex h-0 justify-center items-center overflow-y-hidden
-		bg-body transition-[height] duration-[600ms] ease-out rounded-[0_0_5px_5px]
-		${isSearchShow ? 'h-[8.1rem] duration-500' : ''}
-	`);
-
 	return (
 		<header
 			id="Navbar"
@@ -24,7 +18,14 @@ const Navbar = () => {
 			<NavHeader logo={logo} />
 
 			{/* Search Bar for Mobile */}
-			{isMobile && <SearchForm className={FORM_CLASSES} />}
+			{isMobile && (
+				<SearchForm
+					className={twMerge(
+						`absolute top-[7.2rem] z-[10] flex h-0 w-[100%] items-center justify-center overflow-y-hidden rounded-[0_0_5px_5px] bg-body px-[2rem] transition-[height] duration-[600ms] ease-out`,
+						[isSearchShow && 'h-[8.1rem] duration-500']
+					)}
+				/>
+			)}
 
 			{/* Navigation Links */}
 			<NavigationLinks logo={logo} />

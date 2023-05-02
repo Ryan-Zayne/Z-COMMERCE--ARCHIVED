@@ -10,8 +10,7 @@ const NavHeader = ({ logo }) => {
 	const isMobile = useGlobalStore((state) => state.isMobile);
 	const isTablet = useGlobalStore((state) => state.isTablet);
 	const isDesktop = useGlobalStore((state) => state.isDesktop);
-	const { toggleSearchShow, toggleNavShow, handleNoScrollOnNavSHow, closeNavShow } =
-		useGlobalActions();
+	const { toggleSearchShow, toggleNavShow, handleNoScrollOnNavSHow, closeNavShow } = useGlobalActions();
 	const isNavShow = useGlobalStore((state) => state.isNavShow);
 
 	return (
@@ -47,10 +46,10 @@ const NavHeader = ({ logo }) => {
 						{/* HAMBURGER BUTTON */}
 						<button
 							id="Hamburger"
-							className={twMerge(`
-								z-[120] w-[2.6rem]
-								${isNavShow ? 'fixed right-[1.9rem] animate-[bounce_1.5s_ease_infinite] text-rose-600' : ''}
-							`)}
+							className={twMerge(`z-[120] w-[2.6rem]`, [
+								isNavShow &&
+									'fixed right-[1.9rem] animate-[bounce_1.5s_ease_infinite] text-rose-600',
+							])}
 							onClick={() => {
 								toggleNavShow();
 								handleNoScrollOnNavSHow();
@@ -62,10 +61,10 @@ const NavHeader = ({ logo }) => {
 						{/* HAMBURGER OVERLAY */}
 						<div
 							onClick={closeNavShow}
-							className={twMerge(`
-								fixed z-[80] w-0 bg-[hsl(0,0%,0%,0.6)] [inset:0_0_0_auto]
-								${isNavShow ? 'w-screen' : ''}
-							`)}
+							className={twMerge(
+								`fixed z-[80] w-0 bg-[hsl(0,0%,0%,0.6)] [inset:0_0_0_auto]`,
+								isNavShow && 'w-screen'
+							)}
 						>
 							{/* Background Overlay here */}
 						</div>

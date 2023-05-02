@@ -13,18 +13,24 @@ const ProductCard = ({ to = '', image, title, price, description, rating }) => {
 
 	const handleHeartClick = (event) => {
 		event.preventDefault();
-		setIsHearted(!isHearted);
+		setIsHearted((state) => !state);
 	};
 
 	return (
 		<Card
 			as={'li'}
-			className={twMerge(`
-				group/card w-[min(100%,25rem)] rounded-[1.2rem] transition-all duration-[1000ms] ease-in-out hover:scale-[1.03] hover:[box-shadow:0_0_6px_0_hsl(60,_100%,_0%,_1)]
-				${isHearted ? 'scale-[1.03] [box-shadow:0_0_6px_0_hsl(60,_100%,_0%,_1)]' : ''}
-				${isHearted && isDarkMode ? 'scale-[1.03] bg-primary [box-shadow:0_0_6px_0px_var(--carousel-dot)]' : ''}
-				${isDarkMode ? 'hover:bg-primary hover:[box-shadow:0_0_6px_0px_var(--carousel-dot)]' : ''}
-				`)}
+			className={twMerge(
+				`group/card w-[min(100%,25rem)] rounded-[1.2rem] transition-[transform,box-shadow,background-color] duration-[1000ms] ease-in-out hover:scale-[1.03] hover:[box-shadow:0_0_6px_0_hsl(60,_100%,_0%,_1)]`,
+				[
+					[
+						isHearted &&
+							isDarkMode &&
+							'scale-[1.03] bg-primary [box-shadow:0_0_6px_0px_var(--carousel-dot)]',
+					],
+					[isHearted && 'scale-[1.03] [box-shadow:0_0_6px_0_hsl(60,_100%,_0%,_1)]'],
+					[isDarkMode && 'hover:bg-primary hover:[box-shadow:0_0_6px_0px_var(--carousel-dot)]'],
+				]
+			)}
 		>
 			<Link className="inline-block w-full" to={to}>
 				<Card.Header
@@ -34,11 +40,12 @@ const ProductCard = ({ to = '', image, title, price, description, rating }) => {
 					<button
 						id="Wishlist Icon"
 						className={twMerge(
-							`group/btn absolute bottom-[1.3rem] right-[1.3rem] z-[100] rounded-[50%] bg-primary p-[0.7rem] ${
+							`group/btn absolute bottom-[1.3rem] right-[1.3rem] z-[100] rounded-[50%] bg-primary p-[0.7rem]`,
+							[
 								isHearted
 									? 'opacity-100'
-									: 'opacity-0 transition-opacity duration-[1s] group-hover/card:opacity-100'
-							} `
+									: 'opacity-0 transition-opacity duration-[1s] group-hover/card:opacity-100',
+							]
 						)}
 						onClick={handleHeartClick}
 					>
@@ -50,8 +57,8 @@ const ProductCard = ({ to = '', image, title, price, description, rating }) => {
 					</button>
 					<img
 						className={twMerge(
-							`h-full rounded-[0.8rem_0.8rem_0_0] object-cover brightness-[0.9] transition-all duration-[800ms] ease-in-out group-hover/card:scale-[1.17]
-							${isHearted ? 'scale-[1.17]' : ''}`
+							`h-full rounded-[0.8rem_0.8rem_0_0] object-cover brightness-[0.9] transition-[transform] duration-[800ms] ease-in-out group-hover/card:scale-[1.17]`,
+							[isHearted && 'scale-[1.17]']
 						)}
 						src={image}
 						alt=""
@@ -72,7 +79,13 @@ const ProductCard = ({ to = '', image, title, price, description, rating }) => {
 				</Card.Body>
 
 				<Card.Footer className="p-[1.3rem_1rem_1rem]">
-					<hr className="h-[1.8px] bg-carousel-dot opacity-0 group-hover/card:opacity-100" />
+					<hr
+						className={twMerge(
+							`h-[1.8px] bg-carousel-dot opacity-0 group-hover/card:opacity-100`,
+							[isHearted && 'opacity-100']
+						)}
+					/>
+
 					<Button
 						variant={'cart'}
 						theme={'secondary'}

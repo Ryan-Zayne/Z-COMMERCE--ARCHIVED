@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { BsChevronDoubleRight, BsMenuButtonFill } from 'react-icons/bs';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, NavLink } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
 import { useGlobalActions, useGlobalStore } from '../../zustand-store/globalStore';
 import { useThemeStore } from '../../zustand-store/themeStore';
@@ -22,28 +22,6 @@ const NavigationLinks = ({ logo }) => {
 			setIsCategoryShow(false);
 		}
 	}, [location.pathname]);
-
-	const styles = {
-		NAVLIST_CLASSES: twMerge(`
-				flex gap-[12rem]
-				${
-					!isDesktop
-						? 'z-[100] fixed text-[1.4rem] md:text-[1.6rem] text-[whitesmoke] flex-col w-0 gap-[3.2rem] bg-navbar pt-[7rem] [inset:0_0_0_auto] [transition:width_200ms_ease] [backdrop-filter:blur(2rem)_saturate(5)]'
-						: ''
-				}
-				${isNavShow ? 'w-[min(21rem,_80%)] md:w-[24rem] [transition:width_500ms_ease]' : ''}
-		`),
-
-		CATEGORY_LIST_CLASSES: twMerge(`
-				absolute w-full bg-body px-[2rem] font-[400] transition-[height,padding] duration-[400ms] ease-out overflow-hidden
-				${
-					isDarkMode
-						? '[box-shadow:0_1px_3px_0.3px_var(--carousel-dot)]'
-						: '[box-shadow:0_1px_3px_0.3px_var(--color-primary)]'
-				}
-				${isCategoryShow ? 'pt-[5rem] h-[41.4rem] lg:h-[45.9rem]' : 'h-0 [box-shadow:unset]'}
-		`),
-	};
 
 	const renderedCategories = [
 		{ title: 'All Products', path: '/all-products' },
@@ -77,26 +55,52 @@ const NavigationLinks = ({ logo }) => {
 							Shop By Category
 						</button>
 
-						<ul id="Category List" className={styles.CATEGORY_LIST_CLASSES}>
+						<ul
+							id="Category List"
+							className={twMerge(
+								`absolute w-full overflow-hidden bg-body px-[2rem] font-[400] transition-[height,padding] duration-[400ms] ease-out`,
+								[
+									[
+										isDarkMode
+											? '[box-shadow:0_1px_3px_0.3px_var(--carousel-dot)]'
+											: '[box-shadow:0_1px_3px_0.3px_var(--color-primary)]',
+									],
+									[
+										isCategoryShow
+											? 'h-[41.4rem] pt-[5rem] lg:h-[45.9rem]'
+											: 'h-0 [box-shadow:revert]',
+									],
+								]
+							)}
+						>
 							{renderedCategories}
 						</ul>
 					</div>
 				)}
 
 				{/* NAVIGATION LINKS */}
-				<ul id="Navigation List" className={styles.NAVLIST_CLASSES}>
+				<ul
+					id="Navigation List"
+					className={twMerge(`flex gap-[12rem]`, [
+						[
+							!isDesktop &&
+								'fixed z-[100] w-0 flex-col gap-[3.2rem] bg-navbar pt-[7rem] text-[1.4rem] text-[whitesmoke] [inset:0_0_0_auto] [backdrop-filter:blur(2rem)_saturate(5)] [transition:width_200ms_ease] md:text-[1.6rem]',
+						],
+						[isNavShow && 'w-[min(21rem,_80%)] [transition:width_500ms_ease] md:w-[24rem]'],
+					])}
+				>
 					{!isDesktop && (
 						<img className="mb-[2rem] ml-[4rem] w-[13rem] md:w-[16rem]" src={logo} alt="" />
 					)}
 					<li className="max-lg:pl-[4rem]" onClick={closeNavShow}>
-						<Link to="/">Home</Link>
+						<NavLink to="/">Home</NavLink>
 					</li>
 					{!isDesktop && <li className="max-lg:pl-[4rem]">Categories</li>}
 					<li className="max-lg:pl-[4rem]" onClick={closeNavShow}>
-						<Link to="/all-products">Products</Link>
+						<NavLink to="/all-products">Products</NavLink>
 					</li>
 					<li className="max-lg:pl-[4rem]" onClick={closeNavShow}>
-						<Link to="#">Contact</Link>
+						<NavLink to="#">Contact</NavLink>
 					</li>
 				</ul>
 

@@ -1,5 +1,6 @@
 /* eslint-disable react/no-array-index-key */
 import { RxPaperPlane } from 'react-icons/rx';
+import { twJoin } from 'tailwind-merge';
 import { useAnimateRef } from '../../hooks';
 import { useThemeStore } from '../../zustand-store/themeStore';
 import { Button, Carousel } from '../common';
@@ -17,34 +18,28 @@ const Hero = () => {
 	const isDarkMode = useThemeStore((state) => state.isDarkMode);
 	const { animatedElements } = useAnimateRef();
 
-	const styles = {
-		outerContainer: 'max-lg:mx-[1rem] h-[38rem] md:h-[41.4rem] lg:h-[46rem]',
-		innerContainer: `max-lg:rounded-[0.7rem] ${
-			isDarkMode ? 'max-lg:[box-shadow:0_0_3px_0.1px_var(--carousel-dot)]' : ''
-		}`,
-		leftBtn: 'md:left-[0.8rem] hover:[box-shadow:0_0_5px_var(--text-dark)] lg:left-[29.5rem]',
-		rightBtn: 'hover:[box-shadow:0_0_5px_var(--text-dark)] md:right-[0.8rem]',
-	};
-
 	const carouselItems = images.map((image, index) => (
 		<Carousel.Item key={index}>
 			<img className="object-cover" src={image} alt="" />
 		</Carousel.Item>
 	));
 
-	const carouselIndicators = images.map((_, index) => (
-		<Carousel.Indicator key={index} index={index} />
-	));
+	const carouselIndicators = images.map((_, index) => <Carousel.Indicator key={index} index={index} />);
 
 	return (
 		<section id="Hero" className="lg:bg-primary">
 			<Carousel
-				outerClassName={styles.outerContainer}
-				innerClassName={styles.innerContainer}
+				outerClassName={'max-lg:mx-[1rem] h-[38rem] md:h-[41.4rem] lg:h-[46rem]'}
+				innerClassName={twJoin(
+					`max-lg:rounded-[0.7rem]`,
+					isDarkMode && 'max-lg:[box-shadow:0_0_3px_0.1px_var(--carousel-dot)]'
+				)}
+				leftBtnClasses={
+					'md:left-[0.8rem] hover:[box-shadow:0_0_5px_var(--text-dark)] lg:left-[29.5rem]'
+				}
+				rightBtnClasses={'hover:[box-shadow:0_0_5px_var(--text-dark)] md:right-[0.8rem]'}
 				images={images}
 				arrowIcon={<RxPaperPlane />}
-				leftBtnClasses={styles.leftBtn}
-				rightBtnClasses={styles.rightBtn}
 				autoSlideInterval={20000}
 				isAutoSlide
 				pauseOnHover
