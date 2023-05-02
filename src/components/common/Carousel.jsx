@@ -43,7 +43,7 @@ const Carousel = ({
 			<div
 				id="Carousel Inner"
 				className={twMerge(
-					`flex h-full overflow-x-scroll scroll-smooth [scroll-snap-type:x_mandatory] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden ${innerClassName}`
+					`flex h-full overflow-x-scroll scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden ${innerClassName}`
 				)}
 			>
 				{children}
@@ -63,9 +63,7 @@ const Carousel = ({
 };
 
 const CarouselItem = ({ children, className = '' }) => {
-	return (
-		<li className={twMerge(`inline-flex w-full shrink-0 snap-center ${className}`)}>{children}</li>
-	);
+	return <li className={twMerge(`inline-flex w-full shrink-0 ${className}`)}>{children}</li>;
 };
 
 const CarouselItemWrapper = ({ children, className = '' }) => {
@@ -75,10 +73,10 @@ const CarouselItemWrapper = ({ children, className = '' }) => {
 			id="Carousel Image Wrapper"
 			// Set pointer-events-none to prevent swipe scrolling (E get why...)
 			className={twMerge(
-				`pointer-events-none flex w-full shrink-0 flex-nowrap transition-transform duration-[600ms] ease-in-out ${className}`
+				`pointer-events-none flex w-full shrink-0 transition-transform duration-[1000ms] ease-in-out will-change-transform ${className}`
 			)}
 			style={{
-				transform: `translateX(-${currentSlide * 100}%)`,
+				transform: `translate(-${currentSlide * 100}%, 0)`,
 			}}
 		>
 			{children}
