@@ -40,7 +40,7 @@ const Hero = () => {
 				rightBtnClasses={'hover:[box-shadow:0_0_5px_var(--text-dark)] md:right-[0.8rem]'}
 				images={images}
 				arrowIcon={<RxPaperPlane />}
-				autoSlideInterval={20000}
+				autoSlideInterval={15000}
 				isAutoSlide
 				pauseOnHover
 			>
@@ -48,13 +48,13 @@ const Hero = () => {
 
 				<Carousel.Caption
 					className={
-						'flex flex-col items-start pl-[4.5rem] pt-[5.5rem] md:pl-[7.5rem] lg:pl-[36rem] lg:pt-[8rem]'
+						'ml-[4.5rem] mt-[5.5rem] flex flex-col items-start md:ml-[7.5rem] lg:ml-[36rem] lg:mt-[8rem]'
 					}
 				>
-					<div className="w-[28ch] lg:w-[30ch]">
+					<div>
 						<h1
 							ref={(elem) => (animatedElements.heading = elem)}
-							className="font-roboto text-[clamp(2rem,_4vw+1rem,_3rem)] font-[600] text-heading"
+							className="w-[17ch] font-roboto text-[clamp(2rem,_4vw+1rem,_3rem)] font-[600] text-heading"
 						>
 							Explore the Future of Technology
 						</h1>

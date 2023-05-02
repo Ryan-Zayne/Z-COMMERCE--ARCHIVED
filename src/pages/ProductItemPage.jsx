@@ -24,7 +24,7 @@ const ProductItemPage = () => {
 
 	return (
 		<section className="p-[1rem_2rem_3rem] lg:pt-[2rem]">
-			<header className="flex items-center justify-between px-[2rem]">
+			<header className="mx-[0.5rem] flex items-center justify-between lg:mx-[3rem]">
 				<ItemHeader productItem={productItem} />
 			</header>
 

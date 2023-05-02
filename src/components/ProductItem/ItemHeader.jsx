@@ -12,7 +12,11 @@ const ItemHeader = ({ productItem }) => {
 			<button className="text-[3rem]" onClick={() => navigate(-1)}>
 				<TiArrowBack />
 			</button>
-			<h1 className="font-roboto text-[2.7rem] font-[600] lg:text-[3.4rem]">{productItem.title}</h1>
+
+			<h1 className="text-center font-roboto text-[2.7rem] font-[600] lg:text-[3.4rem]">
+				{productItem.title}
+			</h1>
+
 			<button
 				className="rounded-[50%] bg-primary p-[0.7rem]"
 				onClick={() => setIsHearted((state) => !state)}
