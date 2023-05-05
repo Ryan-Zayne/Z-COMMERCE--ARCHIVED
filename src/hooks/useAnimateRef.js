@@ -22,6 +22,7 @@ const useAnimateRef = () => {
 	const addAnimationClasses = useCallback(() => {
 		elements.forEach((elem) => {
 			if (!elementRef.current[elem.target]) throw new ELementError(elem.target);
+
 			elementRef.current[elem.target].classList.add(elem.animationClass);
 		});
 	}, []);

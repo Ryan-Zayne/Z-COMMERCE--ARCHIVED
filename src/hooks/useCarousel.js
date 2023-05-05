@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useCallback, useEffect, useState } from 'react';
 import { useGlobalActions, useGlobalStore } from '../zustand-store/globalStore';
-import useRequestAnimation from './useRequestAnimation';
+import useAnimationInterval from './useAnimationInterval';
 
 const preferReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -21,8 +21,8 @@ const useCarousel = ({ numberOfSlides, isAutoSlide = false, autoSlideInterval = 
 		currentSlide === 0 ? goToSlide(maxSlide) : previousSlide();
 	}, [currentSlide, maxSlide]);
 
-	// AutoSlide functionality
-	useRequestAnimation(
+	// AutoSlide functionality for a given slideInterval
+	useAnimationInterval(
 		() => nextSlideButton(),
 		isAutoSlide && !isPaused && !isNavShow && !preferReducedMotion ? autoSlideInterval : null
 	);
