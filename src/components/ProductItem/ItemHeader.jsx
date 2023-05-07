@@ -19,9 +19,9 @@ const ItemHeader = ({ productItem }) => {
 
 			<button className="rounded-[50%] bg-primary p-[0.7rem]" onClick={toggleIsHearted}>
 				{isHearted ? (
-					<AiFillHeart className="scale-[1.16] text-[2.1rem] text-heading group-active/btn:scale-[1.23]" />
+					<AiFillHeart className="scale-[1.16] text-[2.1rem] text-heading active:scale-[1.23]" />
 				) : (
-					<AiOutlineHeart className="text-[2.1rem] text-carousel-dot group-hover/btn:text-heading group-active/btn:scale-[1.23]" />
+					<AiOutlineHeart className="text-[2.1rem] text-carousel-dot hover:text-heading active:scale-[1.23]" />
 				)}
 			</button>
 		</>
