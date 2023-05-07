@@ -57,10 +57,10 @@ const ItemDescription = ({ productItem }) => {
 				</div>
 				<div className="whitespace-nowrap text-[1.4rem] tracking-wide md:text-[1.6rem]">
 					<p>
-						Only{' '}
-						<span className="inline-block w-[2.5rem] text-center text-[1.6rem] font-[500] text-[hsl(43,67%,50%)]">
+						Only
+						<span className="mx-[0.5rem] inline-block text-[1.6rem] font-[500] text-[hsl(43,67%,50%)]">
 							{stockCountRef.current}
-						</span>{' '}
+						</span>
 						Items Left
 					</p>
 					<span>{`Don't miss it`}!</span>
