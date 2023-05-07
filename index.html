@@ -6,26 +6,40 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<link rel="shortcut icon" href="/src/assets/brand/favicon.png" type="image/x-icon">
 	<title>DigitalGenie</title>
+	<!-- Script to prevent flicker of wrong theme onLoad -->
+	<script defer>
+		const theme = JSON.parse(localStorage.getItem('colorScheme'))?.state?.theme ?? window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+		document.documentElement.setAttribute('data-theme', theme);
+	</script>
 </head>
 
 <style>
-	@font-face {
-		font-family: 'Rubik';
-		src: url(/src/assets/fonts/Rubik.woff2) format('woff2');
-		font-style: normal;
-		font-display: swap;
+	.loader-container {
+		position: fixed;
+		inset: 0;
+		z-index: 1000;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		opacity: 1;
+		background-color: black;
+		transition: opacity 1s ease-in-out;
 	}
 
-	@font-face {
-		font-family: 'Roboto Slab';
-		src: url(/src/assets/fonts/Roboto-slab.woff2) format('woff2');
-		font-style: normal;
-		font-display: swap;
+	.loader-img {
+		width: 350px;
+		height: 200px;
 	}
 </style>
 
 <body>
 	<main id="root"></main>
+
+	<!-- Will disappear once react hydrates the DOM -->
+	<div class='loader-container'>
+		<img class='loader-img' src='./src/assets/loading.svg' alt="" />
+	</div>
+
 	<script type="module" src="/src/main.jsx"></script>
 </body>
 

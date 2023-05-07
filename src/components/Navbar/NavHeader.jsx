@@ -2,7 +2,7 @@ import { BiCartAlt, BiHeart, BiSearchAlt2, BiUser } from 'react-icons/bi';
 import { RiCloseFill, RiMenu3Fill } from 'react-icons/ri';
 import { Link } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
-import { useGlobalActions, useGlobalStore } from '../../zustand-store/globalStore';
+import { useGlobalActions, useGlobalStore } from '../../store/zustand/globalStore';
 import SearchForm from './SearchForm';
 import ThemeSwitchButton from './ThemeSwitchButton';
 

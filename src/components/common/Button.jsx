@@ -20,13 +20,13 @@ const Button = ({ theme, variant = 'regular', size = 'md', className, text, chil
 		lg: 'p-[1.1rem_4.5rem]',
 	};
 
-	const BTN_CLASSES = twMerge(`
-				flex items-center justify-center
-				${semanticVariants[variant] ?? ''}
-				${semanticThemes[theme] ?? ''}
-				${semanticSizes[size] ?? ''}
-				${className ?? ''}
-	`);
+	const BTN_CLASSES = twMerge(
+		`flex items-center justify-center`,
+		semanticVariants[variant] ?? '',
+		semanticThemes[theme] ?? '',
+		semanticSizes[size] ?? '',
+		className ?? ''
+	);
 
 	return (
 		<button className={BTN_CLASSES} onClick={onClick}>

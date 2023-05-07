@@ -1,5 +1,4 @@
 /* eslint-disable consistent-return */
-
 import { useEffect, useRef } from 'react';
 
 /**
@@ -53,6 +52,8 @@ const useAnimationInterval = (callbackFn, intervalDuration) => {
 			return () => cancelAnimationFrame(animationFrameId.current);
 		}
 	}, [intervalDuration]);
+
+	return animationFrameId;
 };
 
 export default useAnimationInterval;

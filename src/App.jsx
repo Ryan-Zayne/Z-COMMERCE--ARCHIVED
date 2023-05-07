@@ -1,22 +1,39 @@
-import { createBrowserRouter, RouterProvider, createRoutesFromElements, Route } from 'react-router-dom';
+import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom';
 import { useMediaQuery } from './hooks';
-import HomePage from './pages/HomePage';
 import AllProductsPage from './pages/AllProductsPage';
+import HomePage from './pages/HomePage';
 import ProductItem from './pages/ProductItemPage';
-import GlobalLayout from './routes/GlobalLayout';
+import GlobalLayout from './components/GlobalLayout';
+
+// NOTE - Turned on auto browser scroll restoration for moxilla
+window.history.scrollRestoration = 'auto';
+
+const handleLoaderRemoval = () => {
+	const loaderElement = document.querySelector('.loader-container');
+	loaderElement.style.opacity = '0';
+
+	const loaderTimeout = setTimeout(() => {
+		loaderElement.remove();
+		window.removeEventListener('DOMContentLoaded', handleLoaderRemoval);
+
+		clearTimeout(loaderTimeout);
+	}, 1000);
+};
+
+window.addEventListener('DOMContentLoaded', handleLoaderRemoval);
 
 const App = () => {
 	useMediaQuery();
 
-	const routes = createRoutesFromElements(
-		<Route path="/" element={<GlobalLayout />}>
-			<Route index element={<HomePage />} />
-			<Route path="all-products" element={<AllProductsPage />} />
-			<Route path="all-products/:productId" element={<ProductItem />} />
-		</Route>
+	const router = createBrowserRouter(
+		createRoutesFromElements(
+			<Route path="/" element={<GlobalLayout />}>
+				<Route index element={<HomePage />} />
+				<Route path="all-products" element={<AllProductsPage />} />
+				<Route path="all-products/:productId" element={<ProductItem />} />
+			</Route>
+		)
 	);
-
-	const router = createBrowserRouter(routes);
 
 	return <RouterProvider router={router} />;
 };

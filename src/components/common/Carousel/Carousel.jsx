@@ -1,18 +1,19 @@
 import { twMerge } from 'tailwind-merge';
 import { useCarousel } from '../../../hooks';
-import SwipeDisabler from './SwipeDisabler';
+import { useGlobalStore } from '../../../store/zustand/globalStore';
+import CarouselCaption from './CarouselCaption';
 import CarouselIndicator from './CarouselIndicator';
 import CarouselIndicatorWrapper from './CarouselIndicatorWrapper';
 import CarouselItem from './CarouselItem';
 import CarouselItemWrapper from './CarouselItemWrapper';
-import CarouselCaption from './CarouselCaption';
+import SwipeDisabler from './SwipeDisabler';
 
 const Carousel = ({
 	as: Element = 'article',
 	children,
+	images = [],
 	outerClassName = '',
 	innerClassName = '',
-	images,
 	arrowIcon,
 	leftBtnClasses = '',
 	rightBtnClasses = '',
@@ -25,13 +26,14 @@ const Carousel = ({
 		isAutoSlide,
 		autoSlideInterval,
 	});
+	const isMobile = useGlobalStore((state) => state.isMobile);
 
 	return (
 		<Element
 			id="Carousel"
 			className={twMerge(`relative flex select-none ${outerClassName}`)}
-			onMouseEnter={() => pauseOnHover && setIsPaused(true)}
-			onMouseLeave={() => pauseOnHover && setIsPaused(false)}
+			onMouseEnter={() => !isMobile && pauseOnHover && setIsPaused(true)}
+			onMouseLeave={() => !isMobile && pauseOnHover && setIsPaused(false)}
 		>
 			<button className="absolute left-0 z-40 h-full w-[9rem]" onClick={previousSlideButton}>
 				<span
@@ -50,7 +52,7 @@ const Carousel = ({
 				)}
 			>
 				{/* Disables Carousel Swipe on mobile (E get why...) */}
-				<SwipeDisabler />
+				{isMobile && <SwipeDisabler />}
 				{children}
 			</div>
 

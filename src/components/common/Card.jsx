@@ -1,5 +1,4 @@
-const Card = ({ as = 'article', children, className }) => {
-	const Element = as;
+const Card = ({ as: Element = 'article', children, className }) => {
 	return (
 		<Element id="Card" className={className}>
 			{children}

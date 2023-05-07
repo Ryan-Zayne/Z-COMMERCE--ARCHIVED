@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
-import { useMediaQueryActions } from '../zustand-store/globalStore';
-import { desktopQuery, mobileQuery, tabletQuery } from '../zustand-store/slices/mediaQuerySlice';
+import { useMediaQueryActions } from '../store/zustand/globalStore';
+import { desktopQuery, mobileQuery, tabletQuery } from '../store/zustand/slices/mediaQuerySlice';
 
 const useMediaQuery = () => {
 	const { setIsMobile, setIsTablet, setIsDesktop } = useMediaQueryActions();
@@ -15,7 +15,6 @@ const useMediaQuery = () => {
 			tabletQuery.removeEventListener('change', setIsTablet);
 			desktopQuery.removeEventListener('change', setIsDesktop);
 		};
-
 	}, [setIsDesktop, setIsMobile, setIsTablet]);
 };
 export default useMediaQuery;

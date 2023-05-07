@@ -1,5 +1,6 @@
 import { twJoin } from 'tailwind-merge';
-import { useThemeStore } from '../../zustand-store/themeStore';
+
+import { useThemeStore } from '../../store/zustand/themeStore';
 import { Button } from '../common';
 
 const categories = [
@@ -42,7 +43,7 @@ const Categories = () => {
 		<li
 			key={category.title}
 			className={twJoin(
-				` flex w-[min(100%,30rem)] justify-between gap-[1.5rem] rounded-[5rem] p-[2rem] transition-transform duration-[800ms] ease-in-out hover:scale-[1.09] lg:w-full lg:rounded-[6rem]`,
+				` flex w-[min(100%,27rem)] justify-between gap-[1.5rem] rounded-[5rem] p-[2rem] transition-transform duration-[800ms] ease-in-out hover:scale-[1.09] lg:w-full lg:rounded-[6rem]`,
 				[isDarkMode ? category.bg_dark : category.bg_light]
 			)}
 		>

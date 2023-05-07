@@ -1,4 +1,5 @@
-import { fetcher } from '../utils/fetcher';
+import { fetcher } from '../../utils/fetcher';
+import { transformData } from '../../utils/transFormData';
 import { useFetchMultiple } from './useFetch';
 
 const useGetAllProducts = () => {
@@ -14,21 +15,21 @@ const useGetAllProducts = () => {
 
 	const allProducts = useFetchMultiple(
 		productQueries.map((queryItem) => ({
-			queryKey: [queryItem.key, queryItem.url],
+			// eslint-disable-next-line @tanstack/query/exhaustive-deps
+			queryKey: queryItem.key,
 			queryFn: () => fetcher(queryItem.url),
-			staleTime: 5 * 60 * 1000,
+			staleTime: 2 * 60 * 1000,
+			select: transformData,
 		}))
 	);
 
 	const isLoading = allProducts.some((item) => item.isLoading === true);
-
 	const isError = allProducts.some((item) => item.isError === true);
 
 	const allProductsArray = allProducts
-		.flatMap((item) => item.data?.products)
-		// Removed 3rd product cuz it's faulty
-		.filter((product) => product?.id !== 3);
+		.flatMap((item) => item.data)
+		.filter((product) => product?.id !== 3); // Filtered out 3rd product cuz it's faulty
 
-	return { isLoading, isError, allProductsArray };
+	return { isLoading, isError, allProducts, allProductsArray };
 };
 export default useGetAllProducts;

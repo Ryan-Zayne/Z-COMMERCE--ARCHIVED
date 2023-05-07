@@ -1,15 +1,15 @@
-import { useState } from 'react';
+import { useReducer } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { TiArrowBack } from 'react-icons/ti';
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 
 const ItemHeader = ({ productItem }) => {
-	const [isHearted, setIsHearted] = useState(false);
+	const [isHearted, toggleIsHearted] = useReducer((state) => !state, false);
 	const navigate = useNavigate();
 
 	return (
 		<>
-			<button className="text-[3rem]" onClick={() => navigate(-1)}>
+			<button className={'text-[3rem]'} onClick={() => navigate(-1)}>
 				<TiArrowBack />
 			</button>
 
@@ -17,10 +17,7 @@ const ItemHeader = ({ productItem }) => {
 				{productItem.title}
 			</h1>
 
-			<button
-				className="rounded-[50%] bg-primary p-[0.7rem]"
-				onClick={() => setIsHearted((state) => !state)}
-			>
+			<button className="rounded-[50%] bg-primary p-[0.7rem]" onClick={toggleIsHearted}>
 				{isHearted ? (
 					<AiFillHeart className="scale-[1.16] text-[2.1rem] text-heading group-active/btn:scale-[1.23]" />
 				) : (

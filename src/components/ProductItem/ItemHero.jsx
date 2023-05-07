@@ -1,6 +1,6 @@
 /* eslint-disable react/no-array-index-key */
 import { BsChevronRight } from 'react-icons/bs';
-import { useThemeStore } from '../../zustand-store/themeStore';
+import { useThemeStore } from '../../store/zustand/themeStore';
 import { Carousel } from '../common';
 
 const ItemHero = ({ productItem }) => {

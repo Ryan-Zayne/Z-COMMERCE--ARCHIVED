@@ -1,5 +1,5 @@
-import { useRef, useEffect, useCallback } from 'react';
-import { useGlobalStore } from '../zustand-store/globalStore';
+import { useEffect, useRef } from 'react';
+import { useGlobalStore } from '../store/zustand/globalStore';
 
 const elements = [
 	{ target: 'heading', animationClass: 'animate-fade-in-down' },
@@ -16,30 +16,31 @@ class ELementError extends Error {
 }
 
 const useAnimateRef = () => {
-	const elementRef = useRef({});
 	const currentSlide = useGlobalStore((state) => state.currentSlide);
-
-	const addAnimationClasses = useCallback(() => {
-		elements.forEach((elem) => {
-			if (!elementRef.current[elem.target]) throw new ELementError(elem.target);
-
-			elementRef.current[elem.target].classList.add(elem.animationClass);
-		});
-	}, []);
-
-	const removeAnimationClasses = useCallback(() => {
-		elements.forEach((elem) => {
-			elementRef.current[elem.target].classList.remove(elem.animationClass);
-		});
-	}, []);
+	const elementRef = useRef({});
+	const fadeAnimationId = useRef(null);
 
 	useEffect(() => {
+		const addAnimationClasses = () => {
+			elements.forEach((elem) => {
+				if (!elementRef.current[elem.target]) throw new ELementError(elem.target);
+
+				elementRef.current[elem.target].classList.add(elem.animationClass);
+			});
+		};
+
+		const removeAnimationClasses = () => {
+			elements.forEach((elem) => {
+				elementRef.current[elem.target].classList.remove(elem.animationClass);
+			});
+		};
+
 		addAnimationClasses();
 
-		const fadeAnimationId = setTimeout(removeAnimationClasses, 2000);
+		fadeAnimationId.current = setTimeout(removeAnimationClasses, 2000);
 
-		return () => clearTimeout(fadeAnimationId);
-	}, [currentSlide, addAnimationClasses, removeAnimationClasses]);
+		return () => clearTimeout(fadeAnimationId.current);
+	}, [currentSlide]);
 
 	return { animatedElements: elementRef.current };
 };

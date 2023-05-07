@@ -3,7 +3,7 @@ import HotSalesProducts from './HotSalesProducts';
 import RecentProducts from './RecentProducts';
 import SimilarProducts from './SimilarProducts';
 
-const HomeProducts = () => {
+const HomeProductSection = () => {
 	return (
 		<section id="Products Section" className="flex flex-col gap-[6rem] pb-[3rem]">
 			<Categories />
@@ -14,4 +14,4 @@ const HomeProducts = () => {
 	);
 };
 
-export default HomeProducts;
+export default HomeProductSection;

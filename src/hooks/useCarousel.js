@@ -1,13 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useCallback, useEffect, useState } from 'react';
-import { useGlobalActions, useGlobalStore } from '../zustand-store/globalStore';
+import { useGlobalActions, useGlobalStore } from '../store/zustand/globalStore';
 import useAnimationInterval from './useAnimationInterval';
-
-const preferReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 const useCarousel = ({ numberOfSlides, isAutoSlide = false, autoSlideInterval = 10000 }) => {
 	const [isPaused, setIsPaused] = useState(false);
 	const currentSlide = useGlobalStore((state) => state.currentSlide);
+	const isMobile = useGlobalStore((state) => state.isMobile);
 	const isNavShow = useGlobalStore((state) => state.isNavShow);
 	const { nextSlide, previousSlide, goToSlide } = useGlobalActions();
 
@@ -24,7 +23,7 @@ const useCarousel = ({ numberOfSlides, isAutoSlide = false, autoSlideInterval = 
 	// AutoSlide functionality for a given slideInterval
 	useAnimationInterval(
 		() => nextSlideButton(),
-		isAutoSlide && !isPaused && !isNavShow && !preferReducedMotion ? autoSlideInterval : null
+		isAutoSlide && !isPaused && !isNavShow && !isMobile ? autoSlideInterval : null
 	);
 
 	// Resetting the currentSlide state on route change

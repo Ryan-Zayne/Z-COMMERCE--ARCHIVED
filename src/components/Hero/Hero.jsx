@@ -2,8 +2,8 @@
 import { RxPaperPlane } from 'react-icons/rx';
 import { twJoin } from 'tailwind-merge';
 import { useAnimateRef } from '../../hooks';
-import { useThemeStore } from '../../zustand-store/themeStore';
 import { Button, Carousel } from '../common';
+import { useThemeStore } from '../../store/zustand/themeStore';
 
 const images = [
 	'https://res.cloudinary.com/djvestif4/image/upload/v1680454294/Ecommerce/Carousel-images/laptop1_dviwpy.webp',

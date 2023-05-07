@@ -1,19 +1,21 @@
-import { useState } from 'react';
+import { useReducer } from 'react';
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
-import { useThemeStore } from '../../zustand-store/themeStore';
+import { useGlobalStore } from '../../store/zustand/globalStore';
+import { useThemeStore } from '../../store/zustand/themeStore';
 import Button from './Button';
 import Card from './Card';
 import StarRating from './StarRating';
 
 const ProductCard = ({ to = '', image, title, price, description, rating }) => {
-	const [isHearted, setIsHearted] = useState(false);
+	const [isHearted, toggleIsHearted] = useReducer((state) => !state, false);
 	const isDarkMode = useThemeStore((state) => state.isDarkMode);
+	const isMobile = useGlobalStore((state) => state.isMobile);
 
 	const handleHeartClick = (event) => {
 		event.preventDefault();
-		setIsHearted((state) => !state);
+		toggleIsHearted();
 	};
 
 	return (
@@ -32,7 +34,7 @@ const ProductCard = ({ to = '', image, title, price, description, rating }) => {
 				]
 			)}
 		>
-			<Link className="inline-block w-full" to={to}>
+			<Link className="flex w-full flex-col justify-between" to={to}>
 				<Card.Header
 					as="div"
 					className="relative h-[18rem] w-[100%] overflow-hidden rounded-[0.8rem_0.8rem_0_0]"
@@ -55,6 +57,7 @@ const ProductCard = ({ to = '', image, title, price, description, rating }) => {
 							<AiOutlineHeart className="text-[1.9rem] text-carousel-dot group-hover/btn:text-heading group-active/btn:scale-[1.23]" />
 						)}
 					</button>
+
 					<img
 						className={twMerge(
 							`h-full rounded-[0.8rem_0.8rem_0_0] object-cover brightness-[0.9] transition-[transform] duration-[800ms] ease-in-out group-hover/card:scale-[1.17]`,
@@ -62,6 +65,7 @@ const ProductCard = ({ to = '', image, title, price, description, rating }) => {
 						)}
 						src={image}
 						alt=""
+						onClick={(e) => isMobile && e.preventDefault()}
 					/>
 				</Card.Header>
 

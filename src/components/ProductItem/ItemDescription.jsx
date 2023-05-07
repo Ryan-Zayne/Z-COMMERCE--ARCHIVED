@@ -7,15 +7,17 @@ const ItemDescription = ({ productItem }) => {
 	const stockCountRef = useRef(productItem.stock);
 
 	const handlePlus = () => {
-		if (productCount === productItem.stock) return;
-		setProductCount((prev) => prev + 1);
-		stockCountRef.current -= 1;
+		if (productCount !== productItem.stock) {
+			setProductCount((prev) => prev + 1);
+			stockCountRef.current -= 1;
+		}
 	};
 
 	const handleMinus = () => {
-		if (productCount === 0) return;
-		setProductCount((prev) => prev - 1);
-		stockCountRef.current += 1;
+		if (productCount !== 0) {
+			setProductCount((prev) => prev - 1);
+			stockCountRef.current += 1;
+		}
 	};
 
 	return (
@@ -70,7 +72,7 @@ const ItemDescription = ({ productItem }) => {
 					theme={'secondary'}
 					variant={'shop'}
 					className={
-						'w-[15rem] p-[1rem_0] transition-[transform] duration-[800] ease-in-out  [box-shadow:0_0_0_1.3px_var(--color-secondary)] hover:bg-transparent hover:[box-shadow:0_0_0_1.3px_var(--color-primary)] active:scale-[1.1]'
+						'w-[15rem] p-[1rem_0] transition-[transform] duration-[200ms] ease-in-out  [box-shadow:0_0_0_1.3px_var(--color-secondary)] hover:scale-[1.1] hover:bg-transparent hover:[box-shadow:0_0_0_1.3px_var(--color-primary)] active:scale-[1.1]'
 					}
 				>
 					<p>Buy Now</p>
@@ -80,7 +82,7 @@ const ItemDescription = ({ productItem }) => {
 					theme={'ghost'}
 					variant={'shop'}
 					className={
-						'w-[15rem] p-[1rem_0] transition-[transform] duration-[800] ease-in-out [box-shadow:0_0_0_1.3px_var(--color-primary)] hover:bg-secondary hover:[box-shadow:0_0_0_1.3px_var(--color-secondary)] active:scale-[1.1]'
+						'w-[15rem] p-[1rem_0] transition-[transform] duration-[200ms] ease-in-out [box-shadow:0_0_0_1.3px_var(--color-primary)] hover:scale-[1.1] hover:bg-secondary hover:[box-shadow:0_0_0_1.3px_var(--color-secondary)] active:scale-[1.17]'
 					}
 				>
 					<AiOutlineShoppingCart className="mr-[1rem] text-[2rem]" />

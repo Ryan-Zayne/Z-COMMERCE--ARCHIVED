@@ -2,6 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+	font-family: 'Rubik';
+	src: url('./assets/fonts/Rubik.woff2') format('woff2');
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Roboto Slab';
+	src: url('./assets/fonts/Roboto-slab.woff2') format('woff2');
+	font-style: normal;
+	font-display: swap;
+}
+
 @layer base {
 	:root {
 		--text-header: hsl(43, 100%, 55%);
@@ -32,6 +46,7 @@
 		--dark-mode-ball: hsl(0, 0%, 26%);
 		--brand-inverse: var(--text-header)
 	}
+
 
 
 	/* ------------------*/
@@ -75,16 +90,19 @@
 		background-color: var(--color-body);
 		color: var(--text-body);
 	}
+
+	body,
+	main {
+		min-height: 100vh;
+	}
+
+	html.theme-transition,
+	html.theme-transition * {
+		transition: background-color 500ms ease-in-out;
+	}
 }
 
 @layer components {
-
-	/* Transition for smooth theme change */
-	/* .theme-transition,
-	.theme-transition * {
-		transition: background-color 200ms linear, color 10ms linear;
-	} */
-
 	.navlink-transition::before {
 		content: '';
 		position: absolute;

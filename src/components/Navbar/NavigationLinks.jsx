@@ -1,20 +1,20 @@
-import { useLayoutEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { BsChevronDoubleRight, BsMenuButtonFill } from 'react-icons/bs';
 import { Link, NavLink, useHref } from 'react-router-dom';
 import { twJoin, twMerge } from 'tailwind-merge';
-import { useGlobalActions, useGlobalStore } from '../../zustand-store/globalStore';
-import { useThemeStore } from '../../zustand-store/themeStore';
+import { useGlobalActions, useGlobalStore } from '../../store/zustand/globalStore';
+import { useThemeStore } from '../../store/zustand/themeStore';
 
 const NavigationLinks = ({ logo }) => {
 	const href = useHref();
-	const [isCategoryShow, setIsCategoryShow] = useState(() => href === '/');
+	const [isCategoryShow, setIsCategoryShow] = useState(href === '/');
 	const isDarkMode = useThemeStore((state) => state.isDarkMode);
 	const isDesktop = useGlobalStore((state) => state.isDesktop);
 	const isNavShow = useGlobalStore((state) => state.isNavShow);
 	const { closeNavShow } = useGlobalActions();
 
 	// Close Category Menu on Route that's not the HomePage
-	useLayoutEffect(() => {
+	useEffect(() => {
 		if (href === '/') {
 			setIsCategoryShow(true);
 		} else {
@@ -59,6 +59,7 @@ const NavigationLinks = ({ logo }) => {
 							Shop By Category
 						</button>
 
+						{/* CATEGORY LINKS */}
 						<ul
 							id="Category List"
 							className={twMerge(

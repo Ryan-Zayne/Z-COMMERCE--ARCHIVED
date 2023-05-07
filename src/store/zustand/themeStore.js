@@ -6,7 +6,7 @@ const storeObject = (set, get) => ({
 	theme: window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light',
 	isDarkMode: window.matchMedia('(prefers-color-scheme: dark)').matches,
 
-	actions: {
+	themeActions: {
 		switchTheme: () => {
 			const newtheme = get().theme === 'dark' ? 'light' : 'dark';
 			set({ theme: newtheme });
@@ -18,13 +18,13 @@ const storeObject = (set, get) => ({
 	},
 });
 
-// Store Creation
+// Store hook Creation
 export const useThemeStore = create(
 	persist(storeObject, {
 		name: 'colorScheme',
-		partialize: ({ actions, ...state }) => state,
+		partialize: ({ themeActions, ...state }) => state,
 	})
 );
 
 // Actions hook
-export const useThemeActions = () => useThemeStore((state) => state.actions);
+export const useThemeActions = () => useThemeStore((state) => state.themeActions);
