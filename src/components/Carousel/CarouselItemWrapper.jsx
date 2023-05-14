@@ -1,5 +1,5 @@
 import { twMerge } from 'tailwind-merge';
-import { useGlobalStore } from '../../../store/zustand/globalStore';
+import { useGlobalStore } from '../../store/zustand/globalStore';
 
 const CarouselItemWrapper = ({ children, className = '' }) => {
 	const currentSlide = useGlobalStore((state) => state.currentSlide);

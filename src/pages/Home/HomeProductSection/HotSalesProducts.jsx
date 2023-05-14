@@ -1,5 +1,5 @@
-import { useHomePageProducts } from '../../store/react-query';
-import { ProductCard } from '../common';
+import { ProductCard } from '../../../components';
+import { useHomePageProducts } from '../../../store/react-query';
 
 const HotSalesProducts = () => {
 	const { hotSalesProducts } = useHomePageProducts();

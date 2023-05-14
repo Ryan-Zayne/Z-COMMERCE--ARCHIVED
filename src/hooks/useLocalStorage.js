@@ -1,5 +1,5 @@
 /* eslint-disable consistent-return */
-import { useEffect, useMemo, useRef, useState, useCallback } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 /**
  * Custom hook for reading and writing to local storage
@@ -15,7 +15,7 @@ import { useEffect, useMemo, useRef, useState, useCallback } from 'react';
 const useLocalStorage = (key, defaultValue, options = {}) => {
 	const isWindowDefined = useMemo(() => typeof window !== 'undefined', []);
 
-	// For custom serializer, logger, parser and syncData value
+	//* For custom serializer, logger, parser and syncData value
 	const opts = useMemo(
 		() => ({
 			stringifier: JSON.stringify,
@@ -29,8 +29,8 @@ const useLocalStorage = (key, defaultValue, options = {}) => {
 
 	const { stringifier, parser, logger, syncData } = opts;
 
-	// Use a ref to store the raw value from local storage, as well as to
-	// track the previous value when syncing across tabs
+	//* Use a ref to store the raw value from local storage, as well as to
+	//* track the previous value when syncing across tabs
 	const rawValueRef = useRef(null);
 
 	// Use state to store the current value, and attempt to load it from
@@ -48,7 +48,7 @@ const useLocalStorage = (key, defaultValue, options = {}) => {
 		}
 	});
 
-	// Function for updating the local storage item whenever the value changes
+	//* Function for updating the local storage item whenever the value changes
 	const updateLocalStorage = useCallback(() => {
 		if (!isWindowDefined) return;
 
@@ -70,8 +70,8 @@ const useLocalStorage = (key, defaultValue, options = {}) => {
 				})
 			);
 		} else {
-			// If the value is undefined, remove the local storage item and dispatch
-			// a storage event to sync across tabs
+			//* If the value is undefined, remove the local storage item and dispatch
+			//* a storage event to sync across tabs
 			window.localStorage.removeItem(key);
 			window.dispatchEvent(
 				new StorageEvent('storage', {
@@ -83,7 +83,7 @@ const useLocalStorage = (key, defaultValue, options = {}) => {
 		}
 	}, [isWindowDefined, key, stringifier, value]);
 
-	// Update the local storage item whenever the value changes
+	//* Update the local storage item whenever the value changes
 	useEffect(() => {
 		try {
 			updateLocalStorage();
@@ -93,7 +93,7 @@ const useLocalStorage = (key, defaultValue, options = {}) => {
 	}, [logger, updateLocalStorage]);
 
 	useEffect(() => {
-		// Function for handling storage events and syncing across tabs
+		//* Function for handling storage events and syncing across tabs
 		const handleStorageChange = (event) => {
 			if (event.key !== key || event.storageArea !== window.localStorage) return;
 
@@ -107,7 +107,7 @@ const useLocalStorage = (key, defaultValue, options = {}) => {
 			}
 		};
 
-		// Add the storage event listener for syncing across tabs
+		//* Add the storage event listener for syncing across tabs
 		if (syncData) {
 			window.addEventListener('storage', handleStorageChange);
 			return () => {

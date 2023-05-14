@@ -1,6 +1,6 @@
 import { twMerge } from 'tailwind-merge';
-import logo from '../../assets/brand/logo.svg';
-import { useGlobalStore } from '../../store/zustand/globalStore';
+import { logo } from '../../../assets/brand';
+import { useGlobalStore } from '../../../store/zustand/globalStore';
 import NavHeader from './NavHeader';
 import NavigationLinks from './NavigationLinks';
 import SearchForm from './SearchForm';

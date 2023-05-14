@@ -1,9 +1,9 @@
 /* eslint-disable react/no-array-index-key */
 import { RxPaperPlane } from 'react-icons/rx';
 import { twJoin } from 'tailwind-merge';
-import { useAnimateRef } from '../../hooks';
-import { Button, Carousel } from '../common';
-import { useThemeStore } from '../../store/zustand/themeStore';
+import { useThemeStore } from '../../../store/zustand/themeStore';
+import { useAnimateRef } from '../../../hooks';
+import { Button, Carousel } from '../../../components';
 
 const images = [
 	'https://res.cloudinary.com/djvestif4/image/upload/v1680454294/Ecommerce/Carousel-images/laptop1_dviwpy.webp',
@@ -69,11 +69,10 @@ const Hero = () => {
 
 					<div className="z-50" ref={(elem) => (animatedElements.button = elem)}>
 						<Button
+							text={'Shop Now'}
 							theme={'secondary'}
 							className="text-[clamp(1.3rem,_1vw+1rem,_1.7rem)] font-[600] transition-shadow duration-[400ms] hover:[box-shadow:0_10px_20px_hsl(43,100%,55%,0.4)] active:scale-[1.04] max-sm:p-[1rem_2.8rem]"
-						>
-							Shop Now
-						</Button>
+						/>
 					</div>
 				</Carousel.Caption>
 

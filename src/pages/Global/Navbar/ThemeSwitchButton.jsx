@@ -1,23 +1,15 @@
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import { BsFillMoonStarsFill } from 'react-icons/bs';
 import { FaSun } from 'react-icons/fa';
-import { useThemeActions, useThemeStore } from '../../store/zustand/themeStore';
+import { useThemeActions, useThemeStore } from '../../../store/zustand/themeStore';
 
 const ThemeSwitchButton = ({ display }) => {
 	const theme = useThemeStore((state) => state.theme);
 	const isDarkMode = useThemeStore((state) => state.isDarkMode);
 	const { switchTheme, toggleDarkMode } = useThemeActions();
-	const timeoutId = useRef(null);
 
 	useEffect(() => {
 		document.documentElement.setAttribute('data-theme', theme);
-		document.documentElement.classList.add('theme-transition');
-
-		timeoutId.current = setTimeout(() => {
-			document.documentElement.classList.remove('theme-transition');
-		}, 2000);
-
-		return () => clearTimeout(timeoutId.current);
 	}, [theme]);
 
 	return (

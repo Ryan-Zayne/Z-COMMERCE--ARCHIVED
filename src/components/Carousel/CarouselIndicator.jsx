@@ -1,6 +1,5 @@
 import { twMerge } from 'tailwind-merge';
-import { useGlobalActions, useGlobalStore } from '../../../store/zustand/globalStore';
-
+import { useGlobalActions, useGlobalStore } from '../../store/zustand/globalStore';
 
 const CarouselIndicator = ({ className = '', onActiveClassName, index }) => {
 	const currentSlide = useGlobalStore((state) => state.currentSlide);

@@ -1,8 +1,8 @@
 import { useParams } from 'react-router-dom';
-import ItemDescription from '../components/ProductItem/ItemDescription';
-import ItemHeader from '../components/ProductItem/ItemHeader';
-import ItemHero from '../components/ProductItem/ItemHero';
-import useGetProductItem from '../store/react-query/useGetProductItem';
+import { useGetProductItem } from '../../store/react-query';
+import ItemHeader from './ProductItem/ItemHeader';
+import ItemDescription from './ProductItem/ItemDescription';
+import ItemHero from './ProductItem/ItemHero';
 
 const ProductItemPage = () => {
 	const { productId } = useParams();

@@ -1,7 +1,7 @@
 /* eslint-disable react/no-array-index-key */
 import { BsChevronRight } from 'react-icons/bs';
-import { useThemeStore } from '../../store/zustand/themeStore';
-import { Carousel } from '../common';
+import { useThemeStore } from '../../../store/zustand/themeStore';
+import { Carousel } from '../../../components';
 
 const ItemHero = ({ productItem }) => {
 	const isDarkMode = useThemeStore((state) => state.isDarkMode);

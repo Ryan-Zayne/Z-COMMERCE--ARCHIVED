@@ -1,12 +1,12 @@
 import { twMerge } from 'tailwind-merge';
-import { useCarousel } from '../../../hooks';
-import { useGlobalStore } from '../../../store/zustand/globalStore';
 import CarouselCaption from './CarouselCaption';
 import CarouselIndicator from './CarouselIndicator';
 import CarouselIndicatorWrapper from './CarouselIndicatorWrapper';
 import CarouselItem from './CarouselItem';
 import CarouselItemWrapper from './CarouselItemWrapper';
 import SwipeDisabler from './SwipeDisabler';
+import { useGlobalStore } from '../../store/zustand/globalStore';
+import { useCarousel } from '../../hooks';
 
 const Carousel = ({
 	as: Element = 'article',

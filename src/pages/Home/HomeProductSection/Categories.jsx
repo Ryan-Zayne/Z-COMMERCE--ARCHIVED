@@ -1,7 +1,6 @@
 import { twJoin } from 'tailwind-merge';
-
-import { useThemeStore } from '../../store/zustand/themeStore';
-import { Button } from '../common';
+import { useThemeStore } from '../../../store/zustand/themeStore';
+import { Button } from '../../../components';
 
 const categories = [
 	{
@@ -52,7 +51,7 @@ const Categories = () => {
 				<Button
 					text={'Shop Now'}
 					variant={'shop'}
-					className="bg-body p-[0.8rem] text-[var(--text-body)] active:translate-y-[0.15rem] lg:p-[0.8rem_2.7rem] lg:text-[2rem]"
+					className="bg-body p-[0.8rem] text-[--text-body] active:translate-y-[0.15rem] lg:p-[0.8rem_2.7rem] lg:text-[2rem]"
 				/>
 			</div>
 			<div className="flex w-[12rem] items-center lg:w-[15rem]">

@@ -30,6 +30,7 @@
 		"object-curly-newline": "off",
 		"comma-dangle": "off",
 		"arrow-body-style": "off",
+		"no-restricted-syntax": ["error", "ForInStatement", "LabeledStatement", "WithStatement"],
 		"no-unused-expressions": ["error", { "allowShortCircuit": true, "allowTernary": true }],
 
 		//React plugin rules

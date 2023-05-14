@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import { AiFillPlusCircle, AiFillMinusCircle, AiOutlineShoppingCart } from 'react-icons/ai';
-import { Button, StarRating } from '../common';
+import { Button, StarRating } from '../../../components';
 
 const ItemDescription = ({ productItem }) => {
 	const [productCount, setProductCount] = useState(0);

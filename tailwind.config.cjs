@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+const plugin = require('tailwindcss/plugin');
 
 module.exports = {
 	content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
@@ -22,6 +23,7 @@ module.exports = {
 				light: 'var(--text-light)',
 				placeholder: 'var(--text-placeholder)',
 				navbar: 'var(--color-navbar)',
+				'nav-text': 'var(--text-navbar)',
 				'dark-ball': 'var(--dark-mode-ball)',
 			},
 
@@ -52,4 +54,37 @@ module.exports = {
 			},
 		},
 	},
+
+	plugins: [
+		plugin(({ matchVariant, matchUtilities }) => {
+			matchUtilities(
+				{
+					'ease-r': (value) => ({
+						'box-shadow': value,
+					}),
+				},
+				{
+					values: {
+						btn: '0 0 6.4rem var(--btn-shadow)',
+						nav: '0 0.4rem 6.4rem var(--nav-shadow)',
+						contact: '0 0 6.4rem var(--nav-shadow)',
+					},
+				}
+			);
+
+			matchVariant(
+				'nth',
+
+				(value) => {
+					return `&:nth-child(${value})`;
+				},
+				{
+					values: {
+						1: '1',
+						2: '2',
+					},
+				}
+			);
+		}),
+	],
 };

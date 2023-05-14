@@ -6,14 +6,12 @@
 	font-family: 'Rubik';
 	src: url('./assets/fonts/Rubik.woff2') format('woff2');
 	font-style: normal;
-	font-display: swap;
 }
 
 @font-face {
 	font-family: 'Roboto Slab';
 	src: url('./assets/fonts/Roboto-slab.woff2') format('woff2');
 	font-style: normal;
-	font-display: swap;
 }
 
 @layer base {
@@ -22,6 +20,7 @@
 		--text-light: hsl(0, 17%, 93%);
 		--text-body: black;
 		--text-dark: hsl(212, 11%, 23%);
+		--text-navbar: hsl(34, 11%, 87%);
 		--text-placeholder: hsl(34, 5%, 30%);
 		--color-primary: hsl(206, 13%, 14%);
 		--color-secondary: hsl(43, 100%, 55%);
@@ -56,7 +55,6 @@
 		margin: 0;
 		padding: 0;
 		box-sizing: border-box;
-		-webkit-tap-highlight-color: transparent;
 	}
 
 
@@ -66,6 +64,7 @@
 	html {
 		font-size: 62.5%;
 		scroll-behavior: smooth;
+		-webkit-tap-highlight-color: transparent;
 	}
 
 

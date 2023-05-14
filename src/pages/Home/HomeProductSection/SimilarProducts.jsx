@@ -1,5 +1,5 @@
-import { useHomePageProducts } from '../../store/react-query';
-import { ProductCard } from '../common';
+import useHomePageProducts from '../../../store/react-query/useHomePageProducts';
+import ProductCard from '../../../components/ProductCard';
 
 const SimilarProducts = () => {
 	const { similarProducts, similarProductsArray } = useHomePageProducts();

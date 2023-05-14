@@ -2,9 +2,9 @@ import { useEffect, useRef } from 'react';
 import { useGlobalStore } from '../store/zustand/globalStore';
 
 const elements = [
-	{ target: 'heading', animationClass: 'animate-fade-in-down' },
-	{ target: 'button', animationClass: 'animate-fade-in-up' },
-	{ target: 'paragraph', animationClass: 'animate-fade-in-up-2' },
+	{ targetElement: 'heading', animationClass: 'animate-fade-in-down' },
+	{ targetElement: 'button', animationClass: 'animate-fade-in-up' },
+	{ targetElement: 'paragraph', animationClass: 'animate-fade-in-up-2' },
 ];
 
 class ELementError extends Error {
@@ -21,19 +21,20 @@ const useAnimateRef = () => {
 	const fadeAnimationId = useRef(null);
 
 	useEffect(() => {
-		const addAnimationClasses = () => {
-			elements.forEach((elem) => {
-				if (!elementRef.current[elem.target]) throw new ELementError(elem.target);
+		function addAnimationClasses() {
+			for (const elem of elements) {
+				if (!elementRef.current[elem.targetElement]) {
+					throw new ELementError(elem.targetElement);
+				}
+				elementRef.current[elem.targetElement].classList.add(elem.animationClass);
+			}
+		}
 
-				elementRef.current[elem.target].classList.add(elem.animationClass);
-			});
-		};
-
-		const removeAnimationClasses = () => {
-			elements.forEach((elem) => {
-				elementRef.current[elem.target].classList.remove(elem.animationClass);
-			});
-		};
+		function removeAnimationClasses() {
+			for (const elem of elements) {
+				elementRef.current[elem.targetElement].classList.remove(elem.animationClass);
+			}
+		}
 
 		addAnimationClasses();
 
