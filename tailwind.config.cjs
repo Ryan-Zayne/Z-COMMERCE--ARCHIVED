@@ -32,6 +32,11 @@ module.exports = {
 				rubik: ['"Rubik"', 'Trebuchet MS'],
 			},
 
+			transitionTimingFunction: {
+				'slide-in': 'cubic-bezier(0.51, 0.03, 0.64, 0.28)',
+				'slide-out': 'cubic-bezier(0.33, 0.85, 0.56, 1.02)',
+			},
+
 			animation: {
 				'fade-in-down': 'fade-in-down 1.3s',
 				'fade-in-up': 'fade-in-up 1.7s ease-out',

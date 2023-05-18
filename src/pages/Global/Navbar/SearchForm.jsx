@@ -1,10 +1,11 @@
 import { BiSearchAlt2 } from 'react-icons/bi';
+import { twMerge } from 'tailwind-merge';
 import { Button } from '../../../components';
 
-const SearchForm = ({ className, buttonIcon, theme, variant, size, placeholder, children }) => (
+const SearchForm = ({ className = '', buttonIcon, theme, variant, size, placeholder }) => (
 	<form
 		id="Search Form"
-		className={`flex items-center ${className ?? 'w-[min(100%,_54vw)]'}`}
+		className={twMerge(`flex items-center ${className}`)}
 		onSubmit={(e) => e.preventDefault()}
 	>
 		<input
@@ -20,7 +21,7 @@ const SearchForm = ({ className, buttonIcon, theme, variant, size, placeholder, 
 			theme={theme ?? 'secondary'}
 			size={size ?? 'sm'}
 		>
-			{children ?? buttonIcon ?? <BiSearchAlt2 />}
+			{buttonIcon ?? <BiSearchAlt2 />}
 		</Button>
 	</form>
 );

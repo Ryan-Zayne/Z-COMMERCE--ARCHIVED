@@ -1,23 +1,17 @@
-import { useEffect } from 'react';
 import { BsFillMoonStarsFill } from 'react-icons/bs';
 import { FaSun } from 'react-icons/fa';
 import { useThemeActions, useThemeStore } from '../../../store/zustand/themeStore';
 
-const ThemeSwitchButton = ({ display }) => {
-	const theme = useThemeStore((state) => state.theme);
+const ThemeSwitchButton = ({ display = '' }) => {
 	const isDarkMode = useThemeStore((state) => state.isDarkMode);
-	const { switchTheme, toggleDarkMode } = useThemeActions();
-
-	useEffect(() => {
-		document.documentElement.setAttribute('data-theme', theme);
-	}, [theme]);
+	const { toggleTheme, toggleIsDarkMode } = useThemeActions();
 
 	return (
 		<button
 			className={`rounded-[5rem] bg-[hsl(229,28%,15%)] max-md:scale-[0.8] ${display}`}
 			onClick={() => {
-				switchTheme();
-				toggleDarkMode();
+				toggleTheme();
+				toggleIsDarkMode();
 			}}
 		>
 			<div className="relative flex h-[2.2rem] w-[4.3rem] items-center justify-between gap-[0.6rem] [padding-block:0.3rem] [padding-inline:0.6rem_0.5rem]">

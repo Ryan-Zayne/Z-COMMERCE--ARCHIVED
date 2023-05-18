@@ -1,28 +1,43 @@
 import { BiCartAlt, BiHeart, BiSearchAlt2, BiUser } from 'react-icons/bi';
 import { RiCloseFill, RiMenu3Fill } from 'react-icons/ri';
 import { Link } from 'react-router-dom';
-import { twMerge } from 'tailwind-merge';
+import { twJoin, twMerge } from 'tailwind-merge';
+import { Logo } from '../../../components';
+import { useDisclosure } from '../../../hooks';
 import { useGlobalActions, useGlobalStore } from '../../../store/zustand/globalStore';
+import CartDrawer from './CartDrawer';
 import SearchForm from './SearchForm';
 import ThemeSwitchButton from './ThemeSwitchButton';
 
-const NavHeader = ({ logo }) => {
+const NavHeader = () => {
 	const isMobile = useGlobalStore((state) => state.isMobile);
-	const isTablet = useGlobalStore((state) => state.isTablet);
 	const isDesktop = useGlobalStore((state) => state.isDesktop);
-	const { toggleSearchShow, toggleNavShow, handleNoScrollOnNavSHow, closeNavShow } = useGlobalActions();
+	const { toggleSearchShow, toggleNavShow, closeNavShow } = useGlobalActions();
 	const isNavShow = useGlobalStore((state) => state.isNavShow);
+	const isSearchShow = useGlobalStore((state) => state.isSearchShow);
+	const { isOpen, onClose, onOpen } = useDisclosure();
 
 	return (
-		<article
-			id="NavBar Icons and Logo"
-			className="flex w-full select-none justify-between gap-[1rem] px-[1rem]"
+		<div
+			id="Nav Icons and Logo"
+			className="relative flex w-full select-none justify-between gap-[1rem] px-[1rem]"
 		>
 			<Link to="/">
-				<img className="w-[13rem] md:w-[16rem]" src={logo} alt="" />
+				<Logo />
 			</Link>
 
-			{isTablet && <SearchForm buttonIcon={<BiSearchAlt2 />} />}
+			<CartDrawer {...{ isOpen, onClose, onOpen }} />
+
+			<SearchForm
+				className={twJoin(
+					[
+						isMobile
+							? 'absolute inset-x-0 top-[6.2rem] z-[10] flex h-0 w-[100%] items-center justify-center overflow-y-hidden rounded-[0_0_5px_5px] bg-body px-[2rem] transition-[height] duration-[400ms] ease-out'
+							: 'w-[min(100%,_54vw)]',
+					],
+					[isSearchShow && 'h-[8.1rem] duration-[600ms] ease-[ease]']
+				)}
+			/>
 
 			<div className="flex w-[clamp(19rem,_42vw,_22rem)] items-center justify-between text-[1.8rem]">
 				{isMobile && (
@@ -30,30 +45,31 @@ const NavHeader = ({ logo }) => {
 						<BiSearchAlt2 />
 					</button>
 				)}
+
 				<button className="hover:text-heading active:scale-[1.3]">
 					<BiHeart />
 				</button>
+
 				<button className="hover:text-heading active:scale-[1.3]">
 					<BiUser />
 				</button>
-				<button className="hover:text-heading active:scale-[1.3]">
+
+				<button className="hover:text-heading active:scale-[1.3]" onClick={onOpen}>
 					<BiCartAlt />
 				</button>
+
 				<ThemeSwitchButton />
 
 				{!isDesktop && (
 					<>
-						{/* HAMBURGER BUTTON */}
+						{/* HAMBURGER */}
 						<button
 							id="Hamburger"
 							className={twMerge(`z-[120] w-[2.6rem]`, [
 								isNavShow &&
 									'fixed right-[1.9rem] animate-[bounce_1.5s_ease_infinite] text-rose-600',
 							])}
-							onClick={() => {
-								toggleNavShow();
-								handleNoScrollOnNavSHow();
-							}}
+							onClick={toggleNavShow}
 						>
 							{isNavShow ? <RiCloseFill className="text-[3rem]" /> : <RiMenu3Fill />}
 						</button>
@@ -71,7 +87,7 @@ const NavHeader = ({ logo }) => {
 					</>
 				)}
 			</div>
-		</article>
+		</div>
 	);
 };
 

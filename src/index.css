@@ -67,6 +67,10 @@
 		-webkit-tap-highlight-color: transparent;
 	}
 
+	html.theme-transition,
+	html.theme-transition * {
+		transition: background-color 500ms ease-in-out;
+	}
 
 	input:focus-visible {
 		outline: 2px solid transparent;
@@ -84,28 +88,41 @@
 	}
 
 	body {
+		overflow-y: scroll;
+		position: relative;
 		font-size: 1.6rem;
 		font-family: 'Rubik', 'Trebuchet MS', sans-serif;
 		background-color: var(--color-body);
 		color: var(--text-body);
+
+		/** This will be set dynamically by javascript to prevent layout shift on navbar open @globalStateSlice */
+		padding-right: var(--scrollbar-padding);
 	}
 
-	body,
-	main {
-		min-height: 100vh;
+
+	body::-webkit-scrollbar {
+		width: 1rem;
 	}
 
-	html.theme-transition,
-	html.theme-transition * {
-		transition: background-color 500ms ease-in-out;
+	body::-webkit-scrollbar-track {
+		background-color: hsl(0, 0%, 76%);
+		border-radius: 1rem 1rem 0 0;
+	}
+
+	body::-webkit-scrollbar-thumb {
+		background-color: hsl(206, 13%, 14%);
+		border: 1px solid hsl(0, 0%, 76%);
+		border-radius: 1rem;
 	}
 }
+
+
 
 @layer components {
 	.navlink-transition::before {
 		content: '';
 		position: absolute;
-		bottom: 2.3rem;
+		bottom: 2rem;
 		left: 50%;
 		background-color: var(--brand-inverse);
 		opacity: 0;
@@ -113,15 +130,15 @@
 		height: 0.5rem;
 		width: 0.5rem;
 		border-radius: 50%;
-		transition: opacity 0.5s ease 0s,
+		transition: opacity 0.4s ease 0s,
 			bottom 0.3s ease 0.1s,
 			height 0.5s ease 0.3s,
-			width 0.5s ease 0.5s,
-			border-radius 0.2s ease 0.5s;
+			border-radius 0.2s ease 0.4s,
+			width 0.5s ease 0.4s,
 	}
 
 	.navlink-transition:hover::before {
-		bottom: -0.7rem;
+		bottom: -0.5rem;
 		height: 0.3rem;
 		width: calc(100% + 0.2rem);
 		border-radius: 2rem;

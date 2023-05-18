@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { TiArrowBack } from 'react-icons/ti';
 import { ProductCard } from '../../components';
-import { useGetAllProducts } from '../../hooks';
+import { useGetAllProducts } from '../../store/react-query';
 
 const AllProductsPage = () => {
 	const { isLoading, isError, allProductsArray } = useGetAllProducts();

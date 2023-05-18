@@ -2,11 +2,11 @@ import { useReducer } from 'react';
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
-import Button from './Button';
-import Card from './Card';
-import StarRating from './StarRating';
-import { useThemeStore } from '../store/zustand/themeStore';
 import { useGlobalStore } from '../store/zustand/globalStore';
+import { useThemeStore } from '../store/zustand/themeStore';
+import Button from './Button';
+import Card from './Card/Card';
+import StarRating from './StarRating';
 
 const ProductCard = ({ to = '', image, title, price, description, rating }) => {
 	const [isHearted, toggleIsHearted] = useReducer((state) => !state, false);

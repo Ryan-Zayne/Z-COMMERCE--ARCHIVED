@@ -18,7 +18,7 @@
 		justify-content: center;
 		opacity: 1;
 		background-color: black;
-		transition: opacity 1s ease-in-out;
+		transition: opacity 1s ease-out, left 1s ease-out;
 	}
 
 	.loader-img {
@@ -31,13 +31,11 @@
 	<main id="root"></main>
 
 	<div class='loader-container'>
-		<img class='loader-img' src='./src/assets/loading.svg' alt="" />
+		<img class='loader-img' src='/src/assets/loading.svg' alt="" />
 	</div>
 
 	<script type="module" src="/src/main.jsx"></script>
-
-	<!-- Script to prevent flicker of wrong theme onLoad as well remove preloader-->
-	<script type="module" src="/onLoad.js" defer></script>
+	<script type="module" src="/src/preloader.js" defer></script>
 </body>
 
 </html>

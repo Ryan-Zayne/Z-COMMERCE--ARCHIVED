@@ -2,16 +2,24 @@ import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
 // Store Object Initializtion
-const storeObject = (set, get) => ({
+const themeStoreObject = (set, get) => ({
 	theme: window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light',
 	isDarkMode: window.matchMedia('(prefers-color-scheme: dark)').matches,
 
 	themeActions: {
-		switchTheme: () => {
+		toggleTheme: () => {
 			const newtheme = get().theme === 'dark' ? 'light' : 'dark';
 			set({ theme: newtheme });
+			document.documentElement.setAttribute('data-theme', newtheme);
+
+			document.documentElement.classList.add('theme-transition');
+			const timeoutId = setTimeout(() => {
+				document.documentElement.classList.remove('theme-transition');
+				clearTimeout(timeoutId);
+			}, 2000);
 		},
-		toggleDarkMode: () => {
+
+		toggleIsDarkMode: () => {
 			const newMode = get().theme === 'dark';
 			set({ isDarkMode: newMode });
 		},
@@ -20,7 +28,7 @@ const storeObject = (set, get) => ({
 
 // Store hook Creation
 export const useThemeStore = create(
-	persist(storeObject, {
+	persist(themeStoreObject, {
 		name: 'colorScheme',
 		partialize: ({ themeActions, ...state }) => state,
 	})

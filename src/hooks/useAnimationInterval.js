@@ -1,23 +1,21 @@
 /* eslint-disable consistent-return */
 import { useEffect, useRef } from 'react';
+import useCallbackRef from './useCallbackRef';
 
 /**
  * Custom hook that implements a requestAnimationFrame loop with a delay.
  * @param {function} callbackFn - The function to be called on each animation frame.
  * @param {number} intervalDuration - The delay duration in milliseconds between each animation frame.
- * @returns {object}(optional) - An object containing the ID of the current animation frame.
+ * @returns {object}(optional) - The ID of the current animation frame.
  */
 
 const useAnimationInterval = (callbackFn, intervalDuration) => {
-	// Refs to hold the latest callback function, the start time, and the current animation frame ID.
-	const savedCallbackRef = useRef(callbackFn);
+	// Refs to hold the start time and the current animation frame ID.
 	const startTimeStampRef = useRef(null);
 	const animationFrameId = useRef(null);
 
-	// useEffect hook to save the latest callback function to the ref
-	useEffect(() => {
-		savedCallbackRef.current = callbackFn;
-	}, [callbackFn]);
+	// Saved callback function with useCallbackRef hook.
+	const savedCallback = useCallbackRef(callbackFn);
 
 	useEffect(() => {
 		/**
@@ -36,7 +34,7 @@ const useAnimationInterval = (callbackFn, intervalDuration) => {
 
 			// Call the callback function and reset the start timestamp if the interval duration has elapsed.
 			if (elapsedTime >= intervalDuration) {
-				savedCallbackRef.current();
+				savedCallback();
 				startTimeStampRef.current = timeStamp;
 			}
 
@@ -51,9 +49,9 @@ const useAnimationInterval = (callbackFn, intervalDuration) => {
 			// Return a function to cancel the animation frame on unmount.
 			return () => cancelAnimationFrame(animationFrameId.current);
 		}
-	}, [intervalDuration]);
+	}, [intervalDuration, savedCallback]);
 
-	return animationFrameId;
+	return animationFrameId.current;
 };
 
 export default useAnimationInterval;

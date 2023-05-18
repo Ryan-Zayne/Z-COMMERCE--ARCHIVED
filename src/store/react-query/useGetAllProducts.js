@@ -23,8 +23,9 @@ const useGetAllProducts = () => {
 		}))
 	);
 
-	const isLoading = allProducts.some((item) => item.isLoading === true);
-	const isError = allProducts.some((item) => item.isError === true);
+	const isLoading = allProducts.some((item) => item.isLoading);
+
+	const isError = allProducts.some((item) => item.isError);
 
 	const allProductsArray = allProducts
 		.flatMap((item) => item.data)

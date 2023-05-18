@@ -5,14 +5,21 @@ import { Link, NavLink, useHref } from 'react-router-dom';
 import { twJoin, twMerge } from 'tailwind-merge';
 import { useGlobalActions, useGlobalStore } from '../../../store/zustand/globalStore';
 import { useThemeStore } from '../../../store/zustand/themeStore';
+import { Logo } from '../../../components';
 
-const NavigationLinks = ({ logo }) => {
+const NavigationLinks = () => {
 	const href = useHref();
 	const isDarkMode = useThemeStore((state) => state.isDarkMode);
 	const isDesktop = useGlobalStore((state) => state.isDesktop);
 	const isNavShow = useGlobalStore((state) => state.isNavShow);
-	const { closeNavShow } = useGlobalActions();
+	const { toggleNavShow } = useGlobalActions();
 	const [isCategoryShow, setIsCategoryShow] = useState(() => isDesktop && href === '/');
+
+	const toggleCategoryShow = () => setIsCategoryShow((state) => !state);
+
+	const handleActiveNavlink = ({ isActive }) => {
+		return twJoin(`relative navlink-transition`, [isActive && 'text-[--brand-inverse]']);
+	};
 
 	// Close Desktop Category Menu on Route that's not the HomePage
 	useEffect(() => {
@@ -33,7 +40,7 @@ const NavigationLinks = ({ logo }) => {
 	];
 
 	const mobileCategories = categories.map((category) => (
-		<li key={category.title} onClick={closeNavShow} className="hover:text-heading">
+		<li key={category.title} onClick={toggleNavShow} className="hover:text-heading">
 			<Link to={category.path}>{category.title}</Link>
 		</li>
 	));
@@ -50,14 +57,8 @@ const NavigationLinks = ({ logo }) => {
 		</li>
 	));
 
-	const toggleCategoryShow = () => setIsCategoryShow((state) => !state);
-
-	const handleActiveNavlink = ({ isActive }) => {
-		return twJoin(`relative navlink-transition`, [isActive && 'text-[--brand-inverse]']);
-	};
-
 	return (
-		<article id="Navigation Links" className="w-full">
+		<div id="Navigation Links" className="w-full">
 			<nav className="flex w-[100%] items-center justify-between font-[500] lg:pr-[2rem] ">
 				{isDesktop && (
 					<div id="Shop By Categories" className="relative z-50 ml-[0.5rem]">
@@ -100,16 +101,14 @@ const NavigationLinks = ({ logo }) => {
 					className={twMerge(`flex gap-[12rem]`, [
 						[
 							!isDesktop &&
-								'fixed z-[100] w-0 flex-col gap-[3.2rem] bg-navbar pt-[7rem] text-[1.4rem] text-nav-text [backdrop-filter:blur(2rem)_saturate(5)] [inset:0_0_0_auto] [transition:width_200ms_ease] md:text-[1.6rem]',
+								'fixed z-[100] w-0 flex-col gap-[3.2rem] bg-navbar pt-[7rem] text-[1.4rem] text-nav-text transition-[width] duration-[250ms] ease-[ease] [inset:0_0_0_auto] [backdrop-filter:blur(2rem)_saturate(5)] md:text-[1.6rem]',
 						],
-						[isNavShow && 'w-[min(21rem,_80%)] [transition:width_500ms_ease] md:w-[24rem]'],
+						[isNavShow && !isDesktop && 'w-[min(21rem,_80%)] duration-[500ms] md:w-[24rem]'],
 					])}
 				>
-					{!isDesktop && (
-						<img className="mb-[2rem] ml-[4rem] w-[13rem] md:w-[16rem]" src={logo} alt="" />
-					)}
+					{!isDesktop && <Logo className={'mb-[2rem] ml-[4rem]'} />}
 
-					<li className="max-lg:pl-[4rem]" onClick={closeNavShow}>
+					<li className="max-lg:pl-[4rem]" onClick={toggleNavShow}>
 						<NavLink className={handleActiveNavlink} to="/">
 							Home
 						</NavLink>
@@ -139,7 +138,7 @@ const NavigationLinks = ({ logo }) => {
 								{/* Sub Catergory list for mobile  */}
 								<ul
 									className={twJoin(
-										`relative flex flex-col gap-[2rem] overflow-hidden pl-[3rem] [transition:padding_500ms_ease]`,
+										`relative flex flex-col gap-[2rem] overflow-y-hidden pl-[3rem] [transition:padding_500ms_ease]`,
 										isCategoryShow && 'py-[2rem]'
 									)}
 								>
@@ -149,13 +148,13 @@ const NavigationLinks = ({ logo }) => {
 						</li>
 					)}
 
-					<li className="max-lg:pl-[4rem]" onClick={closeNavShow}>
+					<li className="max-lg:pl-[4rem]" onClick={toggleNavShow}>
 						<NavLink className={handleActiveNavlink} to="/all-products">
 							Products
 						</NavLink>
 					</li>
 
-					<li className="max-lg:pl-[4rem]" onClick={closeNavShow}>
+					<li className="max-lg:pl-[4rem]" onClick={toggleNavShow}>
 						<NavLink className={handleActiveNavlink} to={'/contact-us'}>
 							Contact
 						</NavLink>
@@ -168,7 +167,7 @@ const NavigationLinks = ({ logo }) => {
 					</p>
 				)}
 			</nav>
-		</article>
+		</div>
 	);
 };
 

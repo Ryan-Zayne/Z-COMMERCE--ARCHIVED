@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useMediaQueryActions } from '../store/zustand/globalStore';
-import { desktopQuery, mobileQuery, tabletQuery } from '../store/zustand/slices/mediaQuerySlice';
+import { desktopQuery, mobileQuery, tabletQuery } from '../utils/globalVariables';
 
 const useMediaQuery = () => {
 	const { setIsMobile, setIsTablet, setIsDesktop } = useMediaQueryActions();

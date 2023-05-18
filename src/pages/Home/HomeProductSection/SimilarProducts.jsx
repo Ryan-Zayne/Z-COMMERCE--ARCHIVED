@@ -4,11 +4,11 @@ import ProductCard from '../../../components/ProductCard';
 const SimilarProducts = () => {
 	const { similarProducts, similarProductsArray } = useHomePageProducts();
 
-	if (similarProducts.some((item) => item.isLoading === true)) {
+	if (similarProducts.some((item) => item.isLoading)) {
 		return <h4 className="mt-[3rem] text-center text-[3rem] font-bold">Loading...</h4>;
 	}
 
-	if (similarProducts.some((item) => item.isError === true)) {
+	if (similarProducts.some((item) => item.isError)) {
 		return (
 			<h4 className="mt-[3rem] text-center font-roboto text-[3rem] font-medium text-rose-500">
 				Error: Something went wrong
