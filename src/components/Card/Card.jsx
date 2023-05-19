@@ -6,8 +6,7 @@ const Card = ({ as: Element = 'article', children, className }) => {
 	);
 };
 
-const CardHeader = ({ as = 'header', children, className = '' }) => {
-	const Element = as;
+const CardHeader = ({ as: Element = 'header', children, className = '' }) => {
 	return (
 		<Element id="Card_Header" className={className}>
 			{children}

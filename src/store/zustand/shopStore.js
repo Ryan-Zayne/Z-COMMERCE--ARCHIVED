@@ -1,39 +1,67 @@
 import { create } from 'zustand';
+import { devtools, persist } from 'zustand/middleware';
 
 const shopStateObject = (set, get) => ({
 	cart: [],
-	totalItems: 0,
-	totalPrice: 0,
 	wishList: [],
 
 	shopActions: {
-		addToCart: (product) => {
+		addToCart: (product, quantity = 1) => {
 			const { cart } = get();
-			const isItemInCart = cart.some((item) => item.id === product.id);
+			const isProductInCart = cart.some((item) => item.id === product.id);
 
-			let updatedCart;
-			if (!isItemInCart) {
-				updatedCart = [...cart, { ...product, quantity: 1 }];
+			let newCart;
+			if (!isProductInCart) {
+				newCart = [...cart, { ...product, quantity }];
 			} else {
-				updatedCart = cart.map((item) => {
+				newCart = cart.map((item) => {
 					if (item.id === product.id) {
-						return { ...item, quantity: item.quantity + 1 };
+						return { ...item, quantity: item.quantity + quantity };
 					}
 					return item;
 				});
 			}
 
-			set((state) => ({
-				cart: updatedCart,
-				totalItems: state.totalItems + 1,
-				totalPrice: state.totalPrice + product.price,
-			}));
+			set({ cart: newCart });
+		},
+
+		removeProductFromCart: (product) => {
+			const newCart = get().cart.filter((item) => item.id !== product.id);
+
+			set({ cart: newCart });
+		},
+
+		decreaseProductQuantity: (product) => {
+			const newCart = get().cart.map((item) => {
+				if (item.id === product.id) {
+					return { ...item, quantity: item.quantity !== 0 ? item.quantity - 1 : item.quantity };
+				}
+				return item;
+			});
+
+			set({ cart: newCart });
+		},
+
+		toggleAddToWishList: (product) => {
+			const { wishList } = get();
+			const isItemInWishList = wishList.some((item) => item.id === product.id);
+
+			let newWishList;
+			if (!isItemInWishList) {
+				newWishList = [...wishList, { ...product }];
+			} else {
+				newWishList = wishList.filter((item) => item.id !== product.id);
+			}
+
+			set({ wishList: newWishList });
 		},
 	},
 });
 
 // Store hook Creation
-export const useShopStore = create(shopStateObject);
+export const useShopStore = create(
+	persist(devtools(shopStateObject), { name: 'shop', partialize: ({ shopActions, ...state }) => state })
+);
 
 // Actions hook
 export const useShopActions = () => useShopStore((state) => state.shopActions);

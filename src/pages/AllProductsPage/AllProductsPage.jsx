@@ -23,16 +23,8 @@ const AllProductsPage = () => {
 		);
 	}
 
-	const allRenderedProducts = allProductsArray?.map((product) => (
-		<ProductCard
-			key={product?.id}
-			to={`${product?.id}`}
-			image={product?.images[1]}
-			title={product?.title}
-			price={product?.price}
-			description={product?.description}
-			rating={product?.rating}
-		/>
+	const allProductCards = allProductsArray.map((product) => (
+		<ProductCard key={product.id} to={`${product.id}`} image={product.images[1]} product={product} />
 	));
 
 	return (
@@ -45,7 +37,7 @@ const AllProductsPage = () => {
 			</header>
 			<article className="mt-[8rem] px-[3rem]">
 				<ul className="grid grid-cols-[repeat(auto-fit,_minmax(24rem,1fr))] justify-items-center gap-[5rem_2rem]">
-					{allRenderedProducts}
+					{allProductCards}
 				</ul>
 			</article>
 		</section>

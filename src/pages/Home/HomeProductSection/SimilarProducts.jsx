@@ -16,15 +16,12 @@ const SimilarProducts = () => {
 		);
 	}
 
-	const renderedProducts = similarProductsArray.map((product) => (
+	const ProductCards = similarProductsArray.map((product) => (
 		<ProductCard
 			key={product.id}
 			to={`all-products/${product.id}`}
 			image={product.images[1]}
-			title={product.title}
-			price={product.price}
-			description={product.description}
-			rating={product.rating}
+			product={product}
 		/>
 	));
 
@@ -34,7 +31,7 @@ const SimilarProducts = () => {
 				Similar Products You Might Like
 			</h2>
 			<ul className="grid grid-cols-[repeat(auto-fit,_minmax(23rem,1fr))] justify-items-center gap-[3rem_1.5rem]">
-				{renderedProducts}
+				{ProductCards}
 			</ul>
 		</article>
 	);

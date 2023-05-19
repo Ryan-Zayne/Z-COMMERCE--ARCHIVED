@@ -5,28 +5,28 @@ import { twJoin, twMerge } from 'tailwind-merge';
 import { Logo } from '../../../components';
 import { useDisclosure } from '../../../hooks';
 import { useGlobalActions, useGlobalStore } from '../../../store/zustand/globalStore';
-import CartDrawer from './CartDrawer';
+import CartDrawer from './Cart/CartDrawer';
 import SearchForm from './SearchForm';
 import ThemeSwitchButton from './ThemeSwitchButton';
 
 const NavHeader = () => {
 	const isMobile = useGlobalStore((state) => state.isMobile);
 	const isDesktop = useGlobalStore((state) => state.isDesktop);
-	const { toggleSearchShow, toggleNavShow, closeNavShow } = useGlobalActions();
 	const isNavShow = useGlobalStore((state) => state.isNavShow);
 	const isSearchShow = useGlobalStore((state) => state.isSearchShow);
+	const { toggleSearchShow, toggleNavShow } = useGlobalActions();
 	const { isOpen, onClose, onOpen } = useDisclosure();
 
 	return (
 		<div
 			id="Nav Icons and Logo"
-			className="relative flex w-full select-none justify-between gap-[1rem] px-[1rem]"
+			className="relative flex w-full select-none justify-between gap-[1rem] px-[1rem] lg:pr-[4rem]"
 		>
 			<Link to="/">
 				<Logo />
 			</Link>
 
-			<CartDrawer {...{ isOpen, onClose, onOpen }} />
+			<CartDrawer isOpen={isOpen} onClose={onClose} onOpen={onOpen} />
 
 			<SearchForm
 				className={twJoin(
@@ -46,15 +46,15 @@ const NavHeader = () => {
 					</button>
 				)}
 
-				<button className="hover:text-heading active:scale-[1.3]">
+				<button className="hover:text-heading active:scale-[1.3] md:text-[2.3rem]">
 					<BiHeart />
 				</button>
 
-				<button className="hover:text-heading active:scale-[1.3]">
+				<button className="hover:text-heading active:scale-[1.3] md:text-[2.3rem]">
 					<BiUser />
 				</button>
 
-				<button className="hover:text-heading active:scale-[1.3]" onClick={onOpen}>
+				<button className="hover:text-heading active:scale-[1.3] md:text-[2.3rem]" onClick={onOpen}>
 					<BiCartAlt />
 				</button>
 
@@ -76,7 +76,7 @@ const NavHeader = () => {
 
 						{/* HAMBURGER OVERLAY */}
 						<div
-							onClick={closeNavShow}
+							onClick={toggleNavShow}
 							className={twMerge(
 								`fixed z-[80] w-0 bg-[hsl(0,0%,0%,0.6)] [inset:0_0_0_auto]`,
 								isNavShow && 'w-screen'

@@ -1,11 +1,20 @@
-import { useReducer } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { TiArrowBack } from 'react-icons/ti';
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
+import { useShopActions, useShopStore } from '../../../store/zustand/shopStore';
 
 const ItemHeader = ({ productItem }) => {
-	const [isHearted, toggleIsHearted] = useReducer((state) => !state, false);
+	const wishList = useShopStore((state) => state.wishList);
+	const { toggleAddToWishList } = useShopActions();
+	const isProductInWishList = wishList.some((item) => item.id === productItem.id);
+	const [isHearted, setIsHearted] = useState(() => isProductInWishList);
 	const navigate = useNavigate();
+
+	const handleHeartClick = () => {
+		setIsHearted((prev) => !prev);
+		toggleAddToWishList(productItem);
+	};
 
 	return (
 		<>
@@ -17,7 +26,7 @@ const ItemHeader = ({ productItem }) => {
 				{productItem.title}
 			</h1>
 
-			<button className="rounded-[50%] bg-primary p-[0.7rem]" onClick={toggleIsHearted}>
+			<button className="rounded-[50%] bg-primary p-[0.7rem]" onClick={handleHeartClick}>
 				{isHearted ? (
 					<AiFillHeart className="scale-[1.16] text-[2.1rem] text-heading active:scale-[1.23]" />
 				) : (

@@ -1,4 +1,4 @@
-import { scrollbarWidth } from '../../../utils/globalVariables';
+import { noScrollOnOpen } from '../../../utils/noScrollOnOpen';
 
 export const createGlobalStateSlice = (set, get) => ({
 	isNavShow: false,
@@ -8,14 +8,7 @@ export const createGlobalStateSlice = (set, get) => ({
 	globalActions: {
 		toggleNavShow: () => {
 			set((state) => ({ isNavShow: !state.isNavShow }));
-
-			if (get().isNavShow) {
-				document.body.style.setProperty('--scrollbar-padding', ` ${scrollbarWidth}rem`);
-				document.body.classList.add('overflow-hidden');
-			} else {
-				document.body.style.setProperty('--scrollbar-padding', '');
-				document.body.classList.remove('overflow-hidden');
-			}
+			noScrollOnOpen(get().isNavShow);
 		},
 
 		toggleSearchShow: () => set((state) => ({ isSearchShow: !state.isSearchShow })),

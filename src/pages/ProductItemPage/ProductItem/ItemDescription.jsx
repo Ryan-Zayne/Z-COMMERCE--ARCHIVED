@@ -1,23 +1,41 @@
-import { useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { AiFillPlusCircle, AiFillMinusCircle, AiOutlineShoppingCart } from 'react-icons/ai';
 import { Button, StarRating } from '../../../components';
+import { useShopActions, useShopStore } from '../../../store/zustand/shopStore';
 
 const ItemDescription = ({ productItem }) => {
-	const [productCount, setProductCount] = useState(0);
-	const stockCountRef = useRef(productItem.stock);
+	const cart = useShopStore((state) => state.cart);
+	const productItemInCart = cart.find((item) => item.id === productItem.id);
+	const [productQuantityChosen, setProductQuantityChosen] = useState(
+		() => productItemInCart?.quantity ?? 0
+	);
+	const quantityLeftInStock = productItem.stock - productQuantityChosen;
+	const { addToCart, decreaseProductQuantity } = useShopActions();
 
+	useEffect(() => {
+		setProductQuantityChosen((prev) => productItemInCart?.quantity ?? prev);
+	}, [productItemInCart?.quantity]);
+
+	// TODO - Add a toast on click of this, to alert user what is being done
+	// TODO - Add a modal when this is clicked up to five times and ask user if he want to add many at once, all according to this medium post: https://medium.com/@viktoriadobrodenchuk/how-to-add-to-cart-properly-fcf279bb73fd
 	const handlePlus = () => {
-		if (productCount !== productItem.stock) {
-			setProductCount((prev) => prev + 1);
-			stockCountRef.current -= 1;
+		if (productQuantityChosen !== productItem.stock) {
+			setProductQuantityChosen((prev) => prev + 1);
+			addToCart(productItem);
 		}
 	};
 
+	// TODO - Add a toast on click of this, to alert user what is being done
 	const handleMinus = () => {
-		if (productCount !== 0) {
-			setProductCount((prev) => prev - 1);
-			stockCountRef.current += 1;
+		if (productQuantityChosen !== 0) {
+			setProductQuantityChosen((prev) => prev - 1);
+			decreaseProductQuantity(productItem);
 		}
+	};
+
+	// TODO - Add a toast on click of this, to alert user what is being done
+	const handleAddToCart = () => {
+		addToCart(productItem);
 	};
 
 	return (
@@ -49,7 +67,7 @@ const ItemDescription = ({ productItem }) => {
 						<AiFillMinusCircle />
 					</button>
 
-					<p className="font-roboto">{productCount}</p>
+					<p className="font-roboto">{productQuantityChosen}</p>
 
 					<button className="active:scale-[1.2]" onClick={handlePlus}>
 						<AiFillPlusCircle />
@@ -58,8 +76,8 @@ const ItemDescription = ({ productItem }) => {
 				<div className="whitespace-nowrap text-[1.4rem] tracking-wide md:text-[1.6rem]">
 					<p>
 						Only
-						<span className="mx-[0.5rem] inline-block text-[1.6rem] font-[500] text-[hsl(43,67%,50%)]">
-							{stockCountRef.current}
+						<span className="inline-block min-w-[3rem] text-center text-[1.6rem] font-[500] text-[hsl(43,67%,50%)]">
+							{quantityLeftInStock}
 						</span>
 						Items Left
 					</p>
@@ -84,6 +102,7 @@ const ItemDescription = ({ productItem }) => {
 					className={
 						'w-[15rem] p-[1rem_0] transition-[transform] duration-[200ms] ease-in-out [box-shadow:0_0_0_1.3px_var(--color-primary)] hover:scale-[1.1] hover:bg-secondary hover:[box-shadow:0_0_0_1.3px_var(--color-secondary)] active:scale-[1.17]'
 					}
+					onClick={handleAddToCart}
 				>
 					<AiOutlineShoppingCart className="mr-[1rem] text-[2rem]" />
 					<p>Add to Cart</p>

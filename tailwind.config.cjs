@@ -61,18 +61,63 @@ module.exports = {
 	},
 
 	plugins: [
-		plugin(({ matchVariant, matchUtilities }) => {
+		plugin(({ matchVariant, matchUtilities, addComponents }) => {
+			addComponents({
+				'.custom-scrollbar': {
+					'&::-webkit-scrollbar': {
+						width: '1rem',
+					},
+
+					'&::-webkit-scrollbar-track': {
+						backgroundColor: 'hsl(0, 0%, 76%)',
+						borderRadius: '1rem 1rem 0 0',
+					},
+
+					'&::-webkit-scrollbar-thumb': {
+						backgroundColor: 'hsl(206, 13%, 14%)',
+						border: '1px solid hsl(0, 0%, 76%)',
+						borderRadius: '1rem',
+					},
+				},
+
+				'.navlink-transition': {
+					'&::before': {
+						content: '""',
+						position: 'absolute',
+						bottom: '2rem',
+						left: '50%',
+						backgroundColor: 'var(--brand-inverse)',
+						opacity: '0',
+						transform: 'translateX(-50%)',
+						height: ' 0.5rem',
+						width: '0.5rem',
+						borderRadius: '50%',
+						transition: `opacity 0.4s ease 0s,
+											bottom 0.3s ease 0.1s,
+											height 0.5s ease 0.3s,
+											border-radius 0.2s ease 0.4s,
+											width 0.5s ease 0.4s`,
+					},
+
+					'&:hover::before': {
+						bottom: '-0.5rem',
+						height: '0.3rem',
+						width: 'calc(100% + 0.2rem)',
+						borderRadius: '2rem',
+						opacity: '1',
+					},
+				},
+			});
+
 			matchUtilities(
 				{
-					'ease-r': (value) => ({
+					'box-shadow': (value) => ({
 						'box-shadow': value,
 					}),
 				},
 				{
 					values: {
-						btn: '0 0 6.4rem var(--btn-shadow)',
-						nav: '0 0.4rem 6.4rem var(--nav-shadow)',
-						contact: '0 0 6.4rem var(--nav-shadow)',
+						btn: '',
 					},
 				}
 			);

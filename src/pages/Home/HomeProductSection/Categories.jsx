@@ -38,7 +38,7 @@ const categories = [
 const Categories = () => {
 	const isDarkMode = useThemeStore((state) => state.isDarkMode);
 
-	const renderedCategories = categories.map((category) => (
+	const CategoryLinks = categories.map((category) => (
 		<li
 			key={category.title}
 			className={twJoin(
@@ -64,7 +64,7 @@ const Categories = () => {
 		<article id="Categories" className="mt-[6rem] flex flex-col px-[4rem] lg:items-center">
 			<h2 className="text-center text-[2.5rem] font-[600] lg:text-[4rem]">All Categories</h2>
 			<ul className="mt-[3rem] grid auto-rows-[20rem] grid-cols-[repeat(auto-fit,_minmax(24rem,1fr))] justify-items-center gap-[3rem] lg:auto-rows-[23rem] lg:grid-cols-[repeat(3,_minmax(30rem,1fr))] lg:gap-[4rem]">
-				{renderedCategories}
+				{CategoryLinks}
 			</ul>
 		</article>
 	);

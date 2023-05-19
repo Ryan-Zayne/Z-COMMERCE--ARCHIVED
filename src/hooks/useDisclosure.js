@@ -1,30 +1,26 @@
 import { useCallback, useState } from 'react';
-import { scrollbarWidth } from '../utils/globalVariables';
+import { noScrollOnOpen } from '../utils/noScrollOnOpen';
 
 const useDisclosure = () => {
 	const [isOpen, setIsOpen] = useState(false);
 
 	const onOpen = useCallback(() => {
-		setIsOpen(true);
-		document.body.style.setProperty('--scrollbar-padding', `${scrollbarWidth}rem`);
-		document.body.classList.add('overflow-hidden');
+		const newState = true;
+		setIsOpen(newState);
+		noScrollOnOpen(newState);
 	}, []);
 
 	const onClose = useCallback(() => {
-		setIsOpen(false);
-		document.body.style.setProperty('--scrollbar-padding', '');
-		document.body.classList.remove('overflow-hidden');
+		const newState = false;
+		setIsOpen(newState);
+		noScrollOnOpen(newState);
 	}, []);
 
 	const onToggle = useCallback(() => {
 		if (isOpen) {
 			onOpen();
-			document.body.style.setProperty('--scrollbar-padding', `${scrollbarWidth}rem`);
-			document.body.classList.add('overflow-hidden');
 		} else {
 			onClose();
-			document.body.style.setProperty('--scrollbar-padding', '');
-			document.body.classList.remove('overflow-hidden');
 		}
 	}, [isOpen, onClose, onOpen]);
 

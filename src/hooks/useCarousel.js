@@ -10,6 +10,9 @@ const useCarousel = ({ numberOfSlides, isAutoSlide = false, autoSlideInterval = 
 	const isNavShow = useGlobalStore((state) => state.isNavShow);
 	const { nextSlide, previousSlide, goToSlide } = useGlobalActions();
 
+	// Resetting the global currentSlide state on route change (on mount of new component)
+	useEffect(() => goToSlide(0), []);
+
 	const maxSlide = numberOfSlides - 1;
 
 	const nextSlideButton = useCallback(() => {
@@ -25,9 +28,6 @@ const useCarousel = ({ numberOfSlides, isAutoSlide = false, autoSlideInterval = 
 		() => nextSlideButton(),
 		isAutoSlide && !isPaused && !isNavShow && !isMobile ? autoSlideInterval : null
 	);
-
-	// Resetting the currentSlide state on route change
-	useEffect(() => goToSlide(0), []);
 
 	return { previousSlideButton, nextSlideButton, setIsPaused };
 };
