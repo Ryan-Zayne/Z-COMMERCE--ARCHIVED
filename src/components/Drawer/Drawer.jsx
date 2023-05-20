@@ -1,27 +1,20 @@
-import { useMemo } from 'react';
 import { twMerge } from 'tailwind-merge';
 import Portal from '../Portal';
 import { DrawerContextProvider, useDrawerContext } from './context';
 
 const Drawer = ({ children, isOpen, onClose, onOpen, onToggle }) => {
-	const context = useMemo(
-		() => ({ isOpen, onOpen, onClose, onToggle }),
-		[isOpen, onClose, onOpen, onToggle]
-	);
-
 	return (
-		<DrawerContextProvider value={context}>
+		<DrawerContextProvider value={{ isOpen, onOpen, onClose, onToggle }}>
 			<Portal>
-				<aside id="CartDrawer Portal" className="overflow-y-scroll">
-					{children}
-				</aside>
+				<aside id="CartDrawer Portal">{children}</aside>
 			</Portal>
 		</DrawerContextProvider>
 	);
 };
 
 const DrawerOverlay = () => {
-	const { isOpen, onClose } = useDrawerContext();
+	const isOpen = useDrawerContext((state) => state.isOpen);
+	const onClose = useDrawerContext((state) => state.onClose);
 
 	return (
 		<div
@@ -36,7 +29,7 @@ const DrawerOverlay = () => {
 };
 
 const DrawerContent = ({ className = '', children, placement = 'right' }) => {
-	const { isOpen } = useDrawerContext();
+	const isOpen = useDrawerContext((state) => state.isOpen);
 
 	const placementObject = {
 		right: 'right-0 translate-x-full',
@@ -47,7 +40,7 @@ const DrawerContent = ({ className = '', children, placement = 'right' }) => {
 		<main
 			id="Drawer Content Container"
 			className={twMerge(
-				`custom-scrollbar fixed bottom-0 top-0 z-[500] flex flex-col overflow-y-scroll bg-body transition-transform duration-[250ms] ease-slide-out`,
+				`custom-scrollbar fixed bottom-0 top-0 z-[500] flex flex-col overflow-y-auto bg-body transition-transform duration-[250ms] ease-slide-out`,
 				[placementObject[placement]],
 				[isOpen && 'translate-x-0 duration-[700ms] ease-slide-in'],
 				[className]
@@ -59,7 +52,7 @@ const DrawerContent = ({ className = '', children, placement = 'right' }) => {
 };
 
 const DrawerCloseButton = ({ children, className, icon }) => {
-	const { onClose } = useDrawerContext();
+	const onClose = useDrawerContext((state) => state.onClose);
 
 	return (
 		<button className={twMerge(`absolute`, [className])} onClick={onClose}>

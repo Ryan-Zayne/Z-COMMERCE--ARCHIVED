@@ -1,10 +1,13 @@
 import { useContext } from 'react';
+import { useStore } from 'zustand';
 import { DrawerContext } from './DrawerContextProvider';
 
-const useDrawerContext = () => {
-	const { isOpen, onOpen, onClose, onToggle } = useContext(DrawerContext);
+const useDrawerContext = (selector, equalityFn) => {
+	const store = useContext(DrawerContext);
 
-	return { isOpen, onOpen, onClose, onToggle };
+	if (store == null) throw new Error('You forgot to wrap Drawer components with <Drawer/>');
+
+	return useStore(store, selector, equalityFn);
 };
 
 export default useDrawerContext;

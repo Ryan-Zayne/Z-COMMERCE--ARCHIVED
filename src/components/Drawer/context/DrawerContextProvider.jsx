@@ -1,4 +1,5 @@
-import { createContext } from 'react';
+import { createContext, useState } from 'react';
+import { createStore } from 'zustand';
 
 const DrawerContext = createContext({
 	isOpen: false,
@@ -7,8 +8,19 @@ const DrawerContext = createContext({
 	onToggle: () => {},
 });
 
+const createDrawerStore = (initializationProps) => {
+	const storeObject = createStore(() => ({
+		...initializationProps,
+	}));
+
+	return storeObject;
+};
+
 const DrawerContextProvider = ({ children, value }) => {
-	return <DrawerContext.Provider value={value}>{children}</DrawerContext.Provider>;
+	const [storeObject] = useState(createDrawerStore(value));
+	console.log(value);
+
+	return <DrawerContext.Provider value={storeObject}>{children}</DrawerContext.Provider>;
 };
 
 export { DrawerContextProvider, DrawerContext };
