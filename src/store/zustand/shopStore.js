@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import { devtools, persist } from 'zustand/middleware';
 
+// Store Object creation
 const shopStateObject = (set, get) => ({
 	cart: [],
 	wishList: [],
@@ -60,7 +61,10 @@ const shopStateObject = (set, get) => ({
 
 // Store hook Creation
 export const useShopStore = create(
-	persist(devtools(shopStateObject), { name: 'shop', partialize: ({ shopActions, ...state }) => state })
+	persist(devtools(shopStateObject), {
+		name: 'shop',
+		partialize: ({ shopActions, ...state }) => state,
+	})
 );
 
 // Actions hook

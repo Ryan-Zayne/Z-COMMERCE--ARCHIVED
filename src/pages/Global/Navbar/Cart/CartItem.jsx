@@ -21,9 +21,9 @@ const CartItem = ({ product }) => {
 
 			<div className="ml-[1.6rem] flex flex-col gap-[0.3rem] text-[1.5rem]">
 				<h4 className="font-roboto font-[600] lg:text-[1.7rem]">{product.title}</h4>
-				<p className="font-[500] text-[hsl(0,0%,40%,0.7)]">${product.price}</p>
+				<p className="font-[500] text-[hsl(0,0%,50%,0.7)]">${product.price}</p>
 				<p>
-					Quantity: <span className="text-secondary">{product.quantity}</span>
+					Quantity: <span className="ml-[0.2rem] text-secondary">{product.quantity}</span>
 				</p>
 			</div>
 

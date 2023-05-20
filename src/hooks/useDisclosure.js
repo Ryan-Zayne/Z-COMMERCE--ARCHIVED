@@ -18,9 +18,9 @@ const useDisclosure = () => {
 
 	const onToggle = useCallback(() => {
 		if (isOpen) {
-			onOpen();
-		} else {
 			onClose();
+		} else {
+			onOpen();
 		}
 	}, [isOpen, onClose, onOpen]);
 

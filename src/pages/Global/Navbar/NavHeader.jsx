@@ -5,6 +5,7 @@ import { twJoin, twMerge } from 'tailwind-merge';
 import { Logo } from '../../../components';
 import { useDisclosure } from '../../../hooks';
 import { useGlobalActions, useGlobalStore } from '../../../store/zustand/globalStore';
+import { useShopStore } from '../../../store/zustand/shopStore';
 import CartDrawer from './Cart/CartDrawer';
 import SearchForm from './SearchForm';
 import ThemeSwitchButton from './ThemeSwitchButton';
@@ -16,6 +17,7 @@ const NavHeader = () => {
 	const isSearchShow = useGlobalStore((state) => state.isSearchShow);
 	const { toggleSearchShow, toggleNavShow } = useGlobalActions();
 	const { isOpen, onClose, onOpen } = useDisclosure();
+	const cart = useShopStore((state) => state.cart);
 
 	return (
 		<div
@@ -46,16 +48,23 @@ const NavHeader = () => {
 					</button>
 				)}
 
-				<button className="hover:text-heading active:scale-[1.3] md:text-[2.3rem]">
+				{/* TODO - Create wishlist page that gets called on onclick */}
+				<button className="hover:text-heading active:scale-[1.2] lg:text-[2.3rem]">
 					<BiHeart />
 				</button>
 
-				<button className="hover:text-heading active:scale-[1.3] md:text-[2.3rem]">
+				<button className="hover:text-heading active:scale-[1.2] lg:text-[2.3rem]">
 					<BiUser />
 				</button>
 
-				<button className="hover:text-heading active:scale-[1.3] md:text-[2.3rem]" onClick={onOpen}>
+				<button className="relative active:scale-[1.1] lg:text-[2.3rem]" onClick={onOpen}>
 					<BiCartAlt />
+
+					{cart?.length > 0 && (
+						<span className="absolute right-[-1.2rem] top-[-0.5rem] inline-flex aspect-square w-[2rem] items-center justify-center rounded-[50%] bg-secondary text-[1.2rem] font-[500]">
+							{cart?.length}
+						</span>
+					)}
 				</button>
 
 				<ThemeSwitchButton />

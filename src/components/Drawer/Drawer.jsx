@@ -1,10 +1,16 @@
+import { useMemo } from 'react';
 import { twMerge } from 'tailwind-merge';
 import Portal from '../Portal';
-import { DrawerContextProvider, useDrawerContext } from './context';
+import { DrawerContextProvider, useDrawerContext } from './drawerContext';
 
 const Drawer = ({ children, isOpen, onClose, onOpen, onToggle }) => {
+	const contextValue = useMemo(
+		() => ({ isOpen, onOpen, onClose, onToggle }),
+		[isOpen, onOpen, onClose, onToggle]
+	);
+
 	return (
-		<DrawerContextProvider value={{ isOpen, onOpen, onClose, onToggle }}>
+		<DrawerContextProvider value={contextValue}>
 			<Portal>
 				<aside id="CartDrawer Portal">{children}</aside>
 			</Portal>
@@ -13,8 +19,7 @@ const Drawer = ({ children, isOpen, onClose, onOpen, onToggle }) => {
 };
 
 const DrawerOverlay = () => {
-	const isOpen = useDrawerContext((state) => state.isOpen);
-	const onClose = useDrawerContext((state) => state.onClose);
+	const { isOpen, onClose } = useDrawerContext();
 
 	return (
 		<div
@@ -29,7 +34,7 @@ const DrawerOverlay = () => {
 };
 
 const DrawerContent = ({ className = '', children, placement = 'right' }) => {
-	const isOpen = useDrawerContext((state) => state.isOpen);
+	const { isOpen } = useDrawerContext();
 
 	const placementObject = {
 		right: 'right-0 translate-x-full',
@@ -52,7 +57,7 @@ const DrawerContent = ({ className = '', children, placement = 'right' }) => {
 };
 
 const DrawerCloseButton = ({ children, className, icon }) => {
-	const onClose = useDrawerContext((state) => state.onClose);
+	const { onClose } = useDrawerContext();
 
 	return (
 		<button className={twMerge(`absolute`, [className])} onClick={onClose}>

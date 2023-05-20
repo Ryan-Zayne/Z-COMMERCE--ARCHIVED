@@ -1,4 +1,4 @@
-import { scrollbarWidth } from './globalVariables';
+import { scrollbarWidth } from './constants';
 
 export const noScrollOnOpen = (isOpen) => {
 	if (isOpen) {

@@ -1,10 +1,11 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
+import { prefersDarkMode } from '../../utils/constants';
 
 // Store Object Initializtion
 const themeStoreObject = (set, get) => ({
-	theme: window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light',
-	isDarkMode: window.matchMedia('(prefers-color-scheme: dark)').matches,
+	theme: prefersDarkMode ? 'dark' : 'light',
+	isDarkMode: get()?.theme === 'dark',
 
 	themeActions: {
 		toggleTheme: () => {

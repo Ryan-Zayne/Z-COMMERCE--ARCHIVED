@@ -33,7 +33,7 @@ const Carousel = ({
 			<button className="absolute left-0 z-40 h-full w-[9rem]" onClick={previousSlideButton}>
 				<span
 					className={twMerge(
-						`absolute left-[0.7rem] top-[45%] rotate-180 rounded-[5px] bg-carousel-btn p-[0.8rem_0.5rem] transition-transform active:scale-[1.11] ${leftBtnClasses}`
+						`absolute left-[0.7rem] top-[45%] rotate-180 rounded-[5px] transition-transform active:scale-[1.11] ${leftBtnClasses}`
 					)}
 				>
 					{arrowIcon}
@@ -54,7 +54,7 @@ const Carousel = ({
 			<button className="absolute right-0 z-40 h-full w-[9rem]" onClick={nextSlideButton}>
 				<span
 					className={twMerge(
-						`absolute right-[0.7rem] top-[45%] rounded-[5px] bg-carousel-btn p-[0.8rem_0.5rem] transition-transform active:scale-[1.11] ${rightBtnClasses}`
+						`absolute right-[0.7rem] top-[45%] rounded-[5px] transition-transform active:scale-[1.11] ${rightBtnClasses}`
 					)}
 				>
 					{arrowIcon}

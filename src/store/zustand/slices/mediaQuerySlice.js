@@ -1,4 +1,4 @@
-import { desktopQuery, mobileQuery, tabletQuery } from '../../../utils/globalVariables';
+import { desktopQuery, mobileQuery, tabletQuery } from '../../../utils/constants';
 
 export const createMediaQuerySlice = (set) => ({
 	isMobile: mobileQuery.matches,

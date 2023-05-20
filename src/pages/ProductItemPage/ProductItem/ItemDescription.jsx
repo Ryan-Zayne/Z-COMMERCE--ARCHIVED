@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { AiFillPlusCircle, AiFillMinusCircle, AiOutlineShoppingCart } from 'react-icons/ai';
 import { Button, StarRating } from '../../../components';
 import { useShopActions, useShopStore } from '../../../store/zustand/shopStore';
@@ -12,9 +12,13 @@ const ItemDescription = ({ productItem }) => {
 	const quantityLeftInStock = productItem.stock - productQuantityChosen;
 	const { addToCart, decreaseProductQuantity } = useShopActions();
 
-	useEffect(() => {
+	//* I did this below to avoid using useEffect to synchronize the quantity in the cart with the quantity in the state onClick of addToCart Button.
+	//* Another way to solve this is by updating the quantityState in the addToCart btn click handler, i.e setProductQuantityChosen((prev) => prev + 1).
+	//*  But I chose to leave it this way so as to teach myself stuff about eliminating useless effects in the future.
+
+	if (productItemInCart?.quantity != null && productQuantityChosen !== productItemInCart?.quantity) {
 		setProductQuantityChosen((prev) => productItemInCart?.quantity ?? prev);
-	}, [productItemInCart?.quantity]);
+	}
 
 	// TODO - Add a toast on click of this, to alert user what is being done
 	// TODO - Add a modal when this is clicked up to five times and ask user if he want to add many at once, all according to this medium post: https://medium.com/@viktoriadobrodenchuk/how-to-add-to-cart-properly-fcf279bb73fd

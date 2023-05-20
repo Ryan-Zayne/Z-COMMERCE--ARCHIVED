@@ -27,19 +27,21 @@ const Hero = () => {
 	const carouselIndicators = images.map((_, index) => <Carousel.Indicator key={index} index={index} />);
 
 	return (
-		<section id="Hero" className="lg:bg-primary">
+		<section id="Hero">
 			<Carousel
-				outerClassName={'max-lg:mx-[1rem] h-[38rem] md:h-[41.4rem] lg:h-[46rem]'}
+				outerClassName={'mx-[1rem] h-[38rem] md:h-[41.4rem] lg:h-[48.5rem]'}
 				innerClassName={twJoin(
-					`max-lg:rounded-[0.7rem]`,
-					isDarkMode && 'max-lg:[box-shadow:0_0_3px_0.1px_var(--carousel-dot)]'
+					`rounded-[0.7rem]`,
+					isDarkMode && 'box-shadow-[0_0_7px_-1px_hsl(0,0%,40%,0.6)]'
 				)}
 				leftBtnClasses={
-					'md:left-[0.8rem] hover:[box-shadow:0_0_5px_var(--text-dark)] lg:left-[29.5rem]'
+					'md:left-[0.8rem] hover:box-shadow-[0_0_5px_var(--text-dark)] lg:left-[29.5rem] bg-carousel-btn p-[0.8rem_0.5rem] lg:p-[1.3rem_0.9rem]'
 				}
-				rightBtnClasses={'hover:[box-shadow:0_0_5px_var(--text-dark)] md:right-[0.8rem]'}
+				rightBtnClasses={
+					'hover:box-shadow-[0_0_5px_var(--text-dark)] md:right-[0.8rem] lg:right-[2rem] bg-carousel-btn p-[0.8rem_0.5rem] lg:p-[1.3rem_0.9rem]'
+				}
 				images={images}
-				arrowIcon={<RxPaperPlane />}
+				arrowIcon={<RxPaperPlane className="lg:text-[1.7rem]" />}
 				autoSlideInterval={15000}
 				isAutoSlide
 				pauseOnHover

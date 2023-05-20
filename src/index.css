@@ -40,7 +40,7 @@
 		--color-secondary: hsl(43, 91%, 25%);
 		--color-navbar: hsl(215, 17%, 25%, 0.8);
 		--color-body: hsl(240, 6%, 7%);
-		--carousel-btn: hsl(204, 5%, 20%, 0.4);
+		--carousel-btn: hsl(196, 15%, 24%, 0.5);
 		--carousel-dot: hsl(212, 8%, 64%);
 		--dark-mode-ball: hsl(0, 0%, 26%);
 		--brand-inverse: var(--text-header)

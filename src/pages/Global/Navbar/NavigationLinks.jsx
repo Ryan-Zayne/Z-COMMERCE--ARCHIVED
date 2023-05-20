@@ -61,7 +61,7 @@ const NavigationLinks = () => {
 		<div id="Navigation Links" className="w-full">
 			<nav className="flex w-[100%] items-center justify-between font-[500] lg:pr-[2rem] ">
 				{isDesktop && (
-					<div id="Shop By Categories" className="relative z-50 ml-[0.5rem]">
+					<div id="Shop By Categories" className="relative z-50 ml-[1.1rem]">
 						<button
 							className="flex w-[28rem] items-center gap-[1rem] rounded-[0.5rem_0.5rem_0_0] bg-heading p-[1rem_1.5rem] font-[500] text-[var(--color-primary)]"
 							onClick={toggleCategoryShow}
@@ -84,7 +84,7 @@ const NavigationLinks = () => {
 
 									[
 										isCategoryShow
-											? 'h-[41.4rem] pt-[5rem] lg:h-[45.9rem]'
+											? 'h-[41.4rem] pt-[5rem] lg:h-[48.5rem]'
 											: 'h-0 [box-shadow:revert]',
 									],
 								]
