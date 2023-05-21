@@ -5,7 +5,7 @@ import { prefersDarkMode } from '../../utils/constants';
 // Store Object Initializtion
 const themeStoreObject = (set, get) => ({
 	theme: prefersDarkMode ? 'dark' : 'light',
-	isDarkMode: get()?.theme === 'dark',
+	isDarkMode: get()?.theme === 'dark' ?? false,
 
 	themeActions: {
 		toggleTheme: () => {

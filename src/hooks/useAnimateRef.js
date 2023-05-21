@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { useGlobalStore } from '../store/zustand/globalStore';
+import { useCarouselStore } from '../components/Carousel';
 
 const elements = [
 	{ targetElement: 'heading', animationClass: 'animate-fade-in-down' },
@@ -16,7 +16,7 @@ class ELementError extends Error {
 }
 
 const useAnimateRef = () => {
-	const currentSlide = useGlobalStore((state) => state.currentSlide);
+	const currentSlide = useCarouselStore((state) => state.currentSlide);
 	const elementRef = useRef({});
 	const fadeAnimationId = useRef(null);
 

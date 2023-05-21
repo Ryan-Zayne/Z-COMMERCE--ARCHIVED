@@ -27,7 +27,7 @@ const CartDrawer = ({ isOpen, onClose, onOpen }) => {
 		<Drawer {...{ isOpen, onClose, onOpen }}>
 			<DrawerOverlay />
 
-			<DrawerContent placement={'right'} className="w-[min(100%,34rem)] pb-[1.6rem] lg:min-w-[40rem]">
+			<DrawerContent placement={'right'} className="w-[min(100%,28rem)] pb-[1.6rem] lg:min-w-[40rem]">
 				<DrawerCloseButton
 					className={
 						'right-[2rem] top-[2rem] rounded-[4px] bg-heading p-[0.2rem] text-[2.6rem] text-primary'
@@ -62,7 +62,7 @@ const CartDrawer = ({ isOpen, onClose, onOpen }) => {
 					</div>
 				</DrawerBody>
 
-				<DrawerFooter className="px-[2rem] pt-[2rem]">
+				<DrawerFooter className="px-[2rem] pt-[3rem]">
 					<Link>
 						<Button
 							theme={'secondary'}

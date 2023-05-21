@@ -1,13 +1,15 @@
 import { createContext as createReactContext } from 'react';
 
-const createContext = ({
-	name,
-	strict = true,
-	hookName = 'useContext',
-	providerName = 'Provider',
-	errorMessage,
-	...initialContext
-}) => {
+const createContext = (options) => {
+	const {
+		name = 'Unnamed Context',
+		strict = true,
+		hookName = 'Unnamed Context hook',
+		providerName = 'Unnamed Provider',
+		errorMessage,
+		...initialContext
+	} = options;
+
 	const contextValues = {
 		name,
 		strict,

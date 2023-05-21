@@ -7,7 +7,7 @@ const useContext = (Context) => {
 	const { strict, hookName, providerName, errorMessage } = context;
 
 	if (!context && strict) {
-		const error = new Error(errorMessage || getErrorMessage(hookName, providerName));
+		const error = new Error(errorMessage ?? getErrorMessage(hookName, providerName));
 		error.name = 'ContextError';
 		Error.captureStackTrace?.(error, useContext);
 		throw error;

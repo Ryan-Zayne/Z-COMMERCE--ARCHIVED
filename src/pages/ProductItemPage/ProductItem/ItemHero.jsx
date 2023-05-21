@@ -1,19 +1,27 @@
 /* eslint-disable react/no-array-index-key */
 import { BsChevronRight } from 'react-icons/bs';
+import { useCarouselStore } from '../../../components/Carousel';
+import {
+	Carousel,
+	CarouselIndicator,
+	CarouselIndicatorWrapper,
+	CarouselItem,
+	CarouselItemWrapper,
+} from '../../../components/Carousel/Carousel';
 import { useThemeStore } from '../../../store/zustand/themeStore';
-import { Carousel } from '../../../components';
 
-const ItemHero = ({ productItem }) => {
+const ItemHero = () => {
 	const isDarkMode = useThemeStore((state) => state.isDarkMode);
+	const slideImages = useCarouselStore((state) => state.slideImages);
 
-	const carouselItems = productItem.images.map((image, index) => (
-		<Carousel.Item key={index}>
+	const CarouselItems = slideImages.map((image, index) => (
+		<CarouselItem key={index}>
 			<img className="object-cover" src={image} alt="" />
-		</Carousel.Item>
+		</CarouselItem>
 	));
 
-	const carouselIndicators = productItem.images.map((_, index) => (
-		<Carousel.Indicator
+	const CarouselIndicators = slideImages.map((_, index) => (
+		<CarouselIndicator
 			key={index}
 			index={index}
 			className={
@@ -31,14 +39,12 @@ const ItemHero = ({ productItem }) => {
 				innerClassName={`rounded-[0.7rem] ${
 					isDarkMode ? 'max-lg:[box-shadow:0_0_3px_0.1px_var(--carousel-dot)]' : ''
 				}`}
-				images={productItem.images}
 				arrowIcon={<BsChevronRight />}
-				leftBtnClasses={'p-[0.7rem_0.4rem] text-[1.7rem] md:text-[2rem]'}
+				leftBtnClasses={'p-[0.7rem_0.4rem] text-[1.7rem] md:text-[2rem] '}
 				rightBtnClasses={'p-[0.7rem_0.4rem] text-[1.7rem] md:text-[2rem]'}
 			>
-				<Carousel.ItemWrapper className={'brightness-[0.65]'}>{carouselItems}</Carousel.ItemWrapper>
-
-				<Carousel.IndicatorWrapper>{carouselIndicators}</Carousel.IndicatorWrapper>
+				<CarouselItemWrapper className={'brightness-[0.65]'}>{CarouselItems}</CarouselItemWrapper>
+				<CarouselIndicatorWrapper>{CarouselIndicators}</CarouselIndicatorWrapper>
 			</Carousel>
 		</article>
 	);

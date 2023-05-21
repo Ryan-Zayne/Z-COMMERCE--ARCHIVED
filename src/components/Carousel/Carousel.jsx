@@ -1,12 +1,12 @@
 import { twMerge } from 'tailwind-merge';
-import { useCarousel } from '../../hooks';
-import { useGlobalActions, useGlobalStore } from '../../store/zustand/globalStore';
 import SwipeDisabler from './SwipeDisabler';
+import { useGlobalStore } from '../../store/zustand/globalStore';
+import { useCarouselStore } from './carouselStoreContext';
+import useCarouselOptions from '../../hooks/useCarouselOptions';
 
 const Carousel = ({
 	as: Element = 'article',
 	children,
-	images = [],
 	outerClassName = '',
 	innerClassName = '',
 	arrowIcon,
@@ -16,12 +16,14 @@ const Carousel = ({
 	autoSlideInterval = 10000,
 	pauseOnHover = false,
 }) => {
-	const { setIsPaused, nextSlideButton, previousSlideButton } = useCarousel({
-		numberOfSlides: images.length,
+	const isMobile = useGlobalStore((state) => state.isMobile);
+	const nextSlide = useCarouselStore((state) => state.nextSlide);
+	const previousSlide = useCarouselStore((state) => state.previousSlide);
+
+	const { setIsPaused } = useCarouselOptions({
 		isAutoSlide,
 		autoSlideInterval,
 	});
-	const isMobile = useGlobalStore((state) => state.isMobile);
 
 	return (
 		<Element
@@ -30,16 +32,15 @@ const Carousel = ({
 			onMouseEnter={() => !isMobile && pauseOnHover && setIsPaused(true)}
 			onMouseLeave={() => !isMobile && pauseOnHover && setIsPaused(false)}
 		>
-			<button className="absolute left-0 z-40 h-full w-[9rem]" onClick={previousSlideButton}>
+			<button className="absolute left-0 z-40 h-full w-[9rem]" onClick={previousSlide}>
 				<span
 					className={twMerge(
-						`absolute left-[0.7rem] top-[45%] rotate-180 rounded-[5px] transition-transform active:scale-[1.11] ${leftBtnClasses}`
+						`absolute left-[0.7rem] top-[45%] rotate-180 rounded-[5px] bg-carousel-btn transition-transform active:scale-[1.11] ${leftBtnClasses}`
 					)}
 				>
 					{arrowIcon}
 				</span>
 			</button>
-
 			<div
 				id="Carousel Inner"
 				className={twMerge(
@@ -48,13 +49,13 @@ const Carousel = ({
 			>
 				{/* Disables Carousel Swipe on mobile (E get why...) */}
 				{isMobile && <SwipeDisabler />}
+
 				{children}
 			</div>
-
-			<button className="absolute right-0 z-40 h-full w-[9rem]" onClick={nextSlideButton}>
+			<button className="absolute right-0 z-40 h-full w-[9rem]" onClick={nextSlide}>
 				<span
 					className={twMerge(
-						`absolute right-[0.7rem] top-[45%] rounded-[5px] transition-transform active:scale-[1.11] ${rightBtnClasses}`
+						`absolute right-[0.7rem] top-[45%] rounded-[5px] bg-carousel-btn transition-transform active:scale-[1.11] ${rightBtnClasses}`
 					)}
 				>
 					{arrowIcon}
@@ -64,12 +65,12 @@ const Carousel = ({
 	);
 };
 
-Carousel.Item = function CarouselItem({ children, className = '' }) {
+const CarouselItem = ({ children, className = '' }) => {
 	return <li className={twMerge(`inline-flex w-full shrink-0 ${className}`)}>{children}</li>;
 };
 
-Carousel.ItemWrapper = function CarouselItemWrapper({ children, className = '' }) {
-	const currentSlide = useGlobalStore((state) => state.currentSlide);
+const CarouselItemWrapper = ({ children, className = '' }) => {
+	const currentSlide = useCarouselStore((state) => state.currentSlide);
 	return (
 		<ul
 			id="Carousel Image Wrapper"
@@ -85,7 +86,7 @@ Carousel.ItemWrapper = function CarouselItemWrapper({ children, className = '' }
 	);
 };
 
-Carousel.Caption = function CarouselCaption({ children, className = '' }) {
+const CarouselCaption = ({ children, className = '' }) => {
 	return (
 		<div id="Carousel Caption" className={twMerge(`absolute text-light ${className}`)}>
 			{children}
@@ -93,9 +94,10 @@ Carousel.Caption = function CarouselCaption({ children, className = '' }) {
 	);
 };
 
-Carousel.Indicator = function CarouselIndicator({ className = '', onActiveClassName, index }) {
-	const currentSlide = useGlobalStore((state) => state.currentSlide);
-	const { goToSlide } = useGlobalActions();
+const CarouselIndicator = ({ className = '', onActiveClassName, index }) => {
+	const currentSlide = useCarouselStore((state) => state.currentSlide);
+	const goToSlide = useCarouselStore((state) => state.goToSlide);
+
 	return (
 		<span
 			onClick={() => goToSlide(index)}
@@ -107,7 +109,7 @@ Carousel.Indicator = function CarouselIndicator({ className = '', onActiveClassN
 	);
 };
 
-Carousel.IndicatorWrapper = function CarouselIndicatorWrapper({ children, className = '' }) {
+const CarouselIndicatorWrapper = ({ children, className = '' }) => {
 	return (
 		<span
 			id="Carousel Indicators"
@@ -120,4 +122,11 @@ Carousel.IndicatorWrapper = function CarouselIndicatorWrapper({ children, classN
 	);
 };
 
-export default Carousel;
+export {
+	Carousel,
+	CarouselItem,
+	CarouselItemWrapper,
+	CarouselCaption,
+	CarouselIndicator,
+	CarouselIndicatorWrapper,
+};

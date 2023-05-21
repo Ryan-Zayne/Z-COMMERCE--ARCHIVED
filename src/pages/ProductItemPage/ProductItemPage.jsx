@@ -3,6 +3,7 @@ import { useGetProductItem } from '../../store/react-query';
 import ItemHeader from './ProductItem/ItemHeader';
 import ItemDescription from './ProductItem/ItemDescription';
 import ItemHero from './ProductItem/ItemHero';
+import { CarouselContextProvider } from '../../components/Carousel';
 
 const ProductItemPage = () => {
 	const { productId } = useParams();
@@ -26,7 +27,10 @@ const ProductItemPage = () => {
 				<ItemHeader productItem={productItem} />
 			</header>
 			<div className="mt-[1.7rem] md:mt-[4rem] md:flex md:justify-around md:gap-[4rem] md:px-[4rem] lg:gap-[9rem]">
-				<ItemHero productItem={productItem} />
+				<CarouselContextProvider slideImages={productItem.images}>
+					<ItemHero />
+				</CarouselContextProvider>
+
 				<ItemDescription productItem={productItem} />
 			</div>
 		</section>

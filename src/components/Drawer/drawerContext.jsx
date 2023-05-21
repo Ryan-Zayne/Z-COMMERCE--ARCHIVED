@@ -1,6 +1,9 @@
-import { createContext } from 'react';
+import { createContext, useContext } from '../../hooks/hook-context';
 
 const DrawerContext = createContext({
+	name: 'DrawerContext',
+	hookName: 'useDrawerContext',
+	providerName: '<Drawer/>',
 	isOpen: false,
 	onOpen: () => {},
 	onClose: () => {},
@@ -11,4 +14,6 @@ const DrawerContextProvider = ({ children, value = {} }) => {
 	return <DrawerContext.Provider value={value}>{children}</DrawerContext.Provider>;
 };
 
-export { DrawerContextProvider, DrawerContext };
+const useDrawerContext = () => useContext(DrawerContext);
+
+export { DrawerContextProvider, useDrawerContext };
