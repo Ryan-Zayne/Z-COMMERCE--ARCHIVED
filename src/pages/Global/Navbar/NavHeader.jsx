@@ -15,9 +15,9 @@ const NavHeader = () => {
 	const isDesktop = useGlobalStore((state) => state.isDesktop);
 	const isNavShow = useGlobalStore((state) => state.isNavShow);
 	const isSearchShow = useGlobalStore((state) => state.isSearchShow);
+	const cart = useShopStore((state) => state.cart);
 	const { toggleSearchShow, toggleNavShow } = useGlobalActions();
 	const { isOpen, onClose, onOpen } = useDisclosure();
-	const cart = useShopStore((state) => state.cart);
 
 	return (
 		<div
@@ -61,7 +61,7 @@ const NavHeader = () => {
 					<BiCartAlt />
 
 					{cart?.length > 0 && (
-						<span className="absolute right-[-1.2rem] top-[-0.5rem] inline-flex aspect-square w-[2rem] items-center justify-center rounded-[50%] bg-secondary text-[1.2rem] font-[500]">
+						<span className="absolute right-[-1rem] top-[-0.6rem] inline-flex h-[1.7rem] w-[1.7rem] items-center justify-center rounded-[50%] bg-secondary text-[1.2rem] font-[500]">
 							{cart?.length}
 						</span>
 					)}
