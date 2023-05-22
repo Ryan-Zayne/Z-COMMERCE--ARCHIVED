@@ -1,5 +1,6 @@
-export { default as useAnimateRef } from './useAnimateRef';
-export { default as useAnimationInterval } from './useAnimationInterval';
-export { default as useMediaQuery } from './useMediaQuery';
-export { default as useDisclosure } from './useDisclosure';
-export { default as useCallbackRef } from './useCallbackRef';
+export { useAnimateRef } from './useAnimateRef';
+export { useAnimationInterval } from './useAnimationInterval';
+export { useMediaQuery } from './useMediaQuery';
+export { useDisclosure } from './useDisclosure';
+export { useCallbackRef } from './useCallbackRef';
+export { useScrollObserver } from './useScrollObserver';

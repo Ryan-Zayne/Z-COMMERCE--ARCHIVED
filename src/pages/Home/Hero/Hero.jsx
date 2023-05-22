@@ -1,16 +1,7 @@
-/* eslint-disable react/no-array-index-key */
 import { RxPaperPlane } from 'react-icons/rx';
 import { twJoin } from 'tailwind-merge';
-import { Button } from '../../../components';
+import { Button, Carousel } from '../../../components';
 import { useCarouselStore } from '../../../components/Carousel';
-import {
-	Carousel,
-	CarouselCaption,
-	CarouselIndicator,
-	CarouselIndicatorWrapper,
-	CarouselItem,
-	CarouselItemWrapper,
-} from '../../../components/Carousel/Carousel';
 import { useAnimateRef } from '../../../hooks';
 import { useThemeStore } from '../../../store/zustand/themeStore';
 
@@ -19,14 +10,14 @@ const Hero = () => {
 	const slideImages = useCarouselStore((state) => state.slideImages);
 	const { animatedElements } = useAnimateRef();
 
-	const CarouselItems = slideImages.map((image, index) => (
-		<CarouselItem key={index}>
+	const CarouselItems = slideImages.map((image) => (
+		<Carousel.Item key={image}>
 			<img className="object-cover" src={image} alt="" />
-		</CarouselItem>
+		</Carousel.Item>
 	));
 
-	const CarouselIndicators = slideImages.map((_, index) => (
-		<CarouselIndicator key={index} index={index} />
+	const CarouselIndicators = slideImages.map((image, index) => (
+		<Carousel.Indicator key={image} index={index} />
 	));
 
 	return (
@@ -48,9 +39,9 @@ const Hero = () => {
 				isAutoSlide
 				pauseOnHover
 			>
-				<CarouselItemWrapper className={'brightness-[0.6]'}>{CarouselItems}</CarouselItemWrapper>
+				<Carousel.ItemWrapper className={'brightness-[0.6]'}>{CarouselItems}</Carousel.ItemWrapper>
 
-				<CarouselCaption
+				<Carousel.Caption
 					className={
 						'ml-[4.5rem] mt-[5.5rem] flex flex-col items-start md:ml-[7.5rem] lg:ml-[36rem] lg:mt-[8rem]'
 					}
@@ -77,9 +68,9 @@ const Hero = () => {
 							className="text-[clamp(1.3rem,_1vw+1rem,_1.7rem)] font-[600] transition-shadow duration-[400ms] hover:[box-shadow:0_10px_20px_hsl(43,100%,55%,0.4)] active:scale-[1.04] max-sm:p-[1rem_2.8rem]"
 						/>
 					</div>
-				</CarouselCaption>
+				</Carousel.Caption>
 
-				<CarouselIndicatorWrapper>{CarouselIndicators}</CarouselIndicatorWrapper>
+				<Carousel.IndicatorWrapper>{CarouselIndicators}</Carousel.IndicatorWrapper>
 			</Carousel>
 		</section>
 	);

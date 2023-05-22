@@ -1,6 +1,6 @@
 import { BsFillMoonStarsFill } from 'react-icons/bs';
 import { FaSun } from 'react-icons/fa';
-import { useThemeActions, useThemeStore } from '../../../store/zustand/themeStore';
+import { useThemeActions, useThemeStore } from '../store/zustand/themeStore';
 
 const ThemeSwitchButton = ({ display = '' }) => {
 	const isDarkMode = useThemeStore((state) => state.isDarkMode);

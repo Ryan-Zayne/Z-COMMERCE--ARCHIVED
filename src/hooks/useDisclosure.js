@@ -26,4 +26,4 @@ const useDisclosure = () => {
 
 	return { isOpen, onOpen, onClose, onToggle };
 };
-export default useDisclosure;
+export { useDisclosure };

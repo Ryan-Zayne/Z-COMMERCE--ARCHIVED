@@ -26,7 +26,7 @@ const ProductItemPage = () => {
 			<header className="mx-[0.5rem] flex items-center justify-between lg:mx-[3rem]">
 				<ItemHeader productItem={productItem} />
 			</header>
-			<div className="mt-[1.7rem] md:mt-[4rem] md:flex md:justify-around md:gap-[4rem] md:px-[4rem] lg:gap-[9rem]">
+			<div className="mt-[1.7rem] md:mt-[4rem] md:flex md:h-[45rem] md:justify-around md:gap-[4rem] md:px-[4rem] lg:h-[50rem] lg:gap-[9rem]">
 				<CarouselContextProvider slideImages={productItem.images}>
 					<ItemHero />
 				</CarouselContextProvider>

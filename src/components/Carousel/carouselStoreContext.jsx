@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { createStore, useStore } from 'zustand';
-import { createContext, useContext } from '../../hooks/hook-context';
-import useCallbackRef from '../../hooks/useCallbackRef';
+import { createContext, useContext } from '../../hooks/context-hook';
+import { useCallbackRef } from '../../hooks/useCallbackRef';
 
 const CarouselContext = createContext({
 	name: 'CarouselStoreContext',

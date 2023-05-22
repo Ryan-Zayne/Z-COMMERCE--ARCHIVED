@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useCarouselStore } from '../components/Carousel/carouselStoreContext';
 import { useGlobalStore } from '../store/zustand/globalStore';
-import useAnimationInterval from './useAnimationInterval';
+import { useAnimationInterval } from './useAnimationInterval';
 
 const useCarouselOptions = ({ isAutoSlide = false, autoSlideInterval = 10000 }) => {
 	const [isPaused, setIsPaused] = useState(false);
@@ -18,4 +18,4 @@ const useCarouselOptions = ({ isAutoSlide = false, autoSlideInterval = 10000 }) 
 	return { setIsPaused };
 };
 
-export default useCarouselOptions;
+export { useCarouselOptions };

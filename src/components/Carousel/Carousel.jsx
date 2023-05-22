@@ -1,8 +1,8 @@
 import { twMerge } from 'tailwind-merge';
-import SwipeDisabler from './SwipeDisabler';
+import { useCarouselOptions } from '../../hooks/useCarouselOptions';
 import { useGlobalStore } from '../../store/zustand/globalStore';
+import SwipeDisabler from './SwipeDisabler';
 import { useCarouselStore } from './carouselStoreContext';
-import useCarouselOptions from '../../hooks/useCarouselOptions';
 
 const Carousel = ({
 	as: Element = 'article',
@@ -122,11 +122,10 @@ const CarouselIndicatorWrapper = ({ children, className = '' }) => {
 	);
 };
 
-export {
-	Carousel,
-	CarouselItem,
-	CarouselItemWrapper,
-	CarouselCaption,
-	CarouselIndicator,
-	CarouselIndicatorWrapper,
-};
+Carousel.Item = CarouselItem;
+Carousel.ItemWrapper = CarouselItemWrapper;
+Carousel.Caption = CarouselCaption;
+Carousel.Indicator = CarouselIndicator;
+Carousel.IndicatorWrapper = CarouselIndicatorWrapper;
+
+export default Carousel;

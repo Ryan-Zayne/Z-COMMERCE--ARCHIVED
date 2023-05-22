@@ -1,6 +1,6 @@
 /* eslint-disable consistent-return */
 import { useEffect, useRef } from 'react';
-import useCallbackRef from './useCallbackRef';
+import { useCallbackRef } from './useCallbackRef';
 
 /**
  * Custom hook that implements a requestAnimationFrame loop with a delay.
@@ -54,4 +54,4 @@ const useAnimationInterval = (callbackFn, intervalDuration) => {
 	return animationFrameId.current;
 };
 
-export default useAnimationInterval;
+export { useAnimationInterval };

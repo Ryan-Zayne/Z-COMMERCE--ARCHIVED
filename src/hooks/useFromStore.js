@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 /**
  * A custom hook that returns a value from a store and syncs it
@@ -16,13 +16,13 @@ const useFromStore = (useStore, storeCallback) => {
 	// Declare a state variable and a function to update it
 	const [state, setState] = useState(null);
 
-	// Update the state whenever the storeState value changes
-	useEffect(() => {
+	// Update the state whenever the stateFromStore value changes
+	if (stateFromStore != null && stateFromStore !== state) {
 		setState(stateFromStore);
-	}, [stateFromStore]);
+	}
 
 	// Return the current state value
 	return state;
 };
 
-export default useFromStore;
+export { useFromStore };

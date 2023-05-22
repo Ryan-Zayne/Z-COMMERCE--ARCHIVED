@@ -95,7 +95,7 @@
 		background-color: var(--color-body);
 		color: var(--text-body);
 
-		/** This will be set dynamically by javascript to prevent layout shift on navbar open @globalStateSlice */
+		/** This will be set dynamically by javascript to prevent layout shift on navbar open */
 		padding-right: var(--scrollbar-padding);
 	}
 

@@ -116,7 +116,17 @@ const useLocalStorage = (key, defaultValue, options = {}) => {
 		}
 	}, [key, logger, parser, syncData]);
 
-	return [value, setValue];
+	const removeValue = useCallback(() => {
+		try {
+			window.localStorage.removeItem(key);
+			setValue(undefined);
+		} catch {
+			// If user is in private mode or has storage restriction
+			// localStorage can throw.
+		}
+	}, [key]);
+
+	return [value, setValue, removeValue];
 };
 
-export default useLocalStorage;
+export { useLocalStorage };

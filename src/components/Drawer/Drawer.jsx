@@ -47,7 +47,7 @@ const DrawerContent = ({ className = '', children, placement = 'right' }) => {
 			className={twMerge(
 				`custom-scrollbar fixed bottom-0 top-0 z-[500] flex flex-col overflow-y-auto bg-body transition-transform duration-[250ms] ease-slide-out`,
 				[placementObject[placement]],
-				[isOpen && 'translate-x-0 duration-[700ms] ease-slide-in'],
+				[isOpen && 'translate-x-0 duration-[650ms] ease-slide-in'],
 				[className]
 			)}
 		>
@@ -90,12 +90,11 @@ const DrawerFooter = ({ children, className = '' }) => {
 	);
 };
 
-export {
-	Drawer,
-	DrawerOverlay,
-	DrawerContent,
-	DrawerHeader,
-	DrawerBody,
-	DrawerFooter,
-	DrawerCloseButton,
-};
+Drawer.Overlay = DrawerOverlay;
+Drawer.Content = DrawerContent;
+Drawer.CloseButton = DrawerCloseButton;
+Drawer.Header = DrawerHeader;
+Drawer.Body = DrawerBody;
+Drawer.Footer = DrawerFooter;
+
+export default Drawer;

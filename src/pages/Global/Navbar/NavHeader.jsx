@@ -2,13 +2,12 @@ import { BiCartAlt, BiHeart, BiSearchAlt2, BiUser } from 'react-icons/bi';
 import { RiCloseFill, RiMenu3Fill } from 'react-icons/ri';
 import { Link } from 'react-router-dom';
 import { twJoin, twMerge } from 'tailwind-merge';
-import { Logo } from '../../../components';
+import { Logo, ThemeSwitchButton } from '../../../components';
 import { useDisclosure } from '../../../hooks';
 import { useGlobalActions, useGlobalStore } from '../../../store/zustand/globalStore';
 import { useShopStore } from '../../../store/zustand/shopStore';
 import CartDrawer from './Cart/CartDrawer';
 import SearchForm from './SearchForm';
-import ThemeSwitchButton from './ThemeSwitchButton';
 
 const NavHeader = () => {
 	const isMobile = useGlobalStore((state) => state.isMobile);
@@ -22,7 +21,7 @@ const NavHeader = () => {
 	return (
 		<div
 			id="Nav Icons and Logo"
-			className="relative flex w-full select-none justify-between gap-[1rem] px-[1rem] lg:pr-[4rem]"
+			className="flex w-full select-none justify-between gap-[1rem] px-[1rem] lg:pr-[4rem] "
 		>
 			<Link to="/">
 				<Logo />
@@ -57,8 +56,8 @@ const NavHeader = () => {
 					<BiUser />
 				</button>
 
-				<button className="relative active:scale-[1.1] lg:text-[2.3rem]" onClick={onOpen}>
-					<BiCartAlt />
+				<button className="relative  active:scale-[1.1] lg:text-[2.3rem]" onClick={onOpen}>
+					<BiCartAlt className="hover:text-heading" />
 
 					{cart?.length > 0 && (
 						<span className="absolute right-[-1rem] top-[-0.6rem] inline-flex h-[1.7rem] w-[1.7rem] items-center justify-center rounded-[50%] bg-secondary text-[1.2rem] font-[500]">

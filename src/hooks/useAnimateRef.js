@@ -11,7 +11,7 @@ class ELementError extends Error {
 	name = 'ELementError';
 
 	constructor(value) {
-		super(`"${value}" does not Exist`);
+		super(`"${value}" element does not exist`);
 	}
 }
 
@@ -21,20 +21,21 @@ const useAnimateRef = () => {
 	const fadeAnimationId = useRef(null);
 
 	useEffect(() => {
-		function addAnimationClasses() {
+		const addAnimationClasses = () => {
 			for (const elem of elements) {
 				if (!elementRef.current[elem.targetElement]) {
 					throw new ELementError(elem.targetElement);
 				}
+
 				elementRef.current[elem.targetElement].classList.add(elem.animationClass);
 			}
-		}
+		};
 
-		function removeAnimationClasses() {
+		const removeAnimationClasses = () => {
 			for (const elem of elements) {
 				elementRef.current[elem.targetElement].classList.remove(elem.animationClass);
 			}
-		}
+		};
 
 		addAnimationClasses();
 
@@ -46,4 +47,4 @@ const useAnimateRef = () => {
 	return { animatedElements: elementRef.current };
 };
 
-export default useAnimateRef;
+export { useAnimateRef };

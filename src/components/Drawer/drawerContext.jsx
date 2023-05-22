@@ -1,4 +1,4 @@
-import { createContext, useContext } from '../../hooks/hook-context';
+import { createContext, useContext } from '../../hooks/context-hook';
 
 const DrawerContext = createContext({
 	name: 'DrawerContext',
