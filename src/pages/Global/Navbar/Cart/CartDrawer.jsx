@@ -38,7 +38,7 @@ const CartDrawer = ({ isOpen, onClose, onOpen }) => {
 
 				<DrawerHeader
 					className={
-						'mx-[2rem] flex items-center gap-[2rem] border-b-[1px] border-b-dark p-[7rem_0_2rem_2rem] lg:pl-[4.5rem]'
+						'mx-[1.3rem] flex items-center gap-[2rem] border-b-[1px] border-b-dark p-[7rem_0_2rem_0.7rem] lg:pl-[4.5rem]'
 					}
 				>
 					<Logo />
@@ -47,10 +47,10 @@ const CartDrawer = ({ isOpen, onClose, onOpen }) => {
 					/>
 				</DrawerHeader>
 
-				<DrawerBody className="px-[2rem] pt-[4rem]">
+				<DrawerBody className="px-[1.3rem] pt-[4rem] lg:px-[2rem]">
 					<ul className="flex flex-col gap-[1rem]">{CartItems}</ul>
 
-					<div className="mt-[3rem] px-[2rem] lg:px-[2.6rem]">
+					<div className="mt-[3rem] px-[1rem] lg:px-[2.6rem]">
 						<p className="flex justify-between text-[1.8rem] font-[600]">
 							Total:
 							<span className="text-[2rem]">
@@ -62,7 +62,7 @@ const CartDrawer = ({ isOpen, onClose, onOpen }) => {
 					</div>
 				</DrawerBody>
 
-				<DrawerFooter className="px-[2rem] pt-[3rem]">
+				<DrawerFooter className="px-[1.3rem] pt-[3rem] lg:px-[2rem]">
 					<Link>
 						<Button
 							theme={'secondary'}

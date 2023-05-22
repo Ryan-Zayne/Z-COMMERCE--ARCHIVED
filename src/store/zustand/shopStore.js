@@ -28,7 +28,6 @@ const shopStateObject = (set, get) => ({
 
 		removeProductFromCart: (product) => {
 			const newCart = get().cart.filter((item) => item.id !== product.id);
-
 			set({ cart: newCart });
 		},
 

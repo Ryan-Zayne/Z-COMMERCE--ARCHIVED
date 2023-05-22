@@ -6,11 +6,11 @@ const useGetAllProducts = () => {
 	const productQueries = [
 		{ key: ['smartphones'], url: '/products/category/smartphones' },
 		{ key: ['laptops'], url: '/products/category/laptops' },
-		{ key: ['watches', 'male'], url: '/products/category/mens-watches' },
-		{ key: ['watches', 'female'], url: '/products/category/womens-watches' },
-		{ key: ['vehicles', 'automotives'], url: '/products/category/automotive' },
-		{ key: ['vehicles', 'motorcycles'], url: '/products/category/motorcycle' },
-		{ key: ['digital-lighting'], url: '/products/category/lighting' },
+		{ key: ['mens-watches'], url: '/products/category/mens-watches' },
+		{ key: ['womens-watches'], url: '/products/category/womens-watches' },
+		{ key: ['automotive'], url: '/products/category/automotive' },
+		{ key: ['motorcycle'], url: '/products/category/motorcycle' },
+		{ key: ['lighting'], url: '/products/category/lighting' },
 	];
 
 	const allProducts = useFetchMultiple(

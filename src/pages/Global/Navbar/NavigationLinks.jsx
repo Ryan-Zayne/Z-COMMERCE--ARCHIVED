@@ -34,9 +34,9 @@ const NavigationLinks = () => {
 		{ title: 'All Products', path: '/all-products' },
 		{ title: 'Smartphones', path: '/smartphones' },
 		{ title: 'Laptops', path: '/laptops' },
-		{ title: 'Watches', path: '/mens-watches' },
+		{ title: 'Watches', path: '/watches' },
 		{ title: 'Vehicles', path: '/vehicles' },
-		{ title: 'Digital Lighting', path: '/digital-lighting' },
+		{ title: 'Digital Lighting', path: '/lighting' },
 	];
 
 	const mobileCategories = categories.map((category) => (

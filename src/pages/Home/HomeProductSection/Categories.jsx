@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { twJoin } from 'tailwind-merge';
 import { useThemeStore } from '../../../store/zustand/themeStore';
 import { Button } from '../../../components';
@@ -5,30 +6,35 @@ import { Button } from '../../../components';
 const categories = [
 	{
 		title: 'SmartPhones',
+		path: '/smartphones',
 		image: 'https://res.cloudinary.com/djvestif4/image/upload/v1679955651/Ecommerce/Thumbnails/smartphone-transformed_jbfngh.png',
 		bg_light: 'bg-orange-400',
 		bg_dark: 'bg-[hsl(27,96%,33%)]',
 	},
 	{
 		title: 'Laptops',
+		path: '/laptops',
 		image: 'https://res.cloudinary.com/djvestif4/image/upload/v1679955551/Ecommerce/Thumbnails/laptop-transformed_dhamlu.png',
 		bg_light: 'bg-gray-400',
 		bg_dark: 'bg-[hsl(200,6%,31%)]',
 	},
 	{
 		title: 'Vehicles',
+		path: '/vehicles',
 		image: 'https://res.cloudinary.com/djvestif4/image/upload/v1679958960/Ecommerce/Thumbnails/car-transformed.webp',
 		bg_light: 'bg-purple-400',
 		bg_dark: 'bg-[hsl(270,95%,25%)]',
 	},
 	{
 		title: 'Watches',
+		path: '/watches',
 		image: 'https://res.cloudinary.com/djvestif4/image/upload/v1679958960/Ecommerce/Thumbnails/watches-transformed.webp',
 		bg_light: 'bg-cyan-400',
 		bg_dark: 'bg-[hsl(188,86%,38%)]',
 	},
 	{
 		title: 'Digital Lighting',
+		path: '/lighting',
 		image: 'https://res.cloudinary.com/djvestif4/image/upload/v1679959702/Ecommerce/Thumbnails/lighting-transformed.webp',
 		bg_light: 'bg-green-300',
 		bg_dark: 'bg-[hsl(151,76%,26%)]',
@@ -48,11 +54,13 @@ const Categories = () => {
 		>
 			<div className="flex min-w-[12rem] shrink-0 flex-col justify-center gap-[0.5rem] lg:gap-[1rem]">
 				<h3 className="text-center text-[1.8rem] lg:text-[2rem]">{category.title}</h3>
-				<Button
-					text={'Shop Now'}
-					variant={'shop'}
-					className="bg-body p-[0.8rem] text-[--text-body] active:translate-y-[0.15rem] lg:p-[0.8rem_2.7rem] lg:text-[2rem]"
-				/>
+				<Link to={`${category.path}`}>
+					<Button
+						text={'Shop Now'}
+						variant={'shop'}
+						className="w-full bg-body p-[0.8rem] text-[--text-body] active:translate-y-[0.15rem] lg:p-[0.8rem_2.7rem] lg:text-[2rem]"
+					/>
+				</Link>
 			</div>
 			<div className="flex w-[12rem] items-center lg:w-[15rem]">
 				<img src={category.image} alt="" />

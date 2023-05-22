@@ -4,6 +4,7 @@ import AllProductsPage from './pages/AllProductsPage/AllProductsPage';
 import GlobalLayout from './pages/Global/GlobalLayout';
 import Home from './pages/Home/Home';
 import ProductItemPage from './pages/ProductItemPage/ProductItemPage';
+import ProductCategoryPage from './pages/ProductCategoryPage/ProductCategoryPage';
 
 const App = () => {
 	useMediaQuery();
@@ -13,6 +14,7 @@ const App = () => {
 			<Route path="/" element={<GlobalLayout />}>
 				<Route index element={<Home />} />
 				<Route path="all-products" element={<AllProductsPage />} />
+				<Route path=":category" element={<ProductCategoryPage />} />
 				<Route path="all-products/:productId" element={<ProductItemPage />} />
 			</Route>
 		)

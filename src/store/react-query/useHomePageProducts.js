@@ -6,22 +6,26 @@ const useHomePageProducts = () => {
 	const hotSalesProducts = useFetch({
 		key: ['laptops'],
 		url: '/products/category/laptops',
+		staleTime: 2 * 60 * 1000,
 	});
 
 	const recentlyViewedProducts = useFetch({
 		key: ['smartphones'],
 		url: '/products/category/smartphones',
+		staleTime: 2 * 60 * 1000,
 	});
 
 	const similarProducts = useFetchMultiple([
 		{
-			queryKey: ['vehicles', 'motorcycles'],
+			queryKey: ['motorcycles'],
 			queryFn: () => fetcher('/products/category/motorcycle'),
+			staleTime: 2 * 60 * 1000,
 			select: transformData,
 		},
 		{
-			queryKey: ['watches', 'male'],
+			queryKey: ['mens-watches'],
 			queryFn: () => fetcher('/products/category/mens-watches'),
+			staleTime: 2 * 60 * 1000,
 			select: transformData,
 		},
 	]);

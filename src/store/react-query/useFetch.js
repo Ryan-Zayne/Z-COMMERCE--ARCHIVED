@@ -1,7 +1,6 @@
 import { useQueries, useQuery } from '@tanstack/react-query';
 import { fetcher } from '../../utils/fetcher';
-
-const transformData = (data) => data.products;
+import { transformData } from '../../utils/transFormData';
 
 const useFetch = ({ key, url, staleTime }) => {
 	const queryResult = useQuery({
