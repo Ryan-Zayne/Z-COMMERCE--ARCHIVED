@@ -3,7 +3,9 @@ import { useCarouselStore } from '../components/Carousel/carouselStoreContext';
 import { useGlobalStore } from '../store/zustand/globalStore';
 import { useAnimationInterval } from './useAnimationInterval';
 
-const useCarouselOptions = ({ isAutoSlide = false, autoSlideInterval = 10000 }) => {
+const useCarouselOptions = (options = {}) => {
+	const { isAutoSlide = false, autoSlideInterval = 10000 } = options;
+
 	const [isPaused, setIsPaused] = useState(false);
 	const isMobile = useGlobalStore((state) => state.isMobile);
 	const isNavShow = useGlobalStore((state) => state.isNavShow);

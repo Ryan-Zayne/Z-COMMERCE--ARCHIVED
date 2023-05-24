@@ -29,7 +29,10 @@
 		--carousel-btn: hsl(0, 0%, 80%, 0.4);
 		--carousel-dot: hsl(214, 32%, 91%);
 		--dark-mode-ball: var(--carousel-dot);
-		--brand-inverse: var(--color-secondary)
+		--brand-inverse: var(--color-secondary);
+		--text-label: hsl(34, 10%, 58%);
+		--text-input: hsl(36, 9%, 68%);
+		/* --text-input-border: hsl(205, 6%, 22%); */
 	}
 
 	:root[data-theme='dark'] {
@@ -88,7 +91,6 @@
 	}
 
 	body {
-		overflow-y: scroll;
 		position: relative;
 		font-size: 1.6rem;
 		font-family: 'Rubik', 'Trebuchet MS', sans-serif;

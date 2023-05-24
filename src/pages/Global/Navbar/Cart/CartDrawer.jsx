@@ -52,7 +52,7 @@ const CartDrawer = ({ isOpen, onClose, onOpen }) => {
 				</Drawer.Header>
 
 				<Drawer.Body className="px-[1.3rem] pt-[4rem] lg:px-[2rem]">
-					<ul className="flex flex-col gap-[1rem]">{CartItems}</ul>
+					<ul className="flex min-h-[14rem] flex-col gap-[1rem]">{CartItems}</ul>
 
 					<div className="mt-[4rem] px-[1rem] lg:px-[2.6rem]">
 						<p className="flex justify-between text-[1.8rem] font-[600]">

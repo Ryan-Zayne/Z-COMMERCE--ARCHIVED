@@ -19,7 +19,7 @@ const SimilarProducts = () => {
 	const ProductCards = similarProductsArray.map((product) => (
 		<ProductCard
 			key={product.id}
-			to={`all-products/${product.id}`}
+			to={`/${product.category}/${product.id}`}
 			image={product.images[1]}
 			product={product}
 		/>

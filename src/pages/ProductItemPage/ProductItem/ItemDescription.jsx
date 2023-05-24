@@ -49,7 +49,7 @@ const ItemDescription = ({ productItem }) => {
 	};
 
 	return (
-		<article className="mt-[2.5rem] flex max-w-[50rem] flex-col md:mt-0 lg:gap-[2rem]">
+		<article className="mt-[2.5rem] flex max-w-[50rem] flex-col md:mt-0 lg:gap-[2rem] lg:pb-[0.5rem]">
 			<div className="flex items-center justify-between lg:w-[90%]">
 				<div>
 					<h2 className="text-[2.5rem] font-[600] lg:text-[3.4rem]">{productItem.brand}</h2>
@@ -73,7 +73,7 @@ const ItemDescription = ({ productItem }) => {
 				</p>
 			</div>
 
-			<div className="mt-[3.5rem] flex items-center gap-[4rem] md:mt-[4.5rem] lg:mt-[5rem] lg:gap-[6rem]">
+			<div className="mt-[3.5rem] flex items-center gap-[4rem] md:mt-[4.5rem] lg:gap-[6rem]">
 				<div className="flex w-[14rem] items-center justify-between rounded-[4rem] bg-carousel-btn p-[0.6rem_1.1rem] text-[2.3rem] font-[600] md:w-[17rem] md:text-[2.6rem] ">
 					<button className="active:scale-[1.2]" onClick={handleMinus}>
 						<AiFillMinusCircle />

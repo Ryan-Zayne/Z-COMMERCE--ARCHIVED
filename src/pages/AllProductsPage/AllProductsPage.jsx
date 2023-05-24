@@ -1,11 +1,10 @@
-import { useNavigate } from 'react-router-dom';
 import { TiArrowBack } from 'react-icons/ti';
+import { Link } from 'react-router-dom';
 import { ProductCard } from '../../components';
 import { useGetAllProducts } from '../../store/react-query';
 
 const AllProductsPage = () => {
 	const { isLoading, isError, allProductsArray } = useGetAllProducts();
-	const navigate = useNavigate();
 
 	if (isLoading) {
 		return (
@@ -24,15 +23,22 @@ const AllProductsPage = () => {
 	}
 
 	const allProductCards = allProductsArray.map((product) => (
-		<ProductCard key={product.id} to={`${product.id}`} image={product.images[1]} product={product} />
+		<ProductCard
+			key={product.id}
+			to={`/${product.category}/${product.id}`}
+			image={product.images[1]}
+			product={product}
+		/>
 	));
 
 	return (
 		<section className="mt-[3rem]">
 			<header className="flex flex-row-reverse items-center justify-center px-[3rem]">
 				<h1 className="mx-auto text-[3rem] font-[700] lg:text-[4rem]">All Products</h1>
-				<button className="text-[3rem]" onClick={() => navigate(-1)}>
-					<TiArrowBack />
+				<button className="text-[3rem]">
+					<Link to={'/'}>
+						<TiArrowBack />
+					</Link>
 				</button>
 			</header>
 			<article className="mt-[8rem] px-[3rem]">

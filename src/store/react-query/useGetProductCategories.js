@@ -22,6 +22,18 @@ const useGetProductCategory = (productCategory) => {
 		staleTime: 2 * 60 * 1000,
 	});
 
+	const automotives = useFetch({
+		key: ['automotive'],
+		url: '/products/category/automotive',
+		staleTime: 2 * 60 * 1000,
+	});
+
+	const motorcycles = useFetch({
+		key: ['motorcycle'],
+		url: '/products/category/motorcycle',
+		staleTime: 2 * 60 * 1000,
+	});
+
 	let productsArray;
 	switch (productCategory) {
 		case 'smartphones':
@@ -31,6 +43,11 @@ const useGetProductCategory = (productCategory) => {
 		case 'watches':
 			productsArray = !femaleWatches.isLoading &&
 				!maleWatches.isLoading && [...femaleWatches.data, ...maleWatches.data];
+			break;
+
+		case 'vehicles':
+			productsArray = !automotives.isLoading &&
+				!motorcycles.isLoading && [...motorcycles.data, ...automotives.data];
 			break;
 
 		default:

@@ -29,7 +29,7 @@ const ItemHero = () => {
 		<article>
 			<Carousel
 				as="div"
-				outerClassName={'md:w-[40rem] lg:w-[50rem] h-[30rem] md:h-full'}
+				outerClassName={'w-[min(100%,40rem)] max-md:mx-auto lg:w-[50rem] h-[35rem] md:h-full '}
 				innerClassName={twJoin(
 					`rounded-[0.7rem]`,
 					isDarkMode && 'max-lg:[box-shadow:0_0_3px_0.1px_var(--carousel-dot)]'

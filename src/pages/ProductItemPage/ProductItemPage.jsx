@@ -10,7 +10,7 @@ const ProductItemPage = () => {
 	const { isLoading, productItem, isError } = useGetProductItem(productId);
 
 	if (isLoading) {
-		return null;
+		return <h4 className="mt-[3rem] text-center text-[3rem] font-bold">Loading...</h4>;
 	}
 
 	if (isError) {
@@ -26,7 +26,7 @@ const ProductItemPage = () => {
 			<header className="mx-[0.5rem] flex items-center justify-between lg:mx-[3rem]">
 				<ItemHeader productItem={productItem} />
 			</header>
-			<div className="mt-[1.7rem] md:mt-[4rem] md:flex md:h-[45rem] md:justify-around md:gap-[4rem] md:px-[4rem] lg:h-[50rem] lg:gap-[9rem]">
+			<div className="mt-[3rem] md:mt-[4.5rem] md:flex md:h-[47rem] md:justify-around md:gap-[4rem] md:p-[0_3rem_0_1rem] lg:gap-[8rem]">
 				<CarouselContextProvider slideImages={productItem.images}>
 					<ItemHero />
 				</CarouselContextProvider>

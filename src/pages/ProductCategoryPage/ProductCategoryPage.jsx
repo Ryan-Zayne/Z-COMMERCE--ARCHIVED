@@ -1,4 +1,4 @@
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { TiArrowBack } from 'react-icons/ti';
 import { useGetProductCategory } from '../../store/react-query';
 import { ProductCard } from '../../components';
@@ -6,7 +6,6 @@ import { ProductCard } from '../../components';
 const ProductCategoryPage = () => {
 	const { category } = useParams();
 	const { productsArray, isError, error, isLoading } = useGetProductCategory(category);
-	const navigate = useNavigate();
 
 	if (isLoading) {
 		return <h4 className="mt-[3rem] text-center text-[3rem] font-bold">Loading...</h4>;
@@ -23,7 +22,7 @@ const ProductCategoryPage = () => {
 	const ProductCategoryCards = productsArray.map((product) => (
 		<ProductCard
 			key={product.id}
-			to={`/all-products/${product.id}`}
+			to={`/${product.category}/${product.id}`}
 			image={product.images[1]}
 			product={product}
 		/>
@@ -35,8 +34,10 @@ const ProductCategoryPage = () => {
 				<h1 className="mx-auto text-[3rem] font-[700] capitalize lg:text-[4rem]">
 					{category === 'lighting' ? 'Digital Lighting' : category}
 				</h1>
-				<button className="text-[3rem]" onClick={() => navigate(-1)}>
-					<TiArrowBack />
+				<button className="text-[3rem]">
+					<Link to={'/'}>
+						<TiArrowBack />
+					</Link>
 				</button>
 			</header>
 			<article className="mt-[4rem] px-[3rem]">

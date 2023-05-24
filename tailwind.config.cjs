@@ -25,6 +25,8 @@ module.exports = {
 				navbar: 'var(--color-navbar)',
 				'nav-text': 'var(--text-navbar)',
 				'dark-ball': 'var(--dark-mode-ball)',
+				input: 'var(--text-input)',
+				label: 'var(--text-label)',
 			},
 
 			fontFamily: {

@@ -1,20 +1,23 @@
 import { useCallback, useState } from 'react';
 import { noScrollOnOpen } from '../utils/noScrollOnOpen';
 
-const useDisclosure = () => {
-	const [isOpen, setIsOpen] = useState(false);
+
+const useDisclosure = (options = {}) => {
+	const { scrollControl = false, initFn } = options;
+
+	const [isOpen, setIsOpen] = useState(initFn ?? false);
 
 	const onOpen = useCallback(() => {
 		const newState = true;
 		setIsOpen(newState);
-		noScrollOnOpen(newState);
-	}, []);
+		scrollControl && noScrollOnOpen(newState);
+	}, [scrollControl]);
 
 	const onClose = useCallback(() => {
 		const newState = false;
 		setIsOpen(newState);
-		noScrollOnOpen(newState);
-	}, []);
+		scrollControl && noScrollOnOpen(newState);
+	}, [scrollControl]);
 
 	const onToggle = useCallback(() => {
 		if (isOpen) {

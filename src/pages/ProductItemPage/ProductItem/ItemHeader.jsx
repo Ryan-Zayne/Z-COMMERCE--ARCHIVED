@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { TiArrowBack } from 'react-icons/ti';
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
+import { Link } from 'react-router-dom';
 import { useShopActions, useShopStore } from '../../../store/zustand/shopStore';
 
 const ItemHeader = ({ productItem }) => {
@@ -9,7 +9,6 @@ const ItemHeader = ({ productItem }) => {
 	const { toggleAddToWishList } = useShopActions();
 	const isProductInWishList = wishList.some((item) => item.id === productItem.id);
 	const [isHearted, setIsHearted] = useState(() => isProductInWishList);
-	const navigate = useNavigate();
 
 	const handleHeartClick = () => {
 		setIsHearted((prev) => !prev);
@@ -18,8 +17,10 @@ const ItemHeader = ({ productItem }) => {
 
 	return (
 		<>
-			<button className={'text-[3rem]'} onClick={() => navigate(-1)}>
-				<TiArrowBack />
+			<button className={'text-[3rem]'}>
+				<Link to={`/${productItem.category}`}>
+					<TiArrowBack />
+				</Link>
 			</button>
 
 			<h1 className="text-center font-roboto text-[2.7rem] font-[600] lg:text-[3.4rem]">

@@ -12,4 +12,4 @@ const useCallbackRef = (callbackFn, deps = []) => {
 	return useCallback((...args) => callbackRef.current(...args), deps);
 };
 
-export{ useCallbackRef};
+export { useCallbackRef };

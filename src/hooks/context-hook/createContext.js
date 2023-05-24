@@ -1,6 +1,6 @@
 import { createContext as createReactContext } from 'react';
 
-const createContext = (options) => {
+const createContext = (options = {}) => {
 	const {
 		name = 'Unnamed Context',
 		strict = true,

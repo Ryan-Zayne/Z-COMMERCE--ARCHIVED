@@ -21,7 +21,7 @@ const RecentProducts = () => {
 		.map((product) => (
 			<ProductCard
 				key={product.id}
-				to={`all-products/${product.id}`}
+				to={`/${product.category}/${product.id}`}
 				image={product.images[0]}
 				product={product}
 			/>
