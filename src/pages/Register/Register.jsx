@@ -1,18 +1,26 @@
+import { useState } from 'react';
 import { FcGoogle } from 'react-icons/fc';
 import { FaFacebook } from 'react-icons/fa';
+import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 import { Button, Logo } from '../../components';
 import { useGlobalStore } from '../../store/zustand/globalStore';
 
 const Register = () => {
 	const isDesktop = useGlobalStore((state) => state.isDesktop);
+	const [isPasswordShow, setIsPasswordShow] = useState(false);
+
+	const handlePasswordShow = (e) => {
+		e.preventDefault();
+		setIsPasswordShow((prev) => !prev);
+	};
 
 	return (
-		<section className="relative flex min-h-screen items-center justify-center bg-[url(/src/pages/Register/images/yellow-cart-bg.webp)] bg-cover bg-no-repeat py-[2rem] lg:justify-between lg:bg-[url(/src/pages/Register/images/glitter.jpg)] lg:px-[10rem]">
-			<div className="absolute inset-0 z-[1] bg-[hsl(0,0%,0%,0.5)]" />
+		<section className="relative flex min-h-screen items-center justify-center bg-[url(/src/pages/Register/images/yellow-cart-bg.webp)] bg-cover bg-no-repeat py-[2rem] lg:justify-between lg:bg-[url(/src/pages/Register/images/glitter.webp)] lg:px-[10rem]">
+			<div className="absolute inset-0 z-[1] bg-[hsl(0,0%,0%,0.4)]" />
 
 			{isDesktop && (
-				<div className="relative bottom-[4rem] z-10 ml-[-0.8rem] w-[14rem] brightness-[0.8] contrast-[1.5] lg:w-[25rem]">
+				<div className="relative bottom-[4rem] z-10 ml-[-0.8rem] w-[20rem] brightness-[0.8] contrast-[1.5]">
 					<Logo className="w-[initial] md:w-[initial]" />
 				</div>
 			)}
@@ -27,21 +35,29 @@ const Register = () => {
 					<h2 className="text-[3.6rem] font-[600] text-[hsl(38,9%,76%)] max-lg:mt-[5rem]">Login</h2>
 				</header>
 
-				<form className="mt-[3rem] flex flex-col gap-[2rem] [&_input]:text-[1.9rem] [&_input]:text-input [&_label]:text-[1.2rem] [&_label]:text-label">
+				<form className="mt-[3rem] flex flex-col gap-[2rem] [&_input]:text-[1.8rem] [&_input]:text-input [&_label]:text-[1.2rem] [&_label]:text-label">
 					<label className="flex flex-col">
 						Email address
 						<input
 							type="text"
 							className="min-h-[3.2rem] border-b-[2px] border-b-carousel-btn bg-transparent"
+							autoComplete="on"
+							autoCorrect="on"
 						/>
 					</label>
 
-					<label className="flex flex-col">
+					<label className="relative flex flex-col">
 						Password
 						<input
-							type="password"
+							type={isPasswordShow ? 'text' : 'password'}
 							className="min-h-[3.2rem] border-b-[2px] border-b-carousel-btn bg-transparent"
 						/>
+						<button
+							className="absolute right-[2rem] top-[2.6rem] text-[1.5rem]"
+							onClick={handlePasswordShow}
+						>
+							{isPasswordShow ? <AiFillEyeInvisible /> : <AiFillEye />}
+						</button>
 					</label>
 
 					<label className="flex flex-row-reverse justify-end gap-[1rem]">
