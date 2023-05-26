@@ -133,7 +133,7 @@ const Footer = () => {
 							</h4>
 						)}
 
-						<DropDown isOpen={!isDesktop ? dropOne.isOpen : true}>
+						<DropDown isOpen={!isDesktop ? dropTwo.isOpen : true}>
 							<DropDown.Panel>
 								<span className="flex items-center gap-[2rem] py-[1.5rem] pl-[2.5rem] text-[1.7rem]">
 									<BsFacebook />
@@ -165,7 +165,7 @@ const Footer = () => {
 							/>
 						)}
 					</h4>
-					<DropDown isOpen={!isDesktop ? dropOne.isOpen : true}>
+					<DropDown isOpen={!isDesktop ? dropThree.isOpen : true}>
 						<DropDown.Panel
 							className={
 								'flex flex-col gap-[1rem] pl-[1.5rem] text-[1.4rem] font-[300] lg:gap-[1.6rem] lg:pl-0 lg:font-[400]'
@@ -198,7 +198,7 @@ const Footer = () => {
 							/>
 						)}
 					</h4>
-					<DropDown isOpen={!isDesktop ? dropOne.isOpen : true}>
+					<DropDown isOpen={!isDesktop ? dropFour.isOpen : true}>
 						<DropDown.Panel
 							className={
 								'flex flex-col gap-[1rem] pl-[1.5rem] text-[1.4rem] font-[300] lg:gap-[1.6rem] lg:pl-0 lg:font-[400]'
@@ -231,7 +231,7 @@ const Footer = () => {
 							/>
 						)}
 					</h4>
-					<DropDown isOpen={!isDesktop ? dropOne.isOpen : true}>
+					<DropDown isOpen={!isDesktop ? dropFive.isOpen : true}>
 						<DropDown.Panel
 							className={
 								'flex flex-col gap-[1rem] pl-[1.5rem] text-[1.4rem] font-[300] lg:gap-[1.6rem] lg:pl-0 lg:font-[400]'
