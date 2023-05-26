@@ -5,7 +5,7 @@ import { prefersDarkMode } from '../../utils/constants';
 // Store Object Initializtion
 const themeStoreObject = (set, get) => ({
 	theme: prefersDarkMode ? 'dark' : 'light',
-	isDarkMode: get()?.theme === 'dark' ?? false,
+	isDarkMode: document.documentElement.getAttribute('data-theme') === 'dark',
 
 	themeActions: {
 		toggleTheme: () => {
@@ -17,7 +17,7 @@ const themeStoreObject = (set, get) => ({
 			const timeoutId = setTimeout(() => {
 				document.documentElement.classList.remove('theme-transition');
 				clearTimeout(timeoutId);
-			}, 2000);
+			}, 600);
 		},
 
 		toggleIsDarkMode: () => {

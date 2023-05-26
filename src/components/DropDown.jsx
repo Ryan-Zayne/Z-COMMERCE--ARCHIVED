@@ -1,6 +1,6 @@
 import { twMerge } from 'tailwind-merge';
 
-const DropDown = ({ id, isOpen, children, className }) => {
+const DropDown = ({ id = '', isOpen = false, children, className }) => {
 	return (
 		<div
 			id={id}
@@ -14,5 +14,13 @@ const DropDown = ({ id, isOpen, children, className }) => {
 		</div>
 	);
 };
+
+const DropDownPanel = ({ id = '', children, className }) => (
+	<ul id={id} className={twMerge(`overflow-y-hidden [transition:padding_500ms]`, className)}>
+		{children}
+	</ul>
+);
+
+DropDown.Panel = DropDownPanel;
 
 export default DropDown;

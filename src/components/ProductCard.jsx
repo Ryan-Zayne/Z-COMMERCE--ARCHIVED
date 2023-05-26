@@ -52,11 +52,11 @@ const ProductCard = ({ to = '', image, product }) => {
 					<button
 						id="Wishlist Icon"
 						className={twMerge(
-							`group/btn absolute bottom-[1.3rem] right-[1.3rem] z-[100] rounded-[50%] bg-primary p-[0.7rem]`,
+							`group/btn absolute bottom-[1.1rem] right-[1.3rem] z-[100] rounded-[50%] bg-primary p-[0.7rem]`,
 							[
 								isHearted
-									? 'opacity-100'
-									: 'opacity-0 transition-opacity duration-[1s] group-hover/card:opacity-100',
+									? 'translate-y-0 opacity-100'
+									: 'translate-y-[5rem] opacity-0 transition-[opacity,transform] duration-[1s] group-hover/card:translate-y-[0] group-hover/card:opacity-100',
 							]
 						)}
 						onClick={handleAddToWishList}

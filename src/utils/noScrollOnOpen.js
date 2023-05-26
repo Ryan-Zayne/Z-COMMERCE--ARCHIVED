@@ -3,9 +3,9 @@ import { scrollbarWidth } from './constants';
 export const noScrollOnOpen = (isOpen) => {
 	if (isOpen) {
 		document.body.style.setProperty('--scrollbar-padding', ` ${scrollbarWidth}rem`);
-		document.body.classList.add('overflow-hidden');
+		document.body.style.setProperty('--overflow-y', 'hidden');
 	} else {
 		document.body.style.setProperty('--scrollbar-padding', '');
-		document.body.classList.remove('overflow-hidden');
+		document.body.style.setProperty('--overflow-y', 'auto');
 	}
 };

@@ -2,14 +2,15 @@ import { BiCartAlt, BiHeart, BiSearchAlt2, BiUser } from 'react-icons/bi';
 import { RiCloseFill, RiMenu3Fill } from 'react-icons/ri';
 import { Link } from 'react-router-dom';
 import { twJoin, twMerge } from 'tailwind-merge';
-import { DropDown, Logo, ThemeSwitchButton } from '../../../components';
+import { DropDown, Logo, SearchForm, ThemeSwitchButton } from '../../../components';
 import { useDisclosure } from '../../../hooks';
 import { useGlobalActions, useGlobalStore } from '../../../store/zustand/globalStore';
 import { useShopStore } from '../../../store/zustand/shopStore';
+import { useThemeStore } from '../../../store/zustand/themeStore';
 import CartDrawer from './Cart/CartDrawer';
-import SearchForm from './SearchForm';
 
 const NavHeader = () => {
+	const isDarkMode = useThemeStore((state) => state.isDarkMode);
 	const isMobile = useGlobalStore((state) => state.isMobile);
 	const isDesktop = useGlobalStore((state) => state.isDesktop);
 	const isNavShow = useGlobalStore((state) => state.isNavShow);
@@ -25,7 +26,7 @@ const NavHeader = () => {
 			className="flex w-full select-none justify-between gap-[1rem] px-[1rem] lg:pr-[4rem] "
 		>
 			<Link to="/">
-				<Logo />
+				<Logo className={isDarkMode && 'brightness-[0.8] contrast-[1.8]'} />
 			</Link>
 
 			<SearchForm
@@ -56,32 +57,26 @@ const NavHeader = () => {
 
 				<div className="relative flex items-center justify-center">
 					<button
-						className="[transition:transform_500ms] hover:text-heading hover:[transform:rotateY(360deg)] lg:text-[2.3rem]"
+						className="[transition:transform_800ms_ease-in-out] hover:text-heading hover:[transform:rotateY(360deg)] lg:text-[2.3rem]"
 						onClick={dropDownDisclosure.onToggle}
 					>
 						<BiUser />
 					</button>
 
 					<DropDown
-						className={'absolute top-[5.6rem] z-[100] w-[15rem]'}
+						className={'absolute top-[5.1rem] z-[100] w-[15rem]'}
 						isOpen={dropDownDisclosure.isOpen}
 					>
-						<ul
+						<DropDown.Panel
 							className={twJoin(
-								`flex flex-col items-start gap-[1.5rem] overflow-y-hidden rounded-[5px] bg-body px-[2rem] text-[1.3rem] [transition:padding_500ms] [&_>_li:hover]:navlink-transition [&_>_li]:relative`,
+								`flex flex-col items-start gap-[1.5rem] rounded-[5px] bg-body px-[2rem] text-[1.3rem] [&_>_a:hover]:navlink-transition [&_>_a]:relative`,
 								[dropDownDisclosure.isOpen && 'py-[1.5rem]']
 							)}
 						>
-							<li>
-								<Link to="/">My Account</Link>
-							</li>
-							<li>
-								<Link to="/">Checkout</Link>
-							</li>
-							<li>
-								<Link to="/register">User Login</Link>
-							</li>
-						</ul>
+							<Link to="/register">My Account</Link>
+							<Link to="/">Checkout</Link>
+							<Link to="/register">User Login</Link>
+						</DropDown.Panel>
 					</DropDown>
 				</div>
 

@@ -1,6 +1,7 @@
 import { Outlet } from 'react-router-dom';
 import Navbar from './Navbar/Navbar';
 import { ScrollToTopButton } from '../../components';
+import Footer from './Footer/Footer';
 
 const GlobalLayout = () => {
 	return (
@@ -8,6 +9,7 @@ const GlobalLayout = () => {
 			<ScrollToTopButton />
 			<Navbar />
 			<Outlet />
+			<Footer />
 		</>
 	);
 };

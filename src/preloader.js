@@ -9,12 +9,12 @@ const handleLoaderRemoval = () => {
 
 	const loaderTimeout = setTimeout(() => {
 		loaderElement.remove();
-		window.removeEventListener('DOMContentLoaded', handleLoaderRemoval);
+		window.removeEventListener('load', handleLoaderRemoval);
 		clearTimeout(loaderTimeout);
 	}, 1300);
 };
 
-window.addEventListener('DOMContentLoaded', handleLoaderRemoval);
+window.addEventListener('load', handleLoaderRemoval);
 
 // NOTE - Turned on auto browser scroll restoration for moxilla
 window.history.scrollRestoration = 'auto';

@@ -30,9 +30,9 @@
 		--carousel-dot: hsl(214, 32%, 91%);
 		--dark-mode-ball: var(--carousel-dot);
 		--brand-inverse: var(--color-secondary);
-		--text-label: hsl(34, 10%, 58%);
-		--text-input: hsl(36, 9%, 68%);
-		/* --text-input-border: hsl(205, 6%, 22%); */
+		--text-input: hsl(0, 0%, 31%);
+		--text-label: hsl(0, 0%, 45%);
+
 	}
 
 	:root[data-theme='dark'] {
@@ -46,7 +46,11 @@
 		--carousel-btn: hsl(196, 15%, 24%, 0.5);
 		--carousel-dot: hsl(212, 8%, 64%);
 		--dark-mode-ball: hsl(0, 0%, 26%);
-		--brand-inverse: var(--text-header)
+		--brand-inverse: var(--text-header);
+		--text-label: hsl(34, 10%, 58%);
+		--text-input: hsl(36, 9%, 68%);
+
+		/* hsl(0, 0%, 20%); */
 	}
 
 
@@ -65,6 +69,7 @@
 	/* Making basic style resets */
 	/* ------------------------- */
 	html {
+
 		font-size: 62.5%;
 		scroll-behavior: smooth;
 		-webkit-tap-highlight-color: transparent;
@@ -91,6 +96,8 @@
 	}
 
 	body {
+		--overflow-y: scroll;
+		--scrollbar-padding: 0;
 		position: relative;
 		font-size: 1.6rem;
 		font-family: 'Rubik', 'Trebuchet MS', sans-serif;
@@ -99,6 +106,7 @@
 
 		/** This will be set dynamically by javascript to prevent layout shift on navbar open */
 		padding-right: var(--scrollbar-padding);
+		overflow-y: var(--overflow-y);
 	}
 
 

@@ -5,7 +5,7 @@ import SimilarProducts from './SimilarProducts';
 
 const HomeProductSection = () => {
 	return (
-		<section id="Products Section" className="flex flex-col gap-[6rem] pb-[3rem]">
+		<section id="Products Section" className="flex flex-col gap-[6rem]">
 			<Categories />
 			<HotSalesProducts />
 			<RecentProducts />

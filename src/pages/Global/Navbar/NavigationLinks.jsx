@@ -42,7 +42,7 @@ const NavigationLinks = () => {
 	const Categories = categories.map((category) => (
 		<li
 			key={category.title}
-			onClick={!isDesktop && toggleNavShow}
+			onClick={!isDesktop ? toggleNavShow : null}
 			className={`max-lg:hover:text-heading`}
 		>
 			<Link
@@ -62,7 +62,7 @@ const NavigationLinks = () => {
 		<div id="Navigation Links" className="w-full">
 			<nav className="flex w-[100%] items-center justify-between font-[500] lg:pr-[2rem] ">
 				{isDesktop && (
-					<div id="Shop By Categories" className="relative z-50 ml-[1.1rem]">
+					<div id="Shop By Categories" className="relative z-50 ml-[1rem]">
 						<button
 							className="flex w-[28rem] items-center gap-[1rem] rounded-[0.5rem_0.5rem_0_0] bg-heading p-[1rem_1.5rem] font-[500] text-[var(--color-primary)]"
 							onClick={categoryDisclosure.onToggle}
@@ -73,17 +73,17 @@ const NavigationLinks = () => {
 
 						{/* Desktop CATEGORY LINKS */}
 						<DropDown className={'absolute h-[48.5rem] w-full'} isOpen={categoryDisclosure.isOpen}>
-							<ul
+							<DropDown.Panel
 								id="Category List"
-								className={twMerge(
-									` overflow-y-hidden bg-body px-[2rem] font-[400] box-shadow-[0_1px_3px_0.3px_var(--color-primary)] [transition:padding_500ms_ease]`,
+								className={twJoin(
+									`bg-body px-[2rem] font-[400] box-shadow-[0_1px_3px_0.3px_var(--color-primary)]`,
 									[isDarkMode && 'box-shadow-[0_1px_3px_0.3px_var(--carousel-dot)]'],
 									[!categoryDisclosure.isOpen && 'box-shadow-[none]'],
 									[categoryDisclosure.isOpen && 'pt-[5rem]']
 								)}
 							>
 								{Categories}
-							</ul>
+							</DropDown.Panel>
 						</DropDown>
 					</div>
 				)}
@@ -129,14 +129,13 @@ const NavigationLinks = () => {
 								id={'mobile-categories-dropdown'}
 								className={`absolute inset-x-0 z-[50] m-[0.5rem_2rem_0] rounded-[5px] bg-[hsl(215,19%,35%,0.9)] [backdrop-filter:blur(4rem)]`}
 							>
-								<ul
-									className={twJoin(
-										`flex flex-col gap-[1.5rem] overflow-y-hidden pl-[3rem] [transition:padding_500ms_ease] text-[1.4rem]`,
-										[categoryDisclosure.isOpen && 'py-[2rem]']
-									)}
+								<DropDown.Panel
+									className={twJoin(`flex flex-col gap-[1.5rem] pl-[3rem] text-[1.4rem]`, [
+										categoryDisclosure.isOpen && 'py-[2rem]',
+									])}
 								>
 									{Categories}
-								</ul>
+								</DropDown.Panel>
 							</DropDown>
 						</li>
 					)}
