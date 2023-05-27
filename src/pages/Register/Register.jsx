@@ -11,7 +11,7 @@ const Register = () => {
 	const [isLogin, setIsLogin] = useState(true);
 
 	return (
-		<section className="relative flex min-h-screen items-center justify-center bg-[url(/src/pages/Register/images/yellow-cart-bg.webp)] bg-cover bg-no-repeat [background-position:80%] md:py-[2rem] lg:justify-between lg:bg-[url(/src/pages/Register/images/glitter.webp)] lg:px-[10rem]">
+		<section className="relative flex items-center justify-center bg-[url(/src/pages/Register/images/yellow-cart-bg.webp)] bg-cover bg-no-repeat md:py-[2rem] lg:justify-between lg:bg-[url(/src/pages/Register/images/glitter.webp)] lg:px-[10rem]">
 			<span id="Background Overlay" className="absolute inset-0 z-[1] bg-[hsl(0,0%,0%,0.45)]" />
 
 			{isDesktop && (
@@ -28,7 +28,7 @@ const Register = () => {
 					'relative z-10 w-[min(100%,48rem)] rounded-[4px] bg-body p-[2rem_3rem] md:px-[5rem]'
 				}
 				show={isLogin}
-				appear
+				appear={true}
 				enter="transition-[opacity,transform] duration-[600ms]"
 				enterFrom="opacity-0 translate-x-[2rem]"
 				enterTo="opacity-100 translate-x-[0]"
@@ -43,7 +43,7 @@ const Register = () => {
 					'relative z-10 w-[min(100%,48rem)] rounded-[4px] bg-body p-[3rem_3rem] md:p-[2rem_5rem]'
 				}
 				show={!isLogin}
-				appear
+				appear={true}
 				enter="transition-[opacity,transform] duration-[600ms]"
 				enterFrom="opacity-0 translate-x-[2rem]"
 				enterTo="opacity-100 translate-x-[0]"

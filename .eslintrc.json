@@ -47,7 +47,7 @@
 			{ "props": "ignore", "children": "ignore", "propElementValues": "always" }
 		],
 		"react/jsx-no-useless-fragment": ["error", { "allowExpressions": true }],
-		// "react/jsx-boolean-value": ["error", "always"],
+		"react/jsx-boolean-value": ["error", "always"],
 		"react/button-has-type": "off",
 		"react/function-component-definition": "off",
 		"react-hooks/exhaustive-deps": "warn",

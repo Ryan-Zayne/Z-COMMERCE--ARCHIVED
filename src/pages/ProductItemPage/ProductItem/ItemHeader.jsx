@@ -18,12 +18,12 @@ const ItemHeader = ({ productItem }) => {
 	return (
 		<>
 			<button className={'text-[3rem]'}>
-				<Link to={`/${productItem.category}`}>
+				<Link to={'/'}>
 					<TiArrowBack />
 				</Link>
 			</button>
 
-			<h1 className="text-center font-roboto text-[2.7rem] font-[600] lg:text-[3.4rem]">
+			<h1 className="text-center font-roboto text-[2.7rem] font-[600] lg:text-[3.8rem]">
 				{productItem.title}
 			</h1>
 

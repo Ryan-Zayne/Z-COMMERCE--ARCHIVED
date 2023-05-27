@@ -14,7 +14,7 @@ const App = () => {
 		createRoutesFromElements(
 			<>
 				<Route path="/" element={<GlobalLayout />}>
-					<Route index element={<Home />} />
+					<Route index={true} element={<Home />} />
 					<Route path="all-products" element={<AllProductsPage />} />
 					<Route path=":category" element={<ProductCategoryPage />} />
 					<Route path=":category/:productId" element={<ProductItemPage />} />

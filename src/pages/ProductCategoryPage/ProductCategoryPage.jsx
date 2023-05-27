@@ -30,15 +30,15 @@ const ProductCategoryPage = () => {
 
 	return (
 		<section className="mt-[3rem] lg:mt-[5rem]">
-			<header className="flex flex-row-reverse items-center justify-center px-[3rem]">
-				<h1 className="mx-auto text-[3rem] font-[700] capitalize lg:text-[4rem]">
-					{category === 'lighting' ? 'Digital Lighting' : category}
-				</h1>
-				<button className="text-[3rem]">
+			<header className="flex items-center justify-center">
+				<button className="ml-[3rem] text-[3rem]">
 					<Link to={'/'}>
 						<TiArrowBack />
 					</Link>
 				</button>
+				<h1 className="mx-auto text-center text-[3rem] font-[700] capitalize lg:text-[4rem]">
+					{category === 'lighting' ? 'Digital Lighting' : category}
+				</h1>
 			</header>
 			<article className="mt-[4rem] px-[3rem]">
 				<ul className="grid grid-cols-[repeat(auto-fit,_minmax(24rem,1fr))] justify-items-center gap-[5rem_2rem]">

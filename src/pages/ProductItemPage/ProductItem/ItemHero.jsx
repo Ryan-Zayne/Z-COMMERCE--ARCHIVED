@@ -19,7 +19,7 @@ const ItemHero = () => {
 			key={image}
 			index={index}
 			className={
-				'bg-[hsl(198,14%,14%)] hover:bg-[hsl(220,62%,31%)] hover:[box-shadow:0_0_5px_hsl(220,62%,31%)]'
+				'bg-[hsl(198,14%,14%)] hover:bg-[hsl(220,62%,31%)] hover:box-shadow-[0_0_5px_hsl(220,62%,31%)]'
 			}
 			onActiveClassName={'p-[0.4rem] w-[0.6rem] bg-[hsl(220,62%,31%)]'}
 		/>
@@ -29,7 +29,7 @@ const ItemHero = () => {
 		<article>
 			<Carousel
 				as="div"
-				outerClassName={'w-[min(100%,40rem)] max-md:mx-auto lg:w-[50rem] h-[35rem] md:h-full '}
+				outerClassName={'w-[min(100%,40rem)] max-md:mx-auto lg:w-[50rem] h-[35rem] md:h-full'}
 				innerClassName={twJoin(
 					`rounded-[0.7rem]`,
 					isDarkMode && 'max-lg:[box-shadow:0_0_3px_0.1px_var(--carousel-dot)]'

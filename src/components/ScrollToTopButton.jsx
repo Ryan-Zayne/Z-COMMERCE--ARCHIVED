@@ -1,9 +1,23 @@
+import { useEffect } from 'react';
 import { BsChevronUp } from 'react-icons/bs';
+import { useHref } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
 import { useScrollObserver } from '../hooks';
 
 const ScrollToTopButton = () => {
+	const href = useHref();
+
 	const { isScrolled, elementRef } = useScrollObserver({ rootMargin: '600px 0px 0px' });
+
+
+//* Scrolling to top on change of route within Global layout
+	useEffect(() => {
+		window.scrollTo({
+			top: 0,
+			left: 0,
+			behaviour: 'instant',
+		});
+	}, [href]);
 
 	return (
 		<a ref={elementRef} href="#root" className="fixed bottom-[3rem] right-[3rem] z-[500]">

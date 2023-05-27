@@ -1,6 +1,6 @@
 import { RxPaperPlane } from 'react-icons/rx';
 import { twJoin } from 'tailwind-merge';
-import { Button, Carousel } from '../../../components';
+import { Button, Carousel, ImageComponent } from '../../../components';
 import { useCarouselStore } from '../../../components/Carousel';
 import { useAnimateRef } from '../../../hooks';
 import { useThemeStore } from '../../../store/zustand/themeStore';
@@ -11,13 +11,13 @@ const Hero = () => {
 	const { animatedElements } = useAnimateRef();
 
 	const CarouselItems = slideImages.map((image) => (
-		<Carousel.Item key={image}>
-			<img className="object-cover" src={image} alt="" />
+		<Carousel.Item key={image.src}>
+			<ImageComponent className="object-cover" src={image.src} blurSrc={image.blurSrc} alt="" />
 		</Carousel.Item>
 	));
 
 	const CarouselIndicators = slideImages.map((image, index) => (
-		<Carousel.Indicator key={image} index={index} />
+		<Carousel.Indicator key={image.src} index={index} />
 	));
 
 	return (
@@ -36,8 +36,8 @@ const Hero = () => {
 				}
 				arrowIcon={<RxPaperPlane className="lg:text-[1.7rem]" />}
 				autoSlideInterval={15000}
-				isAutoSlide
-				pauseOnHover
+				isAutoSlide={true}
+				pauseOnHover={true}
 			>
 				<Carousel.ItemWrapper className={'brightness-[0.6]'}>{CarouselItems}</Carousel.ItemWrapper>
 

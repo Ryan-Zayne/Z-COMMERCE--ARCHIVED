@@ -6,11 +6,11 @@ import { Link } from 'react-router-dom';
 import { twJoin, twMerge } from 'tailwind-merge';
 import { DropDown, Logo, SearchForm } from '../../../components';
 import { useDisclosure } from '../../../hooks';
-import { useThemeStore } from '../../../store/zustand/themeStore';
 import { useGlobalStore } from '../../../store/zustand/globalStore';
-import newsLetterIcon from './newsletter-icon.svg';
-import getOnGoogle from './get-on-google.png';
-import getOnApple from './get-on-apple.png';
+import { useThemeStore } from '../../../store/zustand/themeStore';
+import getOnApple from './images/get-on-apple.png';
+import getOnGoogle from './images/get-on-google.png';
+import newsLetterIcon from './images/newsletter-icon.svg';
 
 const Footer = () => {
 	const isDarkMode = useThemeStore((state) => state.isDarkMode);
@@ -22,9 +22,9 @@ const Footer = () => {
 	const dropFive = useDisclosure();
 
 	return (
-		<footer className="flex flex-col pt-[7rem] lg:pt-[10rem]">
-			<section className="flex flex-col gap-[3rem] bg-slate-900 bg-[image:url('/src/pages/Global/Footer/newsletter-bg.png')] bg-cover bg-no-repeat p-[3rem_2rem] [background-position:center] lg:flex-row lg:justify-center lg:gap-[5rem] lg:px-[3rem]">
-				<div className="flex flex-col items-center gap-[1rem] lg:min-w-[48rem] lg:gap-[2.5rem]">
+		<footer className="flex flex-col pt-[7rem] lg:pt-[9rem]">
+			<section className="flex flex-col bg-slate-900 bg-[image:url('/src/pages/Global/Footer/images/newsletter-bg.png')] bg-cover bg-no-repeat p-[3rem_2rem] [background-position:center] lg:flex-row lg:justify-between lg:px-[clamp(3rem,9vw,18rem)]">
+				<div className="flex flex-col items-center gap-[1rem] lg:gap-[2.5rem]">
 					<h4 className="flex items-center text-[1.7rem] font-[500] text-heading lg:text-[2.4rem]">
 						<img
 							className="mr-[0.3rem] aspect-square w-[3rem] lg:w-[4rem]"
@@ -36,7 +36,7 @@ const Footer = () => {
 					<p className="text-[1.4rem] lg:text-[1.8rem]">$20 discount for your first order</p>
 
 					<SearchForm
-						className="w-[min(100%,40rem)] lg:w-[90%]"
+						className="w-[min(100%,40rem)] lg:w-[45rem]"
 						btnClassName="p-[0.91rem_1.5rem] text-[1.45rem] font-[500] lg:p-[1.2rem_2.6rem]"
 						inputClassName="lg:py-[0.9rem]"
 						placeholder={'Enter Your Email address...'}
@@ -46,7 +46,9 @@ const Footer = () => {
 					<p className="text-[1.2rem] lg:text-[1.4rem]">Updates on promotions and coupons.</p>
 				</div>
 
-				<div className="flex flex-col items-center gap-[1rem] max-lg:border-t-[1px] max-lg:border-t-carousel-btn max-lg:pt-[3rem] lg:min-w-[48rem] lg:gap-[2.5rem] lg:border-l-[1px] lg:border-l-carousel-btn lg:pl-[3rem]">
+				<span className="block bg-carousel-btn max-lg:my-[3rem] max-lg:h-[1px] lg:w-[1px]" />
+
+				<div className="flex flex-col items-center gap-[1rem] lg:gap-[2.5rem]">
 					<h4 className="flex items-center text-[1.7rem] font-[500] text-heading lg:text-[2.4rem]">
 						Download App On Mobile
 					</h4>

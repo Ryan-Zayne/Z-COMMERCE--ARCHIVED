@@ -8,6 +8,7 @@ import { useThemeStore } from '../store/zustand/themeStore';
 import Button from './Button';
 import Card from './Card/Card';
 import StarRating from './StarRating';
+import ImageComponent from './ImageComponent';
 
 const ProductCard = ({ to = '', image, product }) => {
 	const isDarkMode = useThemeStore((state) => state.isDarkMode);
@@ -68,13 +69,13 @@ const ProductCard = ({ to = '', image, product }) => {
 						)}
 					</button>
 
-					<img
+					<ImageComponent
 						className={twMerge(
-							`h-full rounded-[0.8rem_0.8rem_0_0] object-cover brightness-[0.9] transition-[transform] duration-[800ms] ease-in-out group-hover/card:scale-[1.17]`,
+							`rounded-[0.8rem_0.8rem_0_0] brightness-[0.9] transition-[transform] duration-[800ms] ease-in-out group-hover/card:scale-[1.17]`,
 							[isHearted && 'scale-[1.17]']
 						)}
 						src={image}
-						alt=""
+						dynamicImage={true}
 						onClick={(e) => isMobile && e.preventDefault()}
 					/>
 				</Card.Header>

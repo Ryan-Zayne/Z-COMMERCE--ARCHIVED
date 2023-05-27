@@ -43,6 +43,7 @@ module.exports = {
 				'fade-in-down': 'fade-in-down 1.3s',
 				'fade-in-up': 'fade-in-up 1.7s ease-out',
 				'fade-in-up-2': 'fade-in-up-2 1.3s ease-out',
+				zoom: 'zoom 1.3s infinite',
 			},
 
 			keyframes: {
@@ -57,6 +58,11 @@ module.exports = {
 				'fade-in-up-2': {
 					from: { opacity: '0', transform: 'translateY(150%)' },
 					to: { opacity: '0.86', transform: 'translateY(0)' },
+				},
+
+				zoom: {
+					from: { transform: 'translateX(-100%)' },
+					to: { transform: 'translateX(100%)' },
 				},
 			},
 		},
