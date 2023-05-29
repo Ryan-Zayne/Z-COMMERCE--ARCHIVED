@@ -1,10 +1,12 @@
 import useGetAllProducts from './useGetAllProducts';
 
-const useGetProductCategory = (productCategory = '') => {
+const useGetProductCategory = (productCategory) => {
 	const { allProductsArray, isError, isLoading } = useGetAllProducts();
+	const possibleCategories = ['smartphones', 'laptops', 'watches', 'vehicles', 'lighting'];
 
-	//* This lookup table works by assigning the productCateogry parameter as dynamic key and to each one creates a property equal to the array coming from the filter function.
-	//* But since vehicles and watches cateogory do not exist directly, I simple created their properties underneath the dynamic one so it overwrites it when necessary.
+	if (!possibleCategories.includes(productCategory)) {
+		throw Error('category not found');
+	}
 
 	const PRODUCTS_LOOKUP = {
 		[productCategory]: allProductsArray.filter((item) => item?.category === productCategory),

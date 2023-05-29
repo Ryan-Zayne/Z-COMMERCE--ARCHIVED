@@ -26,14 +26,14 @@ const ImageComponent = ({
 
 		return () => img.removeEventListener('load', handleImageLoad);
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+	}, [img]);
 
 	return !dynamicImage ? (
 		<img src={isImageLoaded ? src : blurSrc} className={className} />
 	) : (
 		<div
 			className={twMerge(
-				`aspect-square w-full`,
+				`h-full w-full`,
 				[
 					!isImageLoaded &&
 						`relative bg-white/[0.17] invert ${isDarkMode && 'bg-black/[0.17] invert-0'}`,
@@ -47,7 +47,7 @@ const ImageComponent = ({
 			)}
 
 			<img
-				className={twMerge(`object-cover`, [isImageLoaded && 'h-full'], [className])}
+				className={twMerge(`object-cover `, [isImageLoaded && 'h-full'], [className])}
 				src={src}
 				alt=""
 			/>

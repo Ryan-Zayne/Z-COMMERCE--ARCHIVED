@@ -28,7 +28,7 @@ const Carousel = ({
 	return (
 		<Element
 			id="Carousel"
-			className={twMerge(`relative flex select-none ${outerClassName}`)}
+			className={twMerge(`relative flex h-full select-none ${outerClassName}`)}
 			onMouseEnter={() => !isMobile && pauseOnHover && setIsPaused(true)}
 			onMouseLeave={() => !isMobile && pauseOnHover && setIsPaused(false)}
 		>
@@ -47,9 +47,7 @@ const Carousel = ({
 					`flex h-full overflow-x-scroll scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden ${innerClassName}`
 				)}
 			>
-				{/* Disables Carousel Swipe on mobile (E get why...) */}
 				{isMobile && <SwipeDisabler />}
-
 				{children}
 			</div>
 			<button className="absolute right-0 z-40 h-full w-[9rem]" onClick={nextSlide}>

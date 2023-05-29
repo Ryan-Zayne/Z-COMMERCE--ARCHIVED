@@ -1,14 +1,16 @@
+import { Toaster } from 'react-hot-toast';
 import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom';
 import { useMediaQuery } from './hooks';
 import AllProductsPage from './pages/AllProductsPage/AllProductsPage';
 import GlobalLayout from './pages/Global/GlobalLayout';
 import Home from './pages/Home/Home';
-import ProductItemPage from './pages/ProductItemPage/ProductItemPage';
 import ProductCategoryPage from './pages/ProductCategoryPage/ProductCategoryPage';
+import ProductItemPage from './pages/ProductItemPage/ProductItemPage';
 import Register from './pages/Register/Register';
 
 const App = () => {
 	useMediaQuery();
+	<Toaster />;
 
 	const router = createBrowserRouter(
 		createRoutesFromElements(
@@ -19,13 +21,28 @@ const App = () => {
 					<Route path=":category" element={<ProductCategoryPage />} />
 					<Route path=":category/:productId" element={<ProductItemPage />} />
 				</Route>
-
 				<Route path="/register" element={<Register />} />
 			</>
 		)
 	);
 
-	return <RouterProvider router={router} />;
+	return (
+		<>
+			<RouterProvider router={router} />
+			<Toaster
+				toastOptions={{
+					success: {
+						style: {
+							backgroundColor: 'hsl(153, 81%, 12%',
+							color: 'hsl(140, 100%, 71%)',
+							border: '2px solid hsl(145, 91%, 23%)',
+							paddingBlock: '1.5rem',
+						},
+					},
+				}}
+			/>
+		</>
+	);
 };
 
 export default App;

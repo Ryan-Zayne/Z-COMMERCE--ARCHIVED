@@ -26,10 +26,10 @@ const ItemHero = () => {
 	));
 
 	return (
-		<article>
+		<article className="h-[35rem] w-[min(100%,50rem)] max-md:mx-auto md:h-full">
 			<Carousel
 				as="div"
-				outerClassName={'w-[min(100%,40rem)] max-md:mx-auto lg:w-[50rem] h-[35rem] md:h-full'}
+				outerClassName={' '}
 				innerClassName={twJoin(
 					`rounded-[0.7rem]`,
 					isDarkMode && 'max-lg:[box-shadow:0_0_3px_0.1px_var(--carousel-dot)]'

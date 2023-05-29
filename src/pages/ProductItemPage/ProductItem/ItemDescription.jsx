@@ -1,5 +1,7 @@
 import { useState } from 'react';
-import { AiFillPlusCircle, AiFillMinusCircle, AiOutlineShoppingCart } from 'react-icons/ai';
+import { toast } from 'react-hot-toast';
+import { AiFillMinusCircle, AiFillPlusCircle, AiOutlineShoppingCart } from 'react-icons/ai';
+import { twJoin } from 'tailwind-merge';
 import { Button, StarRating } from '../../../components';
 import { useShopActions, useShopStore } from '../../../store/zustand/shopStore';
 
@@ -12,44 +14,64 @@ const ItemDescription = ({ productItem }) => {
 	const quantityLeftInStock = productItem.stock - productQuantityChosen;
 	const { addToCart, decreaseProductQuantity, removeProductFromCart } = useShopActions();
 
-	//* I did this below to avoid using useEffect to synchronize the quantity in the cart with the quantity in the state onClick of addToCart Button.
-	//* Another way to solve this is by updating the quantityState in the addToCart btn click handler, i.e setProductQuantityChosen((prev) => prev + 1).
-	//*  But I chose to leave it commented out this way so as to teach myself stuff about eliminating useless effects in the future.
+	// This syncs the productQuantity in cart with the one here but for now I'm not using it, just a reminder
 	// if (productItemInCart?.quantity != null && productQuantityChosen !== productItemInCart?.quantity) {
 	// 	setProductQuantityChosen(productItemInCart?.quantity);
 	// }
 
-	// TODO - Add a toast on click of this, to alert user what is being done
 	// TODO - Add a modal when this is clicked up to five times and ask user if he want to add many at once, all according to this medium post: https://medium.com/@viktoriadobrodenchuk/how-to-add-to-cart-properly-fcf279bb73fd
+
 	const handlePlus = () => {
 		if (productQuantityChosen <= productItem.stock) {
-			setProductQuantityChosen((prev) => prev + 1);
 			addToCart(productItem);
+			setProductQuantityChosen((prev) => prev + 1);
+
+			if (productQuantityChosen === 0) {
+				toast.success(`Product added successfully`);
+				return;
+			}
+
+			toast.success(`Item quantity has been updated`, {
+				id: 'toastId',
+			});
 		}
 	};
 
-	// TODO - Add a toast on click of this, to alert user what is being done
 	const handleMinus = () => {
 		const newState = (prev) => prev - 1;
 
 		if (productQuantityChosen > 0) {
 			setProductQuantityChosen(newState);
 			decreaseProductQuantity(productItem);
+
+			toast.success(`Item quantity has been updated`, {
+				id: 'toastId',
+			});
 		}
 
 		if (newState(productQuantityChosen) === 0) {
 			removeProductFromCart(productItem);
+			toast.dismiss('toastId');
+			toast.success(`Product was removed from cart`);
 		}
 	};
 
-	// TODO - Add a toast on click of this, to alert user what is being done
 	const handleAddToCart = () => {
 		addToCart(productItem);
 		setProductQuantityChosen((prev) => prev + 1);
+
+		if (productQuantityChosen === 0) {
+			toast.success(`Product added successfully`);
+			return;
+		}
+
+		toast.success(`Item quantity has been updated`, {
+			id: 'toastId',
+		});
 	};
 
 	return (
-		<article className="mt-[2.5rem] flex max-w-[50rem] flex-col md:mt-0 lg:gap-[2rem] lg:pb-[0.5rem]">
+		<article className="mt-[2.5rem] flex max-w-[46rem] flex-col max-md:mx-auto md:mt-0 lg:gap-[2rem] lg:pb-[0.5rem]">
 			<div className="flex items-center justify-between lg:w-[90%]">
 				<div>
 					<h2 className="text-[2.5rem] font-[600] lg:text-[3.4rem]">{productItem.brand}</h2>
@@ -75,13 +97,27 @@ const ItemDescription = ({ productItem }) => {
 
 			<div className="mt-[3.5rem] flex items-center gap-[4rem] md:mt-[4.5rem] lg:gap-[6rem]">
 				<div className="flex w-[14rem] items-center justify-between rounded-[4rem] bg-carousel-btn p-[0.6rem_1.1rem] text-[2.3rem] font-[600] md:w-[17rem] md:text-[2.6rem] ">
-					<button className="active:scale-[1.2]" onClick={handleMinus}>
+					<button
+						className={twJoin(
+							productQuantityChosen !== 0
+								? 'active:scale-[1.2]'
+								: 'cursor-not-allowed opacity-[0.5]'
+						)}
+						onClick={handleMinus}
+					>
 						<AiFillMinusCircle />
 					</button>
 
 					<p className="font-roboto">{productQuantityChosen}</p>
 
-					<button className="active:scale-[1.2]" onClick={handlePlus}>
+					<button
+						className={twJoin(
+							productQuantityChosen !== productItem.stock
+								? 'active:scale-[1.2]'
+								: 'cursor-not-allowed opacity-[0.5]'
+						)}
+						onClick={handlePlus}
+					>
 						<AiFillPlusCircle />
 					</button>
 				</div>
@@ -102,7 +138,7 @@ const ItemDescription = ({ productItem }) => {
 					theme={'secondary'}
 					variant={'shop'}
 					className={
-						'w-[15rem] p-[1rem_0] transition-[transform] duration-[200ms] ease-in-out  [box-shadow:0_0_0_1.3px_var(--color-secondary)] hover:scale-[1.1] hover:bg-heading hover:text-primary hover:[box-shadow:0_0_0_1.3px_var(--color-primary)] active:scale-[1.1] lg:w-[20rem]'
+						'w-[15rem] p-[1rem_0] transition-[transform] duration-[200ms] ease-in-out  [box-shadow:0_0_0_1.3px_var(--color-secondary)] hover:scale-[1.1] hover:bg-heading hover:text-primary hover:box-shadow-[0_0_0_1.3px_var(--color-secondary)] active:scale-[1.1] lg:w-[20rem]'
 					}
 				>
 					<p>Buy Now</p>
@@ -112,7 +148,7 @@ const ItemDescription = ({ productItem }) => {
 					theme={'ghost'}
 					variant={'shop'}
 					className={
-						'w-[15rem] p-[1rem_0] transition-[transform] duration-[200ms] ease-in-out [box-shadow:0_0_0_1.3px_var(--color-primary)] hover:scale-[1.1] hover:bg-heading hover:text-primary hover:[box-shadow:0_0_0_1.3px_var(--color-secondary)] active:scale-[1.17] lg:w-[20rem]'
+						'w-[15rem] p-[1rem_0] transition-[transform] duration-[200ms] ease-in-out [box-shadow:0_0_0_1.3px_var(--color-primary)] hover:scale-[1.1] hover:bg-heading hover:text-primary hover:box-shadow-[0_0_0_1.3px_var(--color-secondary)] active:scale-[1.17] lg:w-[20rem]'
 					}
 					onClick={handleAddToCart}
 				>

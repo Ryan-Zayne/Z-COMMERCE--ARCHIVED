@@ -17,4 +17,5 @@ const useMediaQuery = () => {
 		};
 	}, [setIsDesktop, setIsMobile, setIsTablet]);
 };
-export { useMediaQuery};
+
+export { useMediaQuery };

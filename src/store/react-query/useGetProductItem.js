@@ -3,9 +3,20 @@ import useGetAllProducts from './useGetAllProducts';
 const useGetProductItem = (productId) => {
 	const { isError, isLoading, allProductsArray } = useGetAllProducts();
 
-	const productItem = allProductsArray.find((item) => item?.id === Number(productId));
+	const possibleProductIDs = allProductsArray.reduce(
+		(accumulator, currentItem) => [...accumulator, currentItem?.id],
+		[]
+	);
 
-	return { isError, isLoading, productItem };
+	if (!isLoading && !possibleProductIDs.includes(Number(productId))) {
+		throw new Error('Product does not exist');
+	}
+
+	return {
+		isError,
+		isLoading,
+		productItem: allProductsArray.find((item) => item?.id === Number(productId)),
+	};
 };
 
 export default useGetProductItem;
