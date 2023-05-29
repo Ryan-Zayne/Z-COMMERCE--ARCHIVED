@@ -4,13 +4,14 @@ import { CarouselContextProvider } from '../../components/Carousel';
 import ItemHeader from './ProductItem/ItemHeader';
 import ItemDescription from './ProductItem/ItemDescription';
 import ItemHero from './ProductItem/ItemHero';
+import { LoadingSkeleton } from '../../components';
 
 const ProductItemPage = () => {
 	const { productId } = useParams();
 	const { isLoading, productItem } = useGetProductItem(productId);
 
-	if (isLoading) {
-		return <h4 className="mt-[3rem] text-center text-[3rem] font-bold">Loading...</h4>;
+	if (true) {
+		return <LoadingSkeleton itemDescription={true} />;
 	}
 
 	return (

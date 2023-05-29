@@ -2,7 +2,7 @@ import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import { twMerge } from 'tailwind-merge';
 import { useThemeStore } from '../store/zustand/themeStore';
 
-const LoadingSkeleton = ({ count = 5 }) => {
+const LoadingSkeleton = ({ count = 5, itemDescription = false }) => {
 	const isDarkMode = useThemeStore((state) => state.isDarkMode);
 	const SkeletonCards = [...Array(count)].map((_, index) => (
 		<li
@@ -43,13 +43,26 @@ const LoadingSkeleton = ({ count = 5 }) => {
 		</li>
 	));
 
-	return (
+	return !itemDescription ? (
 		<section className="mt-[8rem] flex flex-col gap-[6rem] pt-[6rem]">
 			<article className="flex flex-col gap-[3rem] px-[3rem]">
 				<ul className="grid grid-cols-[repeat(auto-fit,_minmax(23rem,1fr))] justify-items-center gap-[3rem_1.5rem]">
 					{SkeletonCards}
 				</ul>
 			</article>
+		</section>
+	) : (
+		<section className="p-[1rem_2rem_3rem] lg:pt-[3rem]">
+			<div className="mt-[3rem] flex flex-col items-center gap-[4rem] overflow-hidden md:mt-[4.5rem] md:h-[47rem] md:flex-row md:items-start md:justify-around md:px-[1rem] lg:mt-[6rem] lg:gap-[8rem]">
+				<SkeletonTheme
+					highlightColor={isDarkMode && '#1e2021'}
+					duration={'0.4'}
+					baseColor={isDarkMode && '#232628'}
+				>
+					<Skeleton className="h-[35rem] w-[40rem] md:h-full lg:w-full" />
+					<Skeleton className="h-[47rem] w-[46rem] max-md:mx-auto" />
+				</SkeletonTheme>
+			</div>
 		</section>
 	);
 };
