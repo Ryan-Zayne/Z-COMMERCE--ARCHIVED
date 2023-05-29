@@ -47,8 +47,11 @@ const Categories = () => {
 	const CategoryLinks = categories.map((category) => (
 		<li
 			key={category.title}
+			data-aos="fade-up"
+			data-aos-duration="600"
+			data-aos-anchor-easing="ease-out"
 			className={twJoin(
-				` flex w-[min(100%,27rem)] justify-between gap-[1.5rem] rounded-[5rem] p-[2rem] transition-transform duration-[800ms] ease-in-out hover:scale-[1.09] lg:w-full lg:rounded-[6rem]`,
+				`flex w-[min(100%,27rem)] justify-between gap-[1.5rem] rounded-[5rem] p-[2rem] transition-transform duration-[800ms] ease-in-out hover:scale-[1.09] lg:w-full lg:rounded-[6rem]`,
 				[isDarkMode ? category.bg_dark : category.bg_light]
 			)}
 		>

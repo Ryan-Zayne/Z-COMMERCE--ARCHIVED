@@ -10,7 +10,14 @@ import Card from './Card/Card';
 import StarRating from './StarRating';
 import ImageComponent from './ImageComponent';
 
-const ProductCard = ({ to = '', image, product }) => {
+const ProductCard = ({
+	to = '',
+	image,
+	product,
+	aosAnimation = 'zoom-in',
+	aosDuration = '500',
+	aosEasing = 'ease-in-out',
+}) => {
 	const isDarkMode = useThemeStore((state) => state.isDarkMode);
 	const isMobile = useGlobalStore((state) => state.isMobile);
 	const wishList = useShopStore((state) => state.wishList);
@@ -32,6 +39,7 @@ const ProductCard = ({ to = '', image, product }) => {
 	return (
 		<Card
 			as={'li'}
+			{...{ aosAnimation, aosDuration, aosEasing }}
 			className={twMerge(
 				`group/card w-[min(100%,25rem)] rounded-[1.2rem] transition-[transform,box-shadow,background-color] duration-[1000ms] ease-in-out hover:scale-[1.03] hover:[box-shadow:0_0_6px_0_hsl(60,_100%,_0%,_1)]`,
 				[

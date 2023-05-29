@@ -1,5 +1,8 @@
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import { Toaster } from 'react-hot-toast';
 import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom';
+import { useEffect } from 'react';
 import { useMediaQuery } from './hooks';
 import AllProductsPage from './pages/AllProductsPage/AllProductsPage';
 import GlobalLayout from './pages/Global/GlobalLayout';
@@ -10,7 +13,11 @@ import Register from './pages/Register/Register';
 
 const App = () => {
 	useMediaQuery();
-	<Toaster />;
+
+	useEffect(() => {
+		AOS.init();
+		AOS.refresh();
+	}, []);
 
 	const router = createBrowserRouter(
 		createRoutesFromElements(

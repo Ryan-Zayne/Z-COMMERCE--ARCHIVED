@@ -23,7 +23,11 @@ const Footer = () => {
 
 	return (
 		<footer className="flex flex-col pt-[7rem] lg:pt-[9rem] [&_li:hover]:text-secondary [&_li]:cursor-pointer">
-			<section className=" flex flex-col bg-slate-900 bg-[image:url('/src/pages/Global/Footer/images/newsletter-bg.png')] bg-cover bg-no-repeat p-[3rem_2rem] [background-position:center] lg:flex-row lg:justify-between lg:px-[clamp(3rem,9vw,18rem)]">
+			<section
+				data-aos="fade-up"
+				data-aos-duration="1000"
+				className=" flex flex-col bg-slate-900 bg-[image:url('/src/pages/Global/Footer/images/newsletter-bg.png')] bg-cover bg-no-repeat p-[3rem_2rem] [background-position:center] lg:flex-row lg:justify-between lg:px-[clamp(3rem,9vw,18rem)]"
+			>
 				<div className="flex flex-col items-center gap-[1rem] lg:gap-[2.5rem]">
 					<h4 className="flex items-center text-[1.7rem] font-[500] text-heading lg:text-[2.4rem]">
 						<img
@@ -75,7 +79,12 @@ const Footer = () => {
 				</div>
 			</section>
 
-			<section className="flex flex-col gap-[2rem] p-[5rem_1.5rem] lg:flex-row lg:justify-between lg:px-[4.4rem]">
+			<section
+				data-aos="fade-up"
+				data-aos-duration="1000"
+				data-aos-delay="100"
+				className="flex flex-col gap-[2rem] p-[5rem_1.5rem] lg:flex-row lg:justify-between lg:px-[4.4rem]"
+			>
 				<article>
 					<Link to="/" className="ml-[-1.5rem] inline-block lg:ml-[0.8rem]">
 						<Logo className={isDarkMode && 'brightness-[0.8] contrast-[1.8]'} />
@@ -248,6 +257,7 @@ const Footer = () => {
 					</DropDown>
 				</article>
 			</section>
+
 			<section className="bg-primary py-[2rem] text-center text-[1.4rem] font-[300] italic text-light">
 				<p>Copyright © {new Date().getFullYear()} DigitalGenie</p>
 			</section>

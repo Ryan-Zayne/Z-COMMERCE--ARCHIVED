@@ -1,6 +1,19 @@
-const Card = ({ as: Element = 'article', children, className }) => {
+const Card = ({
+	as: Element = 'article',
+	children,
+	className,
+	aosAnimation,
+	aosDuration,
+	aosEasing,
+}) => {
 	return (
-		<Element id="Card" className={className}>
+		<Element
+			data-aos={aosAnimation}
+			data-aos-duration={aosDuration}
+			data-aos-anchor-easing={aosEasing}
+			id="Card"
+			className={className}
+		>
 			{children}
 		</Element>
 	);
