@@ -10,7 +10,7 @@ const ProductItemPage = () => {
 	const { productId } = useParams();
 	const { isLoading, productItem } = useGetProductItem(productId);
 
-	if (true) {
+	if (isLoading) {
 		return <LoadingSkeleton itemDescription={true} />;
 	}
 
