@@ -16,9 +16,9 @@ const NavigationLinks = () => {
 	const { toggleNavShow } = useGlobalActions();
 	const categoryDisclosure = useDisclosure({ initFn: () => isDesktop && href === '/' });
 
-	const handleActiveNavlink = ({ isActive }) => {
-		return twJoin(`relative navlink-transition`, [isActive && 'text-[--brand-inverse]']);
-	};
+	// const handleActiveNavlink = ({ isActive }) => {
+	// 	return twJoin(`relative navlink-transition`, [isActive && 'text-[--brand-inverse]']);
+	// };
 
 	// Close Desktop Category Menu on Route that's not the HomePage
 	useEffect(() => {
@@ -91,20 +91,20 @@ const NavigationLinks = () => {
 				{/* NAVIGATION LINKS */}
 				<ul
 					id="Navigation List"
-					className={twMerge(`flex gap-[12rem]`, [
+					className={twMerge(
+						`flex gap-[12rem] [&_a]:navlink-transition [&_a.active]:text-[--brand-inverse] [&_a]:relative`,
+
 						[
 							!isDesktop &&
 								'fixed z-[100] w-0 flex-col gap-[3.2rem] bg-navbar pt-[7rem] text-[1.4rem] text-nav-text transition-[width] duration-[250ms] ease-[ease] [backdrop-filter:blur(2rem)_saturate(5)] [inset:0_0_0_auto] md:text-[1.6rem]',
 						],
-						[isNavShow && !isDesktop && 'w-[min(21rem,_80%)] duration-[500ms] md:w-[24rem]'],
-					])}
+						[isNavShow && !isDesktop && 'w-[min(21rem,_80%)] duration-[500ms] md:w-[24rem]']
+					)}
 				>
 					{!isDesktop && <Logo className={'mb-[2rem] ml-[4rem]'} />}
 
-					<li className="max-lg:pl-[4rem]" onClick={toggleNavShow}>
-						<NavLink className={handleActiveNavlink} to="/">
-							Home
-						</NavLink>
+					<li className="max-lg:pl-[4rem]" onClick={!isDesktop ? toggleNavShow : null}>
+						<NavLink to="/">Home</NavLink>
 					</li>
 
 					{!isDesktop && (
@@ -140,16 +140,12 @@ const NavigationLinks = () => {
 						</li>
 					)}
 
-					<li className="max-lg:pl-[4rem]" onClick={toggleNavShow}>
-						<NavLink className={handleActiveNavlink} to="/all-products">
-							Products
-						</NavLink>
+					<li className="max-lg:pl-[4rem]" onClick={!isDesktop ? toggleNavShow : null}>
+						<NavLink to="/all-products">Products</NavLink>
 					</li>
 
-					<li className="max-lg:pl-[4rem]" onClick={toggleNavShow}>
-						<NavLink className={handleActiveNavlink} to={'/contact-us'}>
-							Contact
-						</NavLink>
+					<li className="max-lg:pl-[4rem]" onClick={!isDesktop ? toggleNavShow : null}>
+						<NavLink to={'/contact'}>Contact</NavLink>
 					</li>
 				</ul>
 

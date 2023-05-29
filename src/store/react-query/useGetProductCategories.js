@@ -5,7 +5,7 @@ const useGetProductCategory = (productCategory) => {
 	const possibleCategories = ['smartphones', 'laptops', 'watches', 'vehicles', 'lighting'];
 
 	if (!possibleCategories.includes(productCategory)) {
-		throw Error('category not found');
+		throw Error('Category not found!');
 	}
 
 	const PRODUCTS_LOOKUP = {
