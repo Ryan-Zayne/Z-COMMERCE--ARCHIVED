@@ -1,37 +1,22 @@
-import { fetcher } from '../../utils/fetcher';
-import { transformData } from '../../utils/transFormData';
-import { useFetch, useFetchMultiple } from './useFetch';
+import useGetAllProducts from './useGetAllProducts';
 
 const useHomePageProducts = () => {
-	const hotSalesProducts = useFetch({
-		key: ['laptops'],
-		url: '/products/category/laptops',
-		staleTime: 2 * 60 * 1000,
-	});
+	const { allProductsArray, isError, isLoading } = useGetAllProducts();
 
-	const recentlyViewedProducts = useFetch({
-		key: ['smartphones'],
-		url: '/products/category/smartphones',
-		staleTime: 2 * 60 * 1000,
-	});
+	const hotSalesProducts = allProductsArray.filter((item) => item?.category === 'laptops');
+	const recentlyViewedProducts = allProductsArray.filter((item) => item?.category === 'smartphones');
+	const similarProducts = [
+		...allProductsArray.filter((item) => item?.category === 'motorcycle'),
+		...allProductsArray.filter((item) => item?.category === 'automotive'),
+	];
 
-	const similarProducts = useFetchMultiple([
-		{
-			queryKey: ['motorcycles'],
-			queryFn: () => fetcher('/products/category/motorcycle'),
-			staleTime: 2 * 60 * 1000,
-			select: transformData,
-		},
-		{
-			queryKey: ['mens-watches'],
-			queryFn: () => fetcher('/products/category/mens-watches'),
-			staleTime: 2 * 60 * 1000,
-			select: transformData,
-		},
-	]);
-
-	const similarProductsArray = similarProducts.flatMap((item) => item.data);
-
-	return { recentlyViewedProducts, hotSalesProducts, similarProducts, similarProductsArray };
+	return {
+		hotSalesProducts,
+		recentlyViewedProducts,
+		similarProducts,
+		isLoading,
+		isError,
+	};
 };
+
 export default useHomePageProducts;

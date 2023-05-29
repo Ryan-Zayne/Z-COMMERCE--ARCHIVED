@@ -1,22 +1,14 @@
 import { useParams, Link } from 'react-router-dom';
 import { TiArrowBack } from 'react-icons/ti';
 import { useGetProductCategory } from '../../store/react-query';
-import { ProductCard } from '../../components';
+import { LoadingSkeleton, ProductCard } from '../../components';
 
 const ProductCategoryPage = () => {
 	const { category } = useParams();
-	const { productsArray, isError, error, isLoading } = useGetProductCategory(category);
+	const { productsArray, isLoading } = useGetProductCategory(category);
 
 	if (isLoading) {
-		return <h4 className="mt-[3rem] text-center text-[3rem] font-bold">Loading...</h4>;
-	}
-
-	if (isError) {
-		return (
-			<h4 className="mt-[3rem] text-center font-roboto text-[3rem] font-medium text-rose-500">
-				Error: {error.message}
-			</h4>
-		);
+		return <LoadingSkeleton count={category === 'watches' || category === 'vehicles' ? 10 : 5} />;
 	}
 
 	const ProductCategoryCards = productsArray.map((product) => (

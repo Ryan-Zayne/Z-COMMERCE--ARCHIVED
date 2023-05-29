@@ -1,61 +1,26 @@
-import { useFetch } from './useFetch';
+import useGetAllProducts from './useGetAllProducts';
 
-const useGetProductCategory = (productCategory) => {
-	const {
-		data: products,
-		isLoading,
-		isError,
-	} = useFetch({
-		key: [productCategory],
-		url: `/products/category/${productCategory}`,
-	});
+const useGetProductCategory = (productCategory = '') => {
+	const { allProductsArray, isError, isLoading } = useGetAllProducts();
 
-	const femaleWatches = useFetch({
-		key: ['womens-watches'],
-		url: '/products/category/womens-watches',
-		staleTime: 2 * 60 * 1000,
-	});
+	//* This lookup table works by assigning the productCateogry parameter as dynamic key and to each one creates a property equal to the array coming from the filter function.
+	//* But since vehicles and watches cateogory do not exist directly, I simple created their properties underneath the dynamic one so it overwrites it when necessary.
 
-	const maleWatches = useFetch({
-		key: ['mens-watches'],
-		url: '/products/category/mens-watches',
-		staleTime: 2 * 60 * 1000,
-	});
+	const PRODUCTS_LOOKUP = {
+		[productCategory]: allProductsArray.filter((item) => item?.category === productCategory),
 
-	const automotives = useFetch({
-		key: ['automotive'],
-		url: '/products/category/automotive',
-		staleTime: 2 * 60 * 1000,
-	});
+		vehicles: [
+			...allProductsArray.filter((item) => item?.category === 'motorcycle'),
+			...allProductsArray.filter((item) => item?.category === 'automotive'),
+		],
 
-	const motorcycles = useFetch({
-		key: ['motorcycle'],
-		url: '/products/category/motorcycle',
-		staleTime: 2 * 60 * 1000,
-	});
+		watches: [
+			...allProductsArray.filter((item) => item?.category === 'mens-watches'),
+			...allProductsArray.filter((item) => item?.category === 'womens-watches'),
+		],
+	};
 
-	let productsArray;
-	switch (productCategory) {
-		case 'smartphones':
-			productsArray = products?.filter((product) => product.id !== 3);
-			break;
-
-		case 'watches':
-			productsArray = !femaleWatches.isLoading &&
-				!maleWatches.isLoading && [...femaleWatches.data, ...maleWatches.data];
-			break;
-
-		case 'vehicles':
-			productsArray = !automotives.isLoading &&
-				!motorcycles.isLoading && [...motorcycles.data, ...automotives.data];
-			break;
-
-		default:
-			productsArray = products;
-			break;
-	}
-
-	return { isLoading, isError, productsArray };
+	return { isLoading, isError, productsArray: PRODUCTS_LOOKUP[productCategory] };
 };
 
 export default useGetProductCategory;

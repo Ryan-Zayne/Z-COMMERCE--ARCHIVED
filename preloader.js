@@ -21,4 +21,4 @@ const handleLoaderRemoval = () => {
 
 window.addEventListener('DOMContentLoaded', handleLoaderRemoval);
 
-window.history.scrollRestoration = 'auto';
+window.history.scrollRestoration = 'manual';

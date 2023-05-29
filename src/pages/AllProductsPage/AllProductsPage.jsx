@@ -1,25 +1,13 @@
 import { TiArrowBack } from 'react-icons/ti';
 import { Link } from 'react-router-dom';
-import { ProductCard } from '../../components';
+import { LoadingSkeleton, ProductCard } from '../../components';
 import { useGetAllProducts } from '../../store/react-query';
 
 const AllProductsPage = () => {
-	const { isLoading, isError, allProductsArray } = useGetAllProducts();
+	const { isLoading, allProductsArray } = useGetAllProducts();
 
 	if (isLoading) {
-		return (
-			<h4 className="mt-[3rem] text-center font-roboto text-[3rem] font-medium text-rose-500">
-				Loading...
-			</h4>
-		);
-	}
-
-	if (isError) {
-		return (
-			<h4 className="mt-[3rem] text-center font-roboto text-[3rem] font-medium text-rose-500">
-				Error: Something went wrong
-			</h4>
-		);
+		return <LoadingSkeleton count={10} />;
 	}
 
 	const allProductCards = allProductsArray.map((product) => (

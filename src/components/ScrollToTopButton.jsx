@@ -7,10 +7,10 @@ import { useScrollObserver } from '../hooks';
 const ScrollToTopButton = () => {
 	const href = useHref();
 
-	const { isScrolled, elementRef } = useScrollObserver({ rootMargin: '600px 0px 0px' });
+	const { isScrolled, elementRef } = useScrollObserver({ rootMargin: '500px 0px 0px' });
 
+	//* Scrolling to top on change of route within Global layout
 
-//* Scrolling to top on change of route within Global layout
 	useEffect(() => {
 		window.scrollTo({
 			top: 0,
@@ -20,7 +20,11 @@ const ScrollToTopButton = () => {
 	}, [href]);
 
 	return (
-		<a ref={elementRef} href="#root" className="fixed bottom-[3rem] right-[3rem] z-[500]">
+		<div
+			ref={elementRef}
+			className="fixed bottom-[3rem] right-[3rem] z-[500]"
+			onClick={() => window.scrollTo(0, 0)}
+		>
 			<button
 				className={twMerge(
 					`flex aspect-square w-[4rem] items-center justify-center rounded-[62%_38%_46%_54%/60%_63%_37%_40%] bg-secondary text-[2rem] text-dark transition-[translate,scale] duration-[400ms] [scale:0] [translate:0_-5000%]`,
@@ -29,7 +33,7 @@ const ScrollToTopButton = () => {
 			>
 				<BsChevronUp />
 			</button>
-		</a>
+		</div>
 	);
 };
 

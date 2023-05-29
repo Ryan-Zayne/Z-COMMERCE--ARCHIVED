@@ -1,6 +1,6 @@
 import { BsChevronRight } from 'react-icons/bs';
 import { twJoin } from 'tailwind-merge';
-import { Carousel } from '../../../components';
+import { Carousel, ImageComponent } from '../../../components';
 import { useCarouselStore } from '../../../components/Carousel';
 import { useThemeStore } from '../../../store/zustand/themeStore';
 
@@ -10,7 +10,7 @@ const ItemHero = () => {
 
 	const CarouselItems = slideImages.map((image) => (
 		<Carousel.Item key={image}>
-			<img className="object-cover" src={image} alt="" />
+			<ImageComponent dynamicImage={true} src={image} alt="" />
 		</Carousel.Item>
 	));
 

@@ -1,22 +1,7 @@
 import { ProductCard } from '../../../components';
-import { useHomePageProducts } from '../../../store/react-query';
 
-const RecentProducts = () => {
-	const { recentlyViewedProducts } = useHomePageProducts();
-
-	if (recentlyViewedProducts.isLoading) {
-		return <h4 className="mt-[3rem] text-center text-[3rem] font-bold">Loading...</h4>;
-	}
-
-	if (recentlyViewedProducts.isError) {
-		return (
-			<h4 className="mt-[3rem] text-center font-roboto text-[3rem] font-medium text-rose-500">
-				Error: {recentlyViewedProducts.error.message}
-			</h4>
-		);
-	}
-
-	const ProductCards = recentlyViewedProducts.data
+const RecentProducts = ({ data }) => {
+	const ProductCards = data
 		.filter((product) => product.id !== 3)
 		.map((product) => (
 			<ProductCard

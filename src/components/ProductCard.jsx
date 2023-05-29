@@ -48,7 +48,7 @@ const ProductCard = ({ to = '', image, product }) => {
 			<Link className="flex w-full flex-col justify-between" to={to}>
 				<Card.Header
 					as="div"
-					className="relative h-[18rem] w-[100%] overflow-hidden rounded-[0.8rem_0.8rem_0_0]"
+					className="relative h-[18rem] w-full overflow-hidden rounded-[0.8rem_0.8rem_0_0]"
 				>
 					<button
 						id="Wishlist Icon"

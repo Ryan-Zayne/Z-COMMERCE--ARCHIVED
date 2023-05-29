@@ -1,24 +1,16 @@
 import { useParams } from 'react-router-dom';
 import { useGetProductItem } from '../../store/react-query';
+import { CarouselContextProvider } from '../../components/Carousel';
 import ItemHeader from './ProductItem/ItemHeader';
 import ItemDescription from './ProductItem/ItemDescription';
 import ItemHero from './ProductItem/ItemHero';
-import { CarouselContextProvider } from '../../components/Carousel';
 
 const ProductItemPage = () => {
 	const { productId } = useParams();
-	const { isLoading, productItem, isError } = useGetProductItem(productId);
+	const { isLoading, productItem } = useGetProductItem(productId);
 
 	if (isLoading) {
 		return <h4 className="mt-[3rem] text-center text-[3rem] font-bold">Loading...</h4>;
-	}
-
-	if (isError) {
-		return (
-			<h4 className="mt-[3rem] rounded-[2px_2px] text-center font-roboto text-[3rem] font-medium text-rose-500">
-				Error: Product not found
-			</h4>
-		);
 	}
 
 	return (

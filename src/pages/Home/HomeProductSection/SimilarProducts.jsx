@@ -1,22 +1,7 @@
-import useHomePageProducts from '../../../store/react-query/useHomePageProducts';
-import ProductCard from '../../../components/ProductCard';
+import { ProductCard } from '../../../components';
 
-const SimilarProducts = () => {
-	const { similarProducts, similarProductsArray } = useHomePageProducts();
-
-	if (similarProducts.some((item) => item.isLoading)) {
-		return <h4 className="mt-[3rem] text-center text-[3rem] font-bold">Loading...</h4>;
-	}
-
-	if (similarProducts.some((item) => item.isError)) {
-		return (
-			<h4 className="mt-[3rem] text-center font-roboto text-[3rem] font-medium text-rose-500">
-				Error: Something went wrong
-			</h4>
-		);
-	}
-
-	const ProductCards = similarProductsArray.map((product) => (
+const SimilarProducts = ({ data }) => {
+	const ProductCards = data.map((product) => (
 		<ProductCard
 			key={product.id}
 			to={`/${product.category}/${product.id}`}

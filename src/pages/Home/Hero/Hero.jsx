@@ -12,7 +12,7 @@ const Hero = () => {
 
 	const CarouselItems = slideImages.map((image) => (
 		<Carousel.Item key={image.src}>
-			<ImageComponent className="object-cover" src={image.src} blurSrc={image.blurSrc} alt="" />
+			<ImageComponent className="h-full w-full" src={image.src} blurSrc={image.blurSrc} alt="" />
 		</Carousel.Item>
 	));
 

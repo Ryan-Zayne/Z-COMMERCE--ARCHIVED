@@ -11,7 +11,6 @@ const themeStoreObject = (set, get) => ({
 		toggleTheme: () => {
 			const newtheme = get().theme === 'dark' ? 'light' : 'dark';
 			set({ theme: newtheme });
-			document.documentElement.setAttribute('data-theme', newtheme);
 
 			document.documentElement.classList.add('theme-transition');
 			const timeoutId = setTimeout(() => {

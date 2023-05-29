@@ -4,13 +4,13 @@ import { useFetchMultiple } from './useFetch';
 
 const useGetAllProducts = () => {
 	const productQueries = [
-		{ key: ['smartphones'], url: '/products/category/smartphones' },
-		{ key: ['laptops'], url: '/products/category/laptops' },
-		{ key: ['mens-watches'], url: '/products/category/mens-watches' },
-		{ key: ['womens-watches'], url: '/products/category/womens-watches' },
-		{ key: ['automotive'], url: '/products/category/automotive' },
-		{ key: ['motorcycle'], url: '/products/category/motorcycle' },
-		{ key: ['lighting'], url: '/products/category/lighting' },
+		{ key: ['smartphones'], url: 'products/category/smartphones' },
+		{ key: ['laptops'], url: 'products/category/laptops' },
+		{ key: ['mens-watches'], url: 'products/category/mens-watches' },
+		{ key: ['womens-watches'], url: 'products/category/womens-watches' },
+		{ key: ['automotive'], url: 'products/category/automotive' },
+		{ key: ['motorcycle'], url: 'products/category/motorcycle' },
+		{ key: ['lighting'], url: 'products/category/lighting' },
 	];
 
 	const allProducts = useFetchMultiple(
@@ -31,6 +31,6 @@ const useGetAllProducts = () => {
 		.flatMap((item) => item.data)
 		.filter((product) => product?.id !== 3); // Filtered out 3rd product cuz it's faulty
 
-	return { isLoading, isError, allProducts, allProductsArray };
+	return { isLoading, isError, allProductsArray };
 };
 export default useGetAllProducts;

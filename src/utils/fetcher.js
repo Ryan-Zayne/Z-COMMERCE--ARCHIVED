@@ -1,3 +1,7 @@
-import { axiosInstance } from './axiosInstance';
+import { baseURL } from './constants';
 
-export const fetcher = (url) => axiosInstance.get(url).then((response) => response.data);
+export const fetcher = async (url) => {
+	const response = await fetch(`${baseURL}/${url}`);
+
+	return response.json();
+};

@@ -1,6 +1,7 @@
 import { CarouselContextProvider } from '../../components/Carousel/carouselStoreContext';
 import { images } from './images';
 import Hero from './Hero/Hero';
+import Categories from './Categories/Categories';
 import HomeProductSection from './HomeProductSection/HomeProductSection';
 
 const HomePage = () => {
@@ -9,6 +10,7 @@ const HomePage = () => {
 			<CarouselContextProvider slideImages={images}>
 				<Hero />
 			</CarouselContextProvider>
+			<Categories />
 			<HomeProductSection />
 		</>
 	);

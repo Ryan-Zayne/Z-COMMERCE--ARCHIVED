@@ -97,7 +97,7 @@ const ItemDescription = ({ productItem }) => {
 				</div>
 			</div>
 
-			<div className="mt-[4rem] flex justify-center gap-[3rem] font-[500] md:mt-auto md:justify-between">
+			<div className="mt-[4rem] flex gap-[3rem] font-[500] md:mt-auto md:justify-between">
 				<Button
 					theme={'secondary'}
 					variant={'shop'}

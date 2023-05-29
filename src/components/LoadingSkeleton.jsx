@@ -1,0 +1,57 @@
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
+import { twMerge } from 'tailwind-merge';
+import { useThemeStore } from '../store/zustand/themeStore';
+
+const LoadingSkeleton = ({ count = 5 }) => {
+	const isDarkMode = useThemeStore((state) => state.isDarkMode);
+	const SkeletonCards = [...Array(count)].map((_, index) => (
+		<li
+			// eslint-disable-next-line react/no-array-index-key
+			key={index}
+			className={twMerge(
+				`w-[min(100%,25rem)] rounded-[1.2rem] bg-white/[0.17] box-shadow-[0_0_3px_hsl(60,_100%,_0%,_0.3)] ${
+					isDarkMode && 'bg-[hsl(200,5.88%,10%,0.17)]'
+				}`
+			)}
+		>
+			<SkeletonTheme
+				highlightColor={isDarkMode && '#1e2021'}
+				duration={'0.4'}
+				baseColor={isDarkMode && '#232628'}
+			>
+				<div>
+					<Skeleton className={`block h-[18rem] w-full rounded-[0.8rem_0.8rem_0_0]`} />
+				</div>
+
+				<div className="px-[1.4rem] pb-[1rem]">
+					<header className="flex items-center justify-between gap-[1rem]">
+						<Skeleton count={2} width={148} height={6} />
+						<span>
+							<Skeleton width={58} height={23} />
+						</span>
+					</header>
+					<p className="mt-[2rem]">
+						<Skeleton className="gap-[3rem]" count={3} width={'93%'} height={6} />
+					</p>
+					<div className={`mt-[1rem] flex items-center gap-[1.3rem]`}>
+						<Skeleton width={75} height={19} />
+						<Skeleton width={34} height={18} />
+					</div>
+					<Skeleton className="mt-[2rem] rounded-[8px] p-[1rem_1.2rem]" width={97} height={35} />
+				</div>
+			</SkeletonTheme>
+		</li>
+	));
+
+	return (
+		<section className="mt-[8rem] flex flex-col gap-[6rem] pt-[6rem]">
+			<article className="flex flex-col gap-[3rem] px-[3rem]">
+				<ul className="grid grid-cols-[repeat(auto-fit,_minmax(23rem,1fr))] justify-items-center gap-[3rem_1.5rem]">
+					{SkeletonCards}
+				</ul>
+			</article>
+		</section>
+	);
+};
+
+export default LoadingSkeleton;

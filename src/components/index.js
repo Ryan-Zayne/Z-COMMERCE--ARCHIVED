@@ -11,4 +11,4 @@ export { default as ScrollToTopButton } from './ScrollToTopButton';
 export { default as DropDown } from './DropDown';
 export { default as SearchForm } from './SearchForm';
 export { default as ImageComponent } from './ImageComponent';
-
+export { default as LoadingSkeleton } from './LoadingSkeleton';
