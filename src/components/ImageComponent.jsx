@@ -8,6 +8,7 @@ const ImageComponent = ({
 	className,
 	wrapperClassName,
 	dynamicImage = false,
+	loading,
 	onClick,
 }) => {
 	const [isImageLoaded, setIsImageLoaded] = useState(false);
@@ -50,6 +51,7 @@ const ImageComponent = ({
 				className={twMerge(`object-cover `, [isImageLoaded && 'h-full'], [className])}
 				src={src}
 				alt=""
+				loading={loading}
 			/>
 		</div>
 	);
