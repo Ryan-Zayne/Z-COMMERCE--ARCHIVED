@@ -16,7 +16,6 @@ const App = () => {
 
 	useEffect(() => {
 		AOS.init();
-		AOS.refresh();
 	}, []);
 
 	const router = createBrowserRouter(
