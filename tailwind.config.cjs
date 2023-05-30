@@ -43,7 +43,7 @@ module.exports = {
 				'fade-in-down': 'fade-in-down 1.3s',
 				'fade-in-up': 'fade-in-up 1.7s ease-out',
 				'fade-in-up-2': 'fade-in-up-2 1.3s ease-out',
-				zoom: 'zoom 1.3s infinite 0.15s',
+				zoom: 'zoom 1.3s infinite linear 0.1s',
 			},
 
 			keyframes: {
@@ -61,7 +61,7 @@ module.exports = {
 				},
 
 				zoom: {
-					from: { transform: 'translateX(-100%)' },
+					from: { transform: 'translateX(-300%)' },
 					to: { transform: 'translateX(100%)' },
 				},
 			},

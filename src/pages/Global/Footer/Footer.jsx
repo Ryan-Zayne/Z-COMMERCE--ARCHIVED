@@ -82,7 +82,7 @@ const Footer = () => {
 			<section
 				data-aos="fade-up"
 				data-aos-duration="1000"
-				data-aos-delay="100"
+				data-aos-delay="500"
 				className="flex flex-col gap-[2rem] p-[5rem_1.5rem] lg:flex-row lg:justify-between lg:px-[4.4rem]"
 			>
 				<article>

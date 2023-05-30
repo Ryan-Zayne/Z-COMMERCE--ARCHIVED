@@ -74,7 +74,7 @@ const LoginForm = ({ setIsLogin }) => {
 					text={'Login'}
 					theme={'secondary'}
 					className={'mt-[1.5rem] rounded-[1rem] text-[1.7rem] font-[600]'}
-					onClick={(e) => e.preventDefault()}
+					// onClick={(e) => e.preventDefault()}
 				/>
 			</form>
 
@@ -107,12 +107,12 @@ const LoginForm = ({ setIsLogin }) => {
 
 				<p className="mx-auto mt-[4rem] text-center text-[1.3rem] font-[500] text-input">
 					New user?
-					<Link
+					<button
 						className="ml-[0.4rem] text-[hsl(214,89%,53%)] hover:text-[hsl(214,89%,60%)]"
 						onClick={() => setIsLogin(false)}
 					>
 						Create an account
-					</Link>
+					</button>
 				</p>
 			</footer>
 		</>

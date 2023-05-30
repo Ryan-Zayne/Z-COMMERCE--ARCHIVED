@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { AiFillMinusCircle, AiFillPlusCircle, AiOutlineShoppingCart } from 'react-icons/ai';
-import { twJoin } from 'tailwind-merge';
 import { Button, StarRating } from '../../../components';
 import { useShopActions, useShopStore } from '../../../store/zustand/shopStore';
 
@@ -98,11 +97,8 @@ const ItemDescription = ({ productItem }) => {
 			<div className="mt-[3.5rem] flex items-center gap-[4rem] md:mt-[4.5rem] lg:gap-[6rem]">
 				<div className="flex w-[14rem] items-center justify-between rounded-[4rem] bg-carousel-btn p-[0.6rem_1.1rem] text-[2.3rem] font-[600] md:w-[17rem] md:text-[2.6rem] ">
 					<button
-						className={twJoin(
-							productQuantityChosen !== 0
-								? 'active:scale-[1.2]'
-								: 'cursor-not-allowed opacity-[0.5]'
-						)}
+						className="active:scale-[1.2]"
+						disabled={productQuantityChosen === 0}
 						onClick={handleMinus}
 					>
 						<AiFillMinusCircle />
@@ -111,16 +107,14 @@ const ItemDescription = ({ productItem }) => {
 					<p className="font-roboto">{productQuantityChosen}</p>
 
 					<button
-						className={twJoin(
-							productQuantityChosen !== productItem.stock
-								? 'active:scale-[1.2]'
-								: 'cursor-not-allowed opacity-[0.5]'
-						)}
+						className="active:scale-[1.2]"
+						disabled={productQuantityChosen === productItem.stock}
 						onClick={handlePlus}
 					>
 						<AiFillPlusCircle />
 					</button>
 				</div>
+
 				<div className="whitespace-nowrap">
 					<p className="text-[1.4rem] font-[300] tracking-wide md:text-[1.7rem]">
 						Only

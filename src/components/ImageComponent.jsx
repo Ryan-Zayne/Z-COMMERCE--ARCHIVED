@@ -43,7 +43,7 @@ const ImageComponent = ({
 			onClick={onClick}
 		>
 			{!isImageLoaded && (
-				<span className="absolute inset-0 z-[1] translate-x-[-100%] animate-zoom [background:linear-gradient(90deg,_transparent,_rgba(255,255,255,0.3),_transparent)]" />
+				<span className=" absolute inset-0 z-[1] animate-zoom [background-image:linear-gradient(100deg,_transparent_20%,_hsla(0,0%,100%,0.3)_50%,_transparent_80%)]" />
 			)}
 
 			<img
