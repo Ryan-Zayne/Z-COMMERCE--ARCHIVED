@@ -1,7 +1,6 @@
 import { twMerge } from 'tailwind-merge';
 import { useCarouselOptions } from '../../hooks/useCarouselOptions';
 import { useGlobalStore } from '../../store/zustand/globalStore';
-import SwipeDisabler from './SwipeDisabler';
 import { useCarouselStore } from './carouselStoreContext';
 
 const Carousel = ({
@@ -28,7 +27,7 @@ const Carousel = ({
 	return (
 		<Element
 			id="Carousel"
-			className={twMerge(`relative flex h-full select-none ${outerClassName}`)}
+			className={twMerge(`relative flex h-full touch-none select-none ${outerClassName}`)}
 			onMouseEnter={() => !isMobile && pauseOnHover && setIsPaused(true)}
 			onMouseLeave={() => !isMobile && pauseOnHover && setIsPaused(false)}
 		>
@@ -47,7 +46,6 @@ const Carousel = ({
 					`flex h-full overflow-x-scroll scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden ${innerClassName}`
 				)}
 			>
-				{isMobile && <SwipeDisabler />}
 				{children}
 			</div>
 			<button className="absolute right-0 z-40 h-full w-[9rem]" onClick={nextSlide}>
