@@ -4,6 +4,7 @@ import useGetAllProducts from './useGetAllProducts';
 const useGetProductCategory = (productCategory) => {
 	const href = useHref();
 	const { allProductsArray, isError, isLoading } = useGetAllProducts();
+
 	const possibleCategories = ['smartphones', 'laptops', 'watches', 'vehicles', 'lighting'];
 	const errorMessageDefaults = {
 		'/wishlist': 'WishList page still under construction',
