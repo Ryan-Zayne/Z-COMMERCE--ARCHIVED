@@ -3,8 +3,6 @@ import { useRouteError, Link } from 'react-router-dom';
 const ErrorElement = () => {
 	const error = useRouteError();
 
-	console.dir({ error });
-
 	return (
 		<section>
 			<div className="flex min-h-screen flex-col items-center justify-center text-center">
