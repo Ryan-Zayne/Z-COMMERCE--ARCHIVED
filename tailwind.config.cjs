@@ -44,6 +44,7 @@ module.exports = {
 				'fade-in-up': 'fade-in-up 1.7s ease-out',
 				'fade-in-up-2': 'fade-in-up-2 1.3s ease-out',
 				zoom: 'zoom 1.3s infinite linear 0.1s',
+				flicker: 'flicker 3s linear infinite',
 			},
 
 			keyframes: {
@@ -59,10 +60,21 @@ module.exports = {
 					from: { opacity: '0', transform: 'translateY(150%)' },
 					to: { opacity: '0.86', transform: 'translateY(0)' },
 				},
-
 				zoom: {
 					from: { transform: 'translateX(-300%)' },
 					to: { transform: 'translateX(100%)' },
+				},
+				flicker: {
+					'0%, 19.999%, 22%, 62.999%, 64%, 64.999%, 70%, to': {
+						opacity: '.99',
+						filter:
+							'drop-shadow(0 0 1px rgba(252,211,77)) drop-shadow(0 0 15px rgba(245,158,11)) drop-shadow(0 0 1px rgba(252,211,77))',
+					},
+
+					'20%, 21.999%, 63%, 63.999%, 65%, 69.999%': {
+						opacity: '.4',
+						filter: 'none',
+					},
 				},
 			},
 		},
