@@ -52,7 +52,9 @@ const NavHeader = () => {
 
 				{/* TODO - Create wishlist page that gets called on onclick */}
 				<button className="hover:text-heading active:scale-[1.2] lg:text-[2.3rem]">
-					<BiHeart />
+					<Link to={'wishlist'}>
+						<BiHeart />
+					</Link>
 				</button>
 
 				<div className="relative flex items-center justify-center">
