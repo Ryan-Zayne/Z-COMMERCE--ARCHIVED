@@ -1,12 +1,12 @@
 import { useEffect } from 'react';
-import { BsChevronDoubleRight, BsMenuButtonFill } from 'react-icons/bs';
 import { AiOutlineCaretDown } from 'react-icons/ai';
+import { BsChevronDoubleRight, BsMenuButtonFill } from 'react-icons/bs';
 import { Link, NavLink, useHref } from 'react-router-dom';
 import { twJoin, twMerge } from 'tailwind-merge';
-import { useGlobalActions, useGlobalStore } from '../../../store/zustand/globalStore';
-import { useThemeStore } from '../../../store/zustand/themeStore';
 import { DropDown, Logo } from '../../../components';
 import { useDisclosure } from '../../../hooks';
+import { useGlobalActions, useGlobalStore } from '../../../store/zustand/globalStore';
+import { useThemeStore } from '../../../store/zustand/themeStore';
 
 const NavigationLinks = () => {
 	const href = useHref();
@@ -15,10 +15,6 @@ const NavigationLinks = () => {
 	const isNavShow = useGlobalStore((state) => state.isNavShow);
 	const { toggleNavShow } = useGlobalActions();
 	const categoryDisclosure = useDisclosure({ initFn: () => isDesktop && href === '/' });
-
-	// const handleActiveNavlink = ({ isActive }) => {
-	// 	return twJoin(`relative navlink-transition`, [isActive && 'text-[--brand-inverse]']);
-	// };
 
 	// Close Desktop Category Menu on Route that's not the HomePage
 	useEffect(() => {
@@ -92,11 +88,11 @@ const NavigationLinks = () => {
 				<ul
 					id="Navigation List"
 					className={twMerge(
-						`flex gap-[12rem] [&_a]:navlink-transition [&_a.active]:text-[--brand-inverse] [&_a]:relative`,
+						`flex gap-[12rem] [&_>_li_>_a]:navlink-transition [&_>_li_>_a.active]:text-[--brand-inverse] [&_>_li_>_a]:relative`,
 
 						[
 							!isDesktop &&
-								'fixed z-[100] w-0 flex-col gap-[3.2rem] bg-navbar pt-[7rem] text-[1.4rem] text-nav-text transition-[width] duration-[250ms] ease-[ease] [inset:0_0_0_auto] [backdrop-filter:blur(2rem)_saturate(5)] md:text-[1.6rem]',
+								'fixed z-[100] w-0 flex-col gap-[3.2rem] bg-navbar pt-[7rem] text-[1.4rem] text-nav-text transition-[width] duration-[250ms] ease-[ease] [backdrop-filter:blur(2rem)_saturate(5)] [inset:0_0_0_auto] md:text-[1.6rem]',
 						],
 						[isNavShow && !isDesktop && 'w-[min(21rem,_80%)] duration-[500ms] md:w-[24rem]']
 					)}
@@ -107,10 +103,12 @@ const NavigationLinks = () => {
 						<NavLink to="/">Home</NavLink>
 					</li>
 
+					{/* MOBILE CATEGORY LINKS */}
 					{!isDesktop && (
 						<li
 							className="relative cursor-pointer max-lg:pl-[4rem]"
-							onClick={categoryDisclosure.onToggle}
+							onMouseEnter={categoryDisclosure.onOpen}
+							onMouseLeave={categoryDisclosure.onClose}
 						>
 							<div className="flex items-center gap-[1rem]">
 								<h4>Categories</h4>

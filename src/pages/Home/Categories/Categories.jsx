@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { twJoin } from 'tailwind-merge';
-import { useThemeStore } from '../../../store/zustand/themeStore';
 import { Button } from '../../../components';
+import { useThemeStore } from '../../../store/zustand/themeStore';
 
 const categories = [
 	{
