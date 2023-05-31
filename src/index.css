@@ -2,21 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
-	font-family: 'Rubik';
-	src: url('./assets/fonts/Rubik.woff2') format('woff2');
-	font-style: normal;
-	font-display: swap;
-}
 
-@font-face {
-	font-family: 'Roboto Slab';
-	src: url('./assets/fonts/Roboto-slab.woff2') format('woff2');
-	font-style: normal;
-	font-display: swap;
-}
 
 @layer base {
+
+
+
 	:root {
 		--text-header: hsl(43, 100%, 55%);
 		--text-light: hsl(0, 17%, 93%);
@@ -51,6 +42,20 @@
 		--brand-inverse: var(--text-header);
 		--text-label: hsl(34, 10%, 58%);
 		--text-input: hsl(36, 9%, 68%);
+	}
+
+	@font-face {
+		font-family: 'Rubik';
+		src: url('./assets/fonts/Rubik.woff2') format('woff2');
+		font-style: normal;
+		font-display: swap;
+	}
+
+	@font-face {
+		font-family: 'Roboto Slab';
+		src: url('./assets/fonts/Roboto-slab.woff2') format('woff2');
+		font-style: normal;
+		font-display: swap;
 	}
 
 
