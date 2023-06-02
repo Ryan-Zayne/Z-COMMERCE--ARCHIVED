@@ -1,0 +1,21 @@
+{
+	"compilerOptions": {
+		"lib": ["dom", "dom.iterable", "esnext"],
+		"noImplicitAny": true,
+		"target": "ES6",
+		"module": "ESNext",
+		"jsx": "react-jsx",
+		"strict": true,
+		"forceConsistentCasingInFileNames": true,
+		// "allowSyntheticDefaultImports": true,
+		"noFallthroughCasesInSwitch": true,
+		"isolatedModules": true,
+		"allowJs": true,
+		"checkJs": true,
+		"noEmit": true,
+		"moduleResolution": "node",
+		"skipLibCheck": true /* Skip type checking all .d.ts files. */
+	},
+
+	"include": ["src"]
+}

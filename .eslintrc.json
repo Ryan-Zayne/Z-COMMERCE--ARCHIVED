@@ -12,12 +12,17 @@
 		"plugin:@tanstack/eslint-plugin-query/recommended",
 		"prettier"
 	],
+
 	"overrides": [],
 	"parserOptions": {
 		"ecmaVersion": "latest",
 		"sourceType": "module"
 	},
+
 	"plugins": ["react", "tailwindcss"],
+
+	"root": true,
+
 	"rules": {
 		//Base Eslint Rules
 		"max-len": "off",
