@@ -27,7 +27,7 @@ const Carousel = ({
 	return (
 		<Element
 			id="Carousel"
-			className={twMerge(`relative flex h-full touch-none select-none ${outerClassName}`)}
+			className={twMerge(`relative flex h-full select-none ${outerClassName}`)}
 			onMouseEnter={() => !isMobile && pauseOnHover && setIsPaused(true)}
 			onMouseLeave={() => !isMobile && pauseOnHover && setIsPaused(false)}
 		>
@@ -45,6 +45,7 @@ const Carousel = ({
 				className={twMerge(
 					`flex h-full overflow-x-scroll scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden ${innerClassName}`
 				)}
+				onTouchMove={(e) => e.preventDefault()} // prevent scrolling on touch
 			>
 				{children}
 			</div>
