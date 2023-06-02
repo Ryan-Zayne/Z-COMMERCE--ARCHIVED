@@ -43,10 +43,8 @@ const Carousel = ({
 			<div
 				id="Carousel Inner"
 				className={twMerge(
-					`flex h-full overflow-x-scroll scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden ${innerClassName}`
+					`flex h-full touch-none overflow-x-scroll scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden ${innerClassName}`
 				)}
-				onTouchMove={(e) => e.preventDefault()}
-				onTouchStart={(e) => e.preventDefault()} // prevent scrolling on touch
 			>
 				{children}
 			</div>
