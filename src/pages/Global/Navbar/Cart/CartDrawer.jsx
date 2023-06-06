@@ -33,7 +33,7 @@ const CartDrawer = ({ isOpen, onClose, onOpen, placement = 'right' }) => {
 			>
 				<Drawer.CloseButton
 					className={
-						'right-[2rem] top-[2rem] rounded-[4px] bg-heading p-[0.2rem] text-[2.6rem] text-primary'
+						'right-[2rem] top-[2rem] rounded-[4px] bg-heading p-[0.2rem] text-[2.6rem] text-primary lg:scale-[1.2]'
 					}
 				>
 					<RiCloseFill />
