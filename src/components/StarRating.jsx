@@ -1,14 +1,15 @@
-/* eslint-disable react/no-array-index-key */
 import { AiFillStar } from 'react-icons/ai';
 
 const StarRating = ({ rating, text, className = '', icon = AiFillStar }) => {
 	const RatingIcon = icon;
-	const star5 = [...Array(5)].map((_, index) => <RatingIcon key={index} color="var(--text-header)" />);
-	const star4 = [...Array(5)].map((_, index) =>
+
+	const star5 = [...Array(5).keys()].map((id) => <RatingIcon key={id} color="var(--text-header)" />);
+
+	const star4 = [...Array(5).keys()].map((id, index) =>
 		index === 4 ? (
-			<RatingIcon key={index} color="var(--text-dark)" />
+			<RatingIcon key={id} color="var(--text-dark)" />
 		) : (
-			<RatingIcon key={index} color="var(--text-header)" />
+			<RatingIcon key={id} color="var(--text-header)" />
 		)
 	);
 
@@ -21,4 +22,5 @@ const StarRating = ({ rating, text, className = '', icon = AiFillStar }) => {
 		</div>
 	);
 };
+
 export default StarRating;

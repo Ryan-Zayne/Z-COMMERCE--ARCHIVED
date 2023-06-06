@@ -44,18 +44,18 @@ const NavHeader = () => {
 				id="NavIcons Wrapper"
 				className="flex w-[clamp(19rem,_42vw,_22rem)] items-center justify-between text-[1.8rem]"
 			>
+				{/* Mobile search button */}
 				{isMobile && (
 					<button className="hover:text-heading active:scale-[1.25]" onClick={toggleSearchShow}>
 						<BiSearchAlt2 />
 					</button>
 				)}
 
-				{/* TODO - Create wishlist page that gets called on onclick */}
-				<button className="hover:text-heading active:scale-[1.2] lg:text-[2.3rem]">
-					<Link to={'wishlist'}>
+				<div className="flex items-center">
+					<button className="hover:text-heading active:scale-[1.2] lg:text-[2.3rem]">
 						<BiHeart />
-					</Link>
-				</button>
+					</button>
+				</div>
 
 				<div className="relative flex items-center justify-center">
 					<button
@@ -104,9 +104,9 @@ const NavHeader = () => {
 
 				<ThemeSwitchButton />
 
+				{/* Hamburger button and menu */}
 				{!isDesktop && (
 					<>
-						{/* HAMBURGER */}
 						<button
 							id="Hamburger"
 							className={twMerge(

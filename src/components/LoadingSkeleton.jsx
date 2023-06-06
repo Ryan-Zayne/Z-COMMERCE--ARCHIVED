@@ -4,10 +4,9 @@ import { useThemeStore } from '../store/zustand/themeStore';
 
 const LoadingSkeleton = ({ count = 5, itemDescription = false }) => {
 	const isDarkMode = useThemeStore((state) => state.isDarkMode);
-	const SkeletonCards = [...Array(count)].map((_, index) => (
+	const SkeletonCards = [...Array(count).keys()].map((id) => (
 		<li
-			// eslint-disable-next-line react/no-array-index-key
-			key={index}
+			key={id}
 			className={twMerge(
 				`w-[min(100%,25rem)] rounded-[1.2rem] bg-white/[0.17] box-shadow-[0_0_3px_hsl(60,_100%,_0%,_0.3)] ${
 					isDarkMode && 'bg-[hsl(200,5.88%,10%,0.17)]'

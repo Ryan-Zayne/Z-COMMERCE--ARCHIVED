@@ -1,6 +1,8 @@
 import { twMerge } from 'tailwind-merge';
 
 const Button = ({ theme, variant = 'regular', size = 'md', className, text, children, onClick }) => {
+	const baseClasses = 'flex items-center justify-center';
+
 	const semanticVariants = {
 		regular: 'rounded-[0.5rem]',
 		input: 'rounded-[0_2.5rem_2.5rem_0]',
@@ -21,7 +23,7 @@ const Button = ({ theme, variant = 'regular', size = 'md', className, text, chil
 	};
 
 	const BTN_CLASSES = twMerge(
-		`flex items-center justify-center`,
+		baseClasses,
 		semanticVariants[variant] ?? '',
 		semanticThemes[theme] ?? '',
 		semanticSizes[size] ?? '',

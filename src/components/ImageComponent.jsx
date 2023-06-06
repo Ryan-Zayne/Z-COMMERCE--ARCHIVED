@@ -30,7 +30,7 @@ const ImageComponent = ({
 	}, [img]);
 
 	return !dynamicImage ? (
-		<img src={isImageLoaded ? src : blurSrc} className={className} />
+		<img src={isImageLoaded ? src : blurSrc} className={`object-cover ${className}`} />
 	) : (
 		<div
 			className={twMerge(

@@ -1,7 +1,7 @@
 {
 	"compilerOptions": {
-		"lib": ["dom", "dom.iterable", "esnext"],
-		"noImplicitAny": true,
+		// "lib": ["dom", "dom.iterable", "esnext"],
+		// "noImplicitAny": true,
 		"target": "ES6",
 		"module": "ESNext",
 		"jsx": "react-jsx",
@@ -11,7 +11,7 @@
 		"noFallthroughCasesInSwitch": true,
 		"isolatedModules": true,
 		"allowJs": true,
-		"checkJs": true,
+		// "checkJs": true,
 		"noEmit": true,
 		"moduleResolution": "node",
 		"skipLibCheck": true /* Skip type checking all .d.ts files. */

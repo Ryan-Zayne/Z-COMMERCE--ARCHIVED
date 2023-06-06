@@ -7,7 +7,7 @@ import { useShopStore } from '../../../../store/zustand/shopStore';
 import { useThemeStore } from '../../../../store/zustand/themeStore';
 import CartItem from './CartItem';
 
-const CartDrawer = ({ isOpen, onClose, onOpen }) => {
+const CartDrawer = ({ isOpen, onClose, onOpen, placement = 'right' }) => {
 	const cart = useShopStore((state) => state.cart);
 	const isDarkMode = useThemeStore((state) => state.isDarkMode);
 	const totalPrice = cart?.reduce((acc, item) => acc + item.price * item.quantity, 0);
@@ -27,9 +27,8 @@ const CartDrawer = ({ isOpen, onClose, onOpen }) => {
 	return (
 		<Drawer {...{ isOpen, onClose, onOpen }}>
 			<Drawer.Overlay />
-
 			<Drawer.Content
-				placement={'right'}
+				placement={placement}
 				className="w-[min(100%,28rem)] pb-[1.6rem] lg:min-w-[40rem]"
 			>
 				<Drawer.CloseButton
@@ -39,7 +38,6 @@ const CartDrawer = ({ isOpen, onClose, onOpen }) => {
 				>
 					<RiCloseFill />
 				</Drawer.CloseButton>
-
 				<Drawer.Header
 					className={
 						'mx-[1.3rem] flex items-center gap-[2rem] border-b-[1px] border-b-dark p-[7rem_0_2rem_2rem] lg:pl-[4.5rem]'
@@ -50,10 +48,8 @@ const CartDrawer = ({ isOpen, onClose, onOpen }) => {
 						className={`text-[4.5rem] ${isDarkMode ? 'text-carousel-dot' : 'text-primary'} `}
 					/>
 				</Drawer.Header>
-
 				<Drawer.Body className="px-[1.3rem] pt-[4rem] lg:px-[2rem]">
 					<ul className="flex min-h-[14rem] flex-col gap-[1rem]">{CartItems}</ul>
-
 					<div className="mt-[4rem] px-[1rem] lg:px-[2.6rem]">
 						<p className="flex justify-between text-[1.8rem] font-[600]">
 							Total:
@@ -65,7 +61,6 @@ const CartDrawer = ({ isOpen, onClose, onOpen }) => {
 						</p>
 					</div>
 				</Drawer.Body>
-
 				<Drawer.Footer className="px-[1.3rem] pt-[3rem] lg:px-[2rem]">
 					<Link>
 						<Button
