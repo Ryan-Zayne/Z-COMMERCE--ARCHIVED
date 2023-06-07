@@ -5,6 +5,7 @@ import { useCallbackRef } from '../../hooks/useCallbackRef';
 
 const CarouselContext = createContext({
 	name: 'CarouselStoreContext',
+	strict: true,
 	hookName: 'useCarouselStore',
 	providerName: 'CarouselContextProvider',
 });
@@ -40,12 +41,6 @@ const useCarouselStore = (callbackFn) => {
 	const store = useContext(CarouselContext);
 
 	const selector = useCallbackRef(callbackFn);
-
-	if (!store) {
-		throw new Error(
-			'useCarouselStore returned "undefined". Seems you forgot to wrap the consuming components in CarouselContextProvider'
-		);
-	}
 
 	return useStore(store, selector);
 };
