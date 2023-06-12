@@ -1,12 +1,12 @@
+import { DropDown, Logo, SearchForm, ThemeSwitchButton } from '@/components';
+import { useDisclosure } from '@/hooks';
+import { useGlobalActions, useGlobalStore } from '@/store/zustand/globalStore';
+import { useShopStore } from '@/store/zustand/shopStore';
+import { useThemeStore } from '@/store/zustand/themeStore';
 import { BiCartAlt, BiHeart, BiSearchAlt2, BiUser } from 'react-icons/bi';
 import { RiCloseFill, RiMenu3Fill } from 'react-icons/ri';
 import { Link } from 'react-router-dom';
 import { twJoin, twMerge } from 'tailwind-merge';
-import { DropDown, Logo, SearchForm, ThemeSwitchButton } from '../../../components';
-import { useDisclosure } from '../../../hooks';
-import { useGlobalActions, useGlobalStore } from '../../../store/zustand/globalStore';
-import { useShopStore } from '../../../store/zustand/shopStore';
-import { useThemeStore } from '../../../store/zustand/themeStore';
 import CartDrawer from './Cart/CartDrawer';
 
 const NavHeader = () => {
@@ -53,7 +53,9 @@ const NavHeader = () => {
 
 				<div className="flex items-center">
 					<button className="hover:text-heading active:scale-[1.2] lg:text-[2.3rem]">
-						<BiHeart />
+						<Link to={'wishlist'}>
+							<BiHeart />
+						</Link>
 					</button>
 				</div>
 

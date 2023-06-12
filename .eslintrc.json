@@ -8,18 +8,29 @@
 		"airbnb/hooks",
 		"plugin:react/recommended",
 		"plugin:react/jsx-runtime",
+		"airbnb-typescript",
 		"plugin:tailwindcss/recommended",
 		"plugin:@tanstack/eslint-plugin-query/recommended",
+		"plugin:@typescript-eslint/recommended",
+		// "plugin:@typescript-eslint/recommended-requiring-type-checking",
 		"prettier"
 	],
 
-	"overrides": [],
+	"plugins": ["react", "tailwindcss", "@typescript-eslint"],
+
+	"parser": "@typescript-eslint/parser",
+
 	"parserOptions": {
 		"ecmaVersion": "latest",
-		"sourceType": "module"
+		"sourceType": "module",
+		"project": "./tsconfig.json"
 	},
 
-	"plugins": ["react", "tailwindcss"],
+	"settings": {
+		"import/resolver": {
+			"typescript": {}
+		}
+	},
 
 	"root": true,
 
@@ -30,36 +41,82 @@
 		"no-tabs": "off",
 		"eol-last": "off",
 		"no-return-assign": ["error", "except-parens"],
-		"no-use-before-define": ["error", { "functions": false }],
-		"no-multiple-empty-lines": ["warn", { "max": 3 }],
+		"no-use-before-define": [
+			"error",
+			{
+				"functions": false
+			}
+		],
+		"no-multiple-empty-lines": [
+			"warn",
+			{
+				"max": 3
+			}
+		],
 		"object-curly-newline": "off",
 		"comma-dangle": "off",
 		"arrow-body-style": "off",
 		"no-restricted-syntax": ["error", "ForInStatement", "LabeledStatement", "WithStatement"],
-		"no-unused-expressions": ["error", { "allowShortCircuit": true, "allowTernary": true }],
+		"no-unused-expressions": "off",
+
+		"@typescript-eslint/no-unused-expressions": [
+			"error",
+			{
+				"allowShortCircuit": true,
+				"allowTernary": true
+			}
+		],
 
 		//React plugin rules
-		"quote-props": "off",
-		"react/prop-types": "off",
 		"import/no-extraneous-dependencies": [
 			"error",
-			{ "devDependencies": true, "optionalDependencies": false, "peerDependencies": false }
+			{
+				"devDependencies": true,
+				"optionalDependencies": false,
+				"peerDependencies": false
+			}
 		],
+
 		"import/prefer-default-export": "off",
-		"react/self-closing-comp": ["error", { "component": true }],
+		"react/self-closing-comp": [
+			"error",
+			{
+				"component": true
+			}
+		],
 		"react/jsx-curly-brace-presence": [
 			"error",
-			{ "props": "ignore", "children": "ignore", "propElementValues": "always" }
+			{
+				"props": "ignore",
+				"children": "ignore",
+				"propElementValues": "always"
+			}
 		],
-		"react/jsx-no-useless-fragment": ["error", { "allowExpressions": true }],
+		"react/jsx-no-useless-fragment": [
+			"error",
+			{
+				"allowExpressions": true
+			}
+		],
 		"react/jsx-boolean-value": ["error", "always"],
 		"react/button-has-type": "off",
 		"react/function-component-definition": "off",
 		"react-hooks/exhaustive-deps": "warn",
-		"react/jsx-filename-extension": ["error", { "extensions": [".tsx", ".jsx"] }],
+		"react/jsx-filename-extension": [
+			"error",
+			{
+				"extensions": [".tsx", ".jsx"]
+			}
+		],
+		"react/require-default-props": ["error", { "functions": "defaultArguments" }],
 
 		//Tailwind rules
 		"tailwindcss/no-custom-classname": "off",
-		"tailwindcss/classnames-order": ["warn", { "config": "tailwind.config.cjs" }]
+		"tailwindcss/classnames-order": [
+			"warn",
+			{
+				"config": "tailwind.config.cjs"
+			}
+		]
 	}
 }
