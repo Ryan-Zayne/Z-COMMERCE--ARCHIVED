@@ -1,7 +1,7 @@
 import { fetcher } from '@/api/fetcher';
 import { QueryFunction, useQueries, useQuery } from '@tanstack/react-query';
 import { transformData } from './helpers';
-import { ResponseData } from './query-hook-types';
+import { ResponseData } from './query-hook.types';
 
 type FetchOptions = {
 	key: string[];

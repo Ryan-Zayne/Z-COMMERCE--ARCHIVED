@@ -12,3 +12,5 @@ export type ResponseData = {
 		images: string[];
 	}>;
 };
+
+export type ResponseDataItem = ResponseData['products'][number];

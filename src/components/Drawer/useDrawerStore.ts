@@ -1,6 +1,6 @@
 import { useCallbackRef } from '@/hooks';
 import { useStore } from 'zustand';
-import { DrawerStore, DrawerStoreApi } from './drawer-types';
+import { DrawerStore, DrawerStoreApi } from './drawer.types';
 import { useContext } from './drawerStoreContext';
 
 const useDrawerStore = <T>(callbackFn: (state: DrawerStore) => T) => {

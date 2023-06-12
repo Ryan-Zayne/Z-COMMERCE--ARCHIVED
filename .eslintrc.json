@@ -108,7 +108,7 @@
 				"extensions": [".tsx", ".jsx"]
 			}
 		],
-		"react/require-default-props": ["error", { "functions": "defaultArguments" }],
+		"react/require-default-props": ["warn", { "functions": "defaultArguments" }],
 
 		//Tailwind rules
 		"tailwindcss/no-custom-classname": "off",

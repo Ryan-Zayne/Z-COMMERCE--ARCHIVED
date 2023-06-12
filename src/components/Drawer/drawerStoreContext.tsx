@@ -1,7 +1,7 @@
 import { createContext } from '@/hooks/context-hook';
 import { useEffect, useState } from 'react';
 import { createStore } from 'zustand';
-import { DrawerProviderProps, DrawerStore, DrawerStoreApi } from './drawer-types';
+import { DrawerProviderProps, DrawerStore, DrawerStoreApi } from './drawer.types';
 
 const createDrawerStore = () =>
 	createStore<DrawerStore>(() => ({

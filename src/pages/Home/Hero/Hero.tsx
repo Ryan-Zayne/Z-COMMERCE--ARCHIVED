@@ -1,13 +1,16 @@
 import { Button, Carousel, ImageComponent } from '@/components';
 import { useCarouselStore } from '@/components/Carousel';
+import { CarouselStore } from '@/components/Carousel/carousel.types';
 import { useAnimateRef } from '@/hooks';
 import { useThemeStore } from '@/store/zustand/themeStore';
 import { RxPaperPlane } from 'react-icons/rx';
 import { twJoin } from 'tailwind-merge';
 
-const Hero = () => {
+function Hero() {
 	const isDarkMode = useThemeStore((state) => state.isDarkMode);
-	const slideImages = useCarouselStore((state) => state.slideImages);
+	const slideImages = useCarouselStore(
+		(state) => state.slideImages as Exclude<CarouselStore['slideImages'], string[]>
+	);
 	const { animatedElements } = useAnimateRef();
 
 	const CarouselItems = slideImages.map((image) => (
@@ -54,7 +57,7 @@ const Hero = () => {
 					<div>
 						<h1
 							ref={(elem) => (animatedElements.heading = elem)}
-							className="w-[17ch] font-roboto text-[clamp(2rem,_4vw+1rem,_3rem)] font-[600] text-heading"
+							className="w-[17ch] font-roboto text-[clamp(2rem,_4vw+1rem,_3rem)] font-600 text-heading"
 						>
 							Explore the Future of Technology
 						</h1>
@@ -79,6 +82,6 @@ const Hero = () => {
 			</Carousel>
 		</section>
 	);
-};
+}
 
 export default Hero;

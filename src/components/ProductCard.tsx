@@ -1,3 +1,5 @@
+import { ResponseDataItem } from '@/store/react-query/query-hook.types';
+import { ShopStore } from '@/store/zustand/zustand-store.types';
 import { useState } from 'react';
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
@@ -7,17 +9,26 @@ import { useShopActions, useShopStore } from '../store/zustand/shopStore';
 import { useThemeStore } from '../store/zustand/themeStore';
 import Button from './Button';
 import Card from './Card/Card';
-import StarRating from './StarRating';
 import ImageComponent from './ImageComponent';
+import StarRating from './StarRating';
 
-const ProductCard = ({
+type ProductCardProps = {
+	to: string;
+	image: string;
+	product: ResponseDataItem | ShopStore['cart'][number];
+	aosAnimation?: string;
+	aosDuration?: string;
+	aosEasing?: string;
+};
+
+function ProductCard({
 	to = '',
 	image,
 	product,
 	aosAnimation = 'zoom-in',
 	aosDuration = '500',
 	aosEasing = 'ease-in-out',
-}) => {
+}: ProductCardProps) {
 	const isDarkMode = useThemeStore((state) => state.isDarkMode);
 	const isMobile = useGlobalStore((state) => state.isMobile);
 	const wishList = useShopStore((state) => state.wishList);
@@ -25,12 +36,12 @@ const ProductCard = ({
 	const isProductInWishList = wishList.some((item) => item.id === product.id);
 	const [isHearted, setIsHearted] = useState(() => isProductInWishList);
 
-	const handleAddToCart = (event) => {
+	const handleAddToCart: React.MouseEventHandler = (event) => {
 		event.preventDefault();
 		addToCart(product);
 	};
 
-	const handleAddToWishList = (event) => {
+	const handleAddToWishList: React.MouseEventHandler = (event) => {
 		event.preventDefault();
 		setIsHearted((prev) => !prev);
 		toggleAddToWishList(product);
@@ -122,6 +133,6 @@ const ProductCard = ({
 			</Link>
 		</Card>
 	);
-};
+}
 
 export default ProductCard;

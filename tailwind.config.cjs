@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const plugin = require('tailwindcss/plugin');
 
 module.exports = {
@@ -32,6 +33,13 @@ module.exports = {
 			fontFamily: {
 				roboto: ['"Roboto Slab"', 'Helvetica'],
 				rubik: ['"Rubik"', 'Trebuchet MS'],
+			},
+
+			fontWeight: {
+				300: '300',
+				400: '400',
+				500: '500',
+				600: '600',
 			},
 
 			transitionTimingFunction: {

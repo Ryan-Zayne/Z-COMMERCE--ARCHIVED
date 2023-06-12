@@ -15,7 +15,9 @@ const possibleElements = [
 	{ targetElement: 'paragraph', animationClass: 'animate-fade-in-up-2' },
 ] as const;
 
-type ElementRefObject = { [key in (typeof possibleElements)[number]['targetElement']]: HTMLElement };
+type ElementRefObject = {
+	[key in (typeof possibleElements)[number]['targetElement']]: HTMLElement | null;
+};
 
 const useAnimateRef = () => {
 	const currentSlide = useCarouselStore((state) => state.currentSlide);
@@ -30,13 +32,13 @@ const useAnimateRef = () => {
 					throw new ELementError(element.targetElement);
 				}
 
-				elementRef.current[element.targetElement].classList.add(element.animationClass);
+				elementRef.current[element.targetElement]?.classList.add(element.animationClass);
 			}
 		};
 
 		const removeAnimationClasses = () => {
 			for (const element of possibleElements) {
-				elementRef.current[element.targetElement].classList.remove(element.animationClass);
+				elementRef.current[element.targetElement]?.classList.remove(element.animationClass);
 			}
 		};
 

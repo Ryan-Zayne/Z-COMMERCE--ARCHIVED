@@ -1,10 +1,16 @@
+import { ResponseDataItem } from '@/store/react-query/query-hook.types';
+import { useShopActions, useShopStore } from '@/store/zustand/shopStore';
+import { ShopStore } from '@/store/zustand/zustand-store.types';
 import { useState } from 'react';
-import { TiArrowBack } from 'react-icons/ti';
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
+import { TiArrowBack } from 'react-icons/ti';
 import { Link } from 'react-router-dom';
-import { useShopActions, useShopStore } from '../../../store/zustand/shopStore';
 
-const ItemHeader = ({ productItem }) => {
+type ItemHeaderProp = {
+	productItem: ResponseDataItem | ShopStore['cart'][number];
+};
+
+function ItemHeader({ productItem }: ItemHeaderProp) {
 	const wishList = useShopStore((state) => state.wishList);
 	const { toggleAddToWishList } = useShopActions();
 	const isProductInWishList = wishList.some((item) => item.id === productItem.id);
@@ -23,7 +29,7 @@ const ItemHeader = ({ productItem }) => {
 				</Link>
 			</button>
 
-			<h1 className="text-center font-roboto text-[2.7rem] font-[600] capitalize lg:text-[3.8rem]">
+			<h1 className="text-center font-roboto text-[2.7rem] font-600 capitalize lg:text-[3.8rem]">
 				{productItem.title}
 			</h1>
 
@@ -36,5 +42,5 @@ const ItemHeader = ({ productItem }) => {
 			</button>
 		</>
 	);
-};
+}
 export default ItemHeader;

@@ -1,6 +1,6 @@
 import { useGetAllProducts } from './useGetAllProducts';
 
-const useGetProductItem = (productId: number) => {
+const useGetProductItem = (productId: number | string | undefined) => {
 	const { isError, isLoading, allProductsArray } = useGetAllProducts();
 
 	// I previously did this to get all products ids available:
@@ -14,7 +14,7 @@ const useGetProductItem = (productId: number) => {
 		94, 95, 96, 97, 98, 99, 100,
 	];
 
-	if (!possibleProductIDs.includes(productId)) {
+	if (!possibleProductIDs.includes(Number(productId))) {
 		throw new Error('Product not found!');
 	}
 

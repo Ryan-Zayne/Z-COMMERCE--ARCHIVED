@@ -1,10 +1,16 @@
+import { Button, StarRating } from '@/components';
+import { ResponseDataItem } from '@/store/react-query/query-hook.types';
+import { useShopActions, useShopStore } from '@/store/zustand/shopStore';
+import { ShopStore } from '@/store/zustand/zustand-store.types';
 import { useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { AiFillMinusCircle, AiFillPlusCircle, AiOutlineShoppingCart } from 'react-icons/ai';
-import { Button, StarRating } from '../../../components';
-import { useShopActions, useShopStore } from '../../../store/zustand/shopStore';
 
-const ItemDescription = ({ productItem }) => {
+type ItemDescriptionProp = {
+	productItem: ResponseDataItem | ShopStore['cart'][number];
+};
+
+function ItemDescription({ productItem }: ItemDescriptionProp) {
 	const cart = useShopStore((state) => state.cart);
 	const productItemInCart = cart.find((item) => item.id === productItem.id);
 	const [productQuantityChosen, setProductQuantityChosen] = useState(
@@ -17,9 +23,7 @@ const ItemDescription = ({ productItem }) => {
 	// if (productItemInCart?.quantity != null && productQuantityChosen !== productItemInCart?.quantity) {
 	// 	setProductQuantityChosen(productItemInCart?.quantity);
 	// }
-
 	// TODO - Add a modal when this is clicked up to five times and ask user if he want to add many at once, all according to this medium post: https://medium.com/@viktoriadobrodenchuk/how-to-add-to-cart-properly-fcf279bb73fd
-
 	const handlePlus = () => {
 		if (productQuantityChosen <= productItem.stock) {
 			addToCart(productItem);
@@ -37,7 +41,7 @@ const ItemDescription = ({ productItem }) => {
 	};
 
 	const handleMinus = () => {
-		const newState = (prev) => prev - 1;
+		const newState = (prev: number) => prev - 1;
 
 		if (productQuantityChosen > 0) {
 			setProductQuantityChosen(newState);
@@ -152,5 +156,5 @@ const ItemDescription = ({ productItem }) => {
 			</div>
 		</article>
 	);
-};
+}
 export default ItemDescription;

@@ -1,7 +1,7 @@
 import { createContext } from '@/hooks/context-hook';
 import { useState } from 'react';
 import { createStore } from 'zustand';
-import { CarouselProviderProps, CarouselStore, CarouselStoreApi } from './carousel-types';
+import { CarouselProviderProps, CarouselStore, CarouselStoreApi } from './carousel.types';
 
 const createCarouselStore = (slideImages: CarouselStore['slideImages']) =>
 	createStore<CarouselStore>((set, get) => ({

@@ -1,7 +1,7 @@
 import { useLocation } from 'react-router-dom';
 import { useGetAllProducts } from './useGetAllProducts';
 
-const useGetProductCategory = (productCategory: string) => {
+const useGetProductCategory = (productCategory: string | undefined) => {
 	const href = useLocation().pathname;
 
 	const { allProductsArray, isError, isLoading } = useGetAllProducts();
@@ -11,9 +11,10 @@ const useGetProductCategory = (productCategory: string) => {
 	const errorMessageDefaults = {
 		'/wishlist': 'WishList page still under construction',
 		'/contact': 'Contact page still under construction',
+		'/checkout': 'Checkout page still under construction',
 	};
 
-	if (!possibleCategories.includes(productCategory)) {
+	if (!productCategory || !possibleCategories.includes(productCategory)) {
 		throw Error(
 			errorMessageDefaults[href as keyof typeof errorMessageDefaults] ?? 'Category not found!'
 		);

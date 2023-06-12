@@ -1,6 +1,15 @@
 import { twMerge } from 'tailwind-merge';
 
-const DropDown = ({ id = '', isOpen = false, children, className }) => {
+type DropDownProps = {
+	id?: string;
+	children: React.ReactNode;
+	className?: string;
+	isOpen: boolean;
+};
+
+type DropDownPanelProps = Omit<DropDownProps, 'isOpen'>;
+
+function DropDown({ id = 'DropDown', isOpen = false, children, className = '' }: DropDownProps) {
 	return (
 		<div
 			id={id}
@@ -13,13 +22,15 @@ const DropDown = ({ id = '', isOpen = false, children, className }) => {
 			{children}
 		</div>
 	);
-};
+}
 
-const DropDownPanel = ({ id = '', children, className }) => (
-	<ul id={id} className={twMerge(`overflow-y-hidden [transition:padding_500ms]`, className)}>
-		{children}
-	</ul>
-);
+function DropDownPanel({ id = 'DropDown Panel', children, className }: DropDownPanelProps) {
+	return (
+		<ul id={id} className={twMerge(`overflow-y-hidden [transition:padding_500ms]`, className)}>
+			{children}
+		</ul>
+	);
+}
 
 DropDown.Panel = DropDownPanel;
 

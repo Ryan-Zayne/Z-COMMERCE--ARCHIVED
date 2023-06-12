@@ -1,12 +1,14 @@
-import { ProductCard } from '../../../components';
+import { ProductCard } from '@/components';
+import { assertDefined } from '@/global-helpers.types.';
+import { DataArrayProp } from './home-product.types';
 
-const HotSalesProducts = ({ data }) => {
+function HotSalesProducts({ data }: DataArrayProp) {
 	const ProductCards = data.map((product) => (
 		<ProductCard
-			key={product.id}
-			to={`/${product.category}/${product.id}`}
-			image={product.images[0]}
-			product={product}
+			key={product?.id}
+			to={`/${product?.category}/${product?.id}`}
+			image={product?.images[0] ?? ''}
+			product={assertDefined(product)}
 		/>
 	));
 
@@ -18,5 +20,5 @@ const HotSalesProducts = ({ data }) => {
 			</ul>
 		</article>
 	);
-};
+}
 export default HotSalesProducts;

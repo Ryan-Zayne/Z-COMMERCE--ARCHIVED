@@ -1,16 +1,19 @@
+import { CarouselStore } from '@/components/Carousel/carousel.types';
 import { BsChevronRight } from 'react-icons/bs';
 import { twJoin } from 'tailwind-merge';
 import { Carousel, ImageComponent } from '../../../components';
 import { useCarouselStore } from '../../../components/Carousel';
 import { useThemeStore } from '../../../store/zustand/themeStore';
 
-const ItemHero = () => {
+function ItemHero() {
 	const isDarkMode = useThemeStore((state) => state.isDarkMode);
-	const slideImages = useCarouselStore((state) => state.slideImages);
+	const slideImages = useCarouselStore(
+		(state) => state.slideImages as Extract<CarouselStore['slideImages'], string[]>
+	);
 
 	const CarouselItems = slideImages.map((image) => (
 		<Carousel.Item key={image}>
-			<ImageComponent dynamicImage={true} src={image} alt="" />
+			<ImageComponent dynamicImage={true} src={image} />
 		</Carousel.Item>
 	));
 
@@ -43,5 +46,5 @@ const ItemHero = () => {
 			</Carousel>
 		</article>
 	);
-};
+}
 export default ItemHero;

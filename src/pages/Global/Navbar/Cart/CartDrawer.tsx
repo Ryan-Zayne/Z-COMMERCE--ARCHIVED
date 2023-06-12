@@ -1,5 +1,5 @@
 import { Button, Drawer, Logo } from '@/components';
-import { DrawerContentProps, DrawerStore } from '@/components/Drawer/drawer-types';
+import { DrawerContentProps, DrawerStore } from '@/components/Drawer/drawer.types';
 import { useShopStore } from '@/store/zustand/shopStore';
 import { useThemeStore } from '@/store/zustand/themeStore';
 import { IoMdCart } from 'react-icons/io';
@@ -8,7 +8,7 @@ import CartItem from './CartItem';
 
 type CartDrawerProps = DrawerStore & { placement: DrawerContentProps['placement'] };
 
-const CartDrawer = ({ isOpen, onClose, onOpen, placement = 'right' }: CartDrawerProps) => {
+function CartDrawer({ isOpen, onClose, onOpen, placement = 'right' }: CartDrawerProps) {
 	const cart = useShopStore((state) => state.cart);
 	const isDarkMode = useThemeStore((state) => state.isDarkMode);
 	const totalPrice = cart?.reduce((acc, item) => acc + item.price * item.quantity, 0);
@@ -67,12 +67,12 @@ const CartDrawer = ({ isOpen, onClose, onOpen, placement = 'right' }: CartDrawer
 							'w-full text-[1.7rem] font-[600] [transition:box-shadow_300ms_ease] hover:box-shadow-[0_4px_20px_rgb(51,62,72,0.4)]'
 						}
 					>
-						<Link>Checkout</Link>
+						<Link to={'checkout'}>Checkout</Link>
 					</Button>
 				</Drawer.Footer>
 			</Drawer.Content>
 		</Drawer>
 	);
-};
+}
 
 export default CartDrawer;

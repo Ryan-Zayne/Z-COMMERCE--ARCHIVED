@@ -3,18 +3,41 @@ import { useCarouselOptions } from '../../hooks/useCarouselOptions';
 import { useGlobalStore } from '../../store/zustand/globalStore';
 import { useCarouselStore } from './useCarouselStore';
 
-const Carousel = ({
+type CarouselProps = {
+	as?: React.ElementType;
+	children: React.ReactNode;
+	outerClassName?: string;
+	innerClassName?: string;
+	leftBtnClasses?: string;
+	rightBtnClasses?: string;
+	arrowIcon: JSX.Element;
+	isAutoSlide?: boolean;
+	autoSlideInterval?: number;
+	pauseOnHover?: boolean;
+};
+
+type CarouselIndicatorProps = {
+	className?: string;
+	onActiveClassName?: string;
+	index: number;
+};
+
+type OtherCarouselProps = Pick<CarouselProps, 'children'> & {
+	className?: string;
+};
+
+function Carousel({
 	as: Element = 'article',
 	children,
 	outerClassName = '',
 	innerClassName = '',
-	arrowIcon,
 	leftBtnClasses = '',
 	rightBtnClasses = '',
+	arrowIcon,
 	isAutoSlide = false,
 	autoSlideInterval = 10000,
 	pauseOnHover = false,
-}) => {
+}: CarouselProps) {
 	const isMobile = useGlobalStore((state) => state.isMobile);
 	const nextSlide = useCarouselStore((state) => state.nextSlide);
 	const previousSlide = useCarouselStore((state) => state.previousSlide);
@@ -40,6 +63,7 @@ const Carousel = ({
 					{arrowIcon}
 				</span>
 			</button>
+
 			<div
 				id="Carousel Inner"
 				className={twMerge(
@@ -48,6 +72,7 @@ const Carousel = ({
 			>
 				{children}
 			</div>
+
 			<button className="absolute right-0 z-40 h-full w-[9rem]" onClick={nextSlide}>
 				<span
 					className={twMerge(
@@ -59,13 +84,13 @@ const Carousel = ({
 			</button>
 		</Element>
 	);
-};
+}
 
-const CarouselItem = ({ children, className = '' }) => {
+function CarouselItem({ children, className = '' }: OtherCarouselProps) {
 	return <li className={twMerge(`flex w-full shrink-0 ${className}`)}>{children}</li>;
-};
+}
 
-const CarouselItemWrapper = ({ children, className = '' }) => {
+function CarouselItemWrapper({ children, className = '' }: OtherCarouselProps) {
 	const currentSlide = useCarouselStore((state) => state.currentSlide);
 	return (
 		<ul
@@ -80,17 +105,21 @@ const CarouselItemWrapper = ({ children, className = '' }) => {
 			{children}
 		</ul>
 	);
-};
+}
 
-const CarouselCaption = ({ children, className = '' }) => {
+function CarouselCaption({ children, className = '' }: OtherCarouselProps) {
 	return (
 		<div id="Carousel Caption" className={twMerge(`absolute text-light ${className}`)}>
 			{children}
 		</div>
 	);
-};
+}
 
-const CarouselIndicator = ({ className = '', onActiveClassName, index }) => {
+function CarouselIndicator({
+	className = '',
+	onActiveClassName = 'w-[3.5rem] rounded-[0.5rem] bg-carousel-dot',
+	index,
+}: CarouselIndicatorProps) {
 	const currentSlide = useCarouselStore((state) => state.currentSlide);
 	const goToSlide = useCarouselStore((state) => state.goToSlide);
 
@@ -100,13 +129,13 @@ const CarouselIndicator = ({ className = '', onActiveClassName, index }) => {
 			className={twMerge(`
 				inline-block h-[0.6rem] w-[0.6rem] shrink-0 cursor-pointer rounded-[50%] bg-carousel-btn ease-in-out hover:bg-carousel-dot hover:[box-shadow:0_0_5px_var(--carousel-dot)]
 				${className}
-				${index === currentSlide ? `w-[3.5rem] rounded-[0.5rem] bg-carousel-dot ${onActiveClassName}` : ''}
+				${index === currentSlide ? `${onActiveClassName}` : ''}
 			`)}
 		/>
 	);
-};
+}
 
-const CarouselIndicatorWrapper = ({ children, className = '' }) => {
+function CarouselIndicatorWrapper({ children, className = '' }: OtherCarouselProps) {
 	return (
 		<span
 			id="Carousel Indicators"
@@ -117,7 +146,7 @@ const CarouselIndicatorWrapper = ({ children, className = '' }) => {
 			{children}
 		</span>
 	);
-};
+}
 
 Carousel.Item = CarouselItem;
 Carousel.ItemWrapper = CarouselItemWrapper;

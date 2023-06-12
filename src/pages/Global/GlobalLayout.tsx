@@ -1,9 +1,9 @@
 import { Outlet } from 'react-router-dom';
-import { ScrollToTopButton } from '../../components';
+import { ScrollToTopButton } from '@/components';
 import Footer from './Footer/Footer';
 import Navbar from './Navbar/Navbar';
 
-const GlobalLayout = () => {
+function GlobalLayout() {
 	return (
 		<>
 			<ScrollToTopButton />
@@ -12,6 +12,6 @@ const GlobalLayout = () => {
 			<Footer />
 		</>
 	);
-};
+}
 
 export default GlobalLayout;

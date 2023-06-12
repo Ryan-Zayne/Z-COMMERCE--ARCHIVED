@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-const PageNotFound = () => {
+function PageNotFound() {
 	return (
 		<section className="fixed inset-0 flex flex-col items-center justify-center text-center">
 			<svg
@@ -29,6 +29,6 @@ const PageNotFound = () => {
 			</Link>
 		</section>
 	);
-};
+}
 
 export default PageNotFound;

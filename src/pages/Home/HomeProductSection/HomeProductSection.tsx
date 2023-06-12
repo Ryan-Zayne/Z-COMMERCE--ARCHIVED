@@ -4,7 +4,7 @@ import HotSalesProducts from './HotSalesProducts';
 import RecentProducts from './RecentProducts';
 import SimilarProducts from './SimilarProducts';
 
-const HomeProductSection = () => {
+function HomeProductSection() {
 	const { hotSalesProducts, recentlyViewedProducts, similarProducts, isLoading } =
 		useHomePageProducts();
 
@@ -19,6 +19,6 @@ const HomeProductSection = () => {
 			<SimilarProducts data={similarProducts} />
 		</section>
 	);
-};
+}
 
 export default HomeProductSection;

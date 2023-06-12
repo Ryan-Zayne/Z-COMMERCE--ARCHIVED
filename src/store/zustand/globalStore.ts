@@ -1,7 +1,7 @@
 import { create, StateCreator } from 'zustand';
 import { createGlobalStateSlice } from './slices/globalStateSlice';
 import { createMediaQuerySlice } from './slices/mediaQuerySlice';
-import { GlobalStore } from './zustand-store-types';
+import { GlobalStore } from './zustand-store.types';
 
 const globalStoreObject: StateCreator<GlobalStore> = (...params) => ({
 	...createGlobalStateSlice(...params),

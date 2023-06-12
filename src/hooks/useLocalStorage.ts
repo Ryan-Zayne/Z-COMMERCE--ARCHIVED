@@ -12,7 +12,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
  * @param {boolean} options.syncData - Whether or not to sync changes across tabs (default is true)
  * @returns {Array} An array containing the current value and a function to update the value
  */
-const useLocalStorage = (key, defaultValue, options = {}) => {
+const useLocalStorage = (key: string, defaultValue: unknown, options = {}) => {
 	const isWindowDefined = useMemo(() => typeof window !== 'undefined', []);
 
 	//* For custom serializer, logger, parser and syncData value
@@ -20,6 +20,7 @@ const useLocalStorage = (key, defaultValue, options = {}) => {
 		() => ({
 			stringifier: JSON.stringify,
 			parser: JSON.parse,
+			// eslint-disable-next-line no-console
 			logger: console.log,
 			syncData: true,
 			...options,
@@ -31,7 +32,7 @@ const useLocalStorage = (key, defaultValue, options = {}) => {
 
 	//* Use a ref to store the raw value from local storage, as well as to
 	//* track the previous value when syncing across tabs
-	const rawValueRef = useRef(null);
+	const rawValueRef = useRef<any>(null);
 
 	// Use state to store the current value, and attempt to load it from
 	// local storage if it exists
@@ -94,7 +95,7 @@ const useLocalStorage = (key, defaultValue, options = {}) => {
 
 	useEffect(() => {
 		//* Function for handling storage events and syncing across tabs
-		const handleStorageChange = (event) => {
+		const handleStorageChange = (event: StorageEvent) => {
 			if (event.key !== key || event.storageArea !== window.localStorage) return;
 
 			try {

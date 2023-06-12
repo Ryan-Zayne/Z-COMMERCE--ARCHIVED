@@ -41,7 +41,7 @@ const categories = [
 	},
 ];
 
-const Categories = () => {
+function Categories() {
 	const isDarkMode = useThemeStore((state) => state.isDarkMode);
 
 	const CategoryLinks = categories.map((category) => (
@@ -79,5 +79,5 @@ const Categories = () => {
 			</ul>
 		</article>
 	);
-};
+}
 export default Categories;

@@ -1,9 +1,10 @@
+import { LoadingSkeleton, ProductCard } from '@/components';
+import { assertDefined } from '@/global-helpers.types.';
+import { useGetAllProducts } from '@/store/react-query';
 import { TiArrowBack } from 'react-icons/ti';
 import { Link } from 'react-router-dom';
-import { LoadingSkeleton, ProductCard } from '../../components';
-import { useGetAllProducts } from '../../store/react-query';
 
-const AllProductsPage = () => {
+function AllProductsPage() {
 	const { isLoading, allProductsArray } = useGetAllProducts();
 
 	if (isLoading) {
@@ -12,10 +13,10 @@ const AllProductsPage = () => {
 
 	const allProductCards = allProductsArray.map((product) => (
 		<ProductCard
-			key={product.id}
-			to={`/${product.category}/${product.id}`}
-			image={product.images[1]}
-			product={product}
+			key={product?.id}
+			to={`/${product?.category}/${product?.id}`}
+			image={product?.images[1] ?? ''}
+			product={assertDefined(product)}
 		/>
 	));
 
@@ -36,6 +37,6 @@ const AllProductsPage = () => {
 			</article>
 		</section>
 	);
-};
+}
 
 export default AllProductsPage;

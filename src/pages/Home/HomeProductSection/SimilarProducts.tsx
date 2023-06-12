@@ -1,12 +1,14 @@
-import { ProductCard } from '../../../components';
+import { ProductCard } from '@/components';
+import { assertDefined } from '@/global-helpers.types.';
+import { DataArrayProp } from './home-product.types';
 
-const SimilarProducts = ({ data }) => {
+function SimilarProducts({ data }: DataArrayProp) {
 	const ProductCards = data.map((product) => (
 		<ProductCard
-			key={product.id}
-			to={`/${product.category}/${product.id}`}
-			image={product.images[1]}
-			product={product}
+			key={product?.id}
+			to={`/${product?.category}/${product?.id}`}
+			image={product?.images[1] ?? ''}
+			product={assertDefined(product)}
 		/>
 	));
 
@@ -20,5 +22,5 @@ const SimilarProducts = ({ data }) => {
 			</ul>
 		</article>
 	);
-};
+}
 export default SimilarProducts;

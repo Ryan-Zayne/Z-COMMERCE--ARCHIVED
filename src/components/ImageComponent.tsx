@@ -2,15 +2,25 @@ import { useEffect, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
 import { useThemeStore } from '../store/zustand/themeStore';
 
-const ImageComponent = ({
+type ImageComponentProps = {
+	src: string;
+	blurSrc?: string;
+	className?: string;
+	wrapperClassName?: string;
+	dynamicImage?: boolean;
+	loading?: 'lazy' | 'eager';
+	onClick?: React.MouseEventHandler;
+};
+
+function ImageComponent({
 	src,
-	blurSrc,
-	className,
-	wrapperClassName,
+	blurSrc = '',
+	className = '',
+	wrapperClassName = '',
 	dynamicImage = false,
-	loading,
-	onClick,
-}) => {
+	loading = 'eager',
+	onClick = () => {},
+}: ImageComponentProps) {
 	const [isImageLoaded, setIsImageLoaded] = useState(false);
 	const [img] = useState(() => new Image());
 	const isDarkMode = useThemeStore((state) => state.isDarkMode);
@@ -30,7 +40,7 @@ const ImageComponent = ({
 	}, [img]);
 
 	return !dynamicImage ? (
-		<img src={isImageLoaded ? src : blurSrc} className={`object-cover ${className}`} />
+		<img src={isImageLoaded ? src : blurSrc} className={twMerge(`object-cover`, className)} />
 	) : (
 		<div
 			className={twMerge(
@@ -55,5 +65,5 @@ const ImageComponent = ({
 			/>
 		</div>
 	);
-};
+}
 export default ImageComponent;

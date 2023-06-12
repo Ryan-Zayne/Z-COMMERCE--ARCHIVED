@@ -1,12 +1,12 @@
-import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { Logo } from '@/components';
+import { useGlobalStore } from '@/store/zustand/globalStore';
 import { Transition } from '@headlessui/react';
-import { Logo } from '../../components';
-import { useGlobalStore } from '../../store/zustand/globalStore';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import LoginForm from './LoginForm';
 import SignUpForm from './SignUpForm';
 
-const Register = () => {
+function Register() {
 	const isDesktop = useGlobalStore((state) => state.isDesktop);
 	const [isLogin, setIsLogin] = useState(true);
 
@@ -54,6 +54,6 @@ const Register = () => {
 			</Transition>
 		</section>
 	);
-};
+}
 
 export default Register;

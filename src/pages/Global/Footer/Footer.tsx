@@ -1,18 +1,18 @@
+import { DropDown, Logo, SearchForm } from '@/components';
+import { useDisclosure } from '@/hooks';
+import { useGlobalStore } from '@/store/zustand/globalStore';
+import { useThemeStore } from '@/store/zustand/themeStore';
 import { BsFacebook, BsInstagram, BsPinterest, BsTwitter } from 'react-icons/bs';
 import { FaChevronDown } from 'react-icons/fa';
 import { MdLocationOn, MdMail, MdPhone } from 'react-icons/md';
 import { TfiYoutube } from 'react-icons/tfi';
 import { Link } from 'react-router-dom';
 import { twJoin, twMerge } from 'tailwind-merge';
-import { DropDown, Logo, SearchForm } from '../../../components';
-import { useDisclosure } from '../../../hooks';
-import { useGlobalStore } from '../../../store/zustand/globalStore';
-import { useThemeStore } from '../../../store/zustand/themeStore';
 import getOnApple from './images/get-on-apple.png';
 import getOnGoogle from './images/get-on-google.png';
 import newsLetterIcon from './images/newsletter-icon.svg';
 
-const Footer = () => {
+function Footer() {
 	const isDarkMode = useThemeStore((state) => state.isDarkMode);
 	const isDesktop = useGlobalStore((state) => state.isDesktop);
 	const dropOne = useDisclosure();
@@ -26,7 +26,7 @@ const Footer = () => {
 			<section
 				data-aos="fade-up"
 				data-aos-duration="1000"
-				className=" flex flex-col bg-slate-900 bg-[image:url('/src/pages/Global/Footer/images/newsletter-bg.png')] bg-cover bg-no-repeat p-[3rem_2rem] [background-position:center] lg:flex-row lg:justify-between lg:px-[clamp(3rem,9vw,18rem)]"
+				className=" flex flex-col bg-slate-900 bg-[image:url('/src/pages/Global/Footer/images/newsletter-bg.webp')] bg-cover bg-no-repeat p-[3rem_2rem] [background-position:center] lg:flex-row lg:justify-between lg:px-[clamp(3rem,9vw,18rem)]"
 			>
 				<div className="flex flex-col items-center gap-[1rem] lg:gap-[2.5rem]">
 					<h4 className="flex items-center text-[1.7rem] font-[500] text-heading lg:text-[2.4rem]">
@@ -263,5 +263,5 @@ const Footer = () => {
 			</section>
 		</footer>
 	);
-};
+}
 export default Footer;

@@ -1,15 +1,7 @@
 import { StateCreator, create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import { prefersDarkMode } from '../../utils/constants';
-
-type ThemeStore = {
-	theme: string;
-	isDarkMode: boolean;
-	themeActions: {
-		toggleTheme: () => void;
-		toggleIsDarkMode: () => void;
-	};
-};
+import { ThemeStore } from './zustand-store.types';
 
 // Store Object Initializtion
 const themeStoreObject: StateCreator<ThemeStore> = (set, get) => ({

@@ -1,20 +1,20 @@
+import { Button, Logo } from '@/components';
+import { useGlobalStore } from '@/store/zustand/globalStore';
+import { useThemeStore } from '@/store/zustand/themeStore';
 import { useState } from 'react';
-import { twMerge } from 'tailwind-merge';
-import { FcGoogle } from 'react-icons/fc';
-import { FaFacebook } from 'react-icons/fa';
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
+import { FaFacebook } from 'react-icons/fa';
+import { FcGoogle } from 'react-icons/fc';
 import { Link } from 'react-router-dom';
-import { useThemeStore } from '../../store/zustand/themeStore';
-import { Button, Logo } from '../../components';
-import { useGlobalStore } from '../../store/zustand/globalStore';
+import { twMerge } from 'tailwind-merge';
 
-const LoginForm = ({ setIsLogin }) => {
+const LoginForm = ({ setIsLogin }: { setIsLogin: React.Dispatch<React.SetStateAction<boolean>> }) => {
 	const isDarkMode = useThemeStore((state) => state.isDarkMode);
 	const isDesktop = useGlobalStore((state) => state.isDesktop);
 	const [isPasswordShow, setIsPasswordShow] = useState(false);
 
-	const handlePasswordShow = (e) => {
-		e.preventDefault();
+	const handlePasswordShow: React.MouseEventHandler = (event) => {
+		event.preventDefault();
 		setIsPasswordShow((prev) => !prev);
 	};
 
@@ -74,7 +74,6 @@ const LoginForm = ({ setIsLogin }) => {
 					text={'Login'}
 					theme={'secondary'}
 					className={'mt-[1.5rem] rounded-[1rem] text-[1.7rem] font-[600]'}
-					// onClick={(e) => e.preventDefault()}
 				/>
 			</form>
 

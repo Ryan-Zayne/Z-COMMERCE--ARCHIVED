@@ -5,9 +5,6 @@
 
 
 @layer base {
-
-
-
 	:root {
 		--text-header: hsl(43, 100%, 55%);
 		--text-light: hsl(0, 17%, 93%);

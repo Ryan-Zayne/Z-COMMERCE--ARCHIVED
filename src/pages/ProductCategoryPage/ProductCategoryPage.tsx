@@ -1,9 +1,10 @@
-import { useParams, Link } from 'react-router-dom';
+import { LoadingSkeleton, ProductCard } from '@/components';
+import { assertDefined } from '@/global-helpers.types.';
+import { useGetProductCategory } from '@/store/react-query';
 import { TiArrowBack } from 'react-icons/ti';
-import { useGetProductCategory } from '../../store/react-query';
-import { LoadingSkeleton, ProductCard } from '../../components';
+import { Link, useParams } from 'react-router-dom';
 
-const ProductCategoryPage = () => {
+function ProductCategoryPage() {
 	const { category } = useParams();
 	const { productsArray, isLoading } = useGetProductCategory(category);
 
@@ -13,10 +14,10 @@ const ProductCategoryPage = () => {
 
 	const ProductCategoryCards = productsArray.map((product) => (
 		<ProductCard
-			key={product.id}
-			to={`/${product.category}/${product.id}`}
-			image={product.images[1]}
-			product={product}
+			key={product?.id}
+			to={`/${product?.category}/${product?.id}`}
+			image={product?.images[1] ?? ''}
+			product={assertDefined(product)}
 		/>
 	));
 
@@ -39,6 +40,6 @@ const ProductCategoryPage = () => {
 			</article>
 		</section>
 	);
-};
+}
 
 export default ProductCategoryPage;

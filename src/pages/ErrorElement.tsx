@@ -1,7 +1,7 @@
 import { Link, useRouteError } from 'react-router-dom';
 
-const ErrorElement = () => {
-	const error = useRouteError();
+function ErrorElement() {
+	const error = useRouteError() as Error;
 
 	return (
 		<section className="fixed inset-0 flex flex-col items-center justify-center text-center">
@@ -31,6 +31,6 @@ const ErrorElement = () => {
 			</Link>
 		</section>
 	);
-};
+}
 
 export default ErrorElement;

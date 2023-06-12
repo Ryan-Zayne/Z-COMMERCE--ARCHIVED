@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 import { RiCloseFill } from 'react-icons/ri';
 import { twMerge } from 'tailwind-merge';
 import Portal from '../Portal';
-import { DrawerCloseProps, DrawerContentProps, DrawerProps, OtherDrawerProps } from './drawer-types';
+import { DrawerCloseProps, DrawerContentProps, DrawerProps, OtherDrawerProps } from './drawer.types';
 import { DrawerContextProvider } from './drawerStoreContext';
 import { useDrawerStore } from './useDrawerStore';
 
@@ -37,7 +37,7 @@ function DrawerOverlay() {
 	);
 }
 
-function DrawerContent({ className = '', children, placement = 'right' }: DrawerContentProps) {
+function DrawerContent({ className, children, placement = 'right' }: DrawerContentProps) {
 	const isOpen = useDrawerStore((state) => state.isOpen);
 
 	const placementObject = {
@@ -49,8 +49,9 @@ function DrawerContent({ className = '', children, placement = 'right' }: Drawer
 		<main
 			id="Drawer Content Container"
 			className={twMerge(
-				`custom-scrollbar fixed bottom-0 top-0 z-[500] flex flex-col overflow-y-auto bg-body transition-transform duration-[250ms] ease-slide-out ${placementObject[placement]} ${className}`,
-				[isOpen && 'translate-x-0 duration-[650ms] ease-slide-in']
+				`custom-scrollbar fixed bottom-0 top-0 z-[500] flex flex-col overflow-y-auto bg-body transition-transform duration-[250ms] ease-slide-out ${placementObject[placement]}`,
+				[isOpen && 'translate-x-0 duration-[650ms] ease-slide-in'],
+				[className]
 			)}
 		>
 			{children}
@@ -58,12 +59,12 @@ function DrawerContent({ className = '', children, placement = 'right' }: Drawer
 	);
 }
 
-function DrawerCloseButton({ children, className = '', icon = <RiCloseFill /> }: DrawerCloseProps) {
+function DrawerCloseButton({ className = '', icon = <RiCloseFill /> }: DrawerCloseProps) {
 	const onClose = useDrawerStore((state) => state.onClose);
 
 	return (
 		<button className={twMerge(`absolute ${className}`)} onClick={onClose}>
-			{children ?? icon}
+			{icon}
 		</button>
 	);
 }

@@ -1,19 +1,9 @@
-import { create } from 'zustand';
+import { StateCreator, create } from 'zustand';
 import { persist } from 'zustand/middleware';
-
-type ShopStore = {
-	cart: any[];
-	wishList: any[];
-	shopActions: {
-		addToCart: (product: any, quantity: number) => void;
-		removeProductFromCart: (product: any) => void;
-		decreaseProductQuantity: (product: any) => void;
-		toggleAddToWishList: (product: any) => void;
-	};
-};
+import { ShopStore } from './zustand-store.types';
 
 // Store Object creation
-const shopStateObject = (set, get) => ({
+const shopStateObject: StateCreator<ShopStore> = (set, get) => ({
 	cart: [],
 	wishList: [],
 
@@ -70,7 +60,7 @@ const shopStateObject = (set, get) => ({
 });
 
 // Store hook Creation
-export const useShopStore = create(
+export const useShopStore = create<ShopStore>()(
 	persist(shopStateObject, {
 		name: 'shop',
 		partialize: ({ shopActions, ...state }) => state,

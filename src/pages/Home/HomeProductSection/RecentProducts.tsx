@@ -1,14 +1,16 @@
-import { ProductCard } from '../../../components';
+import { ProductCard } from '@/components';
+import { assertDefined } from '@/global-helpers.types.';
+import { DataArrayProp } from './home-product.types';
 
-const RecentProducts = ({ data }) => {
+function RecentProducts({ data }: DataArrayProp) {
 	const ProductCards = data
-		.filter((product) => product.id !== 3)
+		.filter((product) => product?.id !== 3)
 		.map((product) => (
 			<ProductCard
-				key={product.id}
-				to={`/${product.category}/${product.id}`}
-				image={product.images[0]}
-				product={product}
+				key={product?.id}
+				to={`/${product?.category}/${product?.id}`}
+				image={product?.images[0] ?? ''}
+				product={assertDefined(product)}
 			/>
 		));
 
@@ -20,5 +22,5 @@ const RecentProducts = ({ data }) => {
 			</ul>
 		</article>
 	);
-};
+}
 export default RecentProducts;
