@@ -1,8 +1,13 @@
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
-import { twMerge } from 'tailwind-merge';
+import { twJoin, twMerge } from 'tailwind-merge';
 import { useThemeStore } from '../store/zustand/themeStore';
 
-const LoadingSkeleton = ({ count = 5, itemDescription = false }) => {
+type SkeletonProps = {
+	count?: number;
+	itemDescription?: boolean;
+};
+
+function LoadingSkeleton({ count = 5, itemDescription = false }: SkeletonProps) {
 	const isDarkMode = useThemeStore((state) => state.isDarkMode);
 	const SkeletonCards = [...Array(count).keys()].map((id) => (
 		<li
@@ -14,9 +19,8 @@ const LoadingSkeleton = ({ count = 5, itemDescription = false }) => {
 			)}
 		>
 			<SkeletonTheme
-				highlightColor={isDarkMode && '#1e2021'}
-				duration={'0.4'}
-				baseColor={isDarkMode && '#232628'}
+				highlightColor={twJoin(isDarkMode && '#1e2021')}
+				baseColor={twJoin(isDarkMode && '#232628')}
 			>
 				<div>
 					<Skeleton className={`block h-[18rem] w-full rounded-[0.8rem_0.8rem_0_0]`} />
@@ -54,9 +58,8 @@ const LoadingSkeleton = ({ count = 5, itemDescription = false }) => {
 		<section className="p-[1rem_2rem_3rem] lg:pt-[3rem]">
 			<div className="mt-[3rem] flex flex-col items-center gap-[4rem] overflow-hidden md:mt-[4.5rem] md:h-[47rem] md:flex-row md:items-start md:justify-around md:px-[1rem] lg:mt-[6rem] lg:gap-[8rem]">
 				<SkeletonTheme
-					highlightColor={isDarkMode && '#1e2021'}
-					duration={'0.4'}
-					baseColor={isDarkMode && '#232628'}
+					highlightColor={twJoin(isDarkMode && '#1e2021')}
+					baseColor={twJoin(isDarkMode && '#232628')}
 				>
 					<Skeleton className="h-[35rem] w-[40rem] md:h-full lg:w-full" />
 					<Skeleton className="h-[47rem] w-[46rem] max-md:mx-auto" />
@@ -64,6 +67,6 @@ const LoadingSkeleton = ({ count = 5, itemDescription = false }) => {
 			</div>
 		</section>
 	);
-};
+}
 
 export default LoadingSkeleton;

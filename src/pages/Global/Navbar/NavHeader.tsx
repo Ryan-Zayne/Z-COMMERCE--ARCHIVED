@@ -26,11 +26,11 @@ const NavHeader = () => {
 			className="flex w-full select-none justify-between gap-[1rem] px-[1rem] lg:pr-[4rem] "
 		>
 			<Link to="/">
-				<Logo className={isDarkMode && 'brightness-[0.8] contrast-[1.8]'} />
+				<Logo className={twJoin(isDarkMode && 'contrast-[1.8]) brightness-[0.8]')} />
 			</Link>
 
 			<SearchForm
-				className={twJoin(
+				className={twMerge(
 					[
 						isMobile
 							? 'absolute inset-x-0 top-[6.2rem] z-[10] flex h-0 w-[100%] items-center justify-center overflow-y-hidden rounded-[0_0_5px_5px] bg-body px-[2rem] transition-[height] duration-[400ms] ease-out'

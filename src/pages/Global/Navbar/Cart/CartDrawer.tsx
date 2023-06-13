@@ -6,7 +6,7 @@ import { IoMdCart } from 'react-icons/io';
 import { Link } from 'react-router-dom';
 import CartItem from './CartItem';
 
-type CartDrawerProps = DrawerStore & { placement: DrawerContentProps['placement'] };
+type CartDrawerProps = DrawerStore & { placement?: DrawerContentProps['placement'] };
 
 function CartDrawer({ isOpen, onClose, onOpen, placement = 'right' }: CartDrawerProps) {
 	const cart = useShopStore((state) => state.cart);

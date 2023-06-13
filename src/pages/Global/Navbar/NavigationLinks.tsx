@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { AiOutlineCaretDown } from 'react-icons/ai';
 import { BsChevronDoubleRight, BsMenuButtonFill } from 'react-icons/bs';
-import { Link, NavLink, useHref } from 'react-router-dom';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import { twJoin, twMerge } from 'tailwind-merge';
 import { DropDown, Logo } from '../../../components';
 import { useDisclosure } from '../../../hooks';
@@ -9,7 +9,7 @@ import { useGlobalActions, useGlobalStore } from '../../../store/zustand/globalS
 import { useThemeStore } from '../../../store/zustand/themeStore';
 
 const NavigationLinks = () => {
-	const href = useHref();
+	const href = useLocation().pathname;
 	const isDarkMode = useThemeStore((state) => state.isDarkMode);
 	const isDesktop = useGlobalStore((state) => state.isDesktop);
 	const isNavShow = useGlobalStore((state) => state.isNavShow);
@@ -38,7 +38,7 @@ const NavigationLinks = () => {
 	const Categories = categories.map((category) => (
 		<li
 			key={category.title}
-			onClick={!isDesktop ? toggleNavShow : null}
+			onClick={!isDesktop ? toggleNavShow : undefined}
 			className={`max-lg:hover:text-heading`}
 		>
 			<Link
@@ -92,14 +92,14 @@ const NavigationLinks = () => {
 
 						[
 							!isDesktop &&
-								'fixed z-[100] w-0 flex-col gap-[3.2rem] bg-navbar pt-[7rem] text-[1.4rem] text-nav-text transition-[width] duration-[250ms] ease-[ease] [backdrop-filter:blur(2rem)_saturate(5)] [inset:0_0_0_auto] md:text-[1.6rem]',
+								'fixed z-[100] w-0 flex-col gap-[3.2rem] bg-navbar pt-[7rem] text-[1.4rem] text-nav-text transition-[width] duration-[250ms] ease-[ease] [inset:0_0_0_auto] [backdrop-filter:blur(2rem)_saturate(5)] md:text-[1.6rem]',
 						],
 						[isNavShow && !isDesktop && 'w-[min(21rem,_80%)] duration-[500ms] md:w-[24rem]']
 					)}
 				>
 					{!isDesktop && <Logo className={'mb-[2rem] ml-[4rem]'} />}
 
-					<li className="max-lg:pl-[4rem]" onClick={!isDesktop ? toggleNavShow : null}>
+					<li className="max-lg:pl-[4rem]" onClick={!isDesktop ? toggleNavShow : undefined}>
 						<NavLink to="/">Home</NavLink>
 					</li>
 
@@ -138,11 +138,11 @@ const NavigationLinks = () => {
 						</li>
 					)}
 
-					<li className="max-lg:pl-[4rem]" onClick={!isDesktop ? toggleNavShow : null}>
+					<li className="max-lg:pl-[4rem]" onClick={!isDesktop ? toggleNavShow : undefined}>
 						<NavLink to="/all-products">Products</NavLink>
 					</li>
 
-					<li className="max-lg:pl-[4rem]" onClick={!isDesktop ? toggleNavShow : null}>
+					<li className="max-lg:pl-[4rem]" onClick={!isDesktop ? toggleNavShow : undefined}>
 						<NavLink to={'/contact'}>Contact</NavLink>
 					</li>
 				</ul>

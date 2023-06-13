@@ -1,9 +1,9 @@
+import { useEffect } from 'react';
 import { BsFillMoonStarsFill } from 'react-icons/bs';
 import { FaSun } from 'react-icons/fa';
-import { useEffect } from 'react';
 import { useThemeActions, useThemeStore } from '../store/zustand/themeStore';
 
-const ThemeSwitchButton = ({ display = '' }) => {
+function ThemeSwitchButton({ display = '' }: { display?: string }) {
 	const theme = useThemeStore((state) => state.theme);
 	const { toggleTheme, toggleIsDarkMode } = useThemeActions();
 
@@ -31,6 +31,6 @@ const ThemeSwitchButton = ({ display = '' }) => {
 			</div>
 		</button>
 	);
-};
+}
 
 export default ThemeSwitchButton;

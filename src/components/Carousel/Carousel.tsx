@@ -50,7 +50,7 @@ function Carousel({
 	return (
 		<Element
 			id="Carousel"
-			className={twMerge(`relative flex h-full select-none ${outerClassName}`)}
+			className={twMerge(`relative touch-none flex h-full select-none ${outerClassName}`)}
 			onMouseEnter={() => !isMobile && pauseOnHover && setIsPaused(true)}
 			onMouseLeave={() => !isMobile && pauseOnHover && setIsPaused(false)}
 		>

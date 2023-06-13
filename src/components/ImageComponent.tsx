@@ -7,7 +7,7 @@ type ImageComponentProps = {
 	blurSrc?: string;
 	className?: string;
 	wrapperClassName?: string;
-	dynamicImage?: boolean;
+	isDynamicImage?: boolean;
 	loading?: 'lazy' | 'eager';
 	onClick?: React.MouseEventHandler;
 };
@@ -17,7 +17,7 @@ function ImageComponent({
 	blurSrc = '',
 	className = '',
 	wrapperClassName = '',
-	dynamicImage = false,
+	isDynamicImage = false,
 	loading = 'eager',
 	onClick = () => {},
 }: ImageComponentProps) {
@@ -27,6 +27,7 @@ function ImageComponent({
 
 	useEffect(() => {
 		img.src = src;
+
 		const handleImageLoad = () => setIsImageLoaded(true);
 
 		if (img.complete) {
@@ -39,7 +40,7 @@ function ImageComponent({
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [img]);
 
-	return !dynamicImage ? (
+	return !isDynamicImage ? (
 		<img src={isImageLoaded ? src : blurSrc} className={twMerge(`object-cover`, className)} />
 	) : (
 		<div

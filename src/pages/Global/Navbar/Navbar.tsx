@@ -1,7 +1,7 @@
 import NavHeader from './NavHeader';
 import NavigationLinks from './NavigationLinks';
 
-const Navbar = () => {
+function Navbar() {
 	return (
 		<header
 			id="Navbar"
@@ -11,6 +11,6 @@ const Navbar = () => {
 			<NavigationLinks />
 		</header>
 	);
-};
+}
 
 export default Navbar;

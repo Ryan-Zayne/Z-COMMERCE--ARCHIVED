@@ -94,7 +94,7 @@ function ProductCard({
 							[isHearted && 'scale-[1.17]']
 						)}
 						src={image}
-						dynamicImage={true}
+						isDynamicImage={true}
 						onClick={(e) => isMobile && e.preventDefault()}
 					/>
 				</Card.Header>

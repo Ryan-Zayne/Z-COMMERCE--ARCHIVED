@@ -1,7 +1,26 @@
 import { twMerge } from 'tailwind-merge';
 
-function Button({ theme, variant = 'regular', size = 'md', className, text, children, onClick }) {
-	const baseClasses = 'flex items-center justify-center';
+type ButtonProps = {
+	children?: React.ReactNode;
+	theme?: 'primary' | 'secondary' | 'ghost';
+	variant?: 'regular' | 'input' | 'cart' | 'shop';
+	size?: 'sm' | 'md' | 'lg';
+	className?: string;
+	text?: string;
+	onClick?: React.MouseEventHandler;
+};
+
+function Button({
+	theme = 'ghost',
+	variant = 'regular',
+	size = 'md',
+	className = '',
+	text = '',
+	// eslint-disable-next-line react/require-default-props
+	children,
+	onClick = () => {},
+}: ButtonProps) {
+	const BaseClasses = 'flex items-center justify-center';
 
 	const semanticVariants = {
 		regular: 'rounded-[0.5rem]',
@@ -23,11 +42,11 @@ function Button({ theme, variant = 'regular', size = 'md', className, text, chil
 	};
 
 	const BTN_CLASSES = twMerge(
-		baseClasses,
-		semanticVariants[variant] ?? '',
-		semanticThemes[theme] ?? '',
-		semanticSizes[size] ?? '',
-		className ?? ''
+		BaseClasses,
+		semanticVariants[variant],
+		semanticThemes[theme],
+		semanticSizes[size],
+		className
 	);
 
 	return (

@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 
-const useScrollObserver = (options = {}) => {
-	const elementRef = useRef(null);
+const useScrollObserver = <T extends HTMLElement>(options = {}) => {
+	const elementRef = useRef<T>(null);
 	const [isScrolled, setIsScrolled] = useState(false);
 	const [scrollObserver] = useState(
 		() =>

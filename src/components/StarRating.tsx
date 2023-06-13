@@ -1,8 +1,19 @@
+import { IconType } from 'react-icons';
 import { AiFillStar } from 'react-icons/ai';
 
-const StarRating = ({ rating, text, className = '', icon = AiFillStar }) => {
-	const RatingIcon = icon;
+type StarRatingProps = {
+	rating: number;
+	text?: string;
+	className?: string;
+	icon?: IconType;
+};
 
+function StarRating({
+	rating,
+	text = '',
+	className = '',
+	icon: RatingIcon = AiFillStar,
+}: StarRatingProps) {
 	const star5 = [...Array(5).keys()].map((id) => <RatingIcon key={id} color="var(--text-header)" />);
 
 	const star4 = [...Array(5).keys()].map((id, index) =>
@@ -21,6 +32,6 @@ const StarRating = ({ rating, text, className = '', icon = AiFillStar }) => {
 			</span>
 		</div>
 	);
-};
+}
 
 export default StarRating;

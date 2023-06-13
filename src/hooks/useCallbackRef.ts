@@ -1,9 +1,8 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+import { assertDefined } from '@/global-helpers.types.';
 import { useCallback, useEffect, useRef } from 'react';
 
-const useCallbackRef = <T extends (...args: any[]) => unknown>(
-	callbackFn: T | undefined,
-	deps: React.DependencyList = []
-) => {
+const useCallbackRef = <V, R>(callbackFn: (value: V) => R, deps: React.DependencyList = []) => {
 	const callbackRef = useRef(callbackFn);
 
 	//* useEffect hook to save the latest callback function to the ref
@@ -11,8 +10,9 @@ const useCallbackRef = <T extends (...args: any[]) => unknown>(
 		callbackRef.current = callbackFn;
 	}, [callbackFn]);
 
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	return useCallback(((...callbackArgs) => callbackRef.current?.(...callbackArgs)) as T, deps);
+	const savedCallback = useCallback((value?: V) => callbackRef.current(assertDefined(value)), deps);
+
+	return savedCallback;
 };
 
 export { useCallbackRef };

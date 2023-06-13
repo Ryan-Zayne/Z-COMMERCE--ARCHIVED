@@ -13,7 +13,7 @@ function ItemHero() {
 
 	const CarouselItems = slideImages.map((image) => (
 		<Carousel.Item key={image}>
-			<ImageComponent dynamicImage={true} src={image} />
+			<ImageComponent isDynamicImage={true} src={image} />
 		</Carousel.Item>
 	));
 

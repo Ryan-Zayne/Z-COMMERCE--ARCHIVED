@@ -87,7 +87,7 @@ function Footer() {
 			>
 				<article>
 					<Link to="/" className="ml-[-1.5rem] inline-block lg:ml-[0.8rem]">
-						<Logo className={isDarkMode && 'brightness-[0.8] contrast-[1.8]'} />
+						<Logo className={twJoin(isDarkMode && 'brightness-[0.8] contrast-[1.8]')} />
 					</Link>
 
 					<div className="mt-[0.5rem]">

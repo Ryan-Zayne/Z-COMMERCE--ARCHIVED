@@ -7,7 +7,7 @@ import { useScrollObserver } from '../hooks';
 const ScrollToTopButton = () => {
 	const href = useLocation().pathname;
 
-	const { isScrolled, elementRef } = useScrollObserver({ rootMargin: '500px 0px 0px' });
+	const { isScrolled, elementRef } = useScrollObserver<HTMLDivElement>({ rootMargin: '500px 0px 0px' });
 
 	//* Scrolling to top on change of route within Global layout
 

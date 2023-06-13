@@ -1,28 +1,28 @@
-// import { useState } from 'react';
+import { useState } from 'react';
 
-// /**
-//  * A custom hook that returns a value from a store and syncs it
-//  * with a local state.
-//  * This hook solves NextJs mount hydration issue.
-//  * @param {function} useStore - A hook that returns state object from
-//  * the store.
-//  * @param {function} storeCallback - A callback function that returns the specific state
-//  * from the store object.
-//  * @returns {*} - The state value from the store.
-//  */
-// const useFromStore = <T, U>(useStore, storeCallback) => {
-// 	// Get the state value from the store
-// 	const stateFromStore = useStore;
-// 	// Declare a state variable and a function to update it
-// 	const [state, setState] = useState(null);
+/**
+ * A custom hook that returns a value from a store and syncs it
+ * with a local state.
+ *
+ * This hook solves NextJs mount hydration issue.
+ * */
 
-// 	// Update the state whenever the stateFromStore value changes
-// 	if (stateFromStore != null && stateFromStore !== state) {
-// 		setState(stateFromStore);
-// 	}
+const useFromStore = <T, U>(
+	useStore: (callback: (state: T) => unknown) => unknown,
+	storeCallback: (state: T) => U
+) => {
+	// Get the state value from the store
+	const stateFromStore = useStore(storeCallback) as U;
+	// Declare a state variable and a function to update it
+	const [state, setState] = useState<U>();
 
-// 	// Return the current state value
-// 	return state;
-// };
+	// Update the state whenever the stateFromStore value changes
+	if (stateFromStore != null && stateFromStore !== state) {
+		setState(stateFromStore);
+	}
 
-// export { useFromStore };
+	// Return the current state value
+	return state;
+};
+
+export { useFromStore };

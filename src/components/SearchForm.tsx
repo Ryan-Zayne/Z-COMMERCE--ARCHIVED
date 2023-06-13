@@ -2,17 +2,30 @@ import { BiSearchAlt2 } from 'react-icons/bi';
 import { twMerge } from 'tailwind-merge';
 import Button from './Button';
 
+type SearchFormProps = {
+	className?: string;
+	btnClassName?: string;
+	inputClassName?: string;
+	buttonIcon?: JSX.Element;
+	theme?: 'primary' | 'secondary';
+	variant?: 'input';
+	size?: 'sm' | 'md' | 'lg';
+	placeholder?: string;
+	text?: string;
+};
+
 const SearchForm = ({
 	className = '',
 	btnClassName = '',
 	inputClassName = '',
-	buttonIcon,
-	theme,
-	variant,
-	size,
-	placeholder,
+	buttonIcon = <BiSearchAlt2 />,
+	theme = 'secondary',
+	variant = 'input',
+	size = 'sm',
+	placeholder = 'Search for products...',
+	// eslint-disable-next-line react/require-default-props
 	text,
-}) => (
+}: SearchFormProps) => (
 	<form
 		id="Search Form"
 		className={twMerge(`flex items-center ${className}`)}
@@ -24,18 +37,18 @@ const SearchForm = ({
 			)}
 			type="text"
 			name="Search"
-			placeholder={placeholder ?? 'Search for products...'}
+			placeholder={placeholder}
 		/>
 
 		<Button
 			className={twMerge(
 				`px-[2.1rem] text-[1.8rem] transition-[colors,scale] duration-300 hover:bg-primary hover:text-heading active:scale-[1.08] ${btnClassName}`
 			)}
-			variant={variant ?? 'input'}
-			theme={theme ?? 'secondary'}
-			size={size ?? 'sm'}
+			variant={variant}
+			theme={theme}
+			size={size}
 		>
-			{text ?? buttonIcon ?? <BiSearchAlt2 />}
+			{text ?? buttonIcon}
 		</Button>
 	</form>
 );

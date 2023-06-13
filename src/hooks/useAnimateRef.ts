@@ -16,7 +16,7 @@ const possibleElements = [
 ] as const;
 
 type ElementRefObject = {
-	[key in (typeof possibleElements)[number]['targetElement']]: HTMLElement | null;
+	[key in (typeof possibleElements)[number]['targetElement']]: HTMLElement;
 };
 
 const useAnimateRef = () => {
@@ -32,13 +32,13 @@ const useAnimateRef = () => {
 					throw new ELementError(element.targetElement);
 				}
 
-				elementRef.current[element.targetElement]?.classList.add(element.animationClass);
+				elementRef.current[element.targetElement].classList.add(element.animationClass);
 			}
 		};
 
 		const removeAnimationClasses = () => {
 			for (const element of possibleElements) {
-				elementRef.current[element.targetElement]?.classList.remove(element.animationClass);
+				elementRef.current[element.targetElement].classList.remove(element.animationClass);
 			}
 		};
 
