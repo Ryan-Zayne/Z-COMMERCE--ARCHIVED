@@ -1,4 +1,4 @@
-import { assertDefined } from '@/global-helpers.types.';
+import { assertDefined } from '@/global-helpers.types';
 import { useCallbackRef } from '@/hooks/useCallbackRef';
 import { useStore } from 'zustand';
 import { CarouselStore, CarouselStoreApi } from './carousel.types';

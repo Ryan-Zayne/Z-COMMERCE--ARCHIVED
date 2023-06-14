@@ -1,8 +1,8 @@
-export type ReactPropsWithChildren<P = unknown> = P & {
+export type ReactPropsWithChildren<P> = P & {
 	children: React.ReactNode;
 };
 
-export const assertDefined = <T = unknown>(value: T): NonNullable<T> => {
+export const assertDefined = <T>(value: T) => {
 	if (value == null) {
 		throw new Error(`Error: "${value}" is not defined`);
 	}

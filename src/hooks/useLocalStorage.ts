@@ -4,10 +4,9 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 type Options<TOptions> = {
 	syncData?: boolean;
 	logger?: (error: unknown) => void;
-	parser?: (val: string) => TOptions | undefined;
+	parser?: (value: string) => TOptions | undefined;
 	stringifier?: (object: TOptions | undefined) => string;
 };
-
 type Setter<TSetter> = React.Dispatch<React.SetStateAction<TSetter | undefined>>;
 
 /**
@@ -125,7 +124,7 @@ const useLocalStorage = <T>(key: string, defaultValue?: T, options?: Options<T>)
 		}
 	}, [key]);
 
-	return [value, setValue, removeValue] as [T, Setter<T>, typeof removeValue];
+	return [value as T, setValue as Setter<T>, removeValue] as const;
 };
 
 export { useLocalStorage };

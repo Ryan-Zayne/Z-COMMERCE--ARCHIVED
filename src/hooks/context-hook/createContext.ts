@@ -10,9 +10,7 @@ export type ContextHookType<IObject> = {
 	defaultValue: IObject;
 };
 
-const createContext = <TObject extends object | null>(
-	options: ContextHookType<TObject> = {} as ContextHookType<TObject>
-) => {
+const createContext = <T extends object | null>(options: ContextHookType<T>) => {
 	const {
 		name = 'Unnamed Context',
 		strict = true,
@@ -20,16 +18,16 @@ const createContext = <TObject extends object | null>(
 		providerName = 'Unnamed Provider',
 		errorMessage,
 		defaultValue,
-	} = options;
+	} = options ?? {};
 
-	const Context = createReactContext<TObject>(defaultValue);
+	const Context = createReactContext<T>(defaultValue);
 
 	Context.displayName = name;
 
 	const useContext = () => {
 		const context = useReactContext(Context);
 
-		if (context == null && strict) {
+		if (context === null && strict) {
 			const error = new Error(errorMessage ?? getErrorMessage(hookName, providerName));
 			error.name = 'ContextError';
 			Error.captureStackTrace?.(error, useContext);

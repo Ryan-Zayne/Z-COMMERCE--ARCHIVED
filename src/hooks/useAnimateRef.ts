@@ -23,7 +23,7 @@ const useAnimateRef = () => {
 	const currentSlide = useCarouselStore((state) => state.currentSlide);
 
 	const elementRef = useRef<ElementRefObject>({} as ElementRefObject);
-	const fadeAnimationId = useRef<NodeJS.Timeout | null>(null);
+	const fadeAnimationId = useRef<NodeJS.Timeout>();
 
 	useEffect(() => {
 		const addAnimationClasses = () => {
@@ -46,8 +46,7 @@ const useAnimateRef = () => {
 
 		fadeAnimationId.current = setTimeout(removeAnimationClasses, 2000);
 
-		// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-		return () => clearTimeout(fadeAnimationId.current!);
+		return () => clearTimeout(fadeAnimationId.current);
 	}, [currentSlide]);
 
 	return { animatedElements: elementRef.current };

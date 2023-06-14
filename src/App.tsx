@@ -13,7 +13,7 @@ import ProductCategoryPage from './pages/ProductCategoryPage/ProductCategoryPage
 import ProductItemPage from './pages/ProductItemPage/ProductItemPage';
 import Register from './pages/Register/Register';
 
-const App = () => {
+function App() {
 	useMediaQuery();
 
 	useEffect(() => {
@@ -54,6 +54,6 @@ const App = () => {
 			/>
 		</>
 	);
-};
+}
 
 export default App;

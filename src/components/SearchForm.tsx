@@ -1,17 +1,13 @@
 import { BiSearchAlt2 } from 'react-icons/bi';
 import { twMerge } from 'tailwind-merge';
-import Button from './Button';
+import Button, { ButtonProps } from './Button';
 
-type SearchFormProps = {
+type SearchFormProps = Pick<ButtonProps, 'theme' | 'variant' | 'size' | 'text'> & {
 	className?: string;
 	btnClassName?: string;
 	inputClassName?: string;
 	buttonIcon?: JSX.Element;
-	theme?: 'primary' | 'secondary';
-	variant?: 'input';
-	size?: 'sm' | 'md' | 'lg';
 	placeholder?: string;
-	text?: string;
 };
 
 const SearchForm = ({
@@ -23,7 +19,6 @@ const SearchForm = ({
 	variant = 'input',
 	size = 'sm',
 	placeholder = 'Search for products...',
-	// eslint-disable-next-line react/require-default-props
 	text,
 }: SearchFormProps) => (
 	<form

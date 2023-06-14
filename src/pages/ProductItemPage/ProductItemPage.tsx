@@ -1,6 +1,6 @@
 import { LoadingSkeleton } from '@/components';
 import { CarouselContextProvider } from '@/components/Carousel';
-import { assertDefined } from '@/global-helpers.types.';
+import { assertDefined } from '@/global-helpers.types';
 import { useGetProductItem } from '@/store/react-query';
 import { useParams } from 'react-router-dom';
 import ItemDescription from './ProductItem/ItemDescription';

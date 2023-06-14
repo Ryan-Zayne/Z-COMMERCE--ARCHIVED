@@ -1,4 +1,4 @@
-import { ReactPropsWithChildren } from '@/global-helpers.types.';
+import { ReactPropsWithChildren } from '@/global-helpers.types';
 import { StoreApi } from 'zustand';
 
 export type CarouselStore = {

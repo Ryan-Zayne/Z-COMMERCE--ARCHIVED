@@ -9,6 +9,7 @@
 		"plugin:react/recommended",
 		"plugin:react/jsx-runtime",
 		"airbnb-typescript",
+		"plugin:unicorn/recommended",
 		"plugin:tailwindcss/recommended",
 		"plugin:@tanstack/eslint-plugin-query/recommended",
 		"plugin:@typescript-eslint/recommended",
@@ -16,7 +17,7 @@
 		"prettier"
 	],
 
-	"plugins": ["react", "tailwindcss", "@typescript-eslint"],
+	"plugins": ["react", "tailwindcss", "unicorn", "@typescript-eslint"],
 
 	"parser": "@typescript-eslint/parser",
 
@@ -39,6 +40,7 @@
 		"max-len": "off",
 		"indent": "off",
 		"no-tabs": "off",
+		"no-implicit-coercion": "warn",
 		"eol-last": "off",
 		"no-return-assign": ["error", "except-parens"],
 		"no-use-before-define": [
@@ -108,7 +110,21 @@
 				"extensions": [".tsx", ".jsx"]
 			}
 		],
-		"react/require-default-props": ["warn", { "functions": "defaultArguments" }],
+		// "react/require-default-props": ["warn", { "functions": "defaultArguments" }],
+		"react/require-default-props": "off",
+
+		//Unicorn rules
+		"unicorn/no-null": "off",
+		"unicorn/filename-case": [
+			"warn",
+			{
+				"cases": {
+					"camelCase": true,
+					"pascalCase": true,
+					"kebabCase": true
+				}
+			}
+		],
 
 		//Tailwind rules
 		"tailwindcss/no-custom-classname": "off",

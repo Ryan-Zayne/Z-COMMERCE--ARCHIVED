@@ -18,7 +18,7 @@ const useAnimationInterval = (callbackFn: () => void, intervalDuration: number |
 
 		const playAnimation = (timeStamp: DOMHighResTimeStamp) => {
 			// If the start time has not been set yet, set it to the current timestamp.
-			if (startTimeStampRef.current == null) {
+			if (startTimeStampRef.current === null) {
 				startTimeStampRef.current = timeStamp;
 			}
 
@@ -45,7 +45,7 @@ const useAnimationInterval = (callbackFn: () => void, intervalDuration: number |
 		}
 	}, [intervalDuration, savedCallback]);
 
-	return animationFrameId.current;
+	// return animationFrameId.current;
 };
 
 export { useAnimationInterval };
