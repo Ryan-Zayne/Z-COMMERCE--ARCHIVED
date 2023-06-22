@@ -1,6 +1,6 @@
 import { Button, Carousel, ImageComponent } from '@/components';
-import { useCarouselStore } from '@/components/Carousel';
 import { CarouselStore } from '@/components/Carousel/carousel.types';
+import { useCarouselStore } from '@/components/Carousel/carouselStoreContext';
 import { useAnimateRef } from '@/hooks';
 import { useThemeStore } from '@/store/zustand/themeStore';
 import { RxPaperPlane } from 'react-icons/rx';
@@ -56,20 +56,20 @@ function Hero() {
 				>
 					<div>
 						<h1
-							ref={(elem) => elem != null && (animatedElements.heading = elem)}
+							ref={(elem) => elem !== null && (animatedElements.heading = elem)}
 							className="w-[17ch] font-roboto text-[clamp(2rem,_4vw+1rem,_3rem)] font-600 text-heading"
 						>
 							Explore the Future of Technology
 						</h1>
 						<p
-							ref={(elem) => elem != null && (animatedElements.paragraph = elem)}
+							ref={(elem) => elem !== null && (animatedElements.paragraph = elem)}
 							className="z-20 w-[30ch] text-[clamp(1.3rem,_1vw+1rem,_1.7rem)] [margin-block:1.8rem_3.7rem]"
 						>
 							Discover the Latest and most Exquisite Tech Products for Your Home, Office, and
 							On-the-go Needs.
 						</p>
 					</div>
-					<div className="z-50" ref={(elem) => elem != null && (animatedElements.button = elem)}>
+					<div className="z-50" ref={(elem) => elem !== null && (animatedElements.button = elem)}>
 						<Button
 							text={'Shop Now'}
 							theme={'secondary'}

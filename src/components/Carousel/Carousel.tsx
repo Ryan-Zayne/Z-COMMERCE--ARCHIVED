@@ -1,7 +1,7 @@
 import { twMerge } from 'tailwind-merge';
 import { useCarouselOptions } from '../../hooks/useCarouselOptions';
 import { useGlobalStore } from '../../store/zustand/globalStore';
-import { useCarouselStore } from './useCarouselStore';
+import { useCarouselStore } from './carouselStoreContext';
 
 type CarouselProps = {
 	as?: React.ElementType;
@@ -50,7 +50,7 @@ function Carousel({
 	return (
 		<Element
 			id="Carousel"
-			className={twMerge(`relative touch-none flex h-full select-none ${outerClassName}`)}
+			className={twMerge(`relative flex h-full touch-none select-none ${outerClassName}`)}
 			onMouseEnter={() => !isMobile && pauseOnHover && setIsPaused(true)}
 			onMouseLeave={() => !isMobile && pauseOnHover && setIsPaused(false)}
 		>

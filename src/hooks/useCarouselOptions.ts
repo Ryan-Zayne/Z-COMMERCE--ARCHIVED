@@ -1,4 +1,4 @@
-import { useCarouselStore } from '@/components/Carousel/useCarouselStore';
+import { useCarouselStore } from '@/components/Carousel/carouselStoreContext';
 import { useGlobalStore } from '@/store/zustand/globalStore';
 import { useState } from 'react';
 import { useAnimationInterval } from './useAnimationInterval';

@@ -1,5 +1,5 @@
 import { LoadingSkeleton } from '@/components';
-import { CarouselContextProvider } from '@/components/Carousel';
+import { CarouselContextProvider } from '@/components/Carousel/carouselStoreContext';
 import { assertDefined } from '@/global-helpers.types';
 import { useGetProductItem } from '@/store/react-query';
 import { useParams } from 'react-router-dom';

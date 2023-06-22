@@ -60,7 +60,6 @@
 		"arrow-body-style": "off",
 		"no-restricted-syntax": ["error", "ForInStatement", "LabeledStatement", "WithStatement"],
 		"no-unused-expressions": "off",
-
 		"@typescript-eslint/no-unused-expressions": [
 			"error",
 			{
@@ -110,7 +109,6 @@
 				"extensions": [".tsx", ".jsx"]
 			}
 		],
-		// "react/require-default-props": ["warn", { "functions": "defaultArguments" }],
 		"react/require-default-props": "off",
 
 		//Unicorn rules
@@ -125,6 +123,10 @@
 				}
 			}
 		],
+		"unicorn/no-negated-condition": "off",
+		"unicorn/prevent-abbreviations": "off",
+		"unicorn/new-for-builtins": "off",
+		"unicorn/numeric-separators-style": "off",
 
 		//Tailwind rules
 		"tailwindcss/no-custom-classname": "off",

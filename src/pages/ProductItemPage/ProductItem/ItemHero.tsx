@@ -1,9 +1,9 @@
+import { Carousel, ImageComponent } from '@/components';
 import { CarouselStore } from '@/components/Carousel/carousel.types';
+import { useCarouselStore } from '@/components/Carousel/carouselStoreContext';
+import { useThemeStore } from '@/store/zustand/themeStore';
 import { BsChevronRight } from 'react-icons/bs';
 import { twJoin } from 'tailwind-merge';
-import { Carousel, ImageComponent } from '../../../components';
-import { useCarouselStore } from '../../../components/Carousel';
-import { useThemeStore } from '../../../store/zustand/themeStore';
 
 function ItemHero() {
 	const isDarkMode = useThemeStore((state) => state.isDarkMode);

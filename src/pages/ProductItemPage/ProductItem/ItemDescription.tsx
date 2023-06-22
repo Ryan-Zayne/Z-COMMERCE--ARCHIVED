@@ -23,7 +23,7 @@ function ItemDescription({ productItem }: ItemDescriptionProp) {
 	// if (productItemInCart?.quantity != null && productQuantityChosen !== productItemInCart?.quantity) {
 	// 	setProductQuantityChosen(productItemInCart?.quantity);
 	// }
-	// TODO - Add a modal when this is clicked up to five times and ask user if he want to add many at once, all according to this medium post: https://medium.com/@viktoriadobrodenchuk/how-to-add-to-cart-properly-fcf279bb73fd
+
 	const handlePlus = () => {
 		if (productQuantityChosen <= productItem.stock) {
 			addToCart(productItem);

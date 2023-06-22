@@ -16,12 +16,12 @@ const semanticThemes = {
 };
 
 const semanticSizes = {
-	sm: 'p-[1.1041rem_1.3rem]',
+	sm: 'p-[1.11rem_1.3rem]',
 	md: 'p-[1.1rem_3.5rem]',
 	lg: 'p-[1.1rem_4.5rem]',
 };
 
-export type ButtonProps = React.ComponentPropsWithoutRef<'button'> & {
+export type ButtonProps = React.ComponentProps<'button'> & {
 	children?: React.ReactNode;
 	theme?: keyof typeof semanticThemes;
 	variant?: keyof typeof semanticVariants;
@@ -35,7 +35,7 @@ function Button({
 	theme = 'ghost',
 	variant = 'regular',
 	size = 'md',
-	text = '',
+	text,
 	onClick,
 }: ButtonProps) {
 	const BTN_CLASSES = twMerge(

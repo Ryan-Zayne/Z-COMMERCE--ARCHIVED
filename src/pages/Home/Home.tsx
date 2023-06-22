@@ -1,4 +1,4 @@
-import { CarouselContextProvider } from '@/components/Carousel';
+import { CarouselContextProvider } from '@/components/Carousel/carouselStoreContext';
 import Categories from './Categories/Categories';
 import Hero from './Hero/Hero';
 import HomeProductSection from './HomeProductSection/HomeProductSection';

@@ -1,8 +1,8 @@
 import { noScrollOnOpen } from '@/utils/noScrollOnOpen';
 
-// NOTE - Preventing flicker of wrong theme onLoad
-const theme: string = JSON.parse(localStorage.getItem('colorScheme') ?? '{}')?.state?.theme;
-document.documentElement.setAttribute('data-theme', theme);
+// NOTE - Prevents flicker of wrong theme onLoad
+const theme = JSON.parse(localStorage.getItem('colorScheme') ?? '')?.state?.theme as string;
+document.documentElement.dataset.theme = theme;
 
 // NOTE - Adding and Removing Loader after load
 const loaderElement = document.querySelector('.loader-container') as HTMLDivElement;

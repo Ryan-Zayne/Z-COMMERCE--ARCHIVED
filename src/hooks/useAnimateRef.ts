@@ -1,4 +1,4 @@
-import { useCarouselStore } from '@/components/Carousel';
+import { useCarouselStore } from '@/components/Carousel/carouselStoreContext';
 import { useEffect, useRef } from 'react';
 
 class ELementError extends Error {
@@ -15,9 +15,7 @@ const possibleElements = [
 	{ targetElement: 'paragraph', animationClass: 'animate-fade-in-up-2' },
 ] as const;
 
-type ElementRefObject = {
-	[key in (typeof possibleElements)[number]['targetElement']]: HTMLElement;
-};
+type ElementRefObject = Record<(typeof possibleElements)[number]['targetElement'], HTMLElement>;
 
 const useAnimateRef = () => {
 	const currentSlide = useCarouselStore((state) => state.currentSlide);

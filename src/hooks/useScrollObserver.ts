@@ -12,7 +12,7 @@ const useScrollObserver = <T extends HTMLElement>(options = {}) => {
 
 	useEffect(() => {
 		const scrollWatcher = document.createElement('span');
-		scrollWatcher.setAttribute('data-scroll-watcher', '');
+		scrollWatcher.dataset.scrollWatcher = '';
 
 		if (elementRef.current) {
 			elementRef.current.before(scrollWatcher);
