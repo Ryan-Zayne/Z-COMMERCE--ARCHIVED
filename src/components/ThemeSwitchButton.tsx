@@ -8,7 +8,7 @@ function ThemeSwitchButton({ display = '' }: { display?: string }) {
 	const { toggleTheme, toggleIsDarkMode } = useThemeActions();
 
 	useEffect(() => {
-		document.documentElement.setAttribute('data-theme', theme);
+		document.documentElement.dataset.theme = theme;
 	}, [theme]);
 
 	return (

@@ -23,7 +23,14 @@
 		}
 	},
 
-	"include": ["src", "vite-env.d.ts", "vite.config.ts", "preloader.ts", "tailwind.config.cjs"],
+	"include": [
+		"src",
+		"vite-env.d.ts",
+		"vite.config.ts",
+		"preloader.ts",
+		"tailwind.config.cjs",
+		"prettier.config.cjs"
+	],
 	"exclude": ["node_modules"],
 	"references": [
 		{

@@ -20,7 +20,7 @@ type ElementRefObject = Record<(typeof possibleElements)[number]['targetElement'
 const useAnimateRef = () => {
 	const currentSlide = useCarouselStore((state) => state.currentSlide);
 
-	const elementRef = useRef<ElementRefObject>({} as ElementRefObject);
+	const elementRef = useRef({} as ElementRefObject);
 	const fadeAnimationId = useRef<NodeJS.Timeout>();
 
 	useEffect(() => {

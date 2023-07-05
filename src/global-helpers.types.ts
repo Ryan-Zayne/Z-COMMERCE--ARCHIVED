@@ -4,8 +4,10 @@ export type ReactPropsWithChildren<P> = P & {
 
 export const assertDefined = <T>(value: T) => {
 	if (value == null) {
-		throw new Error(`Error: "${value}" is not defined`);
+		throw new Error(`"Value: ${value}" is not defined`);
 	}
 
 	return value;
 };
+
+export const assertRef = <T>(value: T) => value as NonNullable<T>;

@@ -9,17 +9,19 @@ type SearchFormProps = Pick<ButtonProps, 'theme' | 'variant' | 'size' | 'text' |
 	placeholder?: string;
 };
 
-function SearchForm({
-	className = '',
-	btnClassName = '',
-	inputClassName = '',
-	buttonIcon = <BiSearchAlt2 />,
-	theme = 'secondary',
-	variant = 'input',
-	size = 'sm',
-	placeholder,
-	text,
-}: SearchFormProps) {
+function SearchForm(props: SearchFormProps) {
+	const {
+		className = '',
+		btnClassName = '',
+		inputClassName = '',
+		buttonIcon = <BiSearchAlt2 />,
+		theme = 'secondary',
+		variant = 'input',
+		size = 'sm',
+		placeholder,
+		text,
+	} = props;
+
 	return (
 		<form
 			id="Search Form"

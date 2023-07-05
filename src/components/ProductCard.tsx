@@ -21,14 +21,16 @@ type ProductCardProps = {
 	aosEasing?: string;
 };
 
-function ProductCard({
-	to = '',
-	image,
-	product,
-	aosAnimation = 'zoom-in',
-	aosDuration = '500',
-	aosEasing = 'ease-in-out',
-}: ProductCardProps) {
+function ProductCard(props: ProductCardProps) {
+	const {
+		to = '',
+		image,
+		product,
+		aosAnimation = 'zoom-in',
+		aosDuration = '500',
+		aosEasing = 'ease-in-out',
+	} = props;
+
 	const isDarkMode = useThemeStore((state) => state.isDarkMode);
 	const isMobile = useGlobalStore((state) => state.isMobile);
 	const wishList = useShopStore((state) => state.wishList);

@@ -29,15 +29,17 @@ export type ButtonProps = React.ComponentProps<'button'> & {
 	text?: string;
 };
 
-function Button({
-	children,
-	className = '',
-	theme = 'ghost',
-	variant = 'regular',
-	size = 'md',
-	text,
-	onClick,
-}: ButtonProps) {
+function Button(props: ButtonProps) {
+	const {
+		children,
+		className = '',
+		theme = 'ghost',
+		variant = 'regular',
+		size = 'md',
+		text,
+		onClick,
+	} = props;
+
 	const BTN_CLASSES = twMerge(
 		BaseClasses,
 		semanticVariants[variant],

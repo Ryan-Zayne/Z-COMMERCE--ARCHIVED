@@ -4,6 +4,7 @@
 		"es2021": true
 	},
 	"extends": [
+		"eslint:recommended",
 		"airbnb",
 		"airbnb/hooks",
 		"plugin:react/recommended",
@@ -40,7 +41,6 @@
 		"max-len": "off",
 		"indent": "off",
 		"no-tabs": "off",
-		"no-implicit-coercion": "warn",
 		"eol-last": "off",
 		"no-return-assign": ["error", "except-parens"],
 		"no-use-before-define": [
@@ -72,9 +72,7 @@
 		"import/no-extraneous-dependencies": [
 			"error",
 			{
-				"devDependencies": true,
-				"optionalDependencies": false,
-				"peerDependencies": false
+				"devDependencies": true
 			}
 		],
 

@@ -12,22 +12,23 @@ type ImageComponentProps = {
 	onClick?: React.MouseEventHandler;
 };
 
-function ImageComponent({
-	src,
-	blurSrc = '',
-	className = '',
-	wrapperClassName = '',
-	isDynamicImage = false,
-	loading = 'eager',
-	onClick = () => {},
-}: ImageComponentProps) {
+function ImageComponent(props: ImageComponentProps) {
+	const {
+		src,
+		blurSrc = '',
+		className = '',
+		wrapperClassName = '',
+		isDynamicImage = false,
+		loading = 'eager',
+		onClick = () => {},
+	} = props;
+
 	const [isImageLoaded, setIsImageLoaded] = useState(false);
 	const [img] = useState(() => new Image());
 	const isDarkMode = useThemeStore((state) => state.isDarkMode);
 
 	useEffect(() => {
 		img.src = src;
-
 		const handleImageLoad = () => setIsImageLoaded(true);
 
 		if (img.complete) {
@@ -40,31 +41,34 @@ function ImageComponent({
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [img]);
 
-	return !isDynamicImage ? (
-		<img src={isImageLoaded ? src : blurSrc} className={twMerge(`object-cover`, className)} />
-	) : (
-		<div
-			className={twMerge(
-				`h-full w-full`,
-				[
-					!isImageLoaded &&
-						`relative bg-white/[0.17] invert ${isDarkMode && 'bg-black/[0.17] invert-0'}`,
-				],
-				[wrapperClassName]
-			)}
-			onClick={onClick}
-		>
-			{!isImageLoaded && (
-				<span className=" absolute inset-0 z-[1] animate-zoom [background-image:linear-gradient(100deg,_transparent_20%,_hsla(0,0%,100%,0.3)_50%,_transparent_80%)]" />
-			)}
+	if (isDynamicImage) {
+		return (
+			<div
+				className={twMerge(
+					`h-full w-full`,
+					[
+						!isImageLoaded &&
+							`relative bg-white/[0.17] invert ${isDarkMode && 'bg-black/[0.17] invert-0'}`,
+					],
+					[wrapperClassName]
+				)}
+				onClick={onClick}
+			>
+				{!isImageLoaded && (
+					<span className=" absolute inset-0 z-[1] animate-zoom [background-image:linear-gradient(100deg,_transparent_20%,_hsla(0,0%,100%,0.3)_50%,_transparent_80%)]" />
+				)}
 
-			<img
-				className={twMerge(`object-cover `, [isImageLoaded && 'h-full'], [className])}
-				src={src}
-				alt=""
-				loading={loading}
-			/>
-		</div>
-	);
+				<img
+					className={twMerge(`object-cover `, [isImageLoaded && 'h-full'], [className])}
+					src={src}
+					alt=""
+					loading={loading}
+				/>
+			</div>
+		);
+	}
+
+	return <img src={isImageLoaded ? src : blurSrc} className={twMerge(`object-cover`, className)} />;
 }
+
 export default ImageComponent;
