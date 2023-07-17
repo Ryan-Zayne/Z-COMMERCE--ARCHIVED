@@ -118,6 +118,7 @@ const useLocalStorage = <T>(key: string, defaultValue?: T, options?: Options<T>)
 	const removeValue = useCallback(() => {
 		try {
 			window.localStorage.removeItem(key);
+			// eslint-disable-next-line unicorn/no-useless-undefined
 			setValue(undefined);
 		} catch {
 			// If user is in private mode or has storage restriction localStorage can throw the error.

@@ -2,6 +2,8 @@
 	"compilerOptions": {
 		"allowJs": false,
 		"allowSyntheticDefaultImports": true,
+		"baseUrl": ".",
+		"checkJs": false,
 		"esModuleInterop": false,
 		"forceConsistentCasingInFileNames": true,
 		"isolatedModules": true,
@@ -11,27 +13,26 @@
 		"moduleResolution": "node",
 		"noEmit": true,
 		"noFallthroughCasesInSwitch": true,
+		"noUncheckedIndexedAccess": true,
+		"noUnusedParameters": true,
+		"paths": {
+			"@/*": ["src/*"]
+		},
 		"resolveJsonModule": true,
 		"skipLibCheck": true /* Skip type checking all .d.ts files. */,
 		"strict": true,
 		"target": "ESNext",
-		"types": ["vite/client"],
-
-		"baseUrl": ".",
-		"paths": {
-			"@/*": ["src/*"]
-		}
+		"types": ["vite/client"]
 	},
-
-	"include": [
-		"src",
-		"vite-env.d.ts",
-		"vite.config.ts",
-		"preloader.ts",
-		"tailwind.config.cjs",
-		"prettier.config.cjs"
-	],
 	"exclude": ["node_modules"],
+	"include": [
+		"prettier.config.cjs",
+		"src",
+		"src/preloader.ts",
+		"tailwind.config.cjs",
+		"vite-env.d.ts",
+		"vite.config.ts"
+	],
 	"references": [
 		{
 			"path": "./tsconfig.node.json"

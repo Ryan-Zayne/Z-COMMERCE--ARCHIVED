@@ -1,11 +1,11 @@
+import { WithChildren } from '@/global-helpers.types';
 import { twMerge } from 'tailwind-merge';
 
-type DropDownProps = {
+type DropDownProps = WithChildren<{
 	id?: string;
-	children: React.ReactNode;
 	className?: string;
 	isOpen: boolean;
-};
+}>;
 
 type DropDownPanelProps = Omit<DropDownProps, 'isOpen'>;
 

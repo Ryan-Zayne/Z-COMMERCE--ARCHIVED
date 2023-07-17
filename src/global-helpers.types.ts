@@ -1,5 +1,13 @@
-export type ReactPropsWithChildren<P> = P & {
+// type NonNullable<T> = T extends null | undefined ? never : T;
+
+type ReactNode = Exclude<React.ReactNode, React.ReactFragment>;
+
+export type WithChildren<TProps = NonNullable<unknown>> = TProps & {
 	children: React.ReactNode;
+};
+
+export type WithChildrenOptional<TProps> = TProps & {
+	children?: ReactNode;
 };
 
 export const assertDefined = <T>(value: T) => {

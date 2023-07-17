@@ -1,12 +1,13 @@
 import { useEffect, useRef, useState } from 'react';
 
-const useScrollObserver = <T extends HTMLElement>(options = {}) => {
+const useScrollObserver = <T extends HTMLElement = HTMLDivElement>(options = {}) => {
 	const elementRef = useRef<T>(null);
 	const [isScrolled, setIsScrolled] = useState(false);
+
 	const [scrollObserver] = useState(
 		() =>
 			new IntersectionObserver(([entry]) => {
-				setIsScrolled(!entry.isIntersecting);
+				setIsScrolled(!entry?.isIntersecting);
 			}, options)
 	);
 

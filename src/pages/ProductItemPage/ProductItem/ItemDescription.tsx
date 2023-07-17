@@ -41,6 +41,7 @@ function ItemDescription({ productItem }: ItemDescriptionProp) {
 	};
 
 	const handleMinus = () => {
+		// eslint-disable-next-line unicorn/consistent-function-scoping
 		const newState = (prev: number) => prev - 1;
 
 		if (productQuantityChosen > 0) {

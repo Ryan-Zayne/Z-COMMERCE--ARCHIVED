@@ -1,5 +1,5 @@
 import { StateCreator } from 'zustand';
-import { noScrollOnOpen } from '../../../utils/noScrollOnOpen';
+import { noScrollOnOpen } from '../../../utils/no-scroll-on-open';
 import { GlobalSlice, GlobalStore } from '../zustand-store.types';
 
 export const createGlobalStateSlice: StateCreator<GlobalStore, [], [], GlobalSlice> = (set, get) => ({

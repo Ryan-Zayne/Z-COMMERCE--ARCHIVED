@@ -9,5 +9,7 @@ const globalStoreObject: StateCreator<GlobalStore> = (...params) => ({
 });
 
 export const useGlobalStore = create<GlobalStore>()(globalStoreObject);
+
 export const useGlobalActions = () => useGlobalStore((state) => state.globalActions);
+
 export const useMediaQueryActions = () => useGlobalStore((state) => state.mediaQueryActions);

@@ -6,7 +6,7 @@ import { ThemeStore } from './zustand-store.types';
 // Store Object Initializtion
 const themeStoreObject: StateCreator<ThemeStore> = (set, get) => ({
 	theme: prefersDarkMode ? 'dark' : 'light',
-	isDarkMode: document.documentElement.getAttribute('data-theme') === 'dark',
+	isDarkMode: document.documentElement.dataset.theme === 'dark',
 
 	themeActions: {
 		toggleTheme: () => {

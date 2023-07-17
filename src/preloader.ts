@@ -1,4 +1,4 @@
-import { noScrollOnOpen } from '@/utils/noScrollOnOpen';
+import { noScrollOnOpen } from '@/utils/no-scroll-on-open';
 
 // NOTE - Prevents flicker of wrong theme onLoad
 const theme = JSON.parse(localStorage.getItem('colorScheme') ?? '')?.state?.theme as string;

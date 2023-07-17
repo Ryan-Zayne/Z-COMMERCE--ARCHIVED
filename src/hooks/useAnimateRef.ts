@@ -1,6 +1,12 @@
 import { useCarouselStore } from '@/components/Carousel/carouselStoreContext';
 import { useEffect, useRef } from 'react';
 
+type ElementRefObject = {
+	heading: HTMLHeadingElement | null;
+	button: HTMLButtonElement | HTMLDivElement | null;
+	paragraph: HTMLParagraphElement | null;
+};
+
 class ELementError extends Error {
 	name = 'ELementError';
 
@@ -15,12 +21,15 @@ const possibleElements = [
 	{ targetElement: 'paragraph', animationClass: 'animate-fade-in-up-2' },
 ] as const;
 
-type ElementRefObject = Record<(typeof possibleElements)[number]['targetElement'], HTMLElement>;
-
 const useAnimateRef = () => {
 	const currentSlide = useCarouselStore((state) => state.currentSlide);
 
-	const elementRef = useRef({} as ElementRefObject);
+	const elementRef = useRef<ElementRefObject>({
+		heading: null,
+		button: null,
+		paragraph: null,
+	});
+
 	const fadeAnimationId = useRef<NodeJS.Timeout>();
 
 	useEffect(() => {
@@ -30,13 +39,13 @@ const useAnimateRef = () => {
 					throw new ELementError(element.targetElement);
 				}
 
-				elementRef.current[element.targetElement].classList.add(element.animationClass);
+				elementRef.current[element.targetElement]?.classList.add(element.animationClass);
 			}
 		};
 
 		const removeAnimationClasses = () => {
 			for (const element of possibleElements) {
-				elementRef.current[element.targetElement].classList.remove(element.animationClass);
+				elementRef.current[element.targetElement]?.classList.remove(element.animationClass);
 			}
 		};
 

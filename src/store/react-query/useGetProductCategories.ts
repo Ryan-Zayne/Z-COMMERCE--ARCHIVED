@@ -1,21 +1,23 @@
+import { assertDefined } from '@/global-helpers.types';
 import { useLocation } from 'react-router-dom';
 import { useGetAllProducts } from './useGetAllProducts';
+
+const errorMessageDefaults = {
+	'/wishlist': 'WishList page still under construction',
+	'/contact': 'Contact page still under construction',
+	'/checkout': 'Checkout page still under construction',
+} as const;
+
+// eslint-disable-next-line unicorn/prefer-set-has
+const possibleCategories = ['smartphones', 'laptops', 'watches', 'vehicles', 'lighting'];
 
 const useGetProductCategory = (productCategory: string | undefined) => {
 	const href = useLocation().pathname;
 
 	const { allProductsArray, isError, isLoading } = useGetAllProducts();
 
-	const possibleCategories = ['smartphones', 'laptops', 'watches', 'vehicles', 'lighting'];
-
-	const errorMessageDefaults = {
-		'/wishlist': 'WishList page still under construction',
-		'/contact': 'Contact page still under construction',
-		'/checkout': 'Checkout page still under construction',
-	};
-
 	if (!productCategory || !possibleCategories.includes(productCategory)) {
-		throw Error(
+		throw new Error(
 			errorMessageDefaults[href as keyof typeof errorMessageDefaults] ?? 'Category not found!'
 		);
 	}
@@ -34,7 +36,11 @@ const useGetProductCategory = (productCategory: string | undefined) => {
 		],
 	};
 
-	return { isLoading, isError, productsArray: PRODUCTS_LOOKUP[productCategory] };
+	return {
+		isLoading,
+		isError,
+		productsArray: assertDefined(PRODUCTS_LOOKUP[productCategory]),
+	};
 };
 
 export { useGetProductCategory };

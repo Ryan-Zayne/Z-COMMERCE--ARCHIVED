@@ -1,4 +1,4 @@
-import { ReactPropsWithChildren } from '@/global-helpers.types';
+import { WithChildren } from '@/global-helpers.types';
 import { StoreApi } from 'zustand';
 
 export type CarouselStore = {
@@ -14,6 +14,6 @@ export type CarouselStore = {
 	previousSlide: () => void;
 };
 
-export type CarouselProviderProps = ReactPropsWithChildren<Pick<CarouselStore, 'slideImages'>>;
+export type CarouselProviderProps = WithChildren<Pick<CarouselStore, 'slideImages'>>;
 
 export type CarouselStoreApi = StoreApi<CarouselStore>;

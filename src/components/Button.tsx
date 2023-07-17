@@ -1,4 +1,12 @@
+/* eslint-disable no-use-before-define */
 import { twMerge } from 'tailwind-merge';
+
+export type ButtonProps = React.ComponentPropsWithoutRef<'button'> & {
+	theme?: keyof typeof semanticThemes;
+	variant?: keyof typeof semanticVariants;
+	size?: keyof typeof semanticSizes;
+	text?: string;
+};
 
 const BaseClasses = 'flex items-center justify-center';
 
@@ -19,14 +27,6 @@ const semanticSizes = {
 	sm: 'p-[1.11rem_1.3rem]',
 	md: 'p-[1.1rem_3.5rem]',
 	lg: 'p-[1.1rem_4.5rem]',
-};
-
-export type ButtonProps = React.ComponentProps<'button'> & {
-	children?: React.ReactNode;
-	theme?: keyof typeof semanticThemes;
-	variant?: keyof typeof semanticVariants;
-	size?: keyof typeof semanticSizes;
-	text?: string;
 };
 
 function Button(props: ButtonProps) {

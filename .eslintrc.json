@@ -40,6 +40,7 @@
 		//Base Eslint Rules
 		"max-len": "off",
 		"indent": "off",
+		"no-implicit-coercion": "error",
 		"no-tabs": "off",
 		"eol-last": "off",
 		"no-return-assign": ["error", "except-parens"],
@@ -125,6 +126,7 @@
 		"unicorn/prevent-abbreviations": "off",
 		"unicorn/new-for-builtins": "off",
 		"unicorn/numeric-separators-style": "off",
+		"unicorn/no-array-reduce": "off",
 
 		//Tailwind rules
 		"tailwindcss/no-custom-classname": "off",

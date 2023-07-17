@@ -6,7 +6,7 @@ import App from './App';
 
 const queryClient = new QueryClient();
 
-createRoot(document.getElementById('root') as HTMLElement).render(
+createRoot(document.querySelector('#root') as HTMLElement).render(
 	<StrictMode>
 		<QueryClientProvider client={queryClient}>
 			<App />

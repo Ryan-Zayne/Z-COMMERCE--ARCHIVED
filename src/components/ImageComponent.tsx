@@ -24,10 +24,11 @@ function ImageComponent(props: ImageComponentProps) {
 	} = props;
 
 	const [isImageLoaded, setIsImageLoaded] = useState(false);
-	const [img] = useState(() => new Image());
 	const isDarkMode = useThemeStore((state) => state.isDarkMode);
 
 	useEffect(() => {
+		const img = new Image();
+
 		img.src = src;
 		const handleImageLoad = () => setIsImageLoaded(true);
 
@@ -37,9 +38,11 @@ function ImageComponent(props: ImageComponentProps) {
 			img.addEventListener('load', handleImageLoad);
 		}
 
-		return () => img.removeEventListener('load', handleImageLoad);
+		return () => {
+			img.removeEventListener('load', handleImageLoad);
+		};
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [img]);
+	}, []);
 
 	if (isDynamicImage) {
 		return (

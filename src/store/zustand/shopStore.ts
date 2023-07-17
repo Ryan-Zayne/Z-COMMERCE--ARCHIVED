@@ -12,17 +12,14 @@ const shopStateObject: StateCreator<ShopStore> = (set, get) => ({
 			const { cart } = get();
 			const isProductInCart = cart.some((item) => item.id === product.id);
 
-			let newCart;
-			if (!isProductInCart) {
-				newCart = [...cart, { ...product, quantity }];
-			} else {
-				newCart = cart.map((item) => {
-					if (item.id === product.id) {
-						return { ...item, quantity: item.quantity + quantity };
-					}
-					return item;
-				});
-			}
+			const newCart = !isProductInCart
+				? [...cart, { ...product, quantity }]
+				: cart.map((item) => {
+						if (item.id === product.id) {
+							return { ...item, quantity: item.quantity + quantity };
+						}
+						return item;
+				  });
 
 			set({ cart: newCart });
 		},
@@ -47,12 +44,9 @@ const shopStateObject: StateCreator<ShopStore> = (set, get) => ({
 			const { wishList } = get();
 			const isItemInWishList = wishList.some((item) => item.id === product.id);
 
-			let newWishList;
-			if (!isItemInWishList) {
-				newWishList = [...wishList, { ...product }];
-			} else {
-				newWishList = wishList.filter((item) => item.id !== product.id);
-			}
+			const newWishList = !isItemInWishList
+				? [...wishList, { ...product }]
+				: wishList.filter((item) => item.id !== product.id);
 
 			set({ wishList: newWishList });
 		},

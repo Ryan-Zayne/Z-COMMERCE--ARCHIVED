@@ -8,7 +8,7 @@ import { twJoin } from 'tailwind-merge';
 function ItemHero() {
 	const isDarkMode = useThemeStore((state) => state.isDarkMode);
 	const slideImages = useCarouselStore(
-		(state) => state.slideImages as Extract<CarouselStore['slideImages'], string[]>
+		(state) => state.slideImages as Exclude<CarouselStore['slideImages'], Array<{ src: string }>>
 	);
 
 	const CarouselItems = slideImages.map((image) => (
