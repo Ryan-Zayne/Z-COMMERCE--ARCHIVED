@@ -2,7 +2,12 @@ import { useMemo } from 'react';
 import { RiCloseFill } from 'react-icons/ri';
 import { twMerge } from 'tailwind-merge';
 import Portal from '../Portal';
-import { DrawerCloseProps, DrawerContentProps, DrawerProps, OtherDrawerProps } from './drawer.types';
+import type {
+	DrawerCloseProps,
+	DrawerContentProps,
+	DrawerProps,
+	OtherDrawerProps,
+} from './drawer.types';
 import { DrawerContextProvider, useDrawerStore } from './drawerStoreContext';
 
 function Drawer({ children, isOpen, onClose, onOpen, onToggle }: DrawerProps) {

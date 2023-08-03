@@ -1,9 +1,9 @@
-import { assertDefined } from '@/global-helpers.types';
+import { assertDefined } from '@/global-type-helpers';
 import { useCallbackRef } from '@/hooks';
 import { createContext } from '@/hooks/context-hook';
 import { useEffect, useState } from 'react';
 import { createStore, useStore } from 'zustand';
-import { DrawerProviderProps, DrawerStore, DrawerStoreApi } from './drawer.types';
+import type { DrawerProviderProps, DrawerStore, DrawerStoreApi } from './drawer.types';
 
 const [Provider, useContext] = createContext<DrawerStoreApi | null>({
 	name: 'DrawerStoreContext',

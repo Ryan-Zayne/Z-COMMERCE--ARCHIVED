@@ -1,5 +1,5 @@
-import { WithChildren } from '@/global-helpers.types';
-import { StoreApi } from 'zustand';
+import type { WithChildren } from '@/global-type-helpers';
+import type { StoreApi } from 'zustand';
 
 export type CarouselStore = {
 	currentSlide: number;

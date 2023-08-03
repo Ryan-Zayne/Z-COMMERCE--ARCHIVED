@@ -10,9 +10,7 @@ export type ContextHookType<TContext> = {
 	defaultValue: TContext;
 };
 
-const createContext = <TContextObject extends object | null>(
-	options: ContextHookType<TContextObject>
-) => {
+const createContext = <TContextObject extends object | null>(options: ContextHookType<TContextObject>) => {
 	const {
 		name = 'Unnamed Context',
 		strict = true,
@@ -23,9 +21,9 @@ const createContext = <TContextObject extends object | null>(
 	} = options ?? {};
 
 	const Context = createReactContext<TContextObject>(defaultValue);
-
 	Context.displayName = name;
 
+	// Extending useContext
 	const useContext = () => {
 		const contextValue = useReactContext(Context);
 

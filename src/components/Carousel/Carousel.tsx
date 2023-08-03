@@ -92,6 +92,7 @@ function CarouselItem({ children, className = '' }: OtherCarouselProps) {
 
 function CarouselItemWrapper({ children, className = '' }: OtherCarouselProps) {
 	const currentSlide = useCarouselStore((state) => state.currentSlide);
+
 	return (
 		<ul
 			id="Carousel Image Wrapper"

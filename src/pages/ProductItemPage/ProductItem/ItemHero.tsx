@@ -1,5 +1,5 @@
 import { Carousel, ImageComponent } from '@/components';
-import { CarouselStore } from '@/components/Carousel/carousel.types';
+import type { CarouselStore } from '@/components/Carousel/carousel.types';
 import { useCarouselStore } from '@/components/Carousel/carouselStoreContext';
 import { useThemeStore } from '@/store/zustand/themeStore';
 import { BsChevronRight } from 'react-icons/bs';
@@ -8,7 +8,7 @@ import { twJoin } from 'tailwind-merge';
 function ItemHero() {
 	const isDarkMode = useThemeStore((state) => state.isDarkMode);
 	const slideImages = useCarouselStore(
-		(state) => state.slideImages as Exclude<CarouselStore['slideImages'], Array<{ src: string }>>
+		(state) => state.slideImages as Extract<CarouselStore['slideImages'], string[]>
 	);
 
 	const CarouselItems = slideImages.map((image) => (
@@ -32,7 +32,6 @@ function ItemHero() {
 		<article className="h-[35rem] w-[min(100%,50rem)] max-md:mx-auto md:h-full">
 			<Carousel
 				as="div"
-				outerClassName={' '}
 				innerClassName={twJoin(
 					`rounded-[0.7rem]`,
 					isDarkMode && 'max-lg:[box-shadow:0_0_3px_0.1px_var(--carousel-dot)]'
@@ -47,4 +46,5 @@ function ItemHero() {
 		</article>
 	);
 }
+
 export default ItemHero;

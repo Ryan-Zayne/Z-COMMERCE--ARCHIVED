@@ -22,17 +22,20 @@
 		"skipLibCheck": true /* Skip type checking all .d.ts files. */,
 		"strict": true,
 		"target": "ESNext",
-		"types": ["vite/client"]
+		"types": ["vite/client"],
+		"verbatimModuleSyntax": true
 	},
+
 	"exclude": ["node_modules"],
 	"include": [
-		"prettier.config.cjs",
 		"src",
-		"src/preloader.ts",
+		"prettier.config.cjs",
+		"postcss.config.cjs",
 		"tailwind.config.cjs",
 		"vite-env.d.ts",
 		"vite.config.ts"
 	],
+
 	"references": [
 		{
 			"path": "./tsconfig.node.json"

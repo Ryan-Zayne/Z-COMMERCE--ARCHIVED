@@ -1,4 +1,4 @@
-import { StoreApi } from 'zustand';
+import type { StoreApi } from 'zustand';
 
 // Drawer store types
 export type DrawerStore = {

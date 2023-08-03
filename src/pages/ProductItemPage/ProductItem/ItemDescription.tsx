@@ -1,28 +1,15 @@
 import { Button, StarRating } from '@/components';
-import { ResponseDataItem } from '@/store/react-query/query-hook.types';
+import type { ResponseDataItem } from '@/store/react-query/query-hook.types';
 import { useShopActions, useShopStore } from '@/store/zustand/shopStore';
-import { ShopStore } from '@/store/zustand/zustand-store.types';
 import { useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { AiFillMinusCircle, AiFillPlusCircle, AiOutlineShoppingCart } from 'react-icons/ai';
 
-type ItemDescriptionProp = {
-	productItem: ResponseDataItem | ShopStore['cart'][number];
-};
-
-function ItemDescription({ productItem }: ItemDescriptionProp) {
-	const cart = useShopStore((state) => state.cart);
-	const productItemInCart = cart.find((item) => item.id === productItem.id);
-	const [productQuantityChosen, setProductQuantityChosen] = useState(
-		() => productItemInCart?.quantity ?? 0
-	);
-	const quantityLeftInStock = productItem.stock - productQuantityChosen;
+function ItemDescription({ productItem }: { productItem: ResponseDataItem }) {
+	const productItemInCart = useShopStore((state) => state.cart).find((item) => item.id === productItem.id);
+	const [productQuantityChosen, setProductQuantityChosen] = useState(productItemInCart?.quantity ?? 0);
 	const { addToCart, decreaseProductQuantity, removeProductFromCart } = useShopActions();
-
-	// This syncs the productQuantity in cart with the one here but for now I'm not using it, just a reminder
-	// if (productItemInCart?.quantity != null && productQuantityChosen !== productItemInCart?.quantity) {
-	// 	setProductQuantityChosen(productItemInCart?.quantity);
-	// }
+	const quantityLeftInStock = productItem.stock - productQuantityChosen; // Computed state
 
 	const handlePlus = () => {
 		if (productQuantityChosen <= productItem.stock) {

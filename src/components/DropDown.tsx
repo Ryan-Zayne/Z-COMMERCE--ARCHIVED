@@ -1,4 +1,4 @@
-import { WithChildren } from '@/global-helpers.types';
+import type { WithChildren } from '@/global-type-helpers';
 import { twMerge } from 'tailwind-merge';
 
 type DropDownProps = WithChildren<{

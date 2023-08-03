@@ -1,5 +1,5 @@
-import { ResponseDataItem } from '@/store/react-query/query-hook.types';
-import { ShopStore } from '@/store/zustand/zustand-store.types';
+import type { ResponseDataItem } from '@/store/react-query/query-hook.types';
+import type { ShopStore } from '@/store/zustand/zustand-store.types';
 import { useState } from 'react';
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 import { Link } from 'react-router-dom';

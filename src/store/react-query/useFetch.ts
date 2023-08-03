@@ -1,8 +1,9 @@
 import { fetcher } from '@/api/fetcher';
-import { QueryFunction, useQueries, useQuery } from '@tanstack/react-query';
+import { useQueries, useQuery, type QueryFunction } from '@tanstack/react-query';
 import { transformData } from './helpers';
-import { ResponseData } from './query-hook.types';
+import type { ResponseData } from './query-hook.types';
 
+// Types
 type FetchOptions = {
 	key: string[];
 	url: string;
@@ -10,20 +11,24 @@ type FetchOptions = {
 };
 
 type QueryListParam = Array<{
-	queryKey: string[];
+	queryKey: FetchOptions['key'];
 	queryFn: QueryFunction<ResponseData, QueryListParam[number]['queryKey']>;
 	select: typeof transformData;
 	staleTime?: number;
 }>;
 
-const useFetch = ({ key, url, staleTime }: FetchOptions) =>
-	useQuery({
-		// eslint-disable-next-line @tanstack/query/exhaustive-deps
+// Custom Hooks
+const useFetch = (options: FetchOptions) => {
+	const { key, url, staleTime } = options;
+	const getData = () => fetcher(url);
+
+	return useQuery({
 		queryKey: key,
-		queryFn: () => fetcher(url),
+		queryFn: getData,
 		staleTime,
 		select: transformData,
 	});
+};
 
 const useFetchMultiple = (queryList: QueryListParam) =>
 	useQueries({

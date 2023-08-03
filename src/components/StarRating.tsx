@@ -1,4 +1,4 @@
-import { IconType } from 'react-icons';
+import type { IconType } from 'react-icons';
 import { AiFillStar } from 'react-icons/ai';
 
 type StarRatingProps = {

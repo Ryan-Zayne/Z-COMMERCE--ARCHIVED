@@ -1,6 +1,6 @@
-import { ResponseDataItem } from '@/store/react-query/query-hook.types';
+import type { ResponseDataItem } from '@/store/react-query/query-hook.types';
 import { useShopActions, useShopStore } from '@/store/zustand/shopStore';
-import { ShopStore } from '@/store/zustand/zustand-store.types';
+import type { ShopStore } from '@/store/zustand/zustand-store.types';
 import { useState } from 'react';
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 import { TiArrowBack } from 'react-icons/ti';

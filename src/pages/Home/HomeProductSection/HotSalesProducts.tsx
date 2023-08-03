@@ -1,6 +1,6 @@
 import { ProductCard } from '@/components';
-import { assertDefined } from '@/global-helpers.types';
-import { DataArrayProp } from './home-product.types';
+import { assertDefined } from '@/global-type-helpers';
+import type { DataArrayProp } from './home-product.types';
 
 function HotSalesProducts({ data }: DataArrayProp) {
 	const ProductCards = data.map((product) => (
@@ -21,4 +21,5 @@ function HotSalesProducts({ data }: DataArrayProp) {
 		</article>
 	);
 }
+
 export default HotSalesProducts;

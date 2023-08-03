@@ -1,9 +1,9 @@
-import { assertDefined } from '@/global-helpers.types';
+import { assertDefined } from '@/global-type-helpers';
 import { createContext } from '@/hooks/context-hook';
 import { useCallbackRef } from '@/hooks/useCallbackRef';
 import { useState } from 'react';
 import { createStore, useStore } from 'zustand';
-import { CarouselProviderProps, CarouselStore, CarouselStoreApi } from './carousel.types';
+import type { CarouselProviderProps, CarouselStore, CarouselStoreApi } from './carousel.types';
 
 const [Provider, useContext] = createContext<CarouselStoreApi | null>({
 	name: 'CarouselStoreContext',
@@ -13,6 +13,7 @@ const [Provider, useContext] = createContext<CarouselStoreApi | null>({
 	defaultValue: null,
 });
 
+// CarouselStore Creation
 const createCarouselStore = (slideImages: CarouselStore['slideImages']) =>
 	createStore<CarouselStore>((set, get) => ({
 		currentSlide: 0,
@@ -33,12 +34,14 @@ const createCarouselStore = (slideImages: CarouselStore['slideImages']) =>
 		},
 	}));
 
+// Provider Component
 function CarouselContextProvider({ children, slideImages }: CarouselProviderProps) {
 	const [carouselStore] = useState(() => createCarouselStore(slideImages));
 
 	return <Provider value={carouselStore}>{children}</Provider>;
 }
 
+// useContextStore hook
 const useCarouselStore = <TState,>(callbackFn: (store: CarouselStore) => TState) => {
 	const store = useContext();
 	const selector = useCallbackRef(callbackFn);

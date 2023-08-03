@@ -1,6 +1,6 @@
 import { scrollbarWidth } from './constants';
 
-export const noScrollOnOpen = (isOpen: boolean) => {
+const noScrollOnOpen = (isOpen: boolean) => {
 	if (isOpen) {
 		document.body.style.setProperty('--scrollbar-padding', ` ${scrollbarWidth}rem`);
 		document.body.style.setProperty('--overflow-y', 'hidden');
@@ -9,3 +9,5 @@ export const noScrollOnOpen = (isOpen: boolean) => {
 		document.body.style.setProperty('--overflow-y', 'auto');
 	}
 };
+
+export { noScrollOnOpen };

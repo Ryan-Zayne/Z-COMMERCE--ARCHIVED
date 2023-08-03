@@ -1,5 +1,5 @@
 import { Button, Carousel, ImageComponent } from '@/components';
-import { CarouselStore } from '@/components/Carousel/carousel.types';
+import type { CarouselStore } from '@/components/Carousel/carousel.types';
 import { useCarouselStore } from '@/components/Carousel/carouselStoreContext';
 import { useAnimateRef } from '@/hooks';
 import { useThemeStore } from '@/store/zustand/themeStore';

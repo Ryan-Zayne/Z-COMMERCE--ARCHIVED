@@ -1,6 +1,6 @@
-import { StateCreator, create } from 'zustand';
+import { create, type StateCreator } from 'zustand';
 import { persist } from 'zustand/middleware';
-import { ShopStore } from './zustand-store.types';
+import type { ShopStore } from './zustand-store.types';
 
 // Store Object creation
 const shopStateObject: StateCreator<ShopStore> = (set, get) => ({

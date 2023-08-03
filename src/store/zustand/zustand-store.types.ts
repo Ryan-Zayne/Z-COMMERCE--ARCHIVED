@@ -1,5 +1,5 @@
 // Global State Types
-import { ResponseDataItem } from '../react-query/query-hook.types';
+import type { ResponseDataItem } from '../react-query/query-hook.types';
 
 export type GlobalSlice = {
 	isNavShow: boolean;

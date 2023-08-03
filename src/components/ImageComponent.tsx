@@ -28,8 +28,8 @@ function ImageComponent(props: ImageComponentProps) {
 
 	useEffect(() => {
 		const img = new Image();
-
 		img.src = src;
+
 		const handleImageLoad = () => setIsImageLoaded(true);
 
 		if (img.complete) {
@@ -39,6 +39,7 @@ function ImageComponent(props: ImageComponentProps) {
 		}
 
 		return () => {
+			if (img.complete) return;
 			img.removeEventListener('load', handleImageLoad);
 		};
 		// eslint-disable-next-line react-hooks/exhaustive-deps

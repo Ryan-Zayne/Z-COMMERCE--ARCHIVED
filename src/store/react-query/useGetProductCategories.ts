@@ -1,4 +1,4 @@
-import { assertDefined } from '@/global-helpers.types';
+import { assertDefined } from '@/global-type-helpers';
 import { useLocation } from 'react-router-dom';
 import { useGetAllProducts } from './useGetAllProducts';
 
@@ -8,15 +8,14 @@ const errorMessageDefaults = {
 	'/checkout': 'Checkout page still under construction',
 } as const;
 
-// eslint-disable-next-line unicorn/prefer-set-has
-const possibleCategories = ['smartphones', 'laptops', 'watches', 'vehicles', 'lighting'];
+const possibleCategories = new Set(['smartphones', 'laptops', 'watches', 'vehicles', 'lighting']);
 
 const useGetProductCategory = (productCategory: string | undefined) => {
 	const href = useLocation().pathname;
 
 	const { allProductsArray, isError, isLoading } = useGetAllProducts();
 
-	if (!productCategory || !possibleCategories.includes(productCategory)) {
+	if (!productCategory || !possibleCategories.has(productCategory)) {
 		throw new Error(
 			errorMessageDefaults[href as keyof typeof errorMessageDefaults] ?? 'Category not found!'
 		);
@@ -36,10 +35,12 @@ const useGetProductCategory = (productCategory: string | undefined) => {
 		],
 	};
 
+	const productsArray = assertDefined(PRODUCTS_LOOKUP[productCategory]);
+
 	return {
 		isLoading,
 		isError,
-		productsArray: assertDefined(PRODUCTS_LOOKUP[productCategory]),
+		productsArray,
 	};
 };
 

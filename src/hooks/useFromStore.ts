@@ -1,10 +1,9 @@
 import { useState } from 'react';
 
 /**
- * A custom hook that returns a value from a store and syncs it
- * with a local state.
- *
- * This hook solves NextJs mount hydration issue.
+ * A custom hook that returns a value from a store and syncs it with a local state.
+
+ * This solves NextJs mount hydration issue.
  * */
 
 const useFromStore = <T, U>(

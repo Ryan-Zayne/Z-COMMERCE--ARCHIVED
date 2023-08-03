@@ -1,5 +1,5 @@
 import { Button, Drawer, Logo } from '@/components';
-import { DrawerContentProps, DrawerStore } from '@/components/Drawer/drawer.types';
+import type { DrawerContentProps, DrawerStore } from '@/components/Drawer/drawer.types';
 import { useShopStore } from '@/store/zustand/shopStore';
 import { useThemeStore } from '@/store/zustand/themeStore';
 import { IoMdCart } from 'react-icons/io';

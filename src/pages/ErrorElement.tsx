@@ -24,8 +24,8 @@ function ErrorElement() {
 			<h1 className="mt-8">{error.message}</h1>
 
 			<Link
-				className="navlink-transition relative mt-6 inline-flex items-center border-b border-dotted border-dark font-medium text-heading hover:border-black/0"
 				to={'/'}
+				className="navlink-transition relative mt-6 inline-flex items-center border-b border-dotted border-dark font-medium text-heading hover:border-black/0"
 			>
 				Back to Home
 			</Link>

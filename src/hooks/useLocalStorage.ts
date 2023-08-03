@@ -7,6 +7,7 @@ type Options<TOptions> = {
 	parser?: (value: string) => TOptions | undefined;
 	stringifier?: (object: TOptions | undefined) => string;
 };
+
 type Setter<TSetter> = React.Dispatch<React.SetStateAction<TSetter | undefined>>;
 
 /**

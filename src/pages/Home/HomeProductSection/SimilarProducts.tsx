@@ -1,6 +1,6 @@
 import { ProductCard } from '@/components';
-import { assertDefined } from '@/global-helpers.types';
-import { DataArrayProp } from './home-product.types';
+import { assertDefined } from '@/global-type-helpers';
+import type { DataArrayProp } from './home-product.types';
 
 function SimilarProducts({ data }: DataArrayProp) {
 	const ProductCards = data.map((product) => (

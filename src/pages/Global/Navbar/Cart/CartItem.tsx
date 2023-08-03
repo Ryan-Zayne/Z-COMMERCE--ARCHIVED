@@ -1,6 +1,6 @@
 import { useShopActions } from '@/store/zustand/shopStore';
 import { useThemeStore } from '@/store/zustand/themeStore';
-import { ShopStore } from '@/store/zustand/zustand-store.types';
+import type { ShopStore } from '@/store/zustand/zustand-store.types';
 import { TbTrashXFilled } from 'react-icons/tb';
 
 function CartItem({ product }: { product: ShopStore['cart'][number] }) {

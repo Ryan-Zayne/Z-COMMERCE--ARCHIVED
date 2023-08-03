@@ -15,7 +15,6 @@ const useGetAllProducts = () => {
 
 	const allProducts = useFetchMultiple(
 		productQueries.map((queryItem) => ({
-			// eslint-disable-next-line @tanstack/query/exhaustive-deps
 			queryKey: queryItem.key,
 			queryFn: () => fetcher(queryItem.url),
 			staleTime: 2 * 60 * 1000,

@@ -1,7 +1,7 @@
-import { StateCreator, create } from 'zustand';
+import { type StateCreator, create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import { prefersDarkMode } from '../../utils/constants';
-import { ThemeStore } from './zustand-store.types';
+import type { ThemeStore } from './zustand-store.types';
 
 // Store Object Initializtion
 const themeStoreObject: StateCreator<ThemeStore> = (set, get) => ({
