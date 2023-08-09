@@ -2,31 +2,33 @@
 import { twMerge } from 'tailwind-merge';
 
 export type ButtonProps = React.ComponentPropsWithoutRef<'button'> & {
-	theme?: keyof typeof semanticThemes;
-	variant?: keyof typeof semanticVariants;
-	size?: keyof typeof semanticSizes;
+	theme?: keyof typeof semanticClasses.themes;
+	variant?: keyof typeof semanticClasses.variants;
+	size?: keyof typeof semanticClasses.sizes;
 	text?: string;
 };
 
-const BaseClasses = 'flex items-center justify-center';
+const semanticClasses = {
+	base: 'flex items-center justify-center',
 
-const semanticVariants = {
-	regular: 'rounded-[0.5rem]',
-	input: 'rounded-[0_2.5rem_2.5rem_0]',
-	cart: 'rounded-[0.8rem]',
-	shop: 'rounded-[2.5rem]',
-};
+	variants: {
+		regular: 'rounded-[0.5rem]',
+		input: 'rounded-[0_2.5rem_2.5rem_0]',
+		cart: 'rounded-[0.8rem]',
+		shop: 'rounded-[2.5rem]',
+	},
 
-const semanticThemes = {
-	primary: 'bg-primary text-white',
-	secondary: 'bg-secondary text-dark',
-	ghost: 'bg-transparent text-dark',
-};
+	themes: {
+		primary: 'bg-primary text-white',
+		secondary: 'bg-secondary text-dark',
+		ghost: 'bg-transparent text-dark',
+	},
 
-const semanticSizes = {
-	sm: 'p-[1.11rem_1.3rem]',
-	md: 'p-[1.1rem_3.5rem]',
-	lg: 'p-[1.1rem_4.5rem]',
+	sizes: {
+		sm: 'p-[1.11rem_1.3rem]',
+		md: 'p-[1.1rem_3.5rem]',
+		lg: 'p-[1.1rem_4.5rem]',
+	},
 };
 
 function Button(props: ButtonProps) {
@@ -37,19 +39,20 @@ function Button(props: ButtonProps) {
 		variant = 'regular',
 		size = 'md',
 		text,
-		onClick,
+		...otherValidBtnProps
 	} = props;
 
 	const BTN_CLASSES = twMerge(
-		BaseClasses,
-		semanticVariants[variant],
-		semanticThemes[theme],
-		semanticSizes[size],
+		semanticClasses.base,
+		semanticClasses.variants[variant],
+		semanticClasses.themes[theme],
+		semanticClasses.sizes[size],
 		className
 	);
 
 	return (
-		<button className={BTN_CLASSES} onClick={onClick}>
+		// eslint-disable-next-line react/jsx-props-no-spreading
+		<button className={BTN_CLASSES} {...otherValidBtnProps}>
 			{children ?? text}
 		</button>
 	);

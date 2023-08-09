@@ -4,9 +4,12 @@ import { useShopActions, useShopStore } from '@/store/zustand/shopStore';
 import { useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { AiFillMinusCircle, AiFillPlusCircle, AiOutlineShoppingCart } from 'react-icons/ai';
+import { Link } from 'react-router-dom';
 
 function ItemDescription({ productItem }: { productItem: ResponseDataItem }) {
-	const productItemInCart = useShopStore((state) => state.cart).find((item) => item.id === productItem.id);
+	const productItemInCart = useShopStore((state) => state.cart).find(
+		(item) => item.id === productItem.id
+	);
 	const [productQuantityChosen, setProductQuantityChosen] = useState(productItemInCart?.quantity ?? 0);
 	const { addToCart, decreaseProductQuantity, removeProductFromCart } = useShopActions();
 	const quantityLeftInStock = productItem.stock - productQuantityChosen; // Computed state
@@ -127,7 +130,7 @@ function ItemDescription({ productItem }: { productItem: ResponseDataItem }) {
 						'w-[15rem] p-[1rem_0] transition-[transform] duration-[200ms] ease-in-out  [box-shadow:0_0_0_1.3px_var(--color-secondary)] hover:scale-[1.1] hover:bg-heading hover:text-primary hover:box-shadow-[0_0_0_1.3px_var(--color-secondary)] active:scale-[1.1] lg:w-[20rem]'
 					}
 				>
-					<p>Buy Now</p>
+					<Link to={'/checkout'}>Buy Now</Link>
 				</Button>
 
 				<Button

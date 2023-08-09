@@ -1,3 +1,4 @@
+import { mountStoreDevtool } from 'simple-zustand-devtools';
 import { create, type StateCreator } from 'zustand';
 import { persist } from 'zustand/middleware';
 import type { ShopStore } from './zustand-store.types';
@@ -63,3 +64,7 @@ export const useShopStore = create<ShopStore>()(
 
 // Actions hook
 export const useShopActions = () => useShopStore((state) => state.shopActions);
+
+if (process.env.NODE_ENV === 'development') {
+	mountStoreDevtool('Store1', useShopStore);
+}
