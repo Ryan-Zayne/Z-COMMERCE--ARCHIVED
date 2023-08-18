@@ -1,5 +1,5 @@
-import { Outlet } from 'react-router-dom';
 import { ScrollToTopButton } from '@/components';
+import { Outlet } from 'react-router-dom';
 import Footer from './Footer/Footer';
 import Navbar from './Navbar/Navbar';
 
@@ -8,7 +8,9 @@ function GlobalLayout() {
 		<>
 			<ScrollToTopButton />
 			<Navbar />
+
 			<Outlet />
+
 			<Footer />
 		</>
 	);

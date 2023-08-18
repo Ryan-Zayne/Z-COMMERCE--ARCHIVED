@@ -7,7 +7,7 @@
 	justify-content: center;
 	opacity: 1;
 	background-color: hsla(0, 0%, 0%);
-	transition: opacity 600ms ease-in-out;
+	transition: opacity 1000ms ease-in-out;
 }
 
 .dank-ass-loader {

@@ -12,4 +12,3 @@ export { default as ScrollToTopButton } from './ScrollToTopButton';
 export { default as SearchForm } from './SearchForm';
 export { default as StarRating } from './StarRating';
 export { default as ThemeSwitchButton } from './ThemeSwitchButton';
-export { default as For } from './For';
