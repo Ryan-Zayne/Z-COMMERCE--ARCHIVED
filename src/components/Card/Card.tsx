@@ -21,7 +21,6 @@ function Card({
 }: CardProps) {
 	return (
 		<Element
-			id="Card"
 			data-aos={aosAnimation}
 			data-aos-duration={aosDuration}
 			data-aos-anchor-easing={aosEasing}
@@ -33,23 +32,15 @@ function Card({
 }
 
 const CardHeader = ({ as: Element = 'header', children, className = '' }: CardHeaderProps) => {
-	return (
-		<Element id="Card_Header" className={className}>
-			{children}
-		</Element>
-	);
+	return <Element className={className}>{children}</Element>;
 };
 
 const CardBody = ({ children, className = '' }: OtherCardProps) => (
-	<div id="Card_Body" className={className}>
-		{children}
-	</div>
+	<div className={className}>{children}</div>
 );
 
 const CardFooter = ({ children, className = '' }: OtherCardProps) => (
-	<div id="Card_Footer" className={className}>
-		{children}
-	</div>
+	<div className={className}>{children}</div>
 );
 
 Card.Header = CardHeader;

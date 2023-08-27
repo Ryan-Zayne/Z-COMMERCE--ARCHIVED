@@ -71,7 +71,6 @@ function ProductCard(props: ProductCardProps) {
 					className="relative h-[18rem] w-full overflow-hidden rounded-[0.8rem_0.8rem_0_0]"
 				>
 					<button
-						id="Wishlist Icon"
 						className={twMerge(
 							`group/btn absolute bottom-[1.1rem] right-[1.3rem] z-[100] rounded-[50%] bg-primary p-[0.7rem]`,
 							[
@@ -95,6 +94,7 @@ function ProductCard(props: ProductCardProps) {
 							[isHearted && 'scale-[1.17]']
 						)}
 						src={image}
+						loading="lazy"
 						isDynamicImage={true}
 						onClick={(e) => isMobile && e.preventDefault()}
 					/>

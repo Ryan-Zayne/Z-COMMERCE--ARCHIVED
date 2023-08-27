@@ -92,12 +92,16 @@ const NavigationLinks = () => {
 
 						[
 							!isDesktop &&
-								'fixed z-[100] w-0 flex-col gap-[3.2rem] bg-navbar pt-[7rem] text-[1.4rem] text-nav-text transition-[width] duration-[250ms] ease-[ease] [backdrop-filter:blur(2rem)_saturate(5)] [inset:0_0_0_auto] md:text-[1.6rem]',
+								'fixed z-[100] w-0 flex-col gap-[3.2rem] bg-navbar pt-[7rem] text-[1.4rem] text-nav-text transition-[width] duration-[250ms] ease-[ease] [inset:0_0_0_auto] [backdrop-filter:blur(2rem)_saturate(5)] md:text-[1.6rem]',
 						],
 						[isNavShow && !isDesktop && 'w-[min(21rem,_80%)] duration-[500ms] md:w-[24rem]']
 					)}
 				>
-					{!isDesktop && <Logo className={'mb-[2rem] ml-[4rem]'} />}
+					{!isDesktop && (
+						<li>
+							<Logo className={'mb-[2rem] ml-[4rem]'} />
+						</li>
+					)}
 
 					<li className="max-lg:pl-[4rem]" onClick={!isDesktop ? toggleNavShow : undefined}>
 						<NavLink to="/">Home</NavLink>

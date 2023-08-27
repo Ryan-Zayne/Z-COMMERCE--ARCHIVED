@@ -33,6 +33,7 @@ function Footer() {
 						<img
 							className="mr-[0.3rem] aspect-square w-[3rem] lg:w-[4rem]"
 							src={newsLetterIcon}
+							loading="lazy"
 							alt=""
 						/>
 						Sign Up For NewsLetter
@@ -62,8 +63,14 @@ function Footer() {
 							className="h-[4.1rem] w-[14rem] lg:h-[5rem] lg:w-[17rem]"
 							src={getOnGoogle}
 							alt=""
+							loading="lazy"
 						/>
-						<img className="h-[4.1rem] w-[14rem] lg:h-[5rem] lg:w-[17rem]" src={getOnApple} alt="" />
+						<img
+							className="h-[4.1rem] w-[14rem] lg:h-[5rem] lg:w-[17rem]"
+							src={getOnApple}
+							alt=""
+							loading="lazy"
+						/>
 					</span>
 					<span className="flex gap-[2rem] text-[2rem]">
 						<BsFacebook />

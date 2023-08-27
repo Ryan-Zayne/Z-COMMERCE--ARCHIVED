@@ -17,12 +17,12 @@ function CartDrawer({ isOpen, onClose, onOpen, placement = 'right' }: CartDrawer
 		cart?.length !== 0 ? (
 			cart?.map((item) => <CartItem key={item.id} product={item} />)
 		) : (
-			<div className="text-center italic">
+			<li className="text-center italic">
 				<h4 className="text-[2.8rem] font-[500]">Why here go dey empty?!</h4>
 				<p className="mt-[0.7rem] text-[1.6rem]">
 					Shey na window shopping you come do or abi wetin?😐
 				</p>
-			</div>
+			</li>
 		);
 
 	return (
