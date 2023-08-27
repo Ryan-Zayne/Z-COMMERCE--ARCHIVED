@@ -13,11 +13,12 @@ function Hero() {
 	);
 	const { animatedElements } = useAnimateRef();
 
-	const CarouselItems = slideImages.map((image) => (
+	const CarouselItems = slideImages.map((image, index) => (
 		<Carousel.Item key={image.src}>
 			<ImageComponent
 				className="h-full w-full"
 				src={image.src}
+				fetchPriority={index === 0 ? 'high' : 'auto'}
 				loading={'lazy'}
 				blurSrc={image.blurSrc}
 			/>

@@ -1,14 +1,15 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import { useEffect, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
 import { useThemeStore } from '../store/zustand/themeStore';
 
-type ImageComponentProps = {
+type ImageComponentProps = React.ComponentPropsWithRef<'img'> & {
 	src: string;
 	blurSrc?: string;
 	className?: string;
 	wrapperClassName?: string;
 	isDynamicImage?: boolean;
-	loading?: 'lazy' | 'eager';
+	fetchPriority?: 'auto' | 'low' | 'high';
 	onClick?: React.MouseEventHandler;
 };
 
@@ -21,8 +22,8 @@ function ImageComponent(props: ImageComponentProps) {
 		className = '',
 		wrapperClassName = '',
 		isDynamicImage = false,
-		loading = 'eager',
-		onClick = () => {},
+		onClick,
+		...restOfProps
 	} = props;
 
 	const [isImageLoaded, setIsImageLoaded] = useState(false);
@@ -66,14 +67,19 @@ function ImageComponent(props: ImageComponentProps) {
 					className={twMerge(`object-cover `, [isImageLoaded && 'h-full'], [className])}
 					src={src}
 					alt=""
-					loading={loading}
+					{...restOfProps}
 				/>
 			</div>
 		);
 	}
 
 	return (
-		<img src={isImageLoaded ? src : blurSrc} className={twMerge(`object-cover`, className)} alt="" />
+		<img
+			src={isImageLoaded ? src : blurSrc}
+			className={twMerge(`object-cover`, className)}
+			alt=""
+			{...restOfProps}
+		/>
 	);
 }
 
