@@ -42,7 +42,7 @@ const NavHeader = () => {
 
 			<div
 				id="NavIcons Wrapper"
-				className="flex w-[clamp(19rem,_42vw,_22rem)] items-center justify-between text-[1.8rem]"
+				className="flex w-[clamp(19rem,_42vw,_22rem)] items-center justify-between text-[2rem]"
 			>
 				{/* Mobile search button */}
 				{isMobile && (
@@ -106,7 +106,7 @@ const NavHeader = () => {
 
 				<ThemeSwitchButton />
 
-				{/* Hamburger button and menu */}
+				{/* Hamburger button and Menu */}
 				{!isDesktop && (
 					<>
 						<button

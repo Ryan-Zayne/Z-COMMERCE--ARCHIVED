@@ -72,7 +72,9 @@ function ImageComponent(props: ImageComponentProps) {
 		);
 	}
 
-	return <img src={isImageLoaded ? src : blurSrc} className={twMerge(`object-cover`, className)} />;
+	return (
+		<img src={isImageLoaded ? src : blurSrc} className={twMerge(`object-cover`, className)} alt="" />
+	);
 }
 
 export default ImageComponent;

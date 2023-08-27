@@ -110,7 +110,7 @@ function ProductCard(props: ProductCardProps) {
 						</span>
 					</header>
 
-					<p className="mt-[0.5rem] min-h-[6rem] max-w-[30ch] text-[1rem]">{product.description}</p>
+					<p className="mt-[0.5rem] min-h-[6rem] max-w-[30ch] text-[1.2rem]">{product.description}</p>
 
 					<StarRating rating={product.rating} />
 				</Card.Body>
