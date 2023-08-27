@@ -116,6 +116,9 @@
 		],
 		"react/require-default-props": "off",
 
+		// Jsx-A11y rules
+		"jsx-a11y/click-events-have-key-events": "off",
+
 		//Unicorn rules
 		"unicorn/no-null": "off",
 		"unicorn/filename-case": [
