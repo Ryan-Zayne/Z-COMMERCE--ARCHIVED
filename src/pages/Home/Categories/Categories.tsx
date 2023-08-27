@@ -66,7 +66,7 @@ function Categories() {
 				</Link>
 			</div>
 			<div className="flex w-[12rem] items-center lg:w-[15rem]">
-				<img src={category.image} loading="lazy" alt="" />
+				<img className="h-[8rem]" src={category.image} loading="lazy" alt="" />
 			</div>
 		</li>
 	));
