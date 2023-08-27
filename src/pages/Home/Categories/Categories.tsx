@@ -32,7 +32,7 @@ const categories = [
 		title: 'Watches',
 		path: '/watches',
 		image: 'https://res.cloudinary.com/djvestif4/image/upload/v1685436588/watches-transformed_tgsflz.webp',
-		imageAspectRatio: 'aspect-[0.98]',
+		imageAspectRatio: 'aspect-[1.21]',
 		bg_light: 'bg-cyan-400',
 		bg_dark: 'bg-[hsl(188,86%,38%)]',
 	},
