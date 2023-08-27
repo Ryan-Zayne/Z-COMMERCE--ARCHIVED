@@ -5,7 +5,7 @@ import { useCallbackRef } from './useCallbackRef';
 const useAnimationInterval = (callbackFn: () => void, intervalDuration: number | null) => {
 	// Refs to hold the start time and the current animation frame ID.
 	const startTimeStampRef = useRef<number | null>(null);
-	const animationFrameId = useRef<number>(0);
+	const animationFrameId = useRef(0);
 
 	// Saved callback function with useCallbackRef hook.
 	const savedCallback = useCallbackRef(callbackFn);

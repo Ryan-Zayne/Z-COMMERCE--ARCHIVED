@@ -12,7 +12,7 @@ function ItemDescription({ productItem }: { productItem: ResponseDataItem }) {
 	);
 	const [productQuantityChosen, setProductQuantityChosen] = useState(productItemInCart?.quantity ?? 0);
 	const { addToCart, decreaseProductQuantity, removeProductFromCart } = useShopActions();
-	const quantityLeftInStock = productItem.stock - productQuantityChosen; // Computed state
+	const quantityLeftInStock = productItem.stock - productQuantityChosen;
 
 	const handlePlus = () => {
 		if (productQuantityChosen <= productItem.stock) {
