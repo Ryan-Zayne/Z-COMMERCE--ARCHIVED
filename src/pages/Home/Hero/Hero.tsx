@@ -19,7 +19,6 @@ function Hero() {
 				className="h-full w-full"
 				src={image.src}
 				fetchPriority={index === 0 ? 'high' : 'auto'}
-				loading={'lazy'}
 				blurSrc={image.blurSrc}
 			/>
 		</Carousel.Item>
