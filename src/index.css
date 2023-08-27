@@ -22,7 +22,6 @@
 		--brand-inverse: var(--color-secondary);
 		--text-input: hsl(0, 0%, 31%);
 		--text-label: hsl(0, 0%, 45%);
-
 	}
 
 	:root[data-theme='dark'] {
@@ -71,10 +70,9 @@
 	/* Making basic style resets */
 	/* ------------------------- */
 	html {
-
 		font-size: 62.5%;
 		scroll-behavior: smooth;
-		-webkit-tap-highlight-color: transparent;
+		/* -webkit-tap-highlight-color: transparent; */
 	}
 
 	html.theme-transition,
@@ -98,17 +96,11 @@
 	}
 
 	body {
-		--overflow-y: scroll;
-		--scrollbar-padding: 0;
 		position: relative;
 		font-size: 1.6rem;
 		font-family: 'Rubik', 'Trebuchet MS', sans-serif;
 		background-color: var(--color-body);
 		color: var(--text-body);
-
-		/** These will be set dynamically by javascript to prevent layout shift on navbar open */
-		overflow-y: var(--overflow-y);
-		padding-right: var(--scrollbar-padding);
 	}
 
 

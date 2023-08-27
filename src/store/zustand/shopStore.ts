@@ -65,6 +65,6 @@ export const useShopStore = create<ShopStore>()(
 // Actions hook
 export const useShopActions = () => useShopStore((state) => state.shopActions);
 
-if (process.env.NODE_ENV === 'development') {
+if (import.meta.env.NODE_ENV === 'development') {
 	mountStoreDevtool('Store1', useShopStore);
 }

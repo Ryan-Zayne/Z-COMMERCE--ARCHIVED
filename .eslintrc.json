@@ -57,6 +57,12 @@
 			}
 		],
 		"object-curly-newline": "off",
+		"prefer-arrow-callback": [
+			"error",
+			{
+				"allowNamedFunctions": true
+			}
+		],
 		"comma-dangle": "off",
 		"arrow-body-style": "off",
 		"no-restricted-syntax": ["error", "ForInStatement", "LabeledStatement", "WithStatement"],

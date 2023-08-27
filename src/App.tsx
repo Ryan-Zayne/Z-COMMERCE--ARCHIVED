@@ -23,7 +23,7 @@ function App() {
 	const router = createBrowserRouter(
 		createRoutesFromElements(
 			<>
-				<Route errorElement={<ErrorElement />} path="/" element={<GlobalLayout />}>
+				<Route path="/" errorElement={<ErrorElement />} element={<GlobalLayout />}>
 					<Route index={true} element={<Home />} />
 					<Route path="all-products" element={<AllProductsPage />} />
 					<Route path=":category" element={<ProductCategoryPage />} />

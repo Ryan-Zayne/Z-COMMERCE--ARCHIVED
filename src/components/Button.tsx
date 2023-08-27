@@ -1,7 +1,8 @@
 /* eslint-disable no-use-before-define */
+import { forwardRef } from 'react';
 import { twMerge } from 'tailwind-merge';
 
-export type ButtonProps = React.ComponentPropsWithoutRef<'button'> & {
+export type ButtonProps = React.ComponentPropsWithRef<'button'> & {
 	theme?: keyof typeof semanticClasses.themes;
 	variant?: keyof typeof semanticClasses.variants;
 	size?: keyof typeof semanticClasses.sizes;
@@ -31,7 +32,7 @@ const semanticClasses = {
 	},
 };
 
-function Button(props: ButtonProps) {
+const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(props: ButtonProps, ref) {
 	const {
 		children,
 		className = '',
@@ -52,10 +53,10 @@ function Button(props: ButtonProps) {
 
 	return (
 		// eslint-disable-next-line react/jsx-props-no-spreading
-		<button className={BTN_CLASSES} {...otherValidBtnProps}>
+		<button className={BTN_CLASSES} ref={ref} {...otherValidBtnProps}>
 			{children ?? text}
 		</button>
 	);
-}
+});
 
 export default Button;

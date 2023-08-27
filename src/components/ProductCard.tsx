@@ -54,19 +54,18 @@ function ProductCard(props: ProductCardProps) {
 			as={'li'}
 			{...{ aosAnimation, aosDuration, aosEasing }}
 			className={twMerge(
-				`group/card w-[min(100%,25rem)] rounded-[1.2rem] transition-[transform,box-shadow,background-color] duration-[1000ms] ease-in-out hover:scale-[1.03] hover:[box-shadow:0_0_6px_0_hsl(60,_100%,_0%,_1)]`,
+				`group/card w-[min(100%,25rem)] rounded-[1.2rem] transition-[transform,box-shadow,background-color] duration-[1000ms] ease-in-out hover:scale-[1.03] hover:box-shadow-[0_0_6px_0_hsl(60,_100%,_0%,_1)]`,
+
+				[isHearted && 'scale-[1.03] box-shadow-[0_0_6px_0_hsl(60,_100%,_0%,_1)]'],
+				[isDarkMode && 'hover:bg-primary hover:box-shadow-[0_0_6px_0px_var(--carousel-dot)]'],
 				[
-					[isHearted && 'scale-[1.03] [box-shadow:0_0_6px_0_hsl(60,_100%,_0%,_1)]'],
-					[isDarkMode && 'hover:bg-primary hover:[box-shadow:0_0_6px_0px_var(--carousel-dot)]'],
-					[
-						isHearted &&
-							isDarkMode &&
-							'scale-[1.03] bg-primary [box-shadow:0_0_6px_0px_var(--carousel-dot)]',
-					],
+					isHearted &&
+						isDarkMode &&
+						'scale-[1.03] bg-primary [box-shadow:0_0_6px_0px_var(--carousel-dot)]',
 				]
 			)}
 		>
-			<Link className="flex w-full flex-col justify-between" to={to}>
+			<Link className="flex h-full w-full flex-col justify-between" to={to}>
 				<Card.Header
 					as="div"
 					className="relative h-[18rem] w-full overflow-hidden rounded-[0.8rem_0.8rem_0_0]"
@@ -110,16 +109,17 @@ function ProductCard(props: ProductCardProps) {
 							<sup className="text-[1.4rem]">.00</sup>
 						</span>
 					</header>
+
 					<p className="mt-[0.5rem] min-h-[6rem] max-w-[30ch] text-[1rem]">{product.description}</p>
+
 					<StarRating rating={product.rating} />
 				</Card.Body>
 
 				<Card.Footer className="p-[1.3rem_1rem_1rem]">
 					<hr
-						className={twMerge(
-							`h-[1.8px] bg-carousel-dot opacity-0 group-hover/card:opacity-100`,
-							[isHearted && 'opacity-100']
-						)}
+						className={twMerge(`h-[1.8px] bg-carousel-dot opacity-0 group-hover/card:opacity-100`, [
+							isHearted && 'opacity-100',
+						])}
 					/>
 
 					<Button
