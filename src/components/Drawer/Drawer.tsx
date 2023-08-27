@@ -1,23 +1,12 @@
-import { useMemo } from 'react';
 import { RiCloseFill } from 'react-icons/ri';
 import { twMerge } from 'tailwind-merge';
 import Portal from '../Portal';
-import type {
-	DrawerCloseProps,
-	DrawerContentProps,
-	DrawerProps,
-	OtherDrawerProps,
-} from './drawer.types';
+import type { DrawerCloseProps, DrawerContentProps, DrawerProps, OtherDrawerProps } from './drawer.types';
 import { DrawerContextProvider, useDrawerStore } from './drawerStoreContext';
 
-function Drawer({ children, isOpen, onClose, onOpen, onToggle }: DrawerProps) {
-	const values = useMemo(
-		() => ({ isOpen, onClose, onOpen, onToggle }),
-		[isOpen, onClose, onOpen, onToggle]
-	);
-
+function Drawer({ children, ...restOfDrawerProps }: DrawerProps) {
 	return (
-		<DrawerContextProvider storeValues={values}>
+		<DrawerContextProvider storeValues={restOfDrawerProps}>
 			<Portal>
 				<aside id="CartDrawer Portal">{children}</aside>
 			</Portal>
