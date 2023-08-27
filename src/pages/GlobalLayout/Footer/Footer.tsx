@@ -26,7 +26,7 @@ function Footer() {
 			<section
 				data-aos="fade-up"
 				data-aos-duration="1000"
-				className=" flex flex-col bg-slate-900 bg-[image:url('/src/pages/Global/Footer/images/newsletter-bg.webp')] bg-cover bg-no-repeat p-[3rem_2rem] [background-position:center] lg:flex-row lg:justify-between lg:px-[clamp(3rem,9vw,18rem)]"
+				className=" flex flex-col bg-slate-900 bg-[image:url('/src/pages/GlobalLayout/Footer/images/newsletter-bg.webp')] bg-cover bg-no-repeat p-[3rem_2rem] [background-position:center] lg:flex-row lg:justify-between lg:px-[clamp(3rem,9vw,18rem)]"
 			>
 				<div className="flex flex-col items-center gap-[1rem] lg:gap-[2.5rem]">
 					<h4 className="flex items-center text-[1.7rem] font-[500] text-heading lg:text-[2.4rem]">
@@ -63,11 +63,7 @@ function Footer() {
 							src={getOnGoogle}
 							alt=""
 						/>
-						<img
-							className="h-[4.1rem] w-[14rem] lg:h-[5rem] lg:w-[17rem]"
-							src={getOnApple}
-							alt=""
-						/>
+						<img className="h-[4.1rem] w-[14rem] lg:h-[5rem] lg:w-[17rem]" src={getOnApple} alt="" />
 					</span>
 					<span className="flex gap-[2rem] text-[2rem]">
 						<BsFacebook />
