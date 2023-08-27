@@ -12,6 +12,8 @@ type ImageComponentProps = {
 	onClick?: React.MouseEventHandler;
 };
 
+const img = new Image();
+
 function ImageComponent(props: ImageComponentProps) {
 	const {
 		src,
@@ -27,7 +29,6 @@ function ImageComponent(props: ImageComponentProps) {
 	const isDarkMode = useThemeStore((state) => state.isDarkMode);
 
 	useEffect(() => {
-		const img = new Image();
 		img.src = src;
 
 		const handleImageLoad = () => setIsImageLoaded(true);
@@ -42,8 +43,7 @@ function ImageComponent(props: ImageComponentProps) {
 			if (img.complete) return;
 			img.removeEventListener('load', handleImageLoad);
 		};
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+	}, [src]);
 
 	if (isDynamicImage) {
 		return (
