@@ -18,8 +18,6 @@ const Register = lazy(() => import('./pages/Register/Register'));
 AOS.init();
 
 function App() {
-	useMediaQuery();
-
 	const href = window.location.pathname;
 
 	useEffect(() => {
@@ -29,6 +27,8 @@ function App() {
 			document.title = `DigitalGenie — ${titleAddition}`;
 		}
 	}, [href]);
+
+	useMediaQuery();
 
 	const router = createBrowserRouter(
 		createRoutesFromElements(
