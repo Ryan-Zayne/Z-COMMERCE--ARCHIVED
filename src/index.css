@@ -40,6 +40,19 @@
 		--text-input: hsl(36, 9%, 68%);
 	}
 
+	@font-face {
+		font-family: 'Rubik';
+		src: url('/src/assets/fonts/Rubik.woff2') format('woff2');
+		font-style: normal;
+		font-display: swap;
+	}
+
+	@font-face {
+		font-family: 'Roboto Slab';
+		src: url('/src/assets/fonts/Roboto-slab.woff2') format('woff2');
+		font-style: normal;
+		font-display: swap;
+	}
 
 
 	/* ------------------*/
