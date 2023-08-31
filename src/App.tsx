@@ -20,16 +20,15 @@ AOS.init();
 function App() {
 	useMediaQuery();
 
-	const href = window.location.pathname;
+	// const href = window.location.pathname;
 
-	useEffect(() => {
-		if (href !== '/') {
-			const titleAddition = href[0] && href[0].toUpperCase() + href.slice(2);
+	// useEffect(() => {
+	// 	if (href !== '/') {
+	// 		const titleAddition = href[0] && href[0].toUpperCase() + href.slice(2);
 
-			document.title = `DigitalGenie — ${titleAddition}`;
-		}
-	}, [href]);
-
+	// 		document.title = `DigitalGenie — ${titleAddition}`;
+	// 	}
+	// }, [href]);
 
 	const router = createBrowserRouter(
 		createRoutesFromElements(

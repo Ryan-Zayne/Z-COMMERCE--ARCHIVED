@@ -13,4 +13,4 @@ const useScrollRestoration = (behavior: ScrollBehavior = 'auto') => {
 	}, [href, behavior]);
 };
 
-export default useScrollRestoration;
+export { useScrollRestoration };

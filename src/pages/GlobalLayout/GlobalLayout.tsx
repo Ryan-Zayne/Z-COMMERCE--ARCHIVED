@@ -1,17 +1,15 @@
-import { Outlet } from 'react-router-dom';
+import { Outlet, ScrollRestoration } from 'react-router-dom';
 import Footer from './Footer/Footer';
 import Navbar from './Navbar/Navbar';
 import ScrollToTopButton from './Navbar/ScrollToTopButton';
-import useScrollRestoration from './useScrollRestoration';
 
 function GlobalLayout() {
-	useScrollRestoration();
-
 	return (
 		<>
+			<ScrollRestoration />
 			<ScrollToTopButton />
 			<Navbar />
-			<Outlet />d
+			<Outlet />
 			<Footer />
 		</>
 	);
