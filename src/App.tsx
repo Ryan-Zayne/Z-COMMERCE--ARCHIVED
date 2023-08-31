@@ -24,7 +24,7 @@ function App() {
 
 	useEffect(() => {
 		if (href !== '/') {
-			const titleAddition = href[0] && href[0].toUpperCase() + href.slice(2);
+			const titleAddition = href[1] && href[1].toUpperCase() + href.slice(2);
 
 			document.title = `DigitalGenie — ${titleAddition}`;
 		}
