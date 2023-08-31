@@ -18,7 +18,7 @@ function Hero() {
 			<ImageComponent
 				className="h-full w-full"
 				src={image.src}
-				fetchPriority={index === 0 ? 'high' : 'auto'}
+				fetchpriority={index === 0 ? 'high' : 'auto'}
 				blurSrc={image.blurSrc}
 			/>
 		</Carousel.Item>

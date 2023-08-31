@@ -1,15 +1,18 @@
 import type { StateCreator } from 'zustand';
 import { noScrollOnOpen } from '../../../utils/no-scroll-on-open';
-import type { GlobalSlice, GlobalStore } from '../zustand-store.types';
+import type { GlobalStateSlice } from '../zustand-store.types';
 
-export const createGlobalStateSlice: StateCreator<GlobalStore, [], [], GlobalSlice> = (set, get) => ({
+export const createGlobalStateSlice: StateCreator<GlobalStateSlice, [], [], GlobalStateSlice> = (
+	set,
+	get
+) => ({
 	isNavShow: false,
 	isSearchShow: false,
 
 	globalActions: {
 		toggleNavShow: () => {
 			set((state) => ({ isNavShow: !state.isNavShow }));
-			noScrollOnOpen(get().isNavShow);
+			noScrollOnOpen({ isOpen: get().isNavShow });
 		},
 
 		toggleSearchShow: () => set((state) => ({ isSearchShow: !state.isSearchShow })),

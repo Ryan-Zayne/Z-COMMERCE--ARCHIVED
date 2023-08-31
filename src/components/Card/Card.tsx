@@ -31,20 +31,16 @@ function Card({
 	);
 }
 
-const CardHeader = ({ as: Element = 'header', children, className = '' }: CardHeaderProps) => {
+Card.Header = function CardHeader({ as: Element = 'header', children, className = '' }: CardHeaderProps) {
 	return <Element className={className}>{children}</Element>;
 };
 
-const CardBody = ({ children, className = '' }: OtherCardProps) => (
-	<div className={className}>{children}</div>
-);
+Card.Body = function CardBody({ children, className = '' }: OtherCardProps) {
+	return <div className={className}>{children}</div>;
+};
 
-const CardFooter = ({ children, className = '' }: OtherCardProps) => (
-	<div className={className}>{children}</div>
-);
-
-Card.Header = CardHeader;
-Card.Body = CardBody;
-Card.Footer = CardFooter;
+Card.Footer = function CardFooter({ children, className = '' }: OtherCardProps) {
+	return <div className={className}>{children}</div>;
+};
 
 export default Card;

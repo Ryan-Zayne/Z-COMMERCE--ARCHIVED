@@ -1,13 +1,3 @@
-/* For no scroll on open functionality */
-body {
-	--overflow-y: scroll;
-	--scrollbar-padding: 0;
-
-	/** These will be set dynamically by javascript to prevent layout shift on navbar open */
-	overflow-y: var(--overflow-y);
-	padding-right: var(--scrollbar-padding);
-}
-
 .loader-container {
 	position: fixed;
 	inset: 0;

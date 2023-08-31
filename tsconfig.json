@@ -25,18 +25,16 @@
 		"types": ["vite/client"],
 		"verbatimModuleSyntax": true
 	},
-
 	"exclude": ["node_modules"],
 	"include": [
-		"src",
-		"prettier.config.cjs",
-		"postcss.config.cjs",
-		"tailwind.config.cjs",
 		"env.d.ts",
+		"postcss.config.cjs",
+		"prettier.config.cjs",
+		"src",
+		"tailwind.config.cjs",
 		"vite-env.d.ts",
 		"vite.config.ts"
 	],
-
 	"references": [
 		{
 			"path": "./tsconfig.node.json"

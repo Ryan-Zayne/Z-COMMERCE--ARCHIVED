@@ -1,7 +1,7 @@
 // Global State Types
 import type { ResponseDataItem } from '../react-query/query-hook.types';
 
-export type GlobalSlice = {
+export type GlobalStateSlice = {
 	isNavShow: boolean;
 	isSearchShow: boolean;
 	globalActions: {
@@ -20,7 +20,7 @@ export type MediaQuerySlice = {
 		setIsDesktop: () => void;
 	};
 };
-export type GlobalStore = GlobalSlice & MediaQuerySlice;
+export type GlobalStore = GlobalStateSlice & MediaQuerySlice;
 
 // ThemeState Types
 export type ThemeStore = {

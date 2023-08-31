@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable no-use-before-define */
 import { forwardRef } from 'react';
 import { twMerge } from 'tailwind-merge';
@@ -52,7 +53,6 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(props:
 	);
 
 	return (
-		// eslint-disable-next-line react/jsx-props-no-spreading
 		<button className={BTN_CLASSES} ref={ref} {...otherValidBtnProps}>
 			{children ?? text}
 		</button>

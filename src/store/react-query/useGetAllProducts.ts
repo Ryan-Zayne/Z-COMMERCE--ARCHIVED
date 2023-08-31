@@ -17,7 +17,6 @@ const useGetAllProducts = () => {
 		productQueries.map((queryItem) => ({
 			queryKey: queryItem.key,
 			queryFn: () => fetcher(queryItem.url),
-			staleTime: 2 * 60 * 1000,
 			select: transformData,
 		}))
 	);

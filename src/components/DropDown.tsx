@@ -24,14 +24,12 @@ function DropDown({ id = '', isOpen = false, children, className = '' }: DropDow
 	);
 }
 
-function DropDownPanel({ id = '', children, className }: DropDownPanelProps) {
+DropDown.Panel = function DropDownPanel({ id = '', children, className }: DropDownPanelProps) {
 	return (
 		<ul id={id} className={twMerge(`overflow-y-hidden [transition:padding_500ms]`, className)}>
 			{children}
 		</ul>
 	);
-}
-
-DropDown.Panel = DropDownPanel;
+};
 
 export default DropDown;

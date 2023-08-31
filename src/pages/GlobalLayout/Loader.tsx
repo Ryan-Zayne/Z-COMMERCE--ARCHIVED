@@ -1,13 +1,4 @@
-import { noScrollOnOpen } from '@/utils/no-scroll-on-open';
-import { useLayoutEffect } from 'react';
-
 function Loader() {
-	useLayoutEffect(() => {
-		noScrollOnOpen(true);
-
-		return () => noScrollOnOpen(false);
-	}, []);
-
 	return (
 		<div className="loader-container">
 			<div className="dank-ass-loader">

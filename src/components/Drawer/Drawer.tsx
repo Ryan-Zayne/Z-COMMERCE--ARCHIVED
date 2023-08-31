@@ -14,7 +14,7 @@ function Drawer({ children, ...restOfDrawerProps }: DrawerProps) {
 	);
 }
 
-function DrawerOverlay() {
+Drawer.Overlay = function DrawerOverlay() {
 	const isOpen = useDrawerStore((state) => state.isOpen);
 	const onClose = useDrawerStore((state) => state.onClose);
 
@@ -28,9 +28,9 @@ function DrawerOverlay() {
 			)}
 		/>
 	);
-}
+};
 
-function DrawerContent({ className, children, placement = 'right' }: DrawerContentProps) {
+Drawer.Content = function DrawerContent({ className, children, placement = 'right' }: DrawerContentProps) {
 	const isOpen = useDrawerStore((state) => state.isOpen);
 
 	const placementObject = {
@@ -50,9 +50,12 @@ function DrawerContent({ className, children, placement = 'right' }: DrawerConte
 			{children}
 		</main>
 	);
-}
+};
 
-function DrawerCloseButton({ className = '', icon = <RiCloseFill /> }: DrawerCloseProps) {
+Drawer.CloseButton = function DrawerCloseButton({
+	className = '',
+	icon = <RiCloseFill />,
+}: DrawerCloseProps) {
 	const onClose = useDrawerStore((state) => state.onClose);
 
 	return (
@@ -60,37 +63,30 @@ function DrawerCloseButton({ className = '', icon = <RiCloseFill /> }: DrawerClo
 			{icon}
 		</button>
 	);
-}
+};
 
-function DrawerHeader({ children, className = '' }: OtherDrawerProps) {
+Drawer.Header = function DrawerHeader({ children, className = '' }: OtherDrawerProps) {
 	return (
 		<header id="Drawer Header" className={className}>
 			{children}
 		</header>
 	);
-}
+};
 
-function DrawerBody({ children, className = '' }: OtherDrawerProps) {
+Drawer.Body = function DrawerBody({ children, className = '' }: OtherDrawerProps) {
 	return (
 		<div id="Drawer Body" className={className}>
 			{children}
 		</div>
 	);
-}
+};
 
-function DrawerFooter({ children, className = '' }: OtherDrawerProps) {
+Drawer.Footer = function DrawerFooter({ children, className = '' }: OtherDrawerProps) {
 	return (
 		<footer id="Drawer Footer" className={className}>
 			{children}
 		</footer>
 	);
-}
-
-Drawer.Overlay = DrawerOverlay;
-Drawer.Content = DrawerContent;
-Drawer.CloseButton = DrawerCloseButton;
-Drawer.Header = DrawerHeader;
-Drawer.Body = DrawerBody;
-Drawer.Footer = DrawerFooter;
+};
 
 export default Drawer;

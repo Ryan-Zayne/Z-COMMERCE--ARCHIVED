@@ -9,7 +9,7 @@ type ImageComponentProps = React.ComponentPropsWithRef<'img'> & {
 	className?: string;
 	wrapperClassName?: string;
 	isDynamicImage?: boolean;
-	fetchPriority?: 'auto' | 'low' | 'high';
+	fetchpriority?: 'auto' | 'low' | 'high';
 	onClick?: React.MouseEventHandler;
 };
 

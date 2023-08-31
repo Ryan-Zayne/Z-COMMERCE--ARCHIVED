@@ -86,11 +86,11 @@ function Carousel({
 	);
 }
 
-function CarouselItem({ children, className = '' }: OtherCarouselProps) {
+Carousel.Item = function CarouselItem({ children, className = '' }: OtherCarouselProps) {
 	return <li className={twMerge(`flex w-full shrink-0 ${className}`)}>{children}</li>;
-}
+};
 
-function CarouselItemWrapper({ children, className = '' }: OtherCarouselProps) {
+Carousel.ItemWrapper = function CarouselItemWrapper({ children, className = '' }: OtherCarouselProps) {
 	const currentSlide = useCarouselStore((state) => state.currentSlide);
 
 	return (
@@ -106,17 +106,17 @@ function CarouselItemWrapper({ children, className = '' }: OtherCarouselProps) {
 			{children}
 		</ul>
 	);
-}
+};
 
-function CarouselCaption({ children, className = '' }: OtherCarouselProps) {
+Carousel.Caption = function CarouselCaption({ children, className = '' }: OtherCarouselProps) {
 	return (
 		<div id="Carousel Caption" className={twMerge(`absolute text-light ${className}`)}>
 			{children}
 		</div>
 	);
-}
+};
 
-function CarouselIndicator({
+Carousel.Indicator = function CarouselIndicator({
 	className = '',
 	onActiveClassName = 'w-[3.5rem] rounded-[0.5rem] bg-carousel-dot',
 	index,
@@ -134,9 +134,12 @@ function CarouselIndicator({
 			`)}
 		/>
 	);
-}
+};
 
-function CarouselIndicatorWrapper({ children, className = '' }: OtherCarouselProps) {
+Carousel.IndicatorWrapper = function CarouselIndicatorWrapper({
+	children,
+	className = '',
+}: OtherCarouselProps) {
 	return (
 		<span
 			id="Carousel Indicators"
@@ -147,12 +150,6 @@ function CarouselIndicatorWrapper({ children, className = '' }: OtherCarouselPro
 			{children}
 		</span>
 	);
-}
-
-Carousel.Item = CarouselItem;
-Carousel.ItemWrapper = CarouselItemWrapper;
-Carousel.Caption = CarouselCaption;
-Carousel.Indicator = CarouselIndicator;
-Carousel.IndicatorWrapper = CarouselIndicatorWrapper;
+};
 
 export default Carousel;

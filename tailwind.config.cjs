@@ -90,6 +90,8 @@ module.exports = {
 
 	plugins: [
 		plugin(({ matchVariant, matchUtilities, addComponents }) => {
+			// addVariant('hocus', ['&:hover', '&:focus']);
+
 			addComponents({
 				'.custom-scrollbar': {
 					'&::-webkit-scrollbar': {
@@ -121,10 +123,10 @@ module.exports = {
 						width: '0.5rem',
 						borderRadius: '50%',
 						transition: `opacity 0.4s ease 0s,
-											bottom 0.3s ease 0.1s,
-											height 0.5s ease 0.3s,
-											border-radius 0.2s ease 0.4s,
-											width 0.5s ease 0.4s`,
+										 bottom 0.3s ease 0.1s,
+										 height 0.5s ease 0.3s,
+										 border-radius 0.2s ease 0.4s,
+										 width 0.5s ease 0.4s`,
 					},
 
 					'&:hover::before': {
@@ -140,22 +142,20 @@ module.exports = {
 			matchUtilities(
 				{
 					'box-shadow': (value) => ({
-						'box-shadow': value,
+						boxShadow: value,
 					}),
 				},
+
 				{
-					values: {
-						btn: '',
-					},
+					values: {},
 				}
 			);
 
 			matchVariant(
 				'nth',
 
-				(value) => {
-					return `&:nth-child(${value})`;
-				},
+				(value) => `&:nth-child(${value})`,
+
 				{
 					values: {
 						1: '1',

@@ -55,7 +55,6 @@
 	}
 
 
-
 	/* ------------------*/
 	/* General CSS Reset */
 	/*-------------------*/
@@ -96,11 +95,18 @@
 	}
 
 	body {
+		/** These will be set dynamically by javascript to prevent layout shift on navbar open */
+		--overflow-y: auto;
+		--scrollbar-padding: 0;
+
 		position: relative;
 		font-size: 1.6rem;
 		font-family: 'Rubik', 'Trebuchet MS', sans-serif;
 		background-color: var(--color-body);
 		color: var(--text-body);
+
+		overflow-y: var(--overflow-y);
+		padding-right: var(--scrollbar-padding);
 	}
 
 

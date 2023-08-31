@@ -2,7 +2,7 @@ import { CarouselContextProvider } from '@/components/Carousel/carouselStoreCont
 import Categories from './Categories/Categories';
 import Hero from './Hero/Hero';
 import HomeProductSection from './HomeProductSection/HomeProductSection';
-import { images } from './images';
+import images from './images';
 
 function HomePage() {
 	return (
