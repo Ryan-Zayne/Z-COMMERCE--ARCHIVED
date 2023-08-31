@@ -1,27 +1,17 @@
-import { ScrollToTopButton } from '@/components';
-import { useEffect } from 'react';
-import { Outlet, useLocation } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import Footer from './Footer/Footer';
 import Navbar from './Navbar/Navbar';
+import ScrollToTopButton from './Navbar/ScrollToTopButton';
+import useScrollRestoration from './useScrollRestoration';
 
 function GlobalLayout() {
-	const href = useLocation().pathname;
-
-	/* Scrolls to top on route change within Global layout */
-	useEffect(() => {
-		window.scrollTo({
-			top: 0,
-			left: 0,
-		});
-	}, [href]);
+	useScrollRestoration();
 
 	return (
 		<>
 			<ScrollToTopButton />
 			<Navbar />
-
-			<Outlet />
-
+			<Outlet />d
 			<Footer />
 		</>
 	);

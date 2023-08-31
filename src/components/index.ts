@@ -8,7 +8,6 @@ export { default as LoadingSkeleton } from './LoadingSkeleton';
 export { default as Logo } from './Logo';
 export { default as Portal } from './Portal';
 export { default as ProductCard } from './ProductCard';
-export { default as ScrollToTopButton } from './ScrollToTopButton';
 export { default as SearchForm } from './SearchForm';
 export { default as StarRating } from './StarRating';
 export { default as ThemeSwitchButton } from './ThemeSwitchButton';
