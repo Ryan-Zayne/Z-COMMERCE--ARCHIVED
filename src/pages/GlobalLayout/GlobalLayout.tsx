@@ -4,6 +4,8 @@ import Navbar from './Navbar/Navbar';
 import ScrollToTopButton from './Navbar/ScrollToTopButton';
 
 function GlobalLayout() {
+
+
 	return (
 		<>
 			<ScrollRestoration />

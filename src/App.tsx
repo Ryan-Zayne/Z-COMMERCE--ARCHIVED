@@ -1,7 +1,7 @@
 import { useMediaQuery } from '@/hooks';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import { Suspense, lazy, useEffect } from 'react';
+import { Suspense, lazy } from 'react';
 import { Toaster } from 'react-hot-toast';
 import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom';
 
@@ -19,16 +19,6 @@ AOS.init();
 
 function App() {
 	useMediaQuery();
-
-	const href = window.location.pathname;
-
-	useEffect(() => {
-		if (href !== '/') {
-			const titleAddition = href[1] && href[1].toUpperCase() + href.slice(2);
-
-			document.title = `DigitalGenie — ${titleAddition}`;
-		}
-	}, [href]);
 
 	const router = createBrowserRouter(
 		createRoutesFromElements(
