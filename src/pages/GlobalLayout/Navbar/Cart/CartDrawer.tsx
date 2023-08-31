@@ -44,6 +44,7 @@ function CartDrawer({ isOpen, onClose, onOpen, placement = 'right' }: CartDrawer
 					}
 				>
 					<Logo />
+
 					<IoMdCart
 						className={`text-[4.5rem] ${isDarkMode ? 'text-carousel-dot' : 'text-primary'} `}
 					/>

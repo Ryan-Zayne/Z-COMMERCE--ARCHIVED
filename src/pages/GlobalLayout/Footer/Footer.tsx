@@ -6,7 +6,6 @@ import { BsFacebook, BsInstagram, BsPinterest, BsTwitter } from 'react-icons/bs'
 import { FaChevronDown } from 'react-icons/fa';
 import { MdLocationOn, MdMail, MdPhone } from 'react-icons/md';
 import { TfiYoutube } from 'react-icons/tfi';
-import { Link } from 'react-router-dom';
 import { twJoin, twMerge } from 'tailwind-merge';
 import getOnApple from './images/get-on-apple.png';
 import getOnGoogle from './images/get-on-google.png';
@@ -89,9 +88,7 @@ function Footer() {
 				className="flex flex-col gap-[2rem] p-[6rem_1.5rem_4rem] lg:flex-row lg:justify-between lg:px-[4.4rem]"
 			>
 				<article>
-					<Link to="/" className="ml-[-1.5rem] inline-block lg:ml-[0.8rem]">
-						<Logo className={twJoin(isDarkMode && 'brightness-[0.8] contrast-[1.8]')} />
-					</Link>
+					<Logo className={twJoin(isDarkMode && 'brightness-[0.8] contrast-[1.8]')} />
 
 					<div className="mt-[0.5rem]">
 						{!isDesktop && (

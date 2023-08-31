@@ -4,31 +4,31 @@ import 'aos/dist/aos.css';
 import { Suspense, lazy, useEffect } from 'react';
 import { Toaster } from 'react-hot-toast';
 import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom';
-import ErrorElement from './pages/ErrorElement';
-import GlobalLayout from './pages/GlobalLayout/GlobalLayout';
-import Loader from './pages/GlobalLayout/Loader';
 
 const Home = lazy(() => import('./pages/Home/Home'));
 const AllProductsPage = lazy(() => import('./pages/AllProductsPage/AllProductsPage'));
-const PageNotFound = lazy(() => import('./pages/PageNotFound'));
 const ProductCategoryPage = lazy(() => import('./pages/ProductCategoryPage/ProductCategoryPage'));
 const ProductItemPage = lazy(() => import('./pages/ProductItemPage/ProductItemPage'));
 const Register = lazy(() => import('./pages/Register/Register'));
+const ErrorElement = lazy(() => import('./pages/ErrorElement'));
+const PageNotFound = lazy(() => import('./pages/PageNotFound'));
+const GlobalLayout = lazy(() => import('./pages/GlobalLayout/GlobalLayout'));
+const Loader = lazy(() => import('./pages/GlobalLayout/Loader'));
 
 AOS.init();
 
 function App() {
 	useMediaQuery();
 
-	// const href = window.location.pathname;
+	const href = window.location.pathname;
 
-	// useEffect(() => {
-	// 	if (href !== '/') {
-	// 		const titleAddition = href[0] && href[0].toUpperCase() + href.slice(2);
+	useEffect(() => {
+		if (href !== '/') {
+			const titleAddition = href[0] && href[0].toUpperCase() + href.slice(2);
 
-	// 		document.title = `DigitalGenie — ${titleAddition}`;
-	// 	}
-	// }, [href]);
+			document.title = `DigitalGenie — ${titleAddition}`;
+		}
+	}, [href]);
 
 	const router = createBrowserRouter(
 		createRoutesFromElements(

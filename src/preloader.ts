@@ -4,7 +4,6 @@ import { noScrollOnOpen } from './utils/no-scroll-on-open';
 const theme = JSON.parse(localStorage.getItem('colorScheme') ?? '')?.state?.theme as string;
 document.documentElement.dataset.theme = theme;
 
-// NOTE - Adding and Removing Loader after load
 const loaderElement = document.querySelector('.loader-container') as HTMLDivElement;
 noScrollOnOpen({ isOpen: true });
 

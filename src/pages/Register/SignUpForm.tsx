@@ -1,11 +1,10 @@
-import { useState } from 'react';
-import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
-import { FcGoogle } from 'react-icons/fc';
-import { Link } from 'react-router-dom';
-import { twMerge } from 'tailwind-merge';
 import { Button, Logo } from '@/components';
 import { useGlobalStore } from '@/store/zustand/globalStore';
 import { useThemeStore } from '@/store/zustand/themeStore';
+import { useState } from 'react';
+import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
+import { FcGoogle } from 'react-icons/fc';
+import { twMerge } from 'tailwind-merge';
 import facebook from './images/facebook.png';
 
 function SignUpForm({ setIsLogin }: { setIsLogin: React.Dispatch<React.SetStateAction<boolean>> }) {
@@ -21,11 +20,8 @@ function SignUpForm({ setIsLogin }: { setIsLogin: React.Dispatch<React.SetStateA
 	return (
 		<>
 			<header>
-				{!isDesktop && (
-					<Link to={'/'} className="ml-[-0.8rem] inline-block w-[16rem]">
-						<Logo className="w-full md:w-full" />
-					</Link>
-				)}
+				{!isDesktop && <Logo className="ml-[-0.8rem] w-[16rem] md:w-full" />}
+
 				<h2
 					className={twMerge(
 						`font-roboto text-[3.8rem] font-[800] text-[color:hsl(0,0%,20%)] max-lg:mt-[2rem]`,

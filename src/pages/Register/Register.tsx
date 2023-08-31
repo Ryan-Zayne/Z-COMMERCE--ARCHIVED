@@ -2,7 +2,6 @@ import { Logo } from '@/components';
 import { useGlobalStore } from '@/store/zustand/globalStore';
 import { Transition } from '@headlessui/react';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
 import LoginForm from './LoginForm';
 import SignUpForm from './SignUpForm';
 
@@ -15,12 +14,7 @@ function Register() {
 			<span id="Background Overlay" className="absolute inset-0 z-[1] bg-[hsl(0,0%,0%,0.45)]" />
 
 			{isDesktop && (
-				<Link
-					to={'/'}
-					className="relative bottom-[1rem] z-10 ml-[-0.8rem] w-[20rem] brightness-[0.8] contrast-[1.7] lg:left-[4rem]"
-				>
-					<Logo className="w-full md:w-full" />
-				</Link>
+				<Logo className="relative bottom-[1rem] z-10 ml-[-0.8rem] w-[20rem] brightness-[0.8] contrast-[1.7] lg:left-[4rem]" />
 			)}
 
 			<Transition
@@ -29,7 +23,7 @@ function Register() {
 				}
 				show={isLogin}
 				appear={true}
-				enter="transition-[opacity,transform] duration-[600ms]"
+				enter="transition-[opacity,transform] duration-[800ms]"
 				enterFrom="opacity-0 translate-x-[2rem]"
 				enterTo="opacity-100 translate-x-[0]"
 				leaveFrom="opacity-100"
@@ -44,7 +38,7 @@ function Register() {
 				}
 				show={!isLogin}
 				appear={true}
-				enter="transition-[opacity,transform] duration-[600ms]"
+				enter="transition-[opacity,transform] duration-[800ms]"
 				enterFrom="opacity-0 translate-x-[2rem]"
 				enterTo="opacity-100 translate-x-[0]"
 				leaveFrom="opacity-100"

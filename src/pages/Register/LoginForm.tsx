@@ -5,7 +5,6 @@ import { useState } from 'react';
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
 import { FaFacebook } from 'react-icons/fa';
 import { FcGoogle } from 'react-icons/fc';
-import { Link } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
 
 const LoginForm = ({ setIsLogin }: { setIsLogin: React.Dispatch<React.SetStateAction<boolean>> }) => {
@@ -21,11 +20,8 @@ const LoginForm = ({ setIsLogin }: { setIsLogin: React.Dispatch<React.SetStateAc
 	return (
 		<>
 			<header>
-				{!isDesktop && (
-					<Link to={'/'} className="ml-[-0.8rem] inline-block w-[16rem]">
-						<Logo className="w-full md:w-full" />
-					</Link>
-				)}
+				{!isDesktop && <Logo className="ml-[-0.8rem] w-[16rem] md:w-full" />}
+
 				<h2
 					className={twMerge(
 						`font-roboto text-[3.8rem] font-[800] text-[color:hsl(0,0%,20%)] max-lg:mt-[1.5rem]`,

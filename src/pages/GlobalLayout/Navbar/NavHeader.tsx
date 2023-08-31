@@ -25,9 +25,7 @@ const NavHeader = () => {
 			id="Nav Icons and Logo"
 			className="flex w-full select-none justify-between gap-[1rem] px-[1rem] lg:pr-[4rem] "
 		>
-			<Link to="/">
-				<Logo className={twJoin(isDarkMode && 'contrast-[1.8]) brightness-[0.8]')} />
-			</Link>
+			<Logo className={twJoin(isDarkMode && 'contrast-[1.8]) brightness-[0.8]')} />
 
 			<SearchForm
 				className={twMerge(
