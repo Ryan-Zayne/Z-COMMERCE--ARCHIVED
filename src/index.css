@@ -3,7 +3,6 @@
 @tailwind utilities;
 
 
-
 @layer base {
 	:root {
 		--text-header: hsl(43, 100%, 55%);
@@ -44,14 +43,12 @@
 		font-family: 'Rubik';
 		src: url('/src/assets/fonts/Rubik.woff2') format('woff2');
 		font-style: normal;
-		font-display: swap;
 	}
 
 	@font-face {
 		font-family: 'Roboto Slab';
 		src: url('/src/assets/fonts/Roboto-slab.woff2') format('woff2');
 		font-style: normal;
-		font-display: swap;
 	}
 
 
