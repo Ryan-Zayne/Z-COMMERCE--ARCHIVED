@@ -4,19 +4,10 @@ import 'aos/dist/aos.css';
 import { Suspense, lazy } from 'react';
 import { Toaster } from 'react-hot-toast';
 import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom';
-// import GlobalLayout from './pages/GlobalLayout/GlobalLayout';
+import GlobalLayout from './pages/GlobalLayout/GlobalLayout';
 import Loader from './pages/GlobalLayout/Loader';
 
-// import AllProductsPage from './pages/AllProductsPage/AllProductsPage';
-// import ErrorElement from './pages/ErrorElement';
-// import Home from './pages/Home/Home';
-// import PageNotFound from './pages/PageNotFound';
-// import ProductCategoryPage from './pages/ProductCategoryPage/ProductCategoryPage';
-// import ProductItemPage from './pages/ProductItemPage/ProductItemPage';
-// import Register from './pages/Register/Register';
-
 const Home = lazy(() => import('./pages/Home/Home'));
-const GlobalLayout = lazy(() => import('./pages/GlobalLayout/GlobalLayout'));
 const AllProductsPage = lazy(() => import('./pages/AllProductsPage/AllProductsPage'));
 const ProductCategoryPage = lazy(() => import('./pages/ProductCategoryPage/ProductCategoryPage'));
 const ProductItemPage = lazy(() => import('./pages/ProductItemPage/ProductItemPage'));
