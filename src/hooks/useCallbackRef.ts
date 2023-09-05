@@ -1,4 +1,3 @@
-import { assertRef } from '@/global-type-helpers';
 import { useCallback, useEffect, useRef } from 'react';
 /* eslint-disable react-hooks/exhaustive-deps */
 
@@ -13,18 +12,20 @@ import { useCallback, useEffect, useRef } from 'react';
  * @returns The memoized callback function.
  */
 
-const useCallbackRef = <TValue, TResult>(
-	callbackFn: (value: TValue) => TResult,
+const useCallbackRef = <TValues, TResult>(
+	callbackFn: (...values: TValues[]) => TResult,
 	deps: React.DependencyList = []
 ) => {
 	const callbackRef = useRef(callbackFn);
 
-	// useEffect hook to save the latest callback function to the ref
 	useEffect(() => {
 		callbackRef.current = callbackFn;
 	}, [callbackFn]);
 
-	const savedCallback = useCallback((value?: TValue) => callbackRef.current(assertRef(value)), deps);
+	const savedCallback = useCallback(
+		(...savedValues: TValues[]) => callbackRef.current(...savedValues),
+		deps
+	);
 
 	return savedCallback;
 };

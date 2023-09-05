@@ -26,18 +26,20 @@ type OtherCarouselProps = Pick<CarouselProps, 'children'> & {
 	className?: string;
 };
 
-function Carousel({
-	as: Element = 'article',
-	children,
-	outerClassName = '',
-	innerClassName = '',
-	leftBtnClasses = '',
-	rightBtnClasses = '',
-	arrowIcon,
-	isAutoSlide = false,
-	autoSlideInterval = 10000,
-	pauseOnHover = false,
-}: CarouselProps) {
+function Carousel(props: CarouselProps) {
+	const {
+		as: Element = 'article',
+		children,
+		outerClassName = '',
+		innerClassName = '',
+		leftBtnClasses = '',
+		rightBtnClasses = '',
+		arrowIcon,
+		isAutoSlide = false,
+		autoSlideInterval = 10000,
+		pauseOnHover = false,
+	} = props;
+
 	const isMobile = useGlobalStore((state) => state.isMobile);
 	const nextSlide = useCarouselStore((state) => state.nextSlide);
 	const previousSlide = useCarouselStore((state) => state.previousSlide);
