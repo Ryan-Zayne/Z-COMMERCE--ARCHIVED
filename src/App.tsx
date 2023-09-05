@@ -1,19 +1,25 @@
 import { useMediaQuery } from '@/hooks';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import { Suspense, lazy } from 'react';
 import { Toaster } from 'react-hot-toast';
 import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom';
 
-const Home = lazy(() => import('./pages/Home/Home'));
-const AllProductsPage = lazy(() => import('./pages/AllProductsPage/AllProductsPage'));
-const ProductCategoryPage = lazy(() => import('./pages/ProductCategoryPage/ProductCategoryPage'));
-const ProductItemPage = lazy(() => import('./pages/ProductItemPage/ProductItemPage'));
-const Register = lazy(() => import('./pages/Register/Register'));
-const ErrorElement = lazy(() => import('./pages/ErrorElement'));
-const PageNotFound = lazy(() => import('./pages/PageNotFound'));
-const GlobalLayout = lazy(() => import('./pages/GlobalLayout/GlobalLayout'));
-const Loader = lazy(() => import('./pages/GlobalLayout/Loader'));
+import AllProductsPage from './pages/AllProductsPage/AllProductsPage';
+import ErrorElement from './pages/ErrorElement';
+import GlobalLayout from './pages/GlobalLayout/GlobalLayout';
+import Home from './pages/Home/Home';
+import PageNotFound from './pages/PageNotFound';
+import ProductCategoryPage from './pages/ProductCategoryPage/ProductCategoryPage';
+import ProductItemPage from './pages/ProductItemPage/ProductItemPage';
+import Register from './pages/Register/Register';
+
+// const Home = lazy(() => import('./pages/Home/Home'));
+// const AllProductsPage = lazy(() => import('./pages/AllProductsPage/AllProductsPage'));
+// const ProductCategoryPage = lazy(() => import('./pages/ProductCategoryPage/ProductCategoryPage'));
+// const ProductItemPage = lazy(() => import('./pages/ProductItemPage/ProductItemPage'));
+// const Register = lazy(() => import('./pages/Register/Register'));
+// const ErrorElement = lazy(() => import('./pages/ErrorElement'));
+// const PageNotFound = lazy(() => import('./pages/PageNotFound'));
 
 AOS.init();
 
@@ -38,9 +44,7 @@ function App() {
 
 	return (
 		<>
-			<Suspense fallback={<Loader />}>
-				<RouterProvider router={router} />
-			</Suspense>
+			<RouterProvider router={router} />
 
 			<Toaster
 				toastOptions={{
