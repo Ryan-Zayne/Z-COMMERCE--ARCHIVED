@@ -30,7 +30,7 @@ const useAnimateRef = () => {
 		paragraph: null,
 	});
 
-	const fadeAnimationId = useRef<number>();
+	const fadeAnimationId = useRef<NodeJS.Timeout>();
 
 	useEffect(() => {
 		const addAnimationClasses = () => {

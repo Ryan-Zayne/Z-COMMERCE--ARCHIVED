@@ -1,33 +1,31 @@
 import { createContext as createReactContext, useContext as useReactContext } from 'react';
 import { getErrorMessage } from './getErrorMessage';
 
-export type ContextHookType<TContext> = {
+export type CreateContextOptions<TContext> = {
 	name?: string;
-	strict?: boolean;
 	hookName?: string;
 	providerName?: string;
 	errorMessage?: string;
-	defaultValue: TContext;
+	defaultValue?: TContext;
 };
 
-const createContext = <TContextObject extends object | null>(options: ContextHookType<TContextObject>) => {
+const createContext = <TDefaultContext>(options: CreateContextOptions<TDefaultContext | null>) => {
 	const {
 		name = 'Unnamed Context',
-		strict = true,
 		hookName = 'Unnamed Context hook',
 		providerName = 'Unnamed Provider',
 		errorMessage,
 		defaultValue,
 	} = options ?? {};
 
-	const Context = createReactContext<TContextObject>(defaultValue);
+	const Context = createReactContext<TDefaultContext | null | undefined>(defaultValue);
 	Context.displayName = name;
 
 	// Extending useContext
 	const useContext = () => {
 		const contextValue = useReactContext(Context);
 
-		if (strict && contextValue === null) {
+		if (contextValue == null) {
 			const error = new Error(errorMessage ?? getErrorMessage(hookName, providerName));
 			error.name = 'ContextError';
 			Error.captureStackTrace?.(error, useContext);

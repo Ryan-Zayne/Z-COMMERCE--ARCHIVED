@@ -7,18 +7,18 @@ type CardProps = {
 	aosEasing?: string;
 };
 
-type CardHeaderProps = Pick<CardProps, 'as' | 'children' | 'className'>;
+type OtherCardProps = Pick<CardProps, 'as' | 'children' | 'className'>;
 
-type OtherCardProps = Pick<CardProps, 'children' | 'className'>;
+function Card(props: CardProps) {
+	const {
+		as: Element = 'article',
+		children,
+		className = '',
+		aosAnimation = '',
+		aosDuration = '',
+		aosEasing = '',
+	} = props;
 
-function Card({
-	as: Element = 'article',
-	children,
-	className = '',
-	aosAnimation = '',
-	aosDuration = '',
-	aosEasing = '',
-}: CardProps) {
 	return (
 		<Element
 			data-aos={aosAnimation}
@@ -31,16 +31,16 @@ function Card({
 	);
 }
 
-Card.Header = function CardHeader({ as: Element = 'header', children, className = '' }: CardHeaderProps) {
+Card.Header = function CardHeader({ as: Element = 'header', children, className = '' }: OtherCardProps) {
 	return <Element className={className}>{children}</Element>;
 };
 
-Card.Body = function CardBody({ children, className = '' }: OtherCardProps) {
-	return <div className={className}>{children}</div>;
+Card.Body = function CardBody({ as: Element = 'div', children, className = '' }: OtherCardProps) {
+	return <Element className={className}>{children}</Element>;
 };
 
-Card.Footer = function CardFooter({ children, className = '' }: OtherCardProps) {
-	return <div className={className}>{children}</div>;
+Card.Footer = function CardFooter({ as: Element = 'footer', children, className = '' }: OtherCardProps) {
+	return <Element className={className}>{children}</Element>;
 };
 
 export default Card;

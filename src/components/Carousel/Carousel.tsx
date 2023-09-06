@@ -1,6 +1,6 @@
+import { useCarouselOptions } from '@/hooks/useCarouselOptions';
+import { useGlobalStore } from '@/store/zustand/globalStore';
 import { twMerge } from 'tailwind-merge';
-import { useCarouselOptions } from '../../hooks/useCarouselOptions';
-import { useGlobalStore } from '../../store/zustand/globalStore';
 import { useCarouselStore } from './carouselStoreContext';
 
 type CarouselProps = {

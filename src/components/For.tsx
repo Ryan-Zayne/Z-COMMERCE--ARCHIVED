@@ -10,7 +10,7 @@ type ConditionalProps<TArrayItem> =
 			render?: "Hey, Sorry but you've already used the children prop so the render prop is redundant";
 	  };
 
-function For<Tprop>({ each, render, children }: ConditionalProps<Tprop>) {
+function For<TProp>({ each, render, children }: ConditionalProps<TProp>) {
 	const mappedElements = each.map((item, index) => {
 		if (typeof render === 'function') {
 			return render(item, index);

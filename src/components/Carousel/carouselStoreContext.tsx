@@ -1,13 +1,11 @@
-import { assertDefined } from '@/global-type-helpers';
 import { createContext } from '@/hooks/context-hook';
 import { useCallbackRef } from '@/hooks/useCallbackRef';
 import { useState } from 'react';
 import { createStore, useStore } from 'zustand';
 import type { CarouselProviderProps, CarouselStore, CarouselStoreApi } from './carousel.types';
 
-const [Provider, useContext] = createContext<CarouselStoreApi | null>({
+const [Provider, useContext] = createContext<CarouselStoreApi>({
 	name: 'CarouselStoreContext',
-	strict: true,
 	hookName: 'useCarouselStore',
 	providerName: 'CarouselContextProvider',
 	defaultValue: null,
@@ -46,7 +44,7 @@ const useCarouselStore = <TState,>(callbackFn: (store: CarouselStore) => TState)
 	const store = useContext();
 	const selector = useCallbackRef(callbackFn);
 
-	return useStore<CarouselStoreApi, TState>(assertDefined(store), selector);
+	return useStore<CarouselStoreApi, TState>(store, selector);
 };
 
 export { CarouselContextProvider, useCarouselStore };

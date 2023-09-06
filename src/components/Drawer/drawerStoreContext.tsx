@@ -1,14 +1,12 @@
-import { assertDefined } from '@/global-type-helpers';
 import { useCallbackRef } from '@/hooks';
 import { createContext } from '@/hooks/context-hook';
 import { useEffect, useMemo, useState } from 'react';
 import { createStore, useStore } from 'zustand';
 import type { DrawerProviderProps, DrawerStore, DrawerStoreApi } from './drawer.types';
 
-const [Provider, useContext] = createContext<DrawerStoreApi | null>({
+const [Provider, useContext] = createContext<DrawerStoreApi>({
 	name: 'DrawerStoreContext',
 	hookName: 'useDrawerStore',
-	strict: true,
 	providerName: 'DrawerContextProvider',
 	defaultValue: null,
 });
@@ -37,7 +35,7 @@ const useDrawerStore = <T,>(callbackFn: (state: DrawerStore) => T) => {
 	const store = useContext();
 	const selector = useCallbackRef(callbackFn);
 
-	return useStore<DrawerStoreApi, T>(assertDefined(store), selector);
+	return useStore<DrawerStoreApi, T>(store, selector);
 };
 
 export { DrawerContextProvider, useDrawerStore };
