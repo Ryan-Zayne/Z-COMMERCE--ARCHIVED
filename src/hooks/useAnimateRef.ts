@@ -30,26 +30,26 @@ const useAnimateRef = () => {
 		paragraph: null,
 	});
 
-	const fadeAnimationId = useRef<NodeJS.Timeout>();
+	const fadeAnimationId = useRef<number>();
 
 	useEffect(() => {
 		const addAnimationClasses = () => {
-			for (const element of possibleElements) {
-				if (!elementRef.current[element.targetElement]) {
-					throw new ELementError(element.targetElement);
+			for (const { targetElement, animationClass } of possibleElements) {
+				if (!elementRef.current[targetElement]) {
+					throw new ELementError(targetElement);
 				}
 
-				elementRef.current[element.targetElement]?.classList.add(element.animationClass);
-			}
-		};
-
-		const removeAnimationClasses = () => {
-			for (const element of possibleElements) {
-				elementRef.current[element.targetElement]?.classList.remove(element.animationClass);
+				elementRef.current[targetElement]?.classList.add(animationClass);
 			}
 		};
 
 		addAnimationClasses();
+
+		const removeAnimationClasses = () => {
+			for (const { targetElement, animationClass } of possibleElements) {
+				elementRef.current[targetElement]?.classList.remove(animationClass);
+			}
+		};
 
 		fadeAnimationId.current = setTimeout(removeAnimationClasses, 2000);
 
