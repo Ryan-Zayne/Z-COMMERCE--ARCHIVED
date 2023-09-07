@@ -2,15 +2,21 @@
 import { useCallback, useEffect, useRef } from 'react';
 import { useCallbackRef } from './useCallbackRef';
 
-const useAnimationInterval = (callbackFn: () => void, intervalDuration: number | null) => {
+type AnimationOptions<TCallback> = {
+	callbackFn: TCallback;
+	intervalDuration: number;
+};
+
+const useAnimationInterval = <TCallback extends () => void>(options: AnimationOptions<TCallback>) => {
+	const { callbackFn, intervalDuration } = options;
+
 	const startTimeStampRef = useRef<number | null>(null);
 	const animationFrameId = useRef(0);
 
 	const savedCallback = useCallbackRef(callbackFn);
 
 	/**
-	 * This is a function that plays the animation and calls the saved callback function when the interval duration has elapsed.
-	 * @param timeStamp - The timestamp of the current animation frame (automatically passed by requestAnimationFrame).
+	 * @param timeStamp - The timestamp of the current animation frame (automatically passed by requestAnimationFrame API).
 	 */
 
 	// prettier-ignore
