@@ -2,12 +2,12 @@
 import { useCallback, useEffect, useRef } from 'react';
 import { useCallbackRef } from './useCallbackRef';
 
-type AnimationOptions<TCallback> = {
-	callbackFn: TCallback;
-	intervalDuration: number;
+type AnimationOptions = {
+	callbackFn: () => void;
+	intervalDuration: number | null;
 };
 
-const useAnimationInterval = <TCallback extends () => void>(options: AnimationOptions<TCallback>) => {
+const useAnimationInterval = (options: AnimationOptions) => {
 	const { callbackFn, intervalDuration } = options;
 
 	const startTimeStampRef = useRef<number | null>(null);
