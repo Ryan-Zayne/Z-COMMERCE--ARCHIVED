@@ -11,7 +11,9 @@ function Hero() {
 	const slideImages = useCarouselStore(
 		(state) => state.slideImages as Exclude<CarouselStore['slideImages'], string[]>
 	);
-	const { animatedElements } = useAnimateRef();
+	const currentSlide = useCarouselStore((state) => state.currentSlide);
+
+	const { animatedElements } = useAnimateRef({ currentSlide });
 
 	const CarouselItems = slideImages.map((image, index) => (
 		<Carousel.Item key={image.src}>

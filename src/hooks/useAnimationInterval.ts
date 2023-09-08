@@ -1,13 +1,14 @@
 /* eslint-disable consistent-return */
+import { assertDefined } from '@/global-type-helpers';
 import { useCallback, useEffect, useRef } from 'react';
 import { useCallbackRef } from './useCallbackRef';
 
-type AnimationOptions = {
+type AnimationOptionsType = {
 	callbackFn: () => void;
 	intervalDuration: number | null;
 };
 
-const useAnimationInterval = (options: AnimationOptions) => {
+const useAnimationInterval = (options: AnimationOptionsType) => {
 	const { callbackFn, intervalDuration } = options;
 
 	const startTimeStampRef = useRef<number | null>(null);
@@ -26,11 +27,10 @@ const useAnimationInterval = (options: AnimationOptions) => {
 				startTimeStampRef.current = timeStamp;
 			}
 
-			//* Calculate the elapsed time since the animation started.
 			const elapsedTime = timeStamp - startTimeStampRef.current;
 
 			//* Call the callback function and reset the start timestamp when the interval duration elapses.
-			if (intervalDuration && elapsedTime >= intervalDuration) {
+			if (elapsedTime >= assertDefined(intervalDuration)) {
 				savedCallback();
 				startTimeStampRef.current = timeStamp;
 			}
@@ -41,13 +41,11 @@ const useAnimationInterval = (options: AnimationOptions) => {
 		[intervalDuration, savedCallback]
 	);
 
-	const onAnimationStart = useCallback(
-		() => (animationFrameId.current = requestAnimationFrame(smoothAnimation)),
-		[smoothAnimation]
-	);
+	const onAnimationStart = useCallback(() => requestAnimationFrame(smoothAnimation), [smoothAnimation]);
 
 	const onAnimationStop = useCallback(() => cancelAnimationFrame(animationFrameId.current), []);
 
+	// This effect allows start and stop of the animation from the consumer component just by toggling the interval between a number and null
 	useEffect(() => {
 		if (intervalDuration !== null) {
 			onAnimationStart();
@@ -56,7 +54,7 @@ const useAnimationInterval = (options: AnimationOptions) => {
 		}
 	}, [intervalDuration, onAnimationStart, onAnimationStop]);
 
-	return { onAnimationStop };
+	return { animationFrameId: animationFrameId.current, onAnimationStop };
 };
 
 export { useAnimationInterval };
