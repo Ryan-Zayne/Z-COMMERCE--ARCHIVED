@@ -29,7 +29,7 @@
 	"include": [
 		"env.d.ts",
 		"postcss.config.cjs",
-		"prettier.config.cjs",
+		"prettier.config.js",
 		"src",
 		"tailwind.config.ts",
 		"vite-env.d.ts",

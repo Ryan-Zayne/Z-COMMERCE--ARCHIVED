@@ -7,7 +7,7 @@
 		"dev": "vite",
 		"build": "vite build",
 		"preview": "vite preview",
-		"lint": "pnpx eslint . --ext .ts,.tsx"
+		"lint": "pnpm eslint . --ext .ts,.tsx"
 	},
 	"dependencies": {
 		"@headlessui/react": "^1.7.17",

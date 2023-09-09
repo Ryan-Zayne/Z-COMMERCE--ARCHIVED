@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 
 type ElementRefObject = {
 	heading: HTMLHeadingElement | null;
-	button: HTMLButtonElement | HTMLDivElement | null;
+	button: HTMLButtonElement | null;
 	paragraph: HTMLParagraphElement | null;
 };
 
