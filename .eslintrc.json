@@ -104,6 +104,7 @@
 				"allowExpressions": true
 			}
 		],
+		"react/no-unused-prop-types": "off",
 		"react/jsx-boolean-value": ["error", "always"],
 		"react/button-has-type": "off",
 		"react/function-component-definition": "off",
