@@ -1,4 +1,3 @@
-/** @type {import('tailwindcss').Config} */
 import plugin from 'tailwindcss/plugin';
 import type { Config } from 'tailwindcss/types/config';
 
@@ -10,6 +9,7 @@ const config = {
 			sm: '480px',
 			md: '768px',
 			lg: '1000px',
+			xl: '1280px',
 		},
 
 		backgroundImage: {

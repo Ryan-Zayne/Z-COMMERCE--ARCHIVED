@@ -1,6 +1,6 @@
 {
 	"compilerOptions": {
-		"allowJs": false,
+		"allowJs": true,
 		"allowSyntheticDefaultImports": true,
 		"baseUrl": ".",
 		"checkJs": false,
@@ -10,7 +10,8 @@
 		"jsx": "preserve",
 		"lib": ["DOM", "DOM.Iterable", "ESNext"],
 		"module": "ESNext",
-		"moduleResolution": "node",
+		"moduleDetection": "force",
+		"moduleResolution": "Node",
 		"noEmit": true,
 		"noFallthroughCasesInSwitch": true,
 		"noUncheckedIndexedAccess": true,
@@ -21,8 +22,7 @@
 		"resolveJsonModule": true,
 		"skipLibCheck": true /* Skip type checking all .d.ts files. */,
 		"strict": true,
-		"target": "ES2016",
-		"types": ["vite/client"],
+		"target": "ES2022",
 		"verbatimModuleSyntax": true
 	},
 	"exclude": ["node_modules"],
@@ -32,7 +32,7 @@
 		"prettier.config.js",
 		"src",
 		"tailwind.config.ts",
-		"vite-env.d.ts",
+		"vite-types.d.ts",
 		"vite.config.ts"
 	],
 	"references": [
